@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicDauctionPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.TopicDauctionPrice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="cur_time" property="curTime" jdbcType="TIMESTAMP" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="dauction_id" property="dauctionId" jdbcType="INTEGER" />
+    <result column="tg_id" property="tgId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, cur_time, price, dauction_id, tg_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_dauction_price
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_dauction_price
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.TopicDauctionPrice" >
+    insert into topic_dauction_price (id, goods_id, cur_time, 
+      price, dauction_id, tg_id)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{curTime,jdbcType=TIMESTAMP}, 
+      #{price,jdbcType=INTEGER}, #{dauctionId,jdbcType=INTEGER}, #{tgId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.TopicDauctionPrice" useGeneratedKeys="true" keyProperty="id">
+    insert into topic_dauction_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="curTime != null" >
+        cur_time,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="dauctionId != null" >
+        dauction_id,
+      </if>
+      <if test="tgId != null" >
+        tg_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="curTime != null" >
+        #{curTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionId != null" >
+        #{dauctionId,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        #{tgId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.TopicDauctionPrice" >
+    update topic_dauction_price
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="curTime != null" >
+        cur_time = #{curTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionId != null" >
+        dauction_id = #{dauctionId,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        tg_id = #{tgId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.TopicDauctionPrice" >
+    update topic_dauction_price
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      cur_time = #{curTime,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=INTEGER},
+      dauction_id = #{dauctionId,jdbcType=INTEGER},
+      tg_id = #{tgId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.*
+    from topic_dauction_price a LEFT JOIN topic_dauction b ON a.dauction_id = b.id LEFT JOIN topic_goods c ON b.tg_id = c.id LEFT JOIN topic d ON c.act_id = d.id
+    where NOW() > d.start_time and d.end_time > NOW()
+    and a.goods_id = #{goodsId,jdbcType=INTEGER}
+    order by a.cur_time desc
+  </select>
+  
+  <select id="selectByTgId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from topic_dauction_price 
+    where tg_id = #{tgId,jdbcType=INTEGER}
+    order by cur_time desc
+  </select>
+  
+  <!-- 2018-04-08程凤云 -->
+   <select id="selectCurrentPrice" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicDauctionPrice" >
+     select * from topic_dauction_price 
+     where 1=1 
+     <if test="goodsId != null" >
+        and goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+     and cur_time <![CDATA[<]]> NOW()
+     order by cur_time desc limit 0,2
+  </select>
+</mapper>

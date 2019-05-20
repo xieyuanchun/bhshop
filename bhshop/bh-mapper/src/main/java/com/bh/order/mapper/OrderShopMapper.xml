@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderShopMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderShop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="shop_order_no" property="shopOrderNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_refund" property="isRefund" jdbcType="INTEGER" />
+    <result column="delivery_price" property="deliveryPrice" jdbcType="INTEGER" />
+    <result column="d_state" property="dState" jdbcType="INTEGER" />
+    <result column="is_shop_checkout" property="isShopCheckout" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="INTEGER" />
+    <result column="g_delivery_price" property="gDeliveryPrice" jdbcType="INTEGER" />
+    <result column="receivedtime" property="receivedtime" jdbcType="TIMESTAMP" />
+    <result column="cast_time" property="castTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="jdOrderId" property="jdorderid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="err_code" property="errCode" jdbcType="VARCHAR" />
+    <result column="err_msg" property="errMsg" jdbcType="VARCHAR" />
+    <result column="save_price" property="savePrice" jdbcType="INTEGER" />
+    <result column="delivery_way" property="deliveryWay" jdbcType="INTEGER" />
+    <result column="print_count" property="printCount" jdbcType="INTEGER" />
+    <result column="print_code" property="printCode" jdbcType="VARCHAR" />
+    <result column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="coupon_price" property="couponPrice" jdbcType="INTEGER" />
+    <result column="print_time" property="printTime" jdbcType="TIMESTAMP" />
+    <result column="sku_pay_price" property="skuPayPrice" jdbcType="INTEGER" />
+    <result column="is_bean" property="isBean" jdbcType="INTEGER" />
+    <result column="valid_len" property="validLen" jdbcType="TIMESTAMP" />
+    <result column="express_name" property="expressName" jdbcType="VARCHAR" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
+    <result column="confirm_order" property="confirmOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, shop_id, order_id, order_no, shop_order_no, status, is_refund, delivery_price, 
+    d_state, is_shop_checkout, order_price, g_delivery_price, receivedtime, cast_time, 
+    send_time, jdOrderId, remark, err_code, err_msg, save_price, delivery_way, print_count, 
+    print_code, coupon_id, coupon_price, print_time, sku_pay_price, is_bean, valid_len, 
+    express_name, express_no, confirm_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderShop" useGeneratedKeys="true" keyProperty="id">
+    insert into order_shop (id, m_id, shop_id, 
+      order_id, order_no, shop_order_no, 
+      status, is_refund, delivery_price, 
+      d_state, is_shop_checkout, order_price, 
+      g_delivery_price, receivedtime, cast_time, 
+      send_time, jdOrderId, remark, 
+      err_code, err_msg, save_price, 
+      delivery_way, print_count, print_code, 
+      coupon_id, coupon_price, print_time, 
+      sku_pay_price, is_bean, valid_len, 
+      express_name, express_no, confirm_order
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{shopOrderNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{isRefund,jdbcType=INTEGER}, #{deliveryPrice,jdbcType=INTEGER}, 
+      #{dState,jdbcType=INTEGER}, #{isShopCheckout,jdbcType=INTEGER}, #{orderPrice,jdbcType=INTEGER}, 
+      #{gDeliveryPrice,jdbcType=INTEGER}, #{receivedtime,jdbcType=TIMESTAMP}, #{castTime,jdbcType=TIMESTAMP}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{jdorderid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{errCode,jdbcType=VARCHAR}, #{errMsg,jdbcType=VARCHAR}, #{savePrice,jdbcType=INTEGER}, 
+      #{deliveryWay,jdbcType=INTEGER}, #{printCount,jdbcType=INTEGER}, #{printCode,jdbcType=VARCHAR}, 
+      #{couponId,jdbcType=INTEGER}, #{couponPrice,jdbcType=INTEGER}, #{printTime,jdbcType=TIMESTAMP}, 
+      #{skuPayPrice,jdbcType=INTEGER}, #{isBean,jdbcType=INTEGER}, #{validLen,jdbcType=TIMESTAMP}, 
+      #{expressName,jdbcType=VARCHAR}, #{expressNo,jdbcType=VARCHAR}, #{confirmOrder,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderShop" useGeneratedKeys="true" keyProperty="id">
+    insert into order_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="shopOrderNo != null" >
+        shop_order_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price,
+      </if>
+      <if test="dState != null" >
+        d_state,
+      </if>
+      <if test="isShopCheckout != null" >
+        is_shop_checkout,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="gDeliveryPrice != null" >
+        g_delivery_price,
+      </if>
+      <if test="receivedtime != null" >
+        receivedtime,
+      </if>
+      <if test="castTime != null" >
+        cast_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="jdorderid != null" >
+        jdOrderId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="errCode != null" >
+        err_code,
+      </if>
+      <if test="errMsg != null" >
+        err_msg,
+      </if>
+      <if test="savePrice != null" >
+        save_price,
+      </if>
+      <if test="deliveryWay != null" >
+        delivery_way,
+      </if>
+      <if test="printCount != null" >
+        print_count,
+      </if>
+      <if test="printCode != null" >
+        print_code,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="printTime != null" >
+        print_time,
+      </if>
+      <if test="skuPayPrice != null" >
+        sku_pay_price,
+      </if>
+      <if test="isBean != null" >
+        is_bean,
+      </if>
+      <if test="validLen != null" >
+        valid_len,
+      </if>
+      <if test="expressName != null" >
+        express_name,
+      </if>
+      <if test="expressNo != null" >
+        express_no,
+      </if>
+      <if test="confirmOrder != null" >
+        confirm_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopOrderNo != null" >
+        #{shopOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null" >
+        #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="dState != null" >
+        #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="isShopCheckout != null" >
+        #{isShopCheckout,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="gDeliveryPrice != null" >
+        #{gDeliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="receivedtime != null" >
+        #{receivedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="castTime != null" >
+        #{castTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdorderid != null" >
+        #{jdorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null" >
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null" >
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="savePrice != null" >
+        #{savePrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryWay != null" >
+        #{deliveryWay,jdbcType=INTEGER},
+      </if>
+      <if test="printCount != null" >
+        #{printCount,jdbcType=INTEGER},
+      </if>
+      <if test="printCode != null" >
+        #{printCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skuPayPrice != null" >
+        #{skuPayPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isBean != null" >
+        #{isBean,jdbcType=INTEGER},
+      </if>
+      <if test="validLen != null" >
+        #{validLen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expressName != null" >
+        #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmOrder != null" >
+        #{confirmOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderShop" >
+    update order_shop
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopOrderNo != null" >
+        shop_order_no = #{shopOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="dState != null" >
+        d_state = #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="isShopCheckout != null" >
+        is_shop_checkout = #{isShopCheckout,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="gDeliveryPrice != null" >
+        g_delivery_price = #{gDeliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="receivedtime != null" >
+        receivedtime = #{receivedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="castTime != null" >
+        cast_time = #{castTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdorderid != null" >
+        jdOrderId = #{jdorderid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null" >
+        err_code = #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null" >
+        err_msg = #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="savePrice != null" >
+        save_price = #{savePrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryWay != null" >
+        delivery_way = #{deliveryWay,jdbcType=INTEGER},
+      </if>
+      <if test="printCount != null" >
+        print_count = #{printCount,jdbcType=INTEGER},
+      </if>
+      <if test="printCode != null" >
+        print_code = #{printCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        print_time = #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skuPayPrice != null" >
+        sku_pay_price = #{skuPayPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isBean != null" >
+        is_bean = #{isBean,jdbcType=INTEGER},
+      </if>
+      <if test="validLen != null" >
+        valid_len = #{validLen,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expressName != null" >
+        express_name = #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        express_no = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmOrder != null" >
+        confirm_order = #{confirmOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderShop" >
+    update order_shop
+    set m_id = #{mId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      shop_order_no = #{shopOrderNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      d_state = #{dState,jdbcType=INTEGER},
+      is_shop_checkout = #{isShopCheckout,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      g_delivery_price = #{gDeliveryPrice,jdbcType=INTEGER},
+      receivedtime = #{receivedtime,jdbcType=TIMESTAMP},
+      cast_time = #{castTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      jdOrderId = #{jdorderid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      err_code = #{errCode,jdbcType=VARCHAR},
+      err_msg = #{errMsg,jdbcType=VARCHAR},
+      save_price = #{savePrice,jdbcType=INTEGER},
+      delivery_way = #{deliveryWay,jdbcType=INTEGER},
+      print_count = #{printCount,jdbcType=INTEGER},
+      print_code = #{printCode,jdbcType=VARCHAR},
+      coupon_id = #{couponId,jdbcType=INTEGER},
+      coupon_price = #{couponPrice,jdbcType=INTEGER},
+      print_time = #{printTime,jdbcType=TIMESTAMP},
+      sku_pay_price = #{skuPayPrice,jdbcType=INTEGER},
+      is_bean = #{isBean,jdbcType=INTEGER},
+      valid_len = #{validLen,jdbcType=TIMESTAMP},
+      express_name = #{expressName,jdbcType=VARCHAR},
+      express_no = #{expressNo,jdbcType=VARCHAR},
+      confirm_order = #{confirmOrder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="mOrderAccount" parameterType="com.bh.order.pojo.OrderShop" resultType="java.lang.Integer">
+    select count(*)
+    from order_shop
+    where 1=1
+    <if test="shopId!='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <choose>
+    	<when test="status==1">
+    		and status = 1
+    		and is_refund = 0
+    	</when>
+    	<when test="status==2">
+    		and (status = 2 or status = 9)
+    		and is_refund = 0
+    	</when>
+    	<when test="status==3">
+    		and (status = 3 or status = 5)
+    		and is_refund = 0
+    	</when>
+    	<when test="status==-1">
+    		and is_refund > 0 and (status != 6 or status != 8)
+    	</when>
+    </choose>
+   </select>
+   
+   <select id="mOrderListPage" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where 1=1
+    <if test="shopId!='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <choose>
+    	<when test="status==1">
+    		and status = 1
+    		and is_refund = 0
+    	</when>
+    	<when test="status==2">
+    		and (status = 2 or status = 9)
+    		and is_refund = 0
+    	</when>
+    	<when test="status==3">
+    		and (status = 3 or status = 5)
+    		and is_refund = 0
+    	</when>
+    	<when test="status==4">
+    		and status = 7
+    		and is_refund = 0
+    	</when>
+    	<when test="status==5">
+    		and (status = 6 or status = 8)
+    	</when>
+    	<when test="status==-1">
+    		and is_refund > 0 and (status != 6 or status != 8) 
+    	</when>
+    </choose>
+  </select>
+  
+  <select id="mAccount" parameterType="com.bh.order.pojo.OrderShop" resultType="java.lang.Integer">
+    select count(*)
+    from order_shop
+    where 1=1
+    <if test="shopId!='1'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <choose>
+    	<when test="status==4">
+    		and status = 7 and is_refund = 0
+    	</when>
+    	<when test="status==5">
+    		and (status = 6 or status = 8)
+    	</when>
+    </choose>
+   </select>
+   
+  <select id="getByOrderIdAndShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where order_id = #{0} and shop_id = #{1}
+  </select>
+  
+  <select id="getByOrderIdAndStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where order_id = #{orderId,jdbcType=INTEGER} and status = 2 and d_state = 0
+  </select>
+  
+  <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="getByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select os.*
+    from order_shop os left join order_main om on os.order_id=om.id
+    where 1=1
+    <if test="shopId !='0'.toString()">
+    	and os.shop_id = #{shopId}
+    </if>
+    <if test="status != null and status!='' " >
+        and os.status = #{status,jdbcType=INTEGER}
+    </if>
+    order by om.addtime desc
+  </select>
+  
+  
+   <select id="mgetByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select os.*
+    from order_shop os left join order_main om on os.order_id=om.id
+    where  1=1
+    <if test="shopId !='0'.toString()">
+    	and os.shop_id = #{shopId}
+    </if>
+    order by om.addtime desc
+  </select>
+  
+  
+    <select id="getAlreadyByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where status != 1 and status != 6
+    <if test="shopId!='0'.toString()">
+     and shop_id = #{shopId}
+    </if>
+   </select>
+  
+  <select id="getAlreadyByShopIdByTime" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.* from order_shop a LEFT JOIN order_main b on a.order_id = b.id
+    where a.status != 1 and a.status != 6 and a.status != 8
+    <![CDATA[ and b.addtime >=]]>#{0}
+    <![CDATA[ and b.addtime <]]>#{1}
+    <if test="shopId!='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+  </select>
+  
+  <select id="orderShopAllList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+    select a.* from order_shop a LEFT JOIN order_main b on a.order_id = b.id
+    where a.shop_id = #{0} and a.shop_order_no like CONCAT(CONCAT('%', #{1}), '%')
+    <if test="isJd=='0'.toString()">
+       and a.jdOrderId = 0
+    </if>
+    <if test="isJd=='1'.toString()">
+       and a.jdOrderId != 0
+    </if>
+    <![CDATA[ and b.addtime >=]]>#{2}
+    <![CDATA[ and b.addtime <=]]>#{3}
+    order by b.addtime desc  
+  </select>
+  
+  <select id="orderShopList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+  	select a.* from order_shop a LEFT JOIN order_main b on a.order_id = b.id
+  	where a.shop_order_no like CONCAT(CONCAT('%', #{2}), '%')
+  	<if test="shopId !='1'.toString()">
+  		and a.shop_id = #{shopId}
+  	</if>
+  	<if test="status != null and status!= ''">
+       and a.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="isJd=='0'.toString()">
+       and a.jdOrderId = 0
+    </if>
+    <if test="isJd=='1'.toString()">
+       and a.jdOrderId != 0
+    </if>
+    <![CDATA[ and b.addtime >=]]>#{3}
+    <![CDATA[ and b.addtime <]]>#{4}
+    order by b.addtime desc  
+  </select>
+  
+  <select id="getOrderByDstate" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shop
+    where d_state = #{dState,jdbcType=INTEGER} and status = 2 and is_refund = 0
+  </select>
+  
+  <select id="getDeliveryPriceTypeOrder" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+      select a.*
+      from order_shop a LEFT JOIN member_shop b on a.shop_id = b.m_id
+         where a.id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+       	 <choose>
+       	 	<when test="fz==2">
+       	 		order by ACOS(SIN((#{3} * 3.1415) / 180 ) * SIN((b.lat * 3.1415) / 180 )+
+				COS((#{3} * 3.1415) / 180 ) * COS((b.lat * 3.1415) / 180 )*COS((#{2} * 3.1415) / 180 - (b.lon * 3.1415) / 180 ) )  * 6380 
+				asc
+       	 	</when>
+       	 	<when test="fz==3">
+       	 		order by ACOS(SIN((#{3} * 3.1415) / 180 ) * SIN((b.lat * 3.1415) / 180 )+
+				COS((#{3} * 3.1415) / 180 ) * COS((b.lat * 3.1415) / 180 )*COS((#{2} * 3.1415) / 180 - (b.lon * 3.1415) / 180 ) )  * 6380 
+				desc
+       	 	</when>
+       	 	<when test="fz==4">
+       	 		order by a.delivery_price desc
+       	 	</when>
+       	 	<when test="fz==5">
+       	 		order by a.delivery_price asc
+       	 	</when>
+       	 	<otherwise>
+       	 		order by a.cast_time asc
+       	 	</otherwise>
+       	 </choose>
+   </select>
+  
+  
+  <select id="sendAccount" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.*
+    from order_shop a left join order_send_info b on a.id = b.order_shop_id 
+    where b.s_id = #{0} and b.d_state = #{1}
+  </select>
+  
+  
+  <!-- <select id="backGroundOrderList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select a.* 
+    from order_shop a LEFT JOIN order_main b ON a.order_id = b.id LEFT JOIN order_sku c ON a.id = c.order_shop_id LEFT JOIN member d ON a.m_id = d.id
+    LEFT JOIN order_team e ON a.order_no = e.order_no
+    where 1=1
+    <if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    <if test="status != null and status !='' ">
+    	and a.status = #{status}
+    	and a.is_refund =0
+    </if>
+    <if test="orderNo != null and orderNo != '' ">
+    	and a.order_no in 
+    	 <foreach item="orderNoList" collection="orderNoList" open="(" close=")" separator=",">
+             #{orderNoList}
+         </foreach>
+    </if>
+    <if test="shopOrderNo != null and shopOrderNo != '' ">
+    	and a.shop_order_no in 
+		 <foreach item="orderShopNoList" collection="orderShopNoList" open="(" close=")" separator=",">
+             #{orderShopNoList}
+         </foreach>
+    </if>
+    <if test="startTime != null" >
+       and  b.addtime <![CDATA[>=]]> #{startTime}
+    </if>
+    <if test="endTime != null" >
+       and  b.addtime <![CDATA[<=]]> #{endTime}
+    </if>
+    <if test="id != null">
+    	and d.id = #{id}
+    </if>
+    <if test="tel != null and tel !=''">
+    	and d.phone like CONCAT(CONCAT('%', #{tel}), '%')
+    </if>
+    <if test="fullName != null and fullName!=''">
+    	and d.username like CONCAT(CONCAT('%', #{fullName}), '%')
+    </if>
+    <if test="goodsName != null and goodsName!=''">
+    	and c.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    order by b.addtime desc, e.team_no desc
+  </select> -->
+  
+  
+  <select id="backGroundOrderList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+		t.*
+	FROM
+	(
+		SELECT
+			a.*,
+			b.addtime
+		FROM
+			order_shop a
+		LEFT JOIN order_main b ON a.order_id = b.id
+		LEFT JOIN order_sku c ON a.id = c.order_shop_id
+		LEFT JOIN member d ON a.m_id = d.id
+		LEFT JOIN order_team e ON a.order_no = e.order_no
+		where 1=1
+		<if test="shopId !='0'.toString()">
+    		and a.shop_id = #{shopId}
+    	</if>
+    	<if test="status != null and status !='' ">
+    		<choose>
+    			<when test="status==2">
+    				and a.status = #{status}
+    				and a.is_refund =0
+    				and a.order_no not in 
+    				(select order_no from order_team where status !=1)
+    			</when>
+    			<otherwise>
+    				and a.status = #{status}
+    				and a.is_refund =0
+    			</otherwise>
+    		</choose>
+	    </if>
+	    <if test="orderNo != null and orderNo != '' ">
+	    	and a.order_no in 
+	    	 <foreach item="orderNoList" collection="orderNoList" open="(" close=")" separator=",">
+	             #{orderNoList}
+	         </foreach>
+	    </if>
+	    <if test="shopOrderNo != null and shopOrderNo != '' ">
+	    	and a.shop_order_no in 
+			 <foreach item="orderShopNoList" collection="orderShopNoList" open="(" close=")" separator=",">
+	             #{orderShopNoList}
+	         </foreach>
+	    </if>
+	    <if test="startTime != null" >
+	       and  b.addtime <![CDATA[>=]]> #{startTime}
+	    </if>
+	    <if test="endTime != null" >
+	       and  b.addtime <![CDATA[<=]]> #{endTime}
+	    </if>
+	    <if test="id != null">
+	    	and d.id = #{id}
+	    </if>
+	    <if test="tel != null and tel !=''">
+	    	and d.phone like CONCAT(CONCAT('%', #{tel}), '%')
+	    </if>
+	    <if test="fullName != null and fullName!=''">
+	    	and d.username like CONCAT(CONCAT('%', #{fullName}), '%')
+	    </if>
+	    <if test="goodsName != null and goodsName!=''">
+	    	and c.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+	    </if>
+		ORDER BY
+			e.team_no DESC
+	) t
+	ORDER BY
+	t.addtime DESC
+  </select>
+  
+  
+   <select id="bgJdOrderList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select a.* 
+    from order_shop a LEFT JOIN order_main b ON a.order_id = b.id LEFT JOIN order_sku c ON a.id = c.order_shop_id LEFT JOIN member d ON a.m_id = d.id
+    where 1=1 and a.jdOrderId !='0'
+    <if test="shopId !='1'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    <if test="status != null">
+    	and a.status = #{status}
+    	and a.is_refund =0
+    </if>
+    <if test="orderNo != null and orderNo != '' ">
+    	and a.order_no in 
+    	 <foreach item="orderNoList" collection="orderNoList" open="(" close=")" separator=",">
+             #{orderNoList}
+         </foreach>
+    </if>
+    <if test="shopOrderNo != null and shopOrderNo != '' ">
+    	and a.shop_order_no in 
+		 <foreach item="orderShopNoList" collection="orderShopNoList" open="(" close=")" separator=",">
+             #{orderShopNoList}
+         </foreach>
+    </if>
+    <if test="startTime != null" >
+       and  b.addtime <![CDATA[>=]]> #{startTime}
+    </if>
+    <if test="endTime != null" >
+       and  b.addtime <![CDATA[<=]]> #{endTime}
+    </if>
+    <if test="id != null">
+    	and d.id = #{id}
+    </if>
+    <if test="tel != null and tel !=''">
+    	and d.phone like CONCAT(CONCAT('%', #{tel}), '%')
+    </if>
+    <if test="fullName != null and fullName!=''">
+    	and d.username like CONCAT(CONCAT('%', #{fullName}), '%')
+    </if>
+    <if test="goodsName != null and goodsName!=''">
+    	and c.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    order by b.addtime desc
+  </select>
+  
+   <select id="jdOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(id)
+    from order_shop
+    where jdOrderId!='0'
+    <if test="shopId !='1'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+   </select>
+ 
+  
+  <!-- **************************************************************end********************************************************************************* -->
+  <!-- 2017-10-26 chengfengyun -->
+  <insert id ="insertOrderShopByBatch" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
+	 insert into order_shop ( m_id, shop_id, 
+      order_id, order_no, shop_order_no
+      )
+    <foreach collection ="list" index= "index" separator =",">
+	( #{mId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{shopOrderNo,jdbcType=VARCHAR}
+      )
+      </foreach>
+	</insert>
+	<!-- 2017-10-27chengfengyun -->
+	<!-- 通过查询mId,order_id,orderNo 查询 ordershop表 -->
+	<select id="selectOrderShopByOrderIds" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+      select oshop.* from order_shop oshop,order_main main,order_sku sku
+     where 1=1 
+        and oshop.order_id=main.id 
+        and sku.order_id=main.id
+        and sku.order_shop_id=oshop.id
+		<if test="id != null" >
+        and oshop.id=#{id}
+       </if>
+       <if test="mId != null" >
+       and oshop.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+       and oshop.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+       and oshop.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+       and oshop.order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="shopOrderNo != null" >
+       and oshop.shop_order_no = #{shopOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+       and oshop.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="isRefund != null" >
+       and oshop.is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      GROUP BY oshop.id
+      order by oshop.order_id desc
+	</select>
+	
+	<select id="selectOrderShopByOrderIds1" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+     select oshop.* from order_shop oshop,order_main main where 1=1 
+         and oshop.order_id=main.id 
+
+       <if test="mId != null" >
+       and oshop.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+       and oshop.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+       and oshop.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+       and oshop.order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="shopOrderNo != null" >
+       and oshop.shop_order_no = #{shopOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+       and oshop.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="isRefund != null" >
+       and oshop.is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      order by oshop.order_id desc
+	</select>
+	
+	 <!--  *****通过m_id 和group_id 查询 ordershop表 2017-11-2添加and status !=8******* -->
+	  <select id="selectOrderShopBySelect" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+	    select 
+    shop.*
+    from order_shop shop,order_main main,order_sku sku ,goods_sku gsku  
+         where 1=1 
+          and shop.order_id=main.id
+          and shop.id=sku.order_shop_id
+          and sku.order_id=main.id
+          and gsku.id=sku.sku_id
+         and shop.status !=8
+    <if test="mId != null" >
+       and shop.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+     <if test="status != null" >
+       and shop.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+       and (shop.order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or shop.shop_order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or  sku.goods_name like CONCAT(CONCAT('%', #{orderNo}), '%') )
+      </if>
+      <if test="goodsName != null" >
+      and sku.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+      </if>
+     GROUP BY shop.order_id ORDER BY shop.order_id DESC
+  </select>
+  	 <!--  *****通过m_id 和group_id 查询 ordershop表 2017-11-2添加and status !=8******* -->
+	  <select id="selectOrderShopParams" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+    select 
+    a.*
+    from order_shop a ,order_sku b ,order_main c ,goods_sku gsku 
+    where 1=1 
+      and a.id = b.order_shop_id
+      and c.id=b.order_id
+      and a.order_id=c.id
+      and b.sku_id=gsku.id
+    <if test="mId != null" >
+       and a.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+     <if test="status != null" >
+       and (a.status =2 or a.status = 5)
+      </if>
+      <if test="orderNo != null" >
+       and (a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or a.shop_order_no like CONCAT(CONCAT('%', #{orderNo}), '%') )
+      </if>
+      <if test="goodsName != null" >
+      and b.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+      </if>
+      
+     GROUP BY a.id ORDER BY c.addtime DESC
+  </select>
+  
+  
+  
+  
+   <select id="selectOrderShopByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select 
+         shop.*
+      from 
+          order_shop shop ,order_sku sku ,order_main main
+      where 1=1 
+      and shop.order_id=main.id
+      and shop.id=sku.order_shop_id
+      and main.id=sku.order_id
+     <if test="orderId != null" >
+       and shop.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+     GROUP BY shop.order_id ORDER BY shop.order_id DESC
+  </select>
+  
+  	<update id="updateOrderShopBySelect" parameterType="com.bh.order.pojo.OrderShop">	
+	update order_shop   
+	<set>
+	<if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="receivedtime != null" >
+        receivedtime = #{receivedtime,jdbcType=TIMESTAMP}
+      </if>
+      </set> 
+      where 1=1 
+      and id = #{id,jdbcType=INTEGER}
+      
+	</update>
+	 <select id="selectByOrderShopId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+      select 
+         shop.*
+      from 
+         order_shop shop ,order_sku sku ,order_main main
+      where 1=1 
+      and shop.order_id=main.id
+      and shop.id=sku.order_shop_id
+      and main.id=sku.order_id
+    and shop.id = #{id,jdbcType=INTEGER}
+    GROUP BY shop.id
+  </select>
+	  <select id="selectOrderShopByRefunt" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+    select 
+    shop.*
+    from 
+    order_shop shop ,order_sku sku ,order_main main
+    where 1=1 
+      and shop.order_id=main.id
+      and shop.id=sku.order_shop_id
+      and main.id=sku.order_id
+      and shop.m_id = #{mId,jdbcType=INTEGER} 
+    <if test="isRefund != null" >
+      and shop.is_refund = #{isRefund,jdbcType=INTEGER}
+    </if>
+      ORDER BY shop.order_id DESC
+  </select>
+  <select id="selectOrderShopByOrder" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+	 select 
+          shop.*
+    from 
+    order_shop shop ,order_sku sku ,order_main main
+    where 1=1 
+      and shop.order_id=main.id
+      and shop.id=sku.order_shop_id
+      and main.id=sku.order_id
+      <if test="mId != null" >
+       and shop.m_id = #{mId,jdbcType=INTEGER}
+     </if>
+      <if test="shopId != null" >
+       and shop.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+       and shop.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+       and shop.order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="shopOrderNo != null" >
+       and shop.shop_order_no = #{shopOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+       and shop.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="isRefund != null" >
+       and shop.is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      order by shop.order_id desc
+	</select>
+	 <select id="selectOrderShopByOrderNo" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+  		select shop.*
+        from order_shop shop,order_main main,order_sku sku,order_team team
+        where  1=1 
+		  and shop.m_id=main.m_id
+	      and shop.order_id=main.id
+          and shop.id=sku.order_shop_id
+          and main.id=sku.order_id
+		  and main.order_no=team.order_no
+		  and team.m_id = #{mId,jdbcType=INTEGER}
+		  and team.`status` =0
+		  and shop.`status`=2
+		  order by team.create_time desc
+	</select>
+	 <update id="updateOrderShopByParams" parameterType="com.bh.order.pojo.OrderShop" >
+    update order_shop
+    set 
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=INTEGER}
+      </if>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <update id="updateOrderPrice" parameterType="com.bh.order.pojo.OrderShop" >
+    update order_shop
+    <set>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+       <if test="savePrice != null" >
+        save_price = #{savePrice,jdbcType=INTEGER},
+      </if>
+      </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  	
+	 <!--  *****通过用户的id 查询待待发货商品******* -->
+	  <select id="selectOrderShopByStatus2" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+  select 
+    a.*
+    from  order_shop a , order_sku b , order_main c 
+    
+    where 1=1   
+    and c.id=a.order_id
+    and c.id=b.order_id
+    and b.order_shop_id=a.id
+    and a.order_no not in (select team.order_no from order_team team where  team.`status` in(-1,0) and team.m_id=#{mId,jdbcType=INTEGER})
+     and a.is_refund !=2
+    <if test="status ='2'.toString()"> <!-- 备货中的订单也要在待发货中显示 xieyc-->
+    and	( a.status in (2,9)  )
+    </if>
+    <if test="mId != null" >
+       and a.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+       and (a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or a.shop_order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or  b.goods_name like CONCAT(CONCAT('%', #{orderNo}), '%') )
+      </if>
+      <if test="goodsName != null" >
+      and b.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+      </if>
+       GROUP BY a.order_id ORDER BY a.order_id DESC
+  </select>
+  <!-- 查询移动端商家今日的收入 -->
+  <select id="selectMShopThisDayInCome" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+         select COALESCE(sum(main.order_price),0)  from order_shop shop,order_main main where 1=1 
+          and shop.order_id=main.id
+          and main.`status` in (2,3)
+         and  to_days(main.addtime) = to_days(now()) 
+         and main.shop_id =  #{shopId,jdbcType=INTEGER}  
+  </select>
+  <!-- 查询移动端商家这个月的收入 -->
+  <select id="selectMShopThisMonthInCome" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select COALESCE(sum(main.order_price),0)  as amountsum from order_shop shop,order_main main where 1=1 
+     and shop.order_id=main.id
+     and main.`status` in (2,3)
+     and DATE_FORMAT(main.addtime,'%Y%m') = DATE_FORMAT(NOW(),'%Y%m')
+     and main.shop_id =  #{shopId,jdbcType=INTEGER}  
+  </select>
+  <!-- 跟据商家查询该商家订单下面的待分享的订单 -->
+   <select id="selectShareOrderListByShopId" resultMap="BaseResultMap" parameterType="java.util.Map" > 
+    SELECT
+	t.*
+	FROM(
+		SELECT
+			a.*,
+			b.addtime
+		FROM
+			order_shop a
+		LEFT JOIN order_main b ON a.order_id = b.id
+		LEFT JOIN order_sku c ON a.id = c.order_shop_id
+		LEFT JOIN member d ON a.m_id = d.id
+		LEFT JOIN order_team e ON a.order_no = e.order_no
+		where 1=1
+    	and e.`status`=0
+    	and a.`status`=2 
+    <if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    and a.is_refund =0
+    <if test="orderNo != null and orderNo != '' ">
+    	and a.order_no in 
+    	 <foreach item="orderNoList" collection="orderNoList" open="(" close=")" separator=",">
+             #{orderNoList}
+         </foreach>
+    </if>
+    <if test="shopOrderNo != null and shopOrderNo != '' ">
+    	and a.shop_order_no in 
+		 <foreach item="orderShopNoList" collection="orderShopNoList" open="(" close=")" separator=",">
+             #{orderShopNoList}
+         </foreach>
+    </if>
+    <if test="startTime != null" >
+       and  b.addtime <![CDATA[>=]]> #{startTime}
+    </if>
+    <if test="endTime != null" >
+       and  b.addtime <![CDATA[<=]]> #{endTime}
+    </if>
+    <if test="id != null">
+    	and d.id = #{id}
+    </if>
+    <if test="tel != null and tel !=''">
+    	and d.phone like CONCAT(CONCAT('%', #{tel}), '%')
+    </if>
+    <if test="fullName != null and fullName!=''">
+    	and d.username like CONCAT(CONCAT('%', #{fullName}), '%')
+    </if>
+    <if test="goodsName != null and goodsName!=''">
+    	and c.goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    ORDER BY
+		e.team_no DESC
+	) t
+	ORDER BY
+	t.addtime DESC
+  </select>
+   <select id="selectShareCountByShopId" resultType="java.lang.Integer" parameterType="java.util.Map" >
+        SELECT
+			COUNT(a.id)
+		FROM
+			order_shop a
+		LEFT JOIN order_main b ON a.order_id = b.id
+		LEFT JOIN order_sku c ON a.id = c.order_shop_id
+		LEFT JOIN member d ON a.m_id = d.id
+		LEFT JOIN order_team e ON a.order_no = e.order_no
+		where 1=1
+    	and e.`status`=0
+    	and a.`status`=2 
+    <if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    and a.is_refund =0
+  </select>
+  
+    <select id="selectShareCountByShopIdByTime" resultType="java.lang.Integer" parameterType="java.util.Map" >
+        SELECT
+			COUNT(a.id)
+		FROM
+			order_shop a
+		LEFT JOIN order_main b ON a.order_id = b.id
+		LEFT JOIN order_sku c ON a.id = c.order_shop_id
+		LEFT JOIN member d ON a.m_id = d.id
+		LEFT JOIN order_team e ON a.order_no = e.order_no
+		where 1=1
+		<![CDATA[ and b.addtime >=]]>#{0}
+   		<![CDATA[ and b.addtime <]]>#{1}
+    	and e.`status`=0
+    	and a.`status`=2 
+    <if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    and a.is_refund =0
+  </select>
+  <select id="selectSumPrice" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+      select 
+		  COALESCE(sum(sku.sku_sell_price_real*sku.sku_num),0) 
+		  from order_main main,order_shop shop,order_sku sku
+		  WHERE 1=1 
+            and main.id=shop.order_id
+            and shop.id=sku.order_shop_id
+            and main.id=sku.order_id
+            and sku.order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <update id="updateOrderNoByOrderId" parameterType="com.bh.order.pojo.OrderShop">
+  	update order_shop set order_no=#{orderNo} where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select oshop.id 
+  	from order_shop oshop,order_main omain
+  	where oshop.order_id=omain.id
+  	and oshop.order_id=#{orderId}
+  </select>
+ <!-- chengfeng -->
+ 
+
+	
+	
+	
+	   <!-- xxj start -->
+   <!-- 更新订单状态 -->
+   <update id="updateStatusByOrderNo" parameterType="com.bh.order.pojo.OrderShop">
+    update order_shop
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_no = #{orderNo}
+  </update>
+  
+    <!-- 进账统计:根据条件查询商家订单列表 xieyc -->
+    <select id="getShopOrderList"  resultMap="BaseResultMap">
+  	   select os.* from order_shop os inner JOIN  order_main om on os.order_id=om.id where 1=1
+  	   <if test="shopId != null " >
+        and os.shop_id = #{shopId,jdbcType=INTEGER}
+       </if>
+       <if test="id != null" >
+        and os.id = #{id,jdbcType=INTEGER}
+       </if>
+       <if test="order_id != null" >
+        and os.order_id = #{order_id,jdbcType=INTEGER}
+       </if>
+      <if test="order_no != null and  order_no !='' " >
+        and os.order_no like CONCAT(CONCAT('%', #{order_no}), '%')
+      </if>
+      <if test="payment_no != null and  payment_no !='' " >
+        and om.payment_no like CONCAT(CONCAT('%', #{payment_no}), '%')
+      </if>
+      <if test="payment_id != null" >
+       and om.payment_id =#{payment_id,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+       and os.status = #{status,jdbcType=INTEGER}
+      </if>
+      order by om.addtime desc
+	</select>
+  
+  
+  	<!-- 统计:7日内店铺销售TOP10 xieyc -->
+    <select id="getTopTenShopList"  resultMap="BaseResultMap">
+  	  select sum(os.order_price)-sum(os.g_delivery_price) amount,os.shop_id from order_shop os inner JOIN  order_main om on os.order_id=om.id 
+  	  where  os.status not in(1,6,8)
+  	  <![CDATA[ and om.addtime >=]]> #{0}
+      <![CDATA[ and om.addtime <=]]> #{1}
+  	  group by os.shop_id	
+      order by amount desc
+	</select>
+	<!-- 统计:查询商家已付款的订单(状态不为1代付款 6已取消 8已删除) xieyc -->
+    <select id="getShopOrder"  resultMap="BaseResultMap">
+  	   select  * from order_shop  where 
+  	   status not in(1,6,8)
+       and shop_id =#{shop_id,jdbcType=INTEGER}
+	</select>
+	
+	<!-- zlk -->
+	<select id="getByOrderNo" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop">
+       select * from order_shop
+       where shop_order_no = #{shopOrderNo,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop">
+       select * from order_shop
+       where order_no = #{orderNo,jdbcType=VARCHAR}
+    </select>
+   
+    <select id="mCountorderShopNum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+       select count(*) from order_shop  where shop_id = #{shopId} and status != 1 and status != 6 and status != 8
+    </select>
+   
+    <select id="mgetShopOrder" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+       select * from order_shop  where shop_id = #{shopId} and status != 1 and status != 6 and status != 8
+    </select>
+    
+     <select id="mgetShopOrderEveryDay" resultType="java.lang.Double" >
+       select  COALESCE(sum(os.order_price),0)  amountEveryDay  from order_shop os left join order_main om
+       on os.order_id=om.id
+       where 1=1
+       <if test="shopId!='0'.toString()">
+       and os.shop_id = #{shopId}
+       </if> 
+       and os.status != 1 and os.status != 6 and os.status !=8
+       and  DATE_FORMAT(om.addtime,'%Y-%m-%d') = DATE_FORMAT(#{today},'%Y-%m-%d')
+    </select>
+    
+    <select id="mgetCountDetailList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+       select * from order_shop  os left join order_main om  on os.order_id=om.id
+       where 1=1
+       <if test="shopId !='0'.toString()">
+       	and	os.shop_id = #{shopId}
+       </if> 
+       and os.status != 1 and os.status != 6 and os.status != 8
+       <if test="isRefund == 0" >
+           and os.is_refund=0
+       </if>
+       <if test="isRefund ==1" >
+           and os.is_refund !=0
+       </if>
+       order by om.addtime desc
+    </select>
+    
+    <!-- zlk 2018.4.11 -->
+   	<select id="getByStatus" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop">
+       select * from order_shop
+       where d_state != 4 and jdOrderId != '0' and jdOrderId !='-1' 
+    </select>
+    <select id="selectIdByOrderId" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select oshop.id 
+  	from order_shop oshop,order_main omain
+  	where oshop.order_id=omain.id
+  	and oshop.order_id=#{orderId}
+ 	 <if test="shopId != null and  shopId !='' " >
+       and oshop.shop_id=#{shopId}
+     </if>
+  </select>
+  
+  
+  
+  
+  <select id="selectOrderList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderShop" >
+  select 
+    oshop.id,oshop.shop_id,oshop.order_id,oshop.jdOrderId,
+    oshop.m_id,oshop.order_no,oshop.status,oshop.is_refund,
+    oshop.g_delivery_price,oshop.coupon_price,oshop.coupon_id
+    from  order_shop oshop , order_sku osku , order_main omain 
+    where 1=1   
+    and omain.id=oshop.order_id
+    and omain.id=osku.order_id
+    and osku.order_shop_id=oshop.id
+    and oshop.status !=8
+      <if test="status!=null and status!='' "> <!-- 备货中的订单也要在待发货中显示 xieyc-->
+        <choose>
+    			<when test="status==2">
+    				and oshop.status in (2,9)  
+    				and oshop.order_no not in (
+    				 select team.order_no from order_team team where  team.`status` !=1 and team.m_id=#{mId,jdbcType=INTEGER}
+    				 )
+    				 and  oshop.is_refund !=2	
+    			</when>
+    			<otherwise>
+    				and oshop.status =#{status}
+    			</otherwise>
+    		</choose>
+      </if>
+      <if test="mId != null and mId!='' " >
+       and oshop.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="goodsName != null and goodsName !='' " >
+      and osku.goods_name like CONCAT('%',#{goodsName},'%')
+      </if>
+       GROUP BY oshop.id
+       ORDER BY oshop.order_id DESC
+       limit #{currentPageIndex},#{pageSize}
+  </select>
+   <select id="selectOrderListByShare" parameterType="com.bh.order.pojo.OrderShop" resultMap="BaseResultMap">
+  		select 
+  		 shop.id,shop.shop_id,shop.order_id,shop.jdOrderId,
+    	shop.m_id,shop.order_no,shop.status,shop.is_refund,
+    	shop.g_delivery_price,shop.coupon_price,shop.coupon_id
+        from order_shop shop,order_main main,order_sku sku,order_team team
+        where  1=1 
+		  and shop.m_id=main.m_id
+	      and shop.order_id=main.id
+          and shop.id=sku.order_shop_id
+          and main.id=sku.order_id
+		  and main.order_no=team.order_no
+		  and team.m_id = #{mId,jdbcType=INTEGER}
+		  and team.`status` =0
+		  and shop.`status`=2
+		  <if test="goodsName != null and goodsName!='' " >
+     	 	and sku.goods_name like CONCAT('%',#{goodsName},'%')
+      	  </if>
+		  order by team.create_time desc
+		  limit #{currentPageIndex},#{pageSize}
+	</select>
+	
+   <resultMap id="FailResultMap" type="com.bh.order.pojo.MyOrderFail" >
+       <id column="id" property="id" jdbcType="INTEGER" />
+       <result column="order_id" property="orderId" jdbcType="INTEGER" />
+       <result column="status" property="status" jdbcType="INTEGER" />
+       <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+       <result column="valid_len" property="validLen" jdbcType="TIMESTAMP" />
+   </resultMap>
+
+   <select id="selectByStatus" resultMap="FailResultMap" >      
+       select os.id as id ,os.status as status,os.valid_len as valid_len,
+       o.id as order_id, o.addtime as addtime
+       from order_shop os,order_main o ,order_sku sku 
+       where os.order_id = o.id 
+       and os.status = 1 
+       and sku.order_id = o.id
+       group by os.id
+       order by o.addtime      
+   </select>
+   
+	
+   <select id="selectByOrderShopId1" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select * from order_sku where order_id=#{0}
+  </select>
+	
+	
+   <update id="updateByStatus"  parameterType="com.bh.order.pojo.OrderShop">
+  	update order_shop  
+  	<set>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+  	</set>
+    where status = 1
+    and id = #{id,jdbcType=INTEGER}
+   </update>
+   
+   
+   <select id="selectByOrderNo1" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select * from order_shop where order_no=#{orderNo}
+   </select>
+	
+	<select id="getJdOrderShop" resultMap="BaseResultMap">
+   	 	<!-- select * from order_shop where jdOrderId="78012266895" or jdOrderId="78168940776" -->
+   	 	select * from order_shop where jdOrderId>0
+    </select>
+    
+    <select id="systemReceivedOrder" resultMap="BaseResultMap">
+   	 	select * from order_shop where 
+		status=3   and date_sub(send_time,interval -15 day)<![CDATA[<=]]>NOW() order by id desc;
+    </select>
+
+  	<update id="updateBatch" parameterType="java.util.List">  
+        <foreach close="" collection="list" index="index" item="orderShop" open="" separator=";">  
+            update order_shop set status=5,confirm_order=1,receivedtime=now()  
+            where id=#{orderShop.id,jdbcType=INTEGER}  
+        </foreach>  
+    </update>  
+     
+     
+      <select id="selectByOrderIds" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   	 	select * from order_shop where order_id=#{orderId}
+    </select>
+     
+     <select id="getNullLogistics"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    	select a.* from order_shop a, order_main b 
+		where a.order_id =b.id  
+		and  (a.express_name='' or a.express_no='') 
+		and a.status not in (1,2,6,9,10,11,12)
+		and  b.payment_status=2 
+		and  a.jdOrderId=0
+		<if test="id != null">
+			and a.id=#{id}
+		</if>
+     </select>
+  	
+</mapper>

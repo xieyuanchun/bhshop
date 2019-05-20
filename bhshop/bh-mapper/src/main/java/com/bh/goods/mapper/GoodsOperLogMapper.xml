@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsOperLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsOperLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+    <result column="op_time" property="opTime" jdbcType="TIMESTAMP" />
+    <result column="good_id" property="goodId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="op_type" property="opType" jdbcType="VARCHAR" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="cat_name" property="catName" jdbcType="VARCHAR" />
+    <result column="shop_cat_id" property="shopCatId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="sell_price" property="sellPrice" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="INTEGER" />
+    <result column="up_time" property="upTime" jdbcType="TIMESTAMP" />
+    <result column="down_time" property="downTime" jdbcType="TIMESTAMP" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="edittime" property="edittime" jdbcType="TIMESTAMP" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="store_nums" property="storeNums" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="favorite" property="favorite" jdbcType="INTEGER" />
+    <result column="sortnum" property="sortnum" jdbcType="SMALLINT" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="sale" property="sale" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="is_hot_shop" property="isHotShop" jdbcType="INTEGER" />
+    <result column="is_new_shop" property="isNewShop" jdbcType="INTEGER" />
+    <result column="is_flag" property="isFlag" jdbcType="BIT" />
+    <result column="is_shop_flag" property="isShopFlag" jdbcType="BIT" />
+    <result column="delivery_price" property="deliveryPrice" jdbcType="INTEGER" />
+    <result column="refund_days" property="refundDays" jdbcType="INTEGER" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="publicimg" property="publicimg" jdbcType="VARCHAR" />
+    <result column="sale_type" property="saleType" jdbcType="INTEGER" />
+    <result column="team_num" property="teamNum" jdbcType="INTEGER" />
+    <result column="team_end_time" property="teamEndTime" jdbcType="INTEGER" />
+    <result column="is_create" property="isCreate" jdbcType="INTEGER" />
+    <result column="is_promote" property="isPromote" jdbcType="INTEGER" />
+    <result column="time_unit" property="timeUnit" jdbcType="INTEGER" />
+    <result column="team_price" property="teamPrice" jdbcType="INTEGER" />
+    <result column="auction_price" property="auctionPrice" jdbcType="INTEGER" />
+    <result column="is_jd" property="isJd" jdbcType="INTEGER" />
+    <result column="topic_type" property="topicType" jdbcType="INTEGER" />
+    <result column="tag_ids" property="tagIds" jdbcType="VARCHAR" />
+    <result column="shopSortnum" property="shopsortnum" jdbcType="SMALLINT" />
+    <result column="fixed_sale" property="fixedSale" jdbcType="INTEGER" />
+    <result column="is_popular" property="isPopular" jdbcType="INTEGER" />
+    <result column="cat_id_one" property="catIdOne" jdbcType="BIGINT" />
+    <result column="cat_id_two" property="catIdTwo" jdbcType="BIGINT" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="out_reason" property="outReason" jdbcType="VARCHAR" />
+    <result column="topic_goods_id" property="topicGoodsId" jdbcType="INTEGER" />
+    <result column="good_buy_limit" property="goodBuyLimit" jdbcType="INTEGER" />
+    <result column="visible" property="visible" jdbcType="INTEGER" />
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+    <result column="send_area" property="sendArea" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, admin_user, op_time, good_id, name, title, model_id, op_type, cat_id, 
+    cat_name, shop_cat_id, brand_id, sell_price, market_price, up_time, down_time, addtime, 
+    edittime, image, store_nums, unit, status, visit, favorite, sortnum, comments, sale, 
+    shop_id, is_hot, is_new, is_hot_shop, is_new_shop, is_flag, is_shop_flag, delivery_price, 
+    refund_days, reason, publicimg, sale_type, team_num, team_end_time, is_create, is_promote, 
+    time_unit, team_price, auction_price, is_jd, topic_type, tag_ids, shopSortnum, fixed_sale, 
+    is_popular, cat_id_one, cat_id_two, apply_time, out_reason, topic_goods_id, good_buy_limit, 
+    visible, tag_name, send_area, order_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_oper_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_oper_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsOperLog" >
+    insert into goods_oper_log (id, user_id, admin_user, 
+      op_time, good_id, name, 
+      title, model_id, op_type, 
+      cat_id, cat_name, shop_cat_id, 
+      brand_id, sell_price, market_price, 
+      up_time, down_time, addtime, 
+      edittime, image, store_nums, 
+      unit, status, visit, 
+      favorite, sortnum, comments, 
+      sale, shop_id, is_hot, is_new, 
+      is_hot_shop, is_new_shop, is_flag, 
+      is_shop_flag, delivery_price, refund_days, 
+      reason, publicimg, sale_type, 
+      team_num, team_end_time, is_create, 
+      is_promote, time_unit, team_price, 
+      auction_price, is_jd, topic_type, 
+      tag_ids, shopSortnum, fixed_sale, 
+      is_popular, cat_id_one, cat_id_two, 
+      apply_time, out_reason, topic_goods_id, 
+      good_buy_limit, visible, tag_name, 
+      send_area, order_id)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{adminUser,jdbcType=VARCHAR}, 
+      #{opTime,jdbcType=TIMESTAMP}, #{goodId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{modelId,jdbcType=INTEGER}, #{opType,jdbcType=VARCHAR}, 
+      #{catId,jdbcType=BIGINT}, #{catName,jdbcType=VARCHAR}, #{shopCatId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=BIGINT}, #{sellPrice,jdbcType=INTEGER}, #{marketPrice,jdbcType=INTEGER}, 
+      #{upTime,jdbcType=TIMESTAMP}, #{downTime,jdbcType=TIMESTAMP}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{edittime,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR}, #{storeNums,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{visit,jdbcType=INTEGER}, 
+      #{favorite,jdbcType=INTEGER}, #{sortnum,jdbcType=SMALLINT}, #{comments,jdbcType=INTEGER}, 
+      #{sale,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{isHot,jdbcType=BIT}, #{isNew,jdbcType=BIT}, 
+      #{isHotShop,jdbcType=INTEGER}, #{isNewShop,jdbcType=INTEGER}, #{isFlag,jdbcType=BIT}, 
+      #{isShopFlag,jdbcType=BIT}, #{deliveryPrice,jdbcType=INTEGER}, #{refundDays,jdbcType=INTEGER}, 
+      #{reason,jdbcType=VARCHAR}, #{publicimg,jdbcType=VARCHAR}, #{saleType,jdbcType=INTEGER}, 
+      #{teamNum,jdbcType=INTEGER}, #{teamEndTime,jdbcType=INTEGER}, #{isCreate,jdbcType=INTEGER}, 
+      #{isPromote,jdbcType=INTEGER}, #{timeUnit,jdbcType=INTEGER}, #{teamPrice,jdbcType=INTEGER}, 
+      #{auctionPrice,jdbcType=INTEGER}, #{isJd,jdbcType=INTEGER}, #{topicType,jdbcType=INTEGER}, 
+      #{tagIds,jdbcType=VARCHAR}, #{shopsortnum,jdbcType=SMALLINT}, #{fixedSale,jdbcType=INTEGER}, 
+      #{isPopular,jdbcType=INTEGER}, #{catIdOne,jdbcType=BIGINT}, #{catIdTwo,jdbcType=BIGINT}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{outReason,jdbcType=VARCHAR}, #{topicGoodsId,jdbcType=INTEGER}, 
+      #{goodBuyLimit,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, 
+      #{sendArea,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsOperLog" >
+    insert into goods_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="opTime != null" >
+        op_time,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="opType != null" >
+        op_type,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="upTime != null" >
+        up_time,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="storeNums != null" >
+        store_nums,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="favorite != null" >
+        favorite,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isHotShop != null" >
+        is_hot_shop,
+      </if>
+      <if test="isNewShop != null" >
+        is_new_shop,
+      </if>
+      <if test="isFlag != null" >
+        is_flag,
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag,
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price,
+      </if>
+      <if test="refundDays != null" >
+        refund_days,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="publicimg != null" >
+        publicimg,
+      </if>
+      <if test="saleType != null" >
+        sale_type,
+      </if>
+      <if test="teamNum != null" >
+        team_num,
+      </if>
+      <if test="teamEndTime != null" >
+        team_end_time,
+      </if>
+      <if test="isCreate != null" >
+        is_create,
+      </if>
+      <if test="isPromote != null" >
+        is_promote,
+      </if>
+      <if test="timeUnit != null" >
+        time_unit,
+      </if>
+      <if test="teamPrice != null" >
+        team_price,
+      </if>
+      <if test="auctionPrice != null" >
+        auction_price,
+      </if>
+      <if test="isJd != null" >
+        is_jd,
+      </if>
+      <if test="topicType != null" >
+        topic_type,
+      </if>
+      <if test="tagIds != null" >
+        tag_ids,
+      </if>
+      <if test="shopsortnum != null" >
+        shopSortnum,
+      </if>
+      <if test="fixedSale != null" >
+        fixed_sale,
+      </if>
+      <if test="isPopular != null" >
+        is_popular,
+      </if>
+      <if test="catIdOne != null" >
+        cat_id_one,
+      </if>
+      <if test="catIdTwo != null" >
+        cat_id_two,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="outReason != null" >
+        out_reason,
+      </if>
+      <if test="topicGoodsId != null" >
+        topic_goods_id,
+      </if>
+      <if test="goodBuyLimit != null" >
+        good_buy_limit,
+      </if>
+      <if test="visible != null" >
+        visible,
+      </if>
+      <if test="tagName != null" >
+        tag_name,
+      </if>
+      <if test="sendArea != null" >
+        send_area,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatId != null" >
+        #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHotShop != null" >
+        #{isHotShop,jdbcType=INTEGER},
+      </if>
+      <if test="isNewShop != null" >
+        #{isNewShop,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        #{isShopFlag,jdbcType=BIT},
+      </if>
+      <if test="deliveryPrice != null" >
+        #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="refundDays != null" >
+        #{refundDays,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="publicimg != null" >
+        #{publicimg,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null" >
+        #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamEndTime != null" >
+        #{teamEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null" >
+        #{isCreate,jdbcType=INTEGER},
+      </if>
+      <if test="isPromote != null" >
+        #{isPromote,jdbcType=INTEGER},
+      </if>
+      <if test="timeUnit != null" >
+        #{timeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null" >
+        #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isJd != null" >
+        #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null" >
+        #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="tagIds != null" >
+        #{tagIds,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsortnum != null" >
+        #{shopsortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="fixedSale != null" >
+        #{fixedSale,jdbcType=INTEGER},
+      </if>
+      <if test="isPopular != null" >
+        #{isPopular,jdbcType=INTEGER},
+      </if>
+      <if test="catIdOne != null" >
+        #{catIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="catIdTwo != null" >
+        #{catIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outReason != null" >
+        #{outReason,jdbcType=VARCHAR},
+      </if>
+      <if test="topicGoodsId != null" >
+        #{topicGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBuyLimit != null" >
+        #{goodBuyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null" >
+        #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null" >
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendArea != null" >
+        #{sendArea,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsOperLog" >
+    update goods_oper_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        op_time = #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        op_type = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHotShop != null" >
+        is_hot_shop = #{isHotShop,jdbcType=INTEGER},
+      </if>
+      <if test="isNewShop != null" >
+        is_new_shop = #{isNewShop,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="refundDays != null" >
+        refund_days = #{refundDays,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="publicimg != null" >
+        publicimg = #{publicimg,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        sale_type = #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null" >
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamEndTime != null" >
+        team_end_time = #{teamEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null" >
+        is_create = #{isCreate,jdbcType=INTEGER},
+      </if>
+      <if test="isPromote != null" >
+        is_promote = #{isPromote,jdbcType=INTEGER},
+      </if>
+      <if test="timeUnit != null" >
+        time_unit = #{timeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null" >
+        auction_price = #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isJd != null" >
+        is_jd = #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null" >
+        topic_type = #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="tagIds != null" >
+        tag_ids = #{tagIds,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsortnum != null" >
+        shopSortnum = #{shopsortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="fixedSale != null" >
+        fixed_sale = #{fixedSale,jdbcType=INTEGER},
+      </if>
+      <if test="isPopular != null" >
+        is_popular = #{isPopular,jdbcType=INTEGER},
+      </if>
+      <if test="catIdOne != null" >
+        cat_id_one = #{catIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="catIdTwo != null" >
+        cat_id_two = #{catIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outReason != null" >
+        out_reason = #{outReason,jdbcType=VARCHAR},
+      </if>
+      <if test="topicGoodsId != null" >
+        topic_goods_id = #{topicGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBuyLimit != null" >
+        good_buy_limit = #{goodBuyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null" >
+        visible = #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null" >
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendArea != null" >
+        send_area = #{sendArea,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsOperLog" >
+    update goods_oper_log
+    set user_id = #{userId,jdbcType=VARCHAR},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      op_time = #{opTime,jdbcType=TIMESTAMP},
+      good_id = #{goodId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=INTEGER},
+      op_type = #{opType,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=BIGINT},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      sell_price = #{sellPrice,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      up_time = #{upTime,jdbcType=TIMESTAMP},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      edittime = #{edittime,jdbcType=TIMESTAMP},
+      image = #{image,jdbcType=VARCHAR},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      visit = #{visit,jdbcType=INTEGER},
+      favorite = #{favorite,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_hot = #{isHot,jdbcType=BIT},
+      is_new = #{isNew,jdbcType=BIT},
+      is_hot_shop = #{isHotShop,jdbcType=INTEGER},
+      is_new_shop = #{isNewShop,jdbcType=INTEGER},
+      is_flag = #{isFlag,jdbcType=BIT},
+      is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      refund_days = #{refundDays,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      publicimg = #{publicimg,jdbcType=VARCHAR},
+      sale_type = #{saleType,jdbcType=INTEGER},
+      team_num = #{teamNum,jdbcType=INTEGER},
+      team_end_time = #{teamEndTime,jdbcType=INTEGER},
+      is_create = #{isCreate,jdbcType=INTEGER},
+      is_promote = #{isPromote,jdbcType=INTEGER},
+      time_unit = #{timeUnit,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      auction_price = #{auctionPrice,jdbcType=INTEGER},
+      is_jd = #{isJd,jdbcType=INTEGER},
+      topic_type = #{topicType,jdbcType=INTEGER},
+      tag_ids = #{tagIds,jdbcType=VARCHAR},
+      shopSortnum = #{shopsortnum,jdbcType=SMALLINT},
+      fixed_sale = #{fixedSale,jdbcType=INTEGER},
+      is_popular = #{isPopular,jdbcType=INTEGER},
+      cat_id_one = #{catIdOne,jdbcType=BIGINT},
+      cat_id_two = #{catIdTwo,jdbcType=BIGINT},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      out_reason = #{outReason,jdbcType=VARCHAR},
+      topic_goods_id = #{topicGoodsId,jdbcType=INTEGER},
+      good_buy_limit = #{goodBuyLimit,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER},
+      tag_name = #{tagName,jdbcType=VARCHAR},
+      send_area = #{sendArea,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

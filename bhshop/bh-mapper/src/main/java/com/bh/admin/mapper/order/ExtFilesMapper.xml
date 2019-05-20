@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.ExtFilesMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.ExtFiles" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cate_id" property="cateId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="pic_size" property="picSize" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cate_id, name, ext, file_url, file_type, size, add_time, pic_size, shop_id, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ext_files
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ext_files
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.ExtFiles" >
+    insert into ext_files (id, cate_id, name, 
+      ext, file_url, file_type, 
+      size, add_time, pic_size, 
+      shop_id, is_del)
+    values (#{id,jdbcType=INTEGER}, #{cateId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{ext,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, #{fileType,jdbcType=INTEGER}, 
+      #{size,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{picSize,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.ExtFiles" >
+    insert into ext_files
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cateId != null" >
+        cate_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="picSize != null" >
+        pic_size,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cateId != null" >
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picSize != null" >
+        #{picSize,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.ExtFiles" >
+    update ext_files
+    <set >
+      <if test="cateId != null" >
+        cate_id = #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picSize != null" >
+        pic_size = #{picSize,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.ExtFiles" >
+    update ext_files
+    set cate_id = #{cateId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=INTEGER},
+      size = #{size,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      pic_size = #{picSize,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+ 
+ <select id="getFilesList" resultMap="MyResultMap" parameterType="java.lang.String">
+    select 
+    *
+    from ext_files e
+    where e.shop_id=#{shopId} and e.is_del=0
+    <if test="cateId != null and cateId!=''" >
+       and  e.cate_id=#{cateId}
+    </if>
+    <if test="startTime != null and startTime !=''" >
+       and  e.add_time <![CDATA[>=]]> #{startTime}
+    </if>
+    <if test="endTime != null and endTime !=''" >
+       and  e.add_time <![CDATA[<=]]> #{endTime}
+    </if>
+     order by e.add_time desc
+ </select>
+  
+  
+  <!-- 查询所有文件 xieyc -->
+  <resultMap id="MyResultMap" type="com.bh.admin.pojo.order.MyExtFiles" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getExtFilesList" resultMap="MyResultMap">
+    select 
+    ext.id as id,ext.file_url as file_url,ext.name as name
+    from ext_files ext
+    where  ext.is_del=0
+    and ext.shop_id=#{shopId}
+      <if test="name != null and name!=''" >
+       and ext.name like CONCAT('%', #{name}, '%')
+      </if>
+    order by ext.add_time desc
+  </select>
+  
+  <!-- 根据cate_id查询文件 xieyc -->
+  <select id="getExtFilesByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from ext_files where cate_id=#{cate_id}
+  </select>
+  
+</mapper>

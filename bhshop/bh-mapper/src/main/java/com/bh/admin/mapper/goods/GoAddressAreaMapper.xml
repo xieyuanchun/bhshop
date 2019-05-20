@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoAddressAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoAddressArea" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="TINYINT" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.GoAddressArea" extends="BaseResultMap" >
+    <result column="name" property="name" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, level, parent_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from go_address_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from go_address_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    insert into go_address_area (id, level, parent_id, 
+      name)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=TINYINT}, #{parentId,jdbcType=INTEGER}, 
+      #{name,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    insert into go_address_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    update go_address_area
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    update go_address_area
+    set level = #{level,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      name = #{name,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    update go_address_area
+    set level = #{level,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="selectByParams" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from go_address_area
+    where 1=1
+     <if test="parentId != null" >
+       and parent_id = #{parentId,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+    <select id="selectById" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from go_address_area
+    where 1=1
+     <if test="id != null" >
+       and id = #{id,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+  <select id="selectByName" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoAddressArea" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from go_address_area
+    where name = #{name}
+  </select>
+</mapper>

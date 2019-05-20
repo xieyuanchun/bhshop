@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberBalanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberBalanceLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="balance_type" property="balanceType" jdbcType="INTEGER" />
+    <result column="target_id" property="targetId" jdbcType="INTEGER" />
+    <result column="target_type" property="targetType" jdbcType="INTEGER" />
+    <result column="oc_time" property="ocTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, money, balance_type, target_id, target_type, oc_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_balance_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_balance_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberBalanceLog" >
+    insert into member_balance_log (id, m_id, money, 
+      balance_type, target_id, target_type, 
+      oc_time)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, 
+      #{balanceType,jdbcType=INTEGER}, #{targetId,jdbcType=INTEGER}, #{targetType,jdbcType=INTEGER}, 
+      #{ocTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberBalanceLog" >
+    insert into member_balance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="balanceType != null" >
+        balance_type,
+      </if>
+      <if test="targetId != null" >
+        target_id,
+      </if>
+      <if test="targetType != null" >
+        target_type,
+      </if>
+      <if test="ocTime != null" >
+        oc_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="balanceType != null" >
+        #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="targetType != null" >
+        #{targetType,jdbcType=INTEGER},
+      </if>
+      <if test="ocTime != null" >
+        #{ocTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberBalanceLog" >
+    update member_balance_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="balanceType != null" >
+        balance_type = #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        target_id = #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="targetType != null" >
+        target_type = #{targetType,jdbcType=INTEGER},
+      </if>
+      <if test="ocTime != null" >
+        oc_time = #{ocTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberBalanceLog" >
+    update member_balance_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      balance_type = #{balanceType,jdbcType=INTEGER},
+      target_id = #{targetId,jdbcType=INTEGER},
+      target_type = #{targetType,jdbcType=INTEGER},
+      oc_time = #{ocTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberBalanceLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_balance_log
+    where m_id = #{mId}
+    and DATE_FORMAT(oc_time, '%Y%m') = DATE_FORMAT(CURDATE(),'%Y%m')
+    order by oc_time desc
+  </select>
+</mapper>

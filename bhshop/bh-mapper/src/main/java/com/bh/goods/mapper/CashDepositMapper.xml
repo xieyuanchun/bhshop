@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.CashDepositMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.CashDeposit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="h_id" property="hId" jdbcType="INTEGER" />
+    <result column="deposit_price" property="depositPrice" jdbcType="INTEGER" />
+    <result column="isRefund" property="isrefund" jdbcType="INTEGER" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="refund_time" property="refundTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, goods_id, h_id, deposit_price, isRefund, pay_time, current_periods, refund_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cash_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cash_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.CashDeposit" >
+    insert into cash_deposit (id, m_id, goods_id, 
+      h_id, deposit_price, isRefund, 
+      pay_time, current_periods, refund_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{hId,jdbcType=INTEGER}, #{depositPrice,jdbcType=INTEGER}, #{isrefund,jdbcType=INTEGER}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{currentPeriods,jdbcType=INTEGER}, #{refundTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.CashDeposit" >
+    insert into cash_deposit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="hId != null" >
+        h_id,
+      </if>
+      <if test="depositPrice != null" >
+        deposit_price,
+      </if>
+      <if test="isrefund != null" >
+        isRefund,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="hId != null" >
+        #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="depositPrice != null" >
+        #{depositPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isrefund != null" >
+        #{isrefund,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentPeriods != null" >
+        #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.CashDeposit" >
+    update cash_deposit
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="hId != null" >
+        h_id = #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="depositPrice != null" >
+        deposit_price = #{depositPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isrefund != null" >
+        isRefund = #{isrefund,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods = #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.CashDeposit" >
+    update cash_deposit
+    set m_id = #{mId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      h_id = #{hId,jdbcType=INTEGER},
+      deposit_price = #{depositPrice,jdbcType=INTEGER},
+      isRefund = #{isrefund,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      current_periods = #{currentPeriods,jdbcType=INTEGER},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getCashDeposit" resultMap="BaseResultMap"  parameterType="com.bh.goods.pojo.CashDeposit">
+   	  select *  from cash_deposit where 1=1
+      <if test="mId != null" >
+        and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="goodsId != null" >
+       and  goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="hId != null" >
+       and  h_id = #{hId,jdbcType=INTEGER}
+      </if>
+      <if test="isrefund != null" >
+       and  isRefund = #{isrefund,jdbcType=INTEGER}
+      </if>
+      <if test="currentPeriods != null" >
+       and current_periods = #{currentPeriods,jdbcType=INTEGER}
+      </if>	 
+  </select>
+  
+  
+  
+</mapper>

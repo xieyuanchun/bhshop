@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicSeckillLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tg_id" property="tgId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="act_no" property="actNo" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tg_id, m_id, order_no, act_no, add_time, goods_sku_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_seckill_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_seckill_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    insert into topic_seckill_log (id, tg_id, m_id, 
+      order_no, act_no, add_time, 
+      goods_sku_id)
+    values (#{id,jdbcType=INTEGER}, #{tgId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, 
+      #{orderNo,jdbcType=VARCHAR}, #{actNo,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{goodsSkuId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    insert into topic_seckill_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tgId != null" >
+        tg_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="actNo != null" >
+        act_no,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="actNo != null" >
+        #{actNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    update topic_seckill_log
+    <set >
+      <if test="tgId != null" >
+        tg_id = #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="actNo != null" >
+        act_no = #{actNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    update topic_seckill_log
+    set tg_id = #{tgId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      act_no = #{actNo,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      goods_sku_id = #{goodsSkuId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicSeckillLog" >
+    select a.*
+    from topic_seckill_log a left join  topic_goods b on a.tg_id=b.id  where 1=1
+    <if test="shopId!=null and shopId!=1">
+    	and  b.sid=#{shopId}
+    </if>
+    <if test="id!=null">
+    	and a.id = #{id}
+    </if>
+    <if test="mId!=null">
+    	and a.m_id = #{mId}
+    </if>
+    <if test="tgId!=null">
+    	and a.tg_id = #{tgId}
+    </if>
+    <if test="goodsSkuId!=null">
+    	and a.goods_sku_id = #{goodsSkuId}
+    </if>
+    <if test="actNo!=null and actNo!='' ">
+   		and a.act_no like CONCAT(CONCAT('%', #{actNo}), '%')
+    </if>
+    <if test="orderNo!=null and orderNo!='' ">
+   		and a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%')
+    </if>
+    order by a.add_time desc
+  </select>
+  
+ 
+   <select id="getSeckillLog" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+     from topic_seckill_log  where  tg_id = #{tgId}
+   </select>
+  
+   <select id="getByMidAndTgId" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_seckill_log  where  m_id = #{0} and tg_id = #{1} 
+  </select>
+  
+
+</mapper>

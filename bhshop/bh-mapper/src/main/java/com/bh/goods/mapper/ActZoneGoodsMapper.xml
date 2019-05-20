@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.ActZoneGoodsMapper" >
+   <resultMap id="BaseResultMap" type="com.bh.goods.pojo.ActZoneGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="zone_id" property="zoneId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="edittime" property="edittime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, zone_id, goods_id, sku_id, sort_num, addtime, edittime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from act_zone_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from act_zone_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.ActZoneGoods" >
+    insert into act_zone_goods (id, zone_id, goods_id, 
+      sku_id, sort_num, addtime, 
+      edittime)
+    values (#{id,jdbcType=INTEGER}, #{zoneId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{skuId,jdbcType=INTEGER}, #{sortNum,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{edittime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.ActZoneGoods" >
+    insert into act_zone_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zoneId != null" >
+        zone_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="zoneId != null" >
+        #{zoneId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.ActZoneGoods" >
+    update act_zone_goods
+    <set >
+      <if test="zoneId != null" >
+        zone_id = #{zoneId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.ActZoneGoods" >
+    update act_zone_goods
+    set zone_id = #{zoneId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      edittime = #{edittime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="isMyMap" type="java.lang.Integer" >
+    	<result column="id" property="id" jdbcType="INTEGER" />
+	</resultMap>
+
+  <select id="selectIsFreePostage" parameterType="java.util.Set" resultMap="isMyMap">
+  	SELECT az.free_postage as id
+	FROM act_zone_goods azg, act_zone az
+	WHERE az.id = azg.zone_id 
+      AND azg.goods_id in
+ 		<foreach item="goodsId" collection="set" open="(" close=")" separator=",">
+           #{goodsId}
+      </foreach>
+      GROUP BY az.free_postage 
+  </select>
+  
+  <select id="selectByGoodsIds" parameterType="java.util.Set" resultMap="BaseResultMap">
+  	select * from act_zone_goods where goods_id in
+ 		<foreach item="goodsId" collection="set" open="(" close=")" separator=",">
+           #{goodsId}
+      </foreach>
+  </select>
+
+  
+  <select id="selectIsLockScore" parameterType="java.util.Set" resultMap="isMyMap">
+  	SELECT az.free_postage as id
+	FROM act_zone_goods azg, act_zone az
+	WHERE az.id = azg.zone_id 
+      AND azg.goods_id in
+ 		<foreach item="goodsId" collection="set" open="(" close=")" separator=",">
+           #{goodsId}
+      </foreach>
+      GROUP BY az.free_postage 
+  </select>
+  
+   <select id="selectIsRefund" resultMap="isMyMap" parameterType="java.lang.Integer">
+  	SELECT az.is_refund as id
+	FROM act_zone_goods azg, act_zone az
+	WHERE az.id = azg.zone_id 
+      AND azg.goods_id =#{goodsId}
+      GROUP BY az.is_refund 
+  </select>
+
+  <select id="selectIsCart" parameterType="java.util.Set" resultMap="isMyMap">
+    SELECT az.is_cart as id
+    FROM act_zone_goods azg, act_zone az
+    WHERE az.id = azg.zone_id  AND azg.goods_id in
+          <foreach item="goodsId" collection="set" open="(" close=")" separator=",">
+            #{goodsId}
+          </foreach>
+    GROUP BY az.is_cart
+  </select>
+
+  <select id="selectIsCoupon" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT azg.*
+	FROM act_zone_goods azg, act_zone az
+	WHERE az.id = azg.zone_id AND azg.goods_id = #{goodsId}
+  </select>
+  
+  
+  <resultMap id="MyResultMap" type="com.bh.goods.pojo.ActZoneGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="zone_id" property="zoneId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="edittime" property="edittime" jdbcType="TIMESTAMP" />
+    <result column="failuretime" property="failuretime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getByGoodsId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+  	SELECT azg.* ,
+  	az.failuretime as failuretime
+	FROM act_zone_goods azg, act_zone az
+	WHERE az.id = azg.zone_id AND azg.goods_id = #{goodsId}
+  </select>
+
+
+</mapper>

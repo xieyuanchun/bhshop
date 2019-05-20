@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.GiftMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.GiftMember" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coupon_gift_id" property="couponGiftId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coupon_gift_id, m_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gift_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gift_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.GiftMember" >
+    insert into gift_member (id, coupon_gift_id, m_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{couponGiftId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.GiftMember" >
+    insert into gift_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="couponGiftId != null" >
+        coupon_gift_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="couponGiftId != null" >
+        #{couponGiftId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.GiftMember" >
+    update gift_member
+    <set >
+      <if test="couponGiftId != null" >
+        coupon_gift_id = #{couponGiftId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.GiftMember" >
+    update gift_member
+    set coupon_gift_id = #{couponGiftId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getByGiftIdAndMid" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from gift_member
+    where coupon_gift_id=#{0} and m_id=#{1}
+  </select>
+  
+  
+</mapper>

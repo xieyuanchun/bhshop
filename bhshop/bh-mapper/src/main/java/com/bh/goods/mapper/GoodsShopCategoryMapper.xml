@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsShopCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsShopCategory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="reid" property="reid" jdbcType="INTEGER" />
+    <result column="sortnum" property="sortnum" jdbcType="SMALLINT" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_last" property="isLast" jdbcType="BIT" />
+    <result column="series" property="series" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, reid, sortnum, image, shop_id, is_last, series
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_shop_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    insert into goods_shop_category (id, name, reid, 
+      sortnum, image, shop_id, 
+      is_last, series)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{reid,jdbcType=INTEGER}, 
+      #{sortnum,jdbcType=SMALLINT}, #{image,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{isLast,jdbcType=BIT}, #{series,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    insert into goods_shop_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="reid != null" >
+        reid,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isLast != null" >
+        is_last,
+      </if>
+      <if test="series != null" >
+        series,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isLast != null" >
+        #{isLast,jdbcType=BIT},
+      </if>
+      <if test="series != null" >
+        #{series,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    update goods_shop_category
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        reid = #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isLast != null" >
+        is_last = #{isLast,jdbcType=BIT},
+      </if>
+      <if test="series != null" >
+        series = #{series,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    update goods_shop_category
+    set name = #{name,jdbcType=VARCHAR},
+      reid = #{reid,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=SMALLINT},
+      image = #{image,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_last = #{isLast,jdbcType=BIT},
+      series = #{series,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category 
+   </select>  
+  
+  <select id="countAll" resultType="java.lang.Integer" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    select count(*)
+    from goods_shop_category
+    <where>
+    	name like CONCAT(CONCAT('%', #{0}), '%') and reid = #{1}
+    </where>
+  </select>
+  
+  <select id="delectCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from goods_shop_category
+    where reid = #{reid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByParent" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select name
+    from goods_shop_category
+    where reid = #{reid,jdbcType=INTEGER}
+  </select>
+  
+   <select id="getListByFirstReid" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsShopCategory" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category 
+    where id in (select id from goods_shop_category where name like CONCAT(CONCAT('%', #{0}), '%')
+    and reid = #{3}
+    ) order by sortnum asc limit #{1}, #{2}
+  </select> 
+  
+   <select id="selectThreeLevel" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category
+    where series = 3
+   </select>
+   
+    <select id="selectLastLevel" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category
+    where is_last = 1
+   </select>
+   
+   <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category 
+    where name = #{name,jdbcType=VARCHAR}
+   </select>
+   
+   <select id="selectUpdateByName" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsShopCategory">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category 
+    where name = #{name} and series = #{series}
+    and id <![CDATA[<>]]>#{id}
+   </select>
+   
+   <select id="selectAllByName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category
+   </select>
+   
+   <select id="selectAllByReid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category where reid = #{reid,jdbcType=INTEGER}
+   </select>
+   
+   <select id="getBySeries" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsShopCategory">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category where series = #{series}
+    <if test="shopId!='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <if test="name!=null and name!=''">
+    	and name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+    order by sortnum asc
+   </select>
+   
+   <!-- cheng 开始 -->
+     <select id="selectByUserAndParams" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsShopCategory">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_shop_category where 1=1
+     <if test="name != null" >
+       and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="reid != null" >
+       and reid = #{reid,jdbcType=INTEGER}
+      </if>
+      <if test="sortnum != null" >
+       and sortnum = #{sortnum,jdbcType=SMALLINT}
+      </if>
+      <if test="image != null" >
+       and image = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="shopId != null" >
+       and  shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="isLast != null" >
+       and is_last = #{isLast,jdbcType=BIT}
+      </if>
+      <if test="series != null" >
+       and series = #{series,jdbcType=SMALLINT}
+      </if>
+      order by reid desc
+   </select>
+   <!-- 结束 -->
+</mapper>

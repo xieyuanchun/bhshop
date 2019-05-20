@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.HollandDauctionMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.HollandDauction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="low_price" property="lowPrice" jdbcType="INTEGER" />
+    <result column="time_section" property="timeSection" jdbcType="INTEGER" />
+    <result column="scope_price" property="scopePrice" jdbcType="INTEGER" />
+    <result column="dauction_price" property="dauctionPrice" jdbcType="INTEGER" />
+    <result column="store_nums" property="storeNums" jdbcType="INTEGER" />
+    <result column="total_periods" property="totalPeriods" jdbcType="INTEGER" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+    <result column="goods_up_time" property="goodsUpTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, low_price, time_section, scope_price, dauction_price, store_nums, total_periods, current_periods, lose_time, goods_up_time, start_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from holland_dauction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from holland_dauction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.HollandDauction" >
+    insert into holland_dauction (id, goods_id, low_price, 
+      time_section, scope_price, dauction_price, 
+      store_nums, total_periods, lose_time, goods_up_time, start_time)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{lowPrice,jdbcType=INTEGER}, 
+      #{timeSection,jdbcType=INTEGER}, #{scopePrice,jdbcType=INTEGER}, #{dauctionPrice,jdbcType=INTEGER}, 
+      #{storeNums,jdbcType=INTEGER}, #{totalPeriods,jdbcType=INTEGER}, #{currentPeriods,jdbcType=INTEGER},
+      #{loseTime,jdbcType=TIMESTAMP}, #{goodsUpTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.HollandDauction" >
+    insert into holland_dauction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="timeSection != null" >
+        time_section,
+      </if>
+      <if test="scopePrice != null" >
+        scope_price,
+      </if>
+      <if test="dauctionPrice != null" >
+        dauction_price,
+      </if>
+      <if test="storeNums != null" >
+        store_nums,
+      </if>
+      <if test="totalPeriods != null" >
+        total_periods,
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods,
+      </if>
+      <if test="loseTime != null" >
+        lose_time,
+      </if>
+      <if test="goodsUpTime != null" >
+        goods_up_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="timeSection != null" >
+        #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionPrice != null" >
+        #{dauctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="storeNums != null" >
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+       <if test="totalPeriods != null" >
+        #{totalPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="loseTime != null" >
+        #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsUpTime != null" >
+        #{goodsUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.HollandDauction" >
+    update holland_dauction
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="timeSection != null" >
+        time_section = #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        scope_price = #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionPrice != null" >
+        dauction_price = #{dauctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="totalPeriods != null" >
+        total_periods = #{totalPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods = #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="loseTime != null" >
+        lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsUpTime != null" >
+        goods_up_time = #{goodsUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.HollandDauction" >
+    update holland_dauction
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      low_price = #{lowPrice,jdbcType=INTEGER},
+      time_section = #{timeSection,jdbcType=INTEGER},
+      scope_price = #{scopePrice,jdbcType=INTEGER},
+      dauction_price = #{dauctionPrice,jdbcType=INTEGER},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      total_periods = #{totalPeriods,jdbcType=INTEGER},
+      current_periods = #{currentPeriods,jdbcType=INTEGER},
+      lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      goods_up_time = #{goodsUpTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="getListByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from holland_dauction
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

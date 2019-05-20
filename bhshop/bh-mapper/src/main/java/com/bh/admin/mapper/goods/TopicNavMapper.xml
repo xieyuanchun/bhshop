@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicNavMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.TopicNav" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pos" property="pos" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, icon_url, url, pos
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_nav
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_nav
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.TopicNav" >
+    insert into topic_nav (id, name, icon_url, 
+      url, pos)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{pos,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.TopicNav" >
+    insert into topic_nav
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="iconUrl != null" >
+        icon_url,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="pos != null" >
+        pos,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null" >
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null" >
+        #{pos,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.TopicNav" >
+    update topic_nav
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null" >
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null" >
+        pos = #{pos,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.TopicNav" >
+    update topic_nav
+    set name = #{name,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      pos = #{pos,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicNav" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_nav where 1=1
+    <if test="id!=null">
+    	and id = #{id}
+    </if>
+    <if test="pos!=null">
+    	and pos = #{pos}
+    </if>
+    <if test="name!=null and name!='' ">
+   		and name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+    <if test="iconUrl!=null and iconUrl!='' ">
+   		and icon_url like CONCAT(CONCAT('%', #{iconUrl}), '%')
+    </if>
+       <if test="url!=null and url!='' ">
+   		and url like CONCAT(CONCAT('%', #{url}), '%')
+    </if>
+  </select>
+  
+  
+  
+  
+  
+</mapper>

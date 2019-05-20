@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderRefundDocMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderRefundDoc" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="dispose_time" property="disposeTime" jdbcType="TIMESTAMP" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="order_shop_id" property="orderShopId" jdbcType="INTEGER" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="m_name" property="mName" jdbcType="VARCHAR" />
+    <result column="m_phone" property="mPhone" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="order_amount" property="orderAmount" jdbcType="INTEGER" />
+    <result column="order_sku_id" property="orderSkuId" jdbcType="INTEGER" />
+    <result column="refuse_reason" property="refuseReason" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="return_address" property="returnAddress" jdbcType="VARCHAR" />
+    <result column="express_name" property="expressName" jdbcType="VARCHAR" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
+    <result column="refund_type" property="refundType" jdbcType="INTEGER" />
+    <result column="shop_express_name" property="shopExpressName" jdbcType="VARCHAR" />
+    <result column="shop_express_no" property="shopExpressNo" jdbcType="VARCHAR" />
+     <result column="after_sale_reasons" property="afterSaleReasons" jdbcType="VARCHAR" />
+     <result column="logistics_valid_time" property="logisticsValidTime" jdbcType="TIMESTAMP" />
+      <result column="refund_valid_time" property="refundValidTime" jdbcType="TIMESTAMP" />
+      <result column="save_time" property="saveTime" jdbcType="TIMESTAMP" />
+      <result column="specifications" property="specifications" jdbcType="VARCHAR" />
+       <result column="voucher_image" property="voucherImage" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.order.pojo.OrderRefundDoc" extends="BaseResultMap" >
+    <result column="note" property="note" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, m_id, goods_id, sku_id, amount, addtime, status, dispose_time, admin_user, 
+    shop_id, order_shop_id, reason, m_name, m_phone, img, order_amount, order_sku_id, refuse_reason,
+    user_address,return_address, express_name, express_no, refund_type,shop_express_name, shop_express_no,
+    after_sale_reasons,logistics_valid_time,refund_valid_time,save_time,specifications,voucher_image
+  </sql>
+  <sql id="Blob_Column_List" >
+    note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_refund_doc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_refund_doc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+    insert into order_refund_doc (id, order_id, m_id, 
+      goods_id, sku_id, amount, 
+      addtime, status, dispose_time, 
+      admin_user, shop_id, order_shop_id, 
+      reason, m_name, m_phone, 
+      img, order_amount, order_sku_id, 
+      note, refuse_reason,after_sale_reasons,logistics_valid_time,refund_valid_time,save_time,
+      specifications,voucher_image)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{disposeTime,jdbcType=TIMESTAMP}, 
+      #{adminUser,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, #{orderShopId,jdbcType=INTEGER}, 
+      #{reason,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, #{mPhone,jdbcType=VARCHAR}, 
+      #{img,jdbcType=VARCHAR}, #{orderAmount,jdbcType=INTEGER}, #{orderSkuId,jdbcType=INTEGER}, 
+      #{note,jdbcType=LONGVARCHAR}, #{refuseReason,jdbcType=VARCHAR}, #{afterSaleReasons,jdbcType=VARCHAR}, 
+      #{afterSaleReasons,jdbcType=VARCHAR},#{logisticsValidTime,jdbcType=TIMESTAMP},#{refundValidTime,jdbcType=TIMESTAMP},#{saveTime,jdbcType=TIMESTAMP},
+       #{specifications,jdbcType=VARCHAR},#{voucherImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderRefundDoc" useGeneratedKeys="true" keyProperty="id">
+    insert into order_refund_doc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="disposeTime != null" >
+        dispose_time,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="mName != null" >
+        m_name,
+      </if>
+      <if test="mPhone != null" >
+        m_phone,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="refuseReason != null" >
+        refuse_reason,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="returnAddress != null" >
+        return_address,
+      </if>
+      <if test="expressName != null" >
+        express_name,
+      </if>
+      <if test="expressNo != null" >
+        express_no,
+      </if>
+      <if test="refundType != null" >
+        refund_type,
+      </if>
+      <if test="shopExpressName != null" >
+        shop_express_name,
+      </if>
+      <if test="shopExpressNo != null" >
+        shop_express_no,
+      </if>
+       <if test="afterSaleReasons != null" >
+        after_sale_reasons,
+      </if>
+       <if test="logisticsValidTime != null" >
+        logistic_valid_time,
+      </if>
+       <if test="refundValidTime != null" >
+        refund_valid_time,
+      </if>
+      <if test="saveTime != null" >
+        save_time,
+      </if>
+       <if test="specifications != null" >
+        specifications,
+      </if>
+       <if test="voucherImage != null" >
+        voucher_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="disposeTime != null" >
+        #{disposeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null" >
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPhone != null" >
+        #{mPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="refuseReason != null" >
+        #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAddress != null" >
+        #{returnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null" >
+        #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundType != null" >
+        #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="shopExpressName != null" >
+        #{shopExpressName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopExpressNo != null" >
+        #{shopExpressNo,jdbcType=VARCHAR},
+      </if>
+       <if test="afterSaleReasons != null" >
+        #{afterSaleReasons,jdbcType=VARCHAR},
+      </if>
+       <if test="logisticsValidTime != null" >
+        #{logisticsValidTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="refundValidTime != null" >
+        #{refundValidTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="saveTime != null" >
+        #{saveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="specifications != null" >
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherImage != null" >
+        #{voucherImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+    update order_refund_doc
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="disposeTime != null" >
+        dispose_time = #{disposeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null" >
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPhone != null" >
+        m_phone = #{mPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="refuseReason != null" >
+        refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAddress != null" >
+        return_address = #{returnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null" >
+        express_name = #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        express_no = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundType != null" >
+        refund_type = #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="shopExpressName != null" >
+        shop_express_name = #{shopExpressName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopExpressNo != null" >
+        shop_express_no = #{shopExpressNo,jdbcType=VARCHAR},
+      </if>
+       <if test="afterSaleReasons != null" >
+        after_sale_reasons = #{afterSaleReasons,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsValidTime != null" >
+        logistics_valid_time = #{logisticsValidTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="refundValidTime != null" >
+        refund_valid_time = #{refundValidTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="saveTime != null" >
+       save_time = #{saveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="specifications != null" >
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+       <if test="voucherImage != null" >
+        voucher_image = #{voucherImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+    update order_refund_doc
+    set order_id = #{orderId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      dispose_time = #{disposeTime,jdbcType=TIMESTAMP},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      m_name = #{mName,jdbcType=VARCHAR},
+      m_phone = #{mPhone,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      note = #{note,jdbcType=LONGVARCHAR},
+      refuse_reason = #{refuseReason,jdbcType=VARCHAR}
+      
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+    update order_refund_doc
+    set order_id = #{orderId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      dispose_time = #{disposeTime,jdbcType=TIMESTAMP},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      m_name = #{mName,jdbcType=VARCHAR},
+      m_phone = #{mPhone,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      after_sale_reasons = #{afterSaleReasons,jdbcType=VARCHAR},
+       logistics_valid_time = #{logisticsValidTime,jdbcType=TIMESTAMP},
+      refund_valid_time = #{refundValidTime,jdbcType=TIMESTAMP},
+      save_time = #{saveTime,jdbcType=TIMESTAMP},
+      specifications = #{specifications,jdbcType=VARCHAR},
+        voucher_image = #{voucherImage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 	
+  
+  
+   <select id="getRefundGoodsList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countRefundGoodsList" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+	  	select count(*)
+	    from order_refund_doc
+	    where order_id = #{orderId,jdbcType=INTEGER}
+   </select>
+   
+    <select id="getByOrderShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc
+    where order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="getByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc
+    where shop_id = #{0} and status = #{1}
+  </select>
+  
+  
+  <select id="orderRefundList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+  	select a.* from order_refund_doc a LEFT JOIN order_main b on a.order_id = b.id left join order_shop c on a.order_shop_id = c.id
+  	where c.shop_order_no like CONCAT(CONCAT('%', #{2}), '%')
+  	<if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+  	<if test="status != null and status!= -1 and status!=''">
+       and a.status = #{status,jdbcType=INTEGER}
+    </if>
+    <![CDATA[ and b.addtime >=]]>#{3}
+    <![CDATA[ and b.addtime <]]>#{4}
+    order by a.addtime desc  
+  </select>
+  
+  <select id="OrderRefundAccount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*)
+    from order_refund_doc
+    where 1=1
+    <![CDATA[ and addtime >=]]>#{0}
+    <![CDATA[ and addtime <]]>#{1}
+    <if test="shopId !='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <if test="status != null and status!= -1">
+       and status = #{status,jdbcType=INTEGER}
+    </if>
+   </select>
+   <!-- cheng 开始 -->
+   <select id="selectRefundList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+  	select doc.* 
+         from order_refund_doc doc , order_main main , order_shop shop ,order_sku sku
+         where 
+             1=1
+             and main.id=shop.order_id
+             and main.id=sku.order_id
+             and shop.id=sku.order_shop_id
+             and doc.order_id=main.id
+             and doc.order_shop_id=shop.id
+             and doc.order_sku_id=sku.id
+  	  <if test="mId != null" >
+       and doc.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="reason != null" >
+       and doc.reason=#{reason,jdbcType=VARCHAR}
+      </if>
+       <if test="mName != null" >
+        and shop.order_no like CONCAT(CONCAT('%', #{mName,jdbcType=VARCHAR}), '%')
+      </if>
+   <if test="status != null" >
+       and doc.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="addtime != null" >
+       <![CDATA[ and doc.addtime >=]]> #{addtime,jdbcType=TIMESTAMP}
+      </if>
+       <if test="addtime1 != null" >
+       <![CDATA[ and doc.addtime <=]]> #{addtime1,jdbcType=TIMESTAMP}
+      </if>
+ 
+    order by doc.addtime desc  
+  </select>
+  <select id="selectByOrderSkuId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+  	 select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_refund_doc
+  	where  order_sku_id = #{orderSkuId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByOrderSkuId1" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc
+  	where  order_sku_id = #{orderSkuId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectCountByOrderShopId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+		 select count(*)from order_refund_doc where order_shop_id =#{orderShopId}
+  </select>
+   <select id="selectOrderRefundDoc" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+	select doc.* 
+	from 
+	order_refund_doc doc,order_shop oshop  
+	where 
+	oshop.m_id = #{mId,jdbcType=INTEGER} and doc.order_shop_id = #{orderShopId,jdbcType=INTEGER} and oshop.is_refund=2 and doc.order_shop_id = oshop.id GROUP BY doc.`status`
+  </select>
+  <!-- 该商家今日的退款(退货退款) 的金额 -->
+  <select id="selectMThisDayRefundMoney" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+     select COALESCE(sum(amount),0)  as amountsum
+        from order_refund_doc doc, order_shop order_s where 1=1
+        and doc.order_shop_id=order_s.id
+        and doc.reason in ( '退款' , '退款退货' )
+        and doc.status = 2
+        and to_days(doc.dispose_time) =  to_days(now())
+        and doc.shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectMThisMonthRefundMoney" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select COALESCE(sum(amount),0)  as amountsum
+        from order_refund_doc doc,order_shop order_s where 1=1
+        and doc.order_shop_id=order_s.id
+        and doc.reason in ( '退款' , '退款退货' )
+        and doc.status = 2
+        and  DATE_FORMAT(doc.dispose_time, '%Y%m' ) = DATE_FORMAT(NOW(),'%Y%m')
+        and doc.shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectMRe" resultType="java.lang.Integer">
+     select COALESCE(sum(amount),0)  as amountsum
+        from order_refund_doc doc where 1=1
+        and  doc.reason ='拼单失败'
+        and doc.shop_id=#{shopId,jdbcType=INTEGER}
+        <if test="group ==1 ">
+        and to_days(doc.dispose_time) =  to_days(now())
+        </if>
+        <if test="group == 2">
+         and  DATE_FORMAT(doc.dispose_time, '%Y%m' ) = DATE_FORMAT(NOW(),'%Y%m')
+        </if>
+  </select>
+  <select id="selectFailTeamCount" parameterType="com.bh.order.pojo.OrderRefundDoc" resultType="java.lang.Integer">
+     select COALESCE(sum(sku.sku_num),0)  as amountsum
+        from order_refund_doc doc ,order_sku sku where 1=1
+        and doc.order_sku_id=sku.id
+        and doc.reason ='拼单失败'
+        and doc.m_id=#{mId,jdbcType=INTEGER}
+        <if test="goodsId != null and goodsId!='' " >
+        and doc.goods_id =#{goodsId,jdbcType=INTEGER}
+        </if>     
+  </select>
+  <select id="selectRefundCount" parameterType="com.bh.order.pojo.OrderRefundDoc" resultType="java.lang.Integer">
+     select COALESCE(sum(sku.sku_num),0)  as amountsum
+        from order_refund_doc doc,order_sku sku where 1=1
+        and  doc.reason =#{reason,jdbcType=VARCHAR}
+        and doc.order_sku_id=sku.id
+        and doc.status in(2,10)
+        and doc.m_id=#{mId,jdbcType=INTEGER}
+        <if test="goodsId != null and goodsId!='' " >
+        and doc.goods_id =#{goodsId,jdbcType=INTEGER}
+        </if>     
+  </select>
+    <!-- cheng 结束 -->
+    
+    
+    <!-- 统计:出账列表  xieycxieyc -->
+  <select id="countRefundList"  resultMap="BaseResultMap">
+  	   select ord.* from order_refund_doc ord LEFT JOIN  order_main om on ord.order_id=om.id where 1=1
+  	   <if test="shop_id != null" >
+        and ord.shop_id = #{shop_id,jdbcType=INTEGER}
+       </if>
+       <if test="id != null" >
+        and ord.id = #{id,jdbcType=INTEGER}
+       </if>
+       <if test="order_id != null" >
+        and ord.order_id = #{order_id,jdbcType=INTEGER}
+       </if>
+       <if test="order_no != null and  order_no !='' " >
+        and om.order_no like CONCAT(CONCAT('%', #{order_no}), '%')
+       </if>
+       <if test="payment_no != null and  payment_no !='' " >
+        and om.payment_no like CONCAT(CONCAT('%', #{payment_no}), '%')
+       </if>
+       <if test="status != null" >
+        and ord.status = #{status,jdbcType=INTEGER}
+       </if>
+       <![CDATA[ and ord.addtime >=]]> #{5}
+       <![CDATA[ and ord.addtime <]]> #{6}
+       order by ord.addtime desc
+	</select>
+  
+    <!--查询某个退款订单  xieyc-->
+   <select id="getRefundOrder" resultMap="BaseResultMap" >
+	  	select * from order_refund_doc where 1=1 
+	  	<if test="shop_id != null" >
+           and  shop_id=#{shop_id}
+        </if>
+        <if test="status != null" >
+           and  status=#{status}
+       </if>
+	   
+  </select>
+    
+
+  <!-- 获取某个商家在该7日类下单的订单,并且在该7日类退款成功的金额  xieycxieyc -->
+  <select id="getRefundOrderWithDay"  resultMap="BaseResultMap">
+  	   select ord.* from order_refund_doc ord LEFT JOIN  order_main om on ord.order_id=om.id  
+       where ord.shop_id=#{0}  and  ord.status=#{1}
+       <![CDATA[ and ord.dispose_time >=]]> #{2}
+       <![CDATA[ and ord.dispose_time <=]]> #{3}
+       <![CDATA[ and om.addtime >=]]> #{2}
+       <![CDATA[ and om.addtime <=]]> #{3}
+	</select>
+  
+     <!-- 统计:出账列表  xieycxieyc -->
+  <select id="mgetRefundList"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	   select * from order_refund_doc 
+  	   where 1=1
+  	   <if test="shop_id !='0'.toString()" >
+        and shop_id = #{shop_id,jdbcType=INTEGER}
+       </if>
+  	   order by addtime desc
+	</select>
+	<select id="selectIsRefund" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select COALESCE(osku.team_price,0)  from order_sku osku where osku.id=#{orderSkuId}
+	</select>
+	<select id="selectOShopStatus" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select COALESCE(oshop.status,0)  from order_sku osku,order_shop oshop
+ 		where 
+		osku.order_shop_id=oshop.id
+		and osku.id=#{orderSkuId}
+	</select>
+	<select id="selectRefundType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select doc.refund_type from order_refund_doc doc where doc.order_sku_id=#{orderSkuId}
+	</select>
+	
+  <!-- zlk 2018.4.20 -->
+  <select id="getByOrderSkuId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc
+    where order_sku_id = #{orderSkuId,jdbcType=INTEGER}
+  </select>
+  		
+  		
+  		 
+  <select id="countByOrderId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(amount)
+    from order_refund_doc
+    where order_id = #{orderId,jdbcType=INTEGER} and refund_type!=2
+  </select>
+  
+  
+   <select id="countMoneyByOrderShopId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select ifnull(sum(amount),0)
+    from order_refund_doc
+    where order_shop_id = #{orderShopId,jdbcType=INTEGER} and refund_type!=2
+  </select>
+  		
+ <update id="updateLogistics" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+   update order_refund_doc
+    <set>
+     <if test="refundValidTime != null" >
+     refund_valid_time=#{refundValidTime,jdbcType=TIMESTAMP},
+     </if>
+      <if test="expressName != null" >
+      express_name=#{expressName,jdbcType=VARCHAR},
+      </if>
+       <if test="expressNo != null" >
+      express_no=#{expressNo,jdbcType=VARCHAR},
+      </if>
+       <if test="mName != null" >
+      m_name=#{mName,jdbcType=VARCHAR},
+      </if>
+       <if test="mPhone != null" >
+      m_phone=#{mPhone,jdbcType=VARCHAR},
+      </if>
+       <if test="saveTime != null" >
+      save_time=#{saveTime,jdbcType=TIMESTAMP}, 
+      </if>
+     </set>
+     where order_sku_id=#{orderSkuId}
+  </update>
+  
+   <select id="selectByStatus" resultMap="BaseResultMap">
+    select 
+      <include refid="Base_Column_List" />
+    from order_refund_doc where status in (0,5,7,10,11)
+  </select>
+  
+  <update id="updateStatus" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+   update order_refund_doc 
+     <set >
+     <if test="disposeTime != null" >
+        dispose_time = #{disposeTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsValidTime != null" >
+        logistics_valid_time = #{logisticsValidTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+ </set>
+ where order_sku_id=#{orderSkuId}
+  </update>
+  
+  
+  <update id="updateTime" parameterType="com.bh.order.pojo.OrderRefundDoc" >
+   update order_refund_doc set logistics_valid_time=#{logisticsValidTime} where order_sku_id=#{orderSkuId}
+  </update>
+  
+</mapper>

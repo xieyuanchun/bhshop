@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderRefundDocLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderRefundDocLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="doc_id" property="docId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.order.pojo.OrderRefundDocLog" extends="BaseResultMap" >
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, doc_id, addtime, admin_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_refund_doc_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_refund_doc_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderRefundDocLog" >
+    insert into order_refund_doc_log (id, doc_id, addtime, 
+      admin_user, desc)
+    values (#{id,jdbcType=INTEGER}, #{docId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{adminUser,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderRefundDocLog" >
+    insert into order_refund_doc_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="docId != null" >
+        doc_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="docId != null" >
+        #{docId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderRefundDocLog" >
+    update order_refund_doc_log
+    <set >
+      <if test="docId != null" >
+        doc_id = #{docId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.order.pojo.OrderRefundDocLog" >
+    update order_refund_doc_log
+    set doc_id = #{docId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderRefundDocLog" >
+    update order_refund_doc_log
+    set doc_id = #{docId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      admin_user = #{adminUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

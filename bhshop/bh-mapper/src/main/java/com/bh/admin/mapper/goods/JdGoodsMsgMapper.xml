@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.JdGoodsMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jd_msg_id" property="jdMsgId" jdbcType="BIGINT" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="jd_sku_no" property="jdSkuNo" jdbcType="BIGINT" />
+    <result column="msg_content" property="msgContent" jdbcType="VARCHAR" />
+    <result column="is_look" property="isLook" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jd_msg_id, msg_type, jd_sku_no, msg_content, is_look, add_time, send_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_goods_msg
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_goods_msg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    insert into jd_goods_msg (id, jd_msg_id, msg_type, 
+      jd_sku_no, msg_content, is_look, 
+      add_time, send_time)
+    values (#{id,jdbcType=INTEGER}, #{jdMsgId,jdbcType=BIGINT}, #{msgType,jdbcType=INTEGER}, 
+      #{jdSkuNo,jdbcType=BIGINT}, #{msgContent,jdbcType=VARCHAR}, #{isLook,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    insert into jd_goods_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jdMsgId != null" >
+        jd_msg_id,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="jdSkuNo != null" >
+        jd_sku_no,
+      </if>
+      <if test="msgContent != null" >
+        msg_content,
+      </if>
+      <if test="isLook != null" >
+        is_look,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jdMsgId != null" >
+        #{jdMsgId,jdbcType=BIGINT},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="jdSkuNo != null" >
+        #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="msgContent != null" >
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    update jd_goods_msg
+    <set >
+      <if test="jdMsgId != null" >
+        jd_msg_id = #{jdMsgId,jdbcType=BIGINT},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="jdSkuNo != null" >
+        jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="msgContent != null" >
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isLook != null" >
+        is_look = #{isLook,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    update jd_goods_msg
+    set jd_msg_id = #{jdMsgId,jdbcType=BIGINT},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      is_look = #{isLook,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.JdGoodsMsg" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_goods_msg
+    where 1=1
+    <if test="jdMsgId != null">
+    	and jd_msg_id = #{jdMsgId}
+    </if>
+    <if test="msgType != null">
+    	and msg_type = #{msgType}
+    </if>
+    <if test="jdSkuNo != null">
+    	and jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="isLook != null">
+    	and is_look = #{isLook}
+    </if>
+    order by add_time desc
+  </select>
+</mapper>

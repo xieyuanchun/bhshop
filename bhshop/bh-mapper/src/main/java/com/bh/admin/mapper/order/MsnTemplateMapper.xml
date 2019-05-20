@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.MsnTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.MsnTemplate" >
+    <id column="temp_id" property="tempId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="apymsn_id" property="apymsnId" jdbcType="INTEGER" />
+    <result column="contains" property="contains" jdbcType="VARCHAR" />
+    <result column="review_result" property="reviewResult" jdbcType="INTEGER" />
+    <result column="platform_review_result" property="platformReviewResult" jdbcType="INTEGER" />
+    <result column="review_result_remkar" property="reviewResultRemkar" jdbcType="VARCHAR" />
+    <result column="platform_review_submit_time" property="platformReviewSubmitTime" jdbcType="TIMESTAMP" />
+    <result column="platform_review_end_time" property="platformReviewEndTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="reviewer_name" property="reviewerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    temp_id, shop_id, apymsn_id, contains, review_result, platform_review_result, review_result_remkar, 
+    platform_review_submit_time, platform_review_end_time, edit_time, add_time, reviewer_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from msn_template
+    where temp_id = #{tempId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from msn_template
+    where temp_id = #{tempId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.MsnTemplate" >
+    insert into msn_template (temp_id, shop_id, apymsn_id, 
+      contains, review_result, platform_review_result, 
+      review_result_remkar, platform_review_submit_time, 
+      platform_review_end_time, edit_time, add_time, 
+      reviewer_name)
+    values (#{tempId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{apymsnId,jdbcType=INTEGER}, 
+      #{contains,jdbcType=VARCHAR}, #{reviewResult,jdbcType=INTEGER}, #{platformReviewResult,jdbcType=INTEGER}, 
+      #{reviewResultRemkar,jdbcType=VARCHAR}, #{platformReviewSubmitTime,jdbcType=TIMESTAMP}, 
+      #{platformReviewEndTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{reviewerName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.MsnTemplate" >
+    insert into msn_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tempId != null" >
+        temp_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="apymsnId != null" >
+        apymsn_id,
+      </if>
+      <if test="contains != null" >
+        contains,
+      </if>
+      <if test="reviewResult != null" >
+        review_result,
+      </if>
+      <if test="platformReviewResult != null" >
+        platform_review_result,
+      </if>
+      <if test="reviewResultRemkar != null" >
+        review_result_remkar,
+      </if>
+      <if test="platformReviewSubmitTime != null" >
+        platform_review_submit_time,
+      </if>
+      <if test="platformReviewEndTime != null" >
+        platform_review_end_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="reviewerName != null" >
+        reviewer_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tempId != null" >
+        #{tempId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="apymsnId != null" >
+        #{apymsnId,jdbcType=INTEGER},
+      </if>
+      <if test="contains != null" >
+        #{contains,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewResult != null" >
+        #{reviewResult,jdbcType=INTEGER},
+      </if>
+      <if test="platformReviewResult != null" >
+        #{platformReviewResult,jdbcType=INTEGER},
+      </if>
+      <if test="reviewResultRemkar != null" >
+        #{reviewResultRemkar,jdbcType=VARCHAR},
+      </if>
+      <if test="platformReviewSubmitTime != null" >
+        #{platformReviewSubmitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformReviewEndTime != null" >
+        #{platformReviewEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerName != null" >
+        #{reviewerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.MsnTemplate" >
+    update msn_template
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="apymsnId != null" >
+        apymsn_id = #{apymsnId,jdbcType=INTEGER},
+      </if>
+      <if test="contains != null" >
+        contains = #{contains,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewResult != null" >
+        review_result = #{reviewResult,jdbcType=INTEGER},
+      </if>
+      <if test="platformReviewResult != null" >
+        platform_review_result = #{platformReviewResult,jdbcType=INTEGER},
+      </if>
+      <if test="reviewResultRemkar != null" >
+        review_result_remkar = #{reviewResultRemkar,jdbcType=VARCHAR},
+      </if>
+      <if test="platformReviewSubmitTime != null" >
+        platform_review_submit_time = #{platformReviewSubmitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformReviewEndTime != null" >
+        platform_review_end_time = #{platformReviewEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerName != null" >
+        reviewer_name = #{reviewerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where temp_id = #{tempId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.MsnTemplate" >
+    update msn_template
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      apymsn_id = #{apymsnId,jdbcType=INTEGER},
+      contains = #{contains,jdbcType=VARCHAR},
+      review_result = #{reviewResult,jdbcType=INTEGER},
+      platform_review_result = #{platformReviewResult,jdbcType=INTEGER},
+      review_result_remkar = #{reviewResultRemkar,jdbcType=VARCHAR},
+      platform_review_submit_time = #{platformReviewSubmitTime,jdbcType=TIMESTAMP},
+      platform_review_end_time = #{platformReviewEndTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      reviewer_name = #{reviewerName,jdbcType=VARCHAR}
+    where temp_id = #{tempId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByShopIdAndApyId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from msn_template
+    where shop_id = #{0,jdbcType=INTEGER} AND  apymsn_id = #{1,jdbcType=INTEGER}
+  </select>
+
+  
+  
+  
+     <update id="updateByApymsnId" parameterType="com.bh.admin.pojo.order.MsnTemplate" >
+      update msn_template
+      <set >
+        <if test="reviewResult != null" >
+          review_result = #{reviewResult,jdbcType=INTEGER},
+        </if>
+        <if test="reviewResultRemkar != null" >
+          review_result_remkar = #{reviewResultRemkar,jdbcType=VARCHAR},
+        </if>
+        <if test="editTime != null" >
+          edit_time = #{editTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="reviewerName != null" >
+          reviewer_name = #{reviewerName,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+    </update>
+</mapper>

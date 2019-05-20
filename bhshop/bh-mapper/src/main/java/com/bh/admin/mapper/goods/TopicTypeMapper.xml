@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.TopicType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.TopicType" extends="BaseResultMap" >
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
+    <result column="thumb" property="thumb" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, typeid, name, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    `desc`, thumb
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from topic_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.TopicType" >
+    insert into topic_type (id, typeid, name, 
+      status, `desc`, thumb
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeid,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{desc,jdbcType=LONGVARCHAR}, #{thumb,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.TopicType" >
+    insert into topic_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="desc != null" >
+        `desc`,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.TopicType" >
+    update topic_type
+    <set >
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="desc != null" >
+        `desc` = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.TopicType" >
+    update topic_type
+    set typeid = #{typeid,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      `desc` = #{desc,jdbcType=LONGVARCHAR},
+      thumb = #{thumb,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.TopicType" >
+    update topic_type
+    set typeid = #{typeid,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!--  scj -->
+  <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from topic_type where typeid = #{typeid} and status = 1
+  </select>
+  
+  
+  
+   <!-- 根据条件查询活动类型  xieyc -->
+    <select id="getTopicTypeList"  resultMap="BaseResultMap">
+  	    select 
+  	    <include refid="Base_Column_List" />
+    	from topic_type 
+    	where 1=1
+        <if test="id != null" >
+           and id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="status != null" >
+           and status = #{status,jdbcType=TINYINT}
+        </if>
+        <if test="name != null and  name !='' " >
+          and name like CONCAT(CONCAT('%', #{name}), '%')
+        </if>
+	</select>
+  
+</mapper>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.HollandDauctionLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.HollandDauctionLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="h_id" property="hId" jdbcType="INTEGER" />
+    <result column="current_store" property="currentStore" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="d_status" property="dStatus" jdbcType="INTEGER" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, goods_id, h_id, current_store, price, add_time, d_status, current_periods, pay_time, pay_status, order_no,end_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from holland_dauction_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from holland_dauction_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.HollandDauctionLog" >
+    insert into holland_dauction_log (id, m_id, goods_id, 
+      h_id, current_store, price, 
+      add_time, d_status, current_periods, pay_time, pay_status, order_no,end_time)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{hId,jdbcType=INTEGER}, #{currentStore,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{dStatus,jdbcType=INTEGER}, #{currentPeriods,jdbcType=INTEGER},
+      #{payTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR},
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.HollandDauctionLog" >
+    insert into holland_dauction_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="hId != null" >
+        h_id,
+      </if>
+      <if test="currentStore != null" >
+        current_store,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="dStatus != null" >
+        d_status,
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="hId != null" >
+        #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="currentStore != null" >
+        #{currentStore,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dStatus != null" >
+        #{dStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.HollandDauctionLog" >
+    update holland_dauction_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="hId != null" >
+        h_id = #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="currentStore != null" >
+        current_store = #{currentStore,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dStatus != null" >
+        d_status = #{dStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods = #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.HollandDauctionLog" >
+    update holland_dauction_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      h_id = #{hId,jdbcType=INTEGER},
+      current_store = #{currentStore,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      d_status = #{dStatus,jdbcType=INTEGER},
+      current_periods = #{currentPeriods,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="getLogList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.HollandDauctionLog" >
+     select a.* from holland_dauction_log a left join goods b on a.goods_id=b.id where 1=1
+     <if test="mId != null" >
+       and a.m_id = #{mId,jdbcType=INTEGER}
+     </if>
+     <if test="goodsName != null and goodsName != ''" >
+        and b.name like CONCAT('%',#{goodsName},'%')
+     </if>
+     <if test="goodsId != null" >
+        and a.goods_id = #{goodsId}
+     </if>
+     <if test="dStatus != null" >
+        and a.d_status = #{dStatus,jdbcType=INTEGER}
+     </if>
+     <if test="currentPeriods != null" >
+        and a.current_periods = #{currentPeriods}
+     </if>
+     order by add_time desc
+  </select>
+  
+  
+   <select id="getLogByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+    select
+    <include refid="Base_Column_List" />
+    from holland_dauction_log where order_no=#{orderNo}
+  </select>
+  
+  
+  
+</mapper>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.OrderDeliveryDocMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="delivery_code" property="deliveryCode" jdbcType="VARCHAR" />
+    <result column="express_company_id" property="expressCompanyId" jdbcType="INTEGER" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.order.OrderDeliveryDoc" extends="BaseResultMap" >
+    <result column="note" property="note" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, m_id, shop_id, addtime, delivery_code, express_company_id, admin_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_delivery_doc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_delivery_doc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    insert into order_delivery_doc (id, order_id, m_id, 
+      shop_id, addtime, delivery_code, 
+      express_company_id, admin_user, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{deliveryCode,jdbcType=VARCHAR}, 
+      #{expressCompanyId,jdbcType=INTEGER}, #{adminUser,jdbcType=VARCHAR}, #{note,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    insert into order_delivery_doc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="deliveryCode != null" >
+        delivery_code,
+      </if>
+      <if test="expressCompanyId != null" >
+        express_company_id,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryCode != null" >
+        #{deliveryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompanyId != null" >
+        #{expressCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    update order_delivery_doc
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryCode != null" >
+        delivery_code = #{deliveryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompanyId != null" >
+        express_company_id = #{expressCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    update order_delivery_doc
+    set order_id = #{orderId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      delivery_code = #{deliveryCode,jdbcType=VARCHAR},
+      express_company_id = #{expressCompanyId,jdbcType=INTEGER},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      note = #{note,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.OrderDeliveryDoc" >
+    update order_delivery_doc
+    set order_id = #{orderId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      delivery_code = #{deliveryCode,jdbcType=VARCHAR},
+      express_company_id = #{expressCompanyId,jdbcType=INTEGER},
+      admin_user = #{adminUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

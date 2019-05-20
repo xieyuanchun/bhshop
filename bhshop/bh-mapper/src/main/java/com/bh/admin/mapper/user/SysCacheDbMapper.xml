@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.SysCacheDbMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.SysCacheDb" >
+    <id column="cache_db_id" property="cacheDbId" jdbcType="INTEGER" />
+    <result column="db_key" property="dbKey" jdbcType="VARCHAR" />
+    <result column="db_group" property="dbGroup" jdbcType="VARCHAR" />
+    <result column="db_sql" property="dbSql" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.user.SysCacheDb" extends="BaseResultMap" >
+    <result column="db_val" property="dbVal" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cache_db_id, db_key, db_group, db_sql, add_time, edit_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    db_val
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `bhs_admin_pro`.`sys_cache_db`
+    where cache_db_id = #{cacheDbId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `bhs_admin_pro`.`sys_cache_db`
+    where cache_db_id = #{cacheDbId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    insert into `bhs_admin_pro`.`sys_cache_db` (cache_db_id, db_key, db_group, 
+      db_sql, add_time, edit_time, 
+      db_val)
+    values (#{cacheDbId,jdbcType=INTEGER}, #{dbKey,jdbcType=VARCHAR}, #{dbGroup,jdbcType=VARCHAR}, 
+      #{dbSql,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{dbVal,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    insert into `bhs_admin_pro`.`sys_cache_db`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cacheDbId != null" >
+        cache_db_id,
+      </if>
+      <if test="dbKey != null" >
+        db_key,
+      </if>
+      <if test="dbGroup != null" >
+        db_group,
+      </if>
+      <if test="dbSql != null" >
+        db_sql,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="dbVal != null" >
+        db_val,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cacheDbId != null" >
+        #{cacheDbId,jdbcType=INTEGER},
+      </if>
+      <if test="dbKey != null" >
+        #{dbKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dbGroup != null" >
+        #{dbGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSql != null" >
+        #{dbSql,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbVal != null" >
+        #{dbVal,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    update `bhs_admin_pro`.`sys_cache_db`
+    <set >
+      <if test="dbKey != null" >
+        db_key = #{dbKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dbGroup != null" >
+        db_group = #{dbGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSql != null" >
+        db_sql = #{dbSql,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbVal != null" >
+        db_val = #{dbVal,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cache_db_id = #{cacheDbId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    update `bhs_admin_pro`.`sys_cache_db`
+    set db_key = #{dbKey,jdbcType=VARCHAR},
+      db_group = #{dbGroup,jdbcType=VARCHAR},
+      db_sql = #{dbSql,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      db_val = #{dbVal,jdbcType=LONGVARCHAR}
+    where cache_db_id = #{cacheDbId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    update `bhs_admin_pro`.`sys_cache_db`
+    set db_key = #{dbKey,jdbcType=VARCHAR},
+      db_group = #{dbGroup,jdbcType=VARCHAR},
+      db_sql = #{dbSql,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where cache_db_id = #{cacheDbId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 列表管理 -->
+  <select id="listPage" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    select * from `bhs_admin_pro`.`sys_cache_db`
+    where 1=1
+    <if test="cacheDbId != null and cacheDbId != ''">
+    	and cache_db_id = #{cacheDbId}
+    </if>
+    <if test="dbKey != null and dbKey != ''">
+    	and db_key like CONCAT('%', #{dbKey}, '%')
+    </if>
+    <if test="dbGroup != null and dbGroup !=''">
+    	and db_group like CONCAT('%', #{dbGroup}, '%')
+    </if>
+    order by edit_time desc
+  </select>
+  
+  <!-- 根据组名获取数据 -->
+  <select id="getByDbGroup" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    select * from `bhs_admin_pro`.`sys_cache_db`
+    where db_group = #{dbGroup,jdbcType=VARCHAR}
+    order by edit_time desc
+  </select>
+  
+  <!-- 根据key获取数据 -->
+  <select id="getByDbKey" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheDb" >
+    select * from `bhs_admin_pro`.`sys_cache_db`
+    where db_key = #{dbKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

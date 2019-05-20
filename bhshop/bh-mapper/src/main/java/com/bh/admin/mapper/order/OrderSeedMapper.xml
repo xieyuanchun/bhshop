@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.OrderSeedMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.OrderSeed" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="INTEGER" />
+    <result column="sm_id" property="smId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, trade_no, order_no, status, order_price, sm_id, m_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_seed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_seed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+    insert into order_seed (id, trade_no, order_no, 
+      status, order_price, sm_id, 
+      m_id)
+    values (#{id,jdbcType=INTEGER}, #{tradeNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{orderPrice,jdbcType=INTEGER}, #{smId,jdbcType=INTEGER}, 
+      #{mId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.OrderSeed" useGeneratedKeys="true" keyProperty="id">
+    insert into order_seed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="smId != null" >
+        sm_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+    update order_seed
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        sm_id = #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByStatus" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+    update order_seed
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+    update order_seed
+    set trade_no = #{tradeNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      sm_id = #{smId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- cheng -->
+   <select id="selecOrderSeedByParam" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+   <!-- 支付状态 :1待付款（未支付）,2已付款（已支付）,3已领取 -->
+    select 
+    seed.*
+    from order_seed seed,seed_model model
+    where 1=1
+    and seed.sm_id=model.id
+    and seed.`status`=2
+     <if test="mId != null" >
+       and seed.m_id = #{mId,jdbcType=INTEGER}
+     </if>
+    <if test="smId != null" >
+       and seed.sm_id = #{smId,jdbcType=INTEGER}
+    </if>
+    <if test="orderNo != null" >
+       and seed.order_no = #{orderNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+   <update id="updateOrderSeedBymId" parameterType="com.bh.admin.pojo.order.OrderSeed" >
+    update order_seed
+    set 
+      status = #{status,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <select id="selectSeedByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select * from order_seed  where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

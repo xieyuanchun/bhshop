@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsDescMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsDesc" >
+    <id column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <id column="is_pc" property="isPc" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.goods.pojo.GoodsDesc" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_id, is_pc
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_desc
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_desc
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertGoodsDesc" parameterType="com.bh.goods.pojo.GoodsDesc" >
+    insert into goods_desc (goods_id, description, is_pc)
+    values (#{goodsId,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}, #{isPc,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsDesc" >
+    insert into goods_desc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="isPc != null" >
+        is_pc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isPc != null" >
+        #{isPc,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsDesc" >
+    update goods_desc
+    <set >
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.goods.pojo.GoodsDesc" >
+    update goods_desc
+    set description = #{description,jdbcType=LONGVARCHAR},
+    is_pc = #{isPc,jdbcType=LONGVARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <delete id="deleteByGoodsId" parameterType="java.lang.Integer" >
+    delete from goods_desc
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  
+   <select id="selectByGoodsIdAndIsPc" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_desc
+    where goods_id = #{0} and is_pc = #{1}
+  </select>
+  
+  <update id="updateByGoodsIdAndIsPc" parameterType="com.bh.goods.pojo.GoodsDesc" >
+    update goods_desc
+    <set >
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER} and is_pc = #{isPc,jdbcType=INTEGER}
+  </update>
+</mapper>

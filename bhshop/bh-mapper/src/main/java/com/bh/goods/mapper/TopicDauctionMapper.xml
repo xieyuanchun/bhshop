@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.TopicDauctionMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.TopicDauction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tg_id" property="tgId" jdbcType="INTEGER" />
+    <result column="low_price" property="lowPrice" jdbcType="INTEGER" />
+    <result column="time_section" property="timeSection" jdbcType="INTEGER" />
+    <result column="scope_price" property="scopePrice" jdbcType="INTEGER" />
+    <result column="dauction_price" property="dauctionPrice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tg_id, low_price, time_section, scope_price, dauction_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_dauction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_dauction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.TopicDauction" >
+    insert into topic_dauction (id, tg_id, low_price, 
+      time_section, scope_price, dauction_price)
+    values (#{id,jdbcType=INTEGER}, #{tgId,jdbcType=INTEGER}, #{lowPrice,jdbcType=INTEGER}, 
+      #{timeSection,jdbcType=INTEGER}, #{scopePrice,jdbcType=INTEGER}, #{dauctionPrice,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.TopicDauction" useGeneratedKeys="true" keyProperty="id">
+    insert into topic_dauction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tgId != null" >
+        tg_id,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="timeSection != null" >
+        time_section,
+      </if>
+      <if test="scopePrice != null" >
+        scope_price,
+      </if>
+      <if test="dauctionPrice != null" >
+        dauction_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="timeSection != null" >
+        #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionPrice != null" >
+        #{dauctionPrice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.TopicDauction" >
+    update topic_dauction
+    <set >
+      <if test="tgId != null" >
+        tg_id = #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="timeSection != null" >
+        time_section = #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        scope_price = #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="dauctionPrice != null" >
+        dauction_price = #{dauctionPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.TopicDauction" >
+    update topic_dauction
+    set tg_id = #{tgId,jdbcType=INTEGER},
+      low_price = #{lowPrice,jdbcType=INTEGER},
+      time_section = #{timeSection,jdbcType=INTEGER},
+      scope_price = #{scopePrice,jdbcType=INTEGER},
+      dauction_price = #{dauctionPrice,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="selectByTgId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_dauction
+    where tg_id = #{tgId}
+  </select>
+</mapper>

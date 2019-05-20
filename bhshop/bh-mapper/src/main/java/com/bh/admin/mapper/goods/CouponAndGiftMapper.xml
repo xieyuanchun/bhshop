@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.CouponAndGiftMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.CouponAndGift" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_g_id" property="cGId" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="c_num" property="cNum" jdbcType="INTEGER" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_g_id, c_id, c_num, c_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_and_gift
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coupon_and_gift
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.CouponAndGift" >
+    insert into coupon_and_gift (id, c_g_id, c_id, 
+      c_num, c_name)
+    values (#{id,jdbcType=INTEGER}, #{cGId,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, 
+      #{cNum,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.CouponAndGift" >
+    insert into coupon_and_gift
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cGId != null" >
+        c_g_id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="cNum != null" >
+        c_num,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cGId != null" >
+        #{cGId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cNum != null" >
+        #{cNum,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.CouponAndGift" >
+    update coupon_and_gift
+    <set >
+      <if test="cGId != null" >
+        c_g_id = #{cGId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cNum != null" >
+        c_num = #{cNum,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.CouponAndGift" >
+    update coupon_and_gift
+    set c_g_id = #{cGId,jdbcType=INTEGER},
+      c_id = #{cId,jdbcType=INTEGER},
+      c_num = #{cNum,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectByCGid" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.CouponAndGift" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_and_gift
+    where 1=1
+    <if test="cGId != null">
+    	and c_g_id = #{cGId,jdbcType=INTEGER}
+    </if>
+    <if test="cId != null">
+    	and c_id = #{cId,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

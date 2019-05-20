@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bh</groupId>
+		<artifactId>bh-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.bh</groupId>
+	<artifactId>bh-common</artifactId>        
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+	
+	      
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<!-- 日志处理 -->       
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+		</dependency>
+			
+			
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<dependency>
+			    <groupId>com.fasterxml.jackson.dataformat</groupId>
+			    <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+		<!--分页 插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+		</dependency>
+		<dependency>   
+			<groupId>java.base64</groupId>
+			<artifactId>javabase64</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!-- Sqlservice -->
+		<dependency>
+   			<groupId>com.microsoft.sqlserver</groupId>
+   			<artifactId>sqljdbc4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.bh</groupId>
+			<artifactId>eds-com</artifactId>
+		</dependency>
+		<dependency>
+   		<groupId>org.apache.httpcomponents</groupId>
+    	<artifactId>httpmime</artifactId>
+		</dependency>
+		
+		
+		
+		<!-- 阿里大于短信 -->
+		<dependency>
+			<groupId>com.taobao</groupId>
+			<artifactId>taobao-sdk</artifactId>
+		</dependency>
+		 
+		<dependency>
+  		    <groupId>com.alibaba</groupId>
+   			<artifactId>fastjson</artifactId>
+		</dependency>
+		
+	  <!-- 阿里云OSS -->
+	  <dependency>
+         <groupId>com.aliyun.oss</groupId>
+         <artifactId>aliyun-sdk-oss</artifactId>
+      </dependency>
+      <!-- 程凤云20178-1-3添加 -->
+      <dependency>
+	        <groupId>com.bh</groupId>
+            <artifactId>OSSapi</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+      
+      		<!-- 支付宝 -->
+		<dependency>
+                <groupId>com.alipay.api</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+        </dependency>
+       
+        <dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+        </dependency>
+       
+        <dependency>
+	         <groupId>com.thoughtworks.xstream</groupId>
+	         <artifactId>xstream</artifactId>
+	     </dependency>
+         
+         <dependency>
+			    <groupId>com.google.code.gson</groupId>
+			    <artifactId>gson</artifactId>
+		  </dependency>
+	    <dependency>
+		    <groupId>com.github.javafaker</groupId>
+		    <artifactId>javafaker</artifactId>
+		    <version>0.14</version>
+        </dependency>
+
+	    <!-- 程凤云于2018-3-17  添加org.json -->
+	    <dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+	    </dependency>
+        
+        <!-- scj-redis相关 -->
+        <dependency>
+		  <groupId>redis.clients</groupId>
+		  <artifactId>jedis</artifactId>
+		</dependency>
+		
+		<!-- scj-谷歌工具类 -->
+		<!-- <dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>24.0-jre</version>
+		</dependency> -->
+		
+		<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+		
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-core</artifactId>
+			<version>3.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+	
+		
+		
+		
+		
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+</project>

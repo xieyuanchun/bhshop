@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsModelAttrMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsModelAttr" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="search" property="search" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.goods.pojo.GoodsModelAttr" extends="BaseResultMap" >
+    <result column="value" property="value" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, model_id, type, name, search
+  </sql>
+  <sql id="Blob_Column_List" >
+    value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_model_attr
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_model_attr
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsModelAttr" >
+    insert into goods_model_attr (id, model_id, type, 
+      name, search, value
+      )
+    values (#{id,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{type,jdbcType=BIT}, 
+      #{name,jdbcType=VARCHAR}, #{search,jdbcType=BIT}, #{value,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsModelAttr" useGeneratedKeys="true" keyProperty="id">
+    insert into goods_model_attr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="search != null" >
+        search,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="search != null" >
+        #{search,jdbcType=BIT},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsModelAttr" >
+    update goods_model_attr
+    <set >
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="search != null" >
+        search = #{search,jdbcType=BIT},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.goods.pojo.GoodsModelAttr" >
+    update goods_model_attr
+    set model_id = #{modelId,jdbcType=INTEGER},
+      type = #{type,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      search = #{search,jdbcType=BIT},
+      value = #{value,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsModelAttr" >
+    update goods_model_attr
+    set model_id = #{modelId,jdbcType=INTEGER},
+      type = #{type,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      search = #{search,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="getBymId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_model_attr
+    where model_id = #{mId,jdbcType=INTEGER} and search = 1 and value is not null
+  </select>
+  
+  
+  <select id="selectAllBymId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_model_attr
+    where model_id = #{mId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countAllBymId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(*)
+    from goods_model_attr
+    where model_id = #{mId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByName" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.GoodsModelAttr">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model_attr
+    where name = #{0} and model_id = #{1}
+  </select>
+  
+  <select id="getByName" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.GoodsModelAttr">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_model_attr
+    where name = #{0} and model_id = #{1}
+  </select>
+  
+  <select id="selectUpdateByName" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsModel">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model_attr where name = #{0}
+    and model_id = #{2}
+     <![CDATA[ and id <>]]>#{1}
+  </select>
+</mapper>

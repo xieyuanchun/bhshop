@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.ScoreRuleExtMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.ScoreRuleExt" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sr_id" property="srId" jdbcType="INTEGER" />
+    <result column="ext_key" property="extKey" jdbcType="INTEGER" />
+    <result column="ext_value" property="extValue" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="is_series" property="isSeries" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sr_id, ext_key, ext_value, is_del, is_series
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from score_rule_ext
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from score_rule_ext
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+    insert into score_rule_ext (id, sr_id, ext_key, 
+      ext_value, is_del, is_series
+      )
+    values (#{id,jdbcType=INTEGER}, #{srId,jdbcType=INTEGER}, #{extKey,jdbcType=INTEGER}, 
+      #{extValue,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{isSeries,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+    insert into score_rule_ext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="srId != null" >
+        sr_id,
+      </if>
+      <if test="extKey != null" >
+        ext_key,
+      </if>
+      <if test="extValue != null" >
+        ext_value,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="isSeries != null" >
+        is_series,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="srId != null" >
+        #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="extKey != null" >
+        #{extKey,jdbcType=INTEGER},
+      </if>
+      <if test="extValue != null" >
+        #{extValue,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isSeries != null" >
+        #{isSeries,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+    update score_rule_ext
+    <set >
+      <if test="srId != null" >
+        sr_id = #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="extKey != null" >
+        ext_key = #{extKey,jdbcType=INTEGER},
+      </if>
+      <if test="extValue != null" >
+        ext_value = #{extValue,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isSeries != null" >
+        is_series = #{isSeries,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+    update score_rule_ext
+    set sr_id = #{srId,jdbcType=INTEGER},
+      ext_key = #{extKey,jdbcType=INTEGER},
+      ext_value = #{extValue,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      is_series = #{isSeries,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <!-- cheng -->
+   <select id="selectScoreRuleExtBysrId" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+      select ext.* from score_rule_ext ext,seed_score_rule rule 
+         where 1=1
+         	 and ext.is_del=0
+             and ext.sr_id=rule.id
+              <if test="srId != null" >
+                   and ext.sr_id = #{srId,jdbcType=INTEGER}
+             </if>
+             <if test="extKey != null" >
+                   and ext.ext_key = #{extKey,jdbcType=INTEGER}
+             </if>
+       order by ext.ext_key ASC       
+  </select>
+  <select id="selectScoreRuleExtBysrIdAndKey" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+      select ext.* from score_rule_ext ext,seed_score_rule rule 
+         where 1=1
+         	 and ext.is_del=0
+             and ext.sr_id=rule.id
+              <if test="srId != null" >
+                   and ext.sr_id = #{srId,jdbcType=INTEGER}
+             </if>
+             <if test="extKey != null" >
+                   and ext.ext_key <![CDATA[<=]]> #{extKey,jdbcType=INTEGER}
+             </if>
+       order by ext.ext_key desc       
+  </select>
+   <update id="updateScoreRuleExtByValue" parameterType="com.bh.user.pojo.ScoreRuleExt" >
+    update score_rule_ext
+    set 
+      ext_value = #{extValue,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateExtByIsDel" >	
+		update score_rule_ext  
+		      set is_del =1 
+  	          where 1=1 
+                    and sr_id=1
+  </update>
+	
+</mapper>

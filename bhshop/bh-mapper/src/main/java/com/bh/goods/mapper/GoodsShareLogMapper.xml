@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsShareLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsShareLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="r_m_id" property="rMId" jdbcType="INTEGER" />
+    <result column="re_m_id" property="reMId" jdbcType="INTEGER" />
+    <result column="share_url" property="shareUrl" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="team_no" property="teamNo" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="share_type" property="shareType" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="share_num" property="shareNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, r_m_id, re_m_id, share_url, order_no, team_no, sku_id, share_type, order_type, 
+    open_id, visit, share_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_share_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_share_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsShareLog" >
+    insert into goods_share_log (id, m_id, r_m_id, 
+      re_m_id, share_url, order_no, 
+      team_no, sku_id, share_type, 
+      order_type, open_id, visit, share_num)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{rMId,jdbcType=INTEGER}, 
+      #{reMId,jdbcType=INTEGER}, #{shareUrl,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{teamNo,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, #{shareType,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{visit,jdbcType=INTEGER}, #{shareNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsShareLog" >
+    insert into goods_share_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="rMId != null" >
+        r_m_id,
+      </if>
+      <if test="reMId != null" >
+        re_m_id,
+      </if>
+      <if test="shareUrl != null" >
+        share_url,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="teamNo != null" >
+        team_no,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="shareType != null" >
+        share_type,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="shareNum != null" >
+        share_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="rMId != null" >
+        #{rMId,jdbcType=INTEGER},
+      </if>
+      <if test="reMId != null" >
+        #{reMId,jdbcType=INTEGER},
+      </if>
+      <if test="shareUrl != null" >
+        #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null" >
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="shareType != null" >
+        #{shareType,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+       <if test="shareNum != null" >
+        #{shareNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsShareLog" >
+    update goods_share_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="rMId != null" >
+        r_m_id = #{rMId,jdbcType=INTEGER},
+      </if>
+      <if test="reMId != null" >
+        re_m_id = #{reMId,jdbcType=INTEGER},
+      </if>
+      <if test="shareUrl != null" >
+        share_url = #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null" >
+        team_no = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="shareType != null" >
+        share_type = #{shareType,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="shareNum != null" >
+        share_num = #{shareNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsShareLog" >
+    update goods_share_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      r_m_id = #{rMId,jdbcType=INTEGER},
+      re_m_id = #{reMId,jdbcType=INTEGER},
+      share_url = #{shareUrl,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      team_no = #{teamNo,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      share_type = #{shareType,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      visit = #{visit,jdbcType=INTEGER},
+      share_num = #{shareNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getListByTeamNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_share_log
+    where team_no = #{teamNo,jdbcType=VARCHAR}
+   </select>
+   
+   <select id="pageList" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsShareLog" >
+    select a.*
+    from goods_share_log a left join goods_sku b on a.sku_id = b.id left join goods c on b.goods_id = c.id
+    where c.name like CONCAT(CONCAT('%', #{1}), '%') and
+    a.order_no like CONCAT(CONCAT('%', #{0}), '%')
+    <if test="orderType != null and orderType !=''" >
+        and a.order_type = #{orderType,jdbcType=INTEGER}
+    </if>
+    order by a.id desc
+   </select>
+   
+   <select id="getBymIdAndSkuId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_share_log
+    where m_id = #{0} and sku_id = #{1} 
+      <if test="teamNo != null">
+       and team_no=#{teamNo}
+      </if>
+   </select>
+</mapper>

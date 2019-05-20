@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberShopMapper" >
+     <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberShop" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="customer_url" property="customerUrl" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="prov" property="prov" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="four" property="four" jdbcType="INTEGER" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="goods_comment" property="goodsComment" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="linkman_name" property="linkmanName" jdbcType="VARCHAR" />
+    <result column="linkman_phone" property="linkmanPhone" jdbcType="VARCHAR" />
+    <result column="linkman_email" property="linkmanEmail" jdbcType="VARCHAR" />
+    <result column="isInvite" property="isinvite" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="license_type_name" property="licenseTypeName" jdbcType="VARCHAR" />
+    <result column="emergency_contact_person" property="emergencyContactPerson" jdbcType="VARCHAR" />
+    <result column="emergency_contact_phone" property="emergencyContactPhone" jdbcType="VARCHAR" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card" property="card" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="card_image" property="cardImage" jdbcType="VARCHAR" />
+    <result column="license_image" property="licenseImage" jdbcType="VARCHAR" />
+    <result column="organization_begin_time" property="organizationBeginTime" jdbcType="VARCHAR" />
+    <result column="organization_end_time" property="organizationEndTime" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="organization_image" property="organizationImage" jdbcType="VARCHAR" />
+    <result column="tax_code" property="taxCode" jdbcType="VARCHAR" />
+    <result column="tax_type" property="taxType" jdbcType="INTEGER" />
+    <result column="tax_other_code" property="taxOtherCode" jdbcType="VARCHAR" />
+    <result column="tax_image" property="taxImage" jdbcType="VARCHAR" />
+    <result column="license_number" property="licenseNumber" jdbcType="VARCHAR" />
+    <result column="card_name" property="cardName" jdbcType="VARCHAR" />
+    <result column="license_prov" property="licenseProv" jdbcType="INTEGER" />
+    <result column="license_city" property="licenseCity" jdbcType="INTEGER" />
+    <result column="license_town" property="licenseTown" jdbcType="INTEGER" />
+    <result column="license_four" property="licenseFour" jdbcType="INTEGER" />
+    <result column="license_address" property="licenseAddress" jdbcType="VARCHAR" />
+    <result column="founddate" property="founddate" jdbcType="VARCHAR" />
+    <result column="reg_money" property="regMoney" jdbcType="VARCHAR" />
+    <result column="bus_scope" property="busScope" jdbcType="VARCHAR" />
+    <result column="card_begintime" property="cardBegintime" jdbcType="VARCHAR" />
+    <result column="card_endtime" property="cardEndtime" jdbcType="VARCHAR" />
+    <result column="org_begintime" property="orgBegintime" jdbcType="VARCHAR" />
+    <result column="org_endtime" property="orgEndtime" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="is_pc" property="isPc" jdbcType="INTEGER" />
+    <result column="is_agree" property="isAgree" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="md5_key" property="md5Key" jdbcType="VARCHAR" />
+    <result column="busi_pay_pre" property="busiPayPre" jdbcType="VARCHAR" />
+    <result column="is_bhshop" property="isBhshop" jdbcType="INTEGER" />
+    <result column="exist_pos" property="existPos" jdbcType="INTEGER" />
+    <result column="pos_msg" property="posMsg" jdbcType="VARCHAR" />
+    <result column="handle_status" property="handleStatus" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="INTEGER" />
+    <result column="deposit" property="deposit" jdbcType="INTEGER" />
+    <result column="deposit_trade_no" property="depositTradeNo" jdbcType="VARCHAR" />
+    <result column="deposit_no" property="depositNo" jdbcType="VARCHAR" />
+    <result column="deposit_status" property="depositStatus" jdbcType="INTEGER" />
+    <result column="deposit_time" property="depositTime" jdbcType="TIMESTAMP" />
+     <result column="return_address" property="returnAddress" jdbcType="VARCHAR" />
+     <result column="free_num" property="freeNum" jdbcType="INTEGER" />
+     <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.user.MemberShop" extends="BaseResultMap" >
+    <result column="banner_url" property="bannerUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, shop_name, logo, status, addtime, endtime, tel, email, customer_url, business_license, 
+    prov, city, area, four, lon, lat, address, description, goods_comment, level, balance, 
+    type, cat_id, linkman_name, linkman_phone, linkman_email, isInvite, code, license_type_name, 
+    emergency_contact_person, emergency_contact_phone, step, card_type, card, begin_time, 
+    end_time, card_image, license_image, organization_begin_time, organization_end_time, 
+    organization_code, organization_image, tax_code, tax_type, tax_other_code, tax_image, 
+    license_number, card_name, license_prov, license_city, license_town, license_four, 
+    license_address, founddate, reg_money, bus_scope, card_begintime, card_endtime, org_begintime, 
+    org_endtime, token, is_pc, is_agree, note, md5_key, busi_pay_pre, is_bhshop, exist_pos, 
+    pos_msg, handle_status, trade_no, order_no, pay_status, order_price, deposit, deposit_trade_no, 
+    deposit_no, deposit_status, deposit_time,return_address,free_num,surplus_num
+  </sql>
+  <sql id="Blob_Column_List" >
+    banner_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from member_shop
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_shop
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberShop" >
+    insert into member_shop (m_id, shop_name, logo, 
+      status, addtime, endtime, 
+      tel, email, customer_url, 
+      business_license, prov, city, 
+      area, four, lon, lat, 
+      address, description, goods_comment, 
+      level, balance, type, 
+      cat_id, linkman_name, linkman_phone, 
+      linkman_email, isInvite, code, 
+      license_type_name, emergency_contact_person, 
+      emergency_contact_phone, step, card_type, 
+      card, begin_time, end_time, 
+      card_image, license_image, organization_begin_time, 
+      organization_end_time, organization_code, 
+      organization_image, tax_code, tax_type, 
+      tax_other_code, tax_image, license_number, 
+      card_name, license_prov, license_city, 
+      license_town, license_four, license_address, 
+      founddate, reg_money, bus_scope, 
+      card_begintime, card_endtime, org_begintime, 
+      org_endtime, token, is_pc, 
+      is_agree, note, md5_key, 
+      busi_pay_pre, is_bhshop, exist_pos, 
+      pos_msg, handle_status, trade_no, 
+      order_no, pay_status, order_price, 
+      deposit, deposit_trade_no, deposit_no, 
+      deposit_status, deposit_time, banner_url,return_address,free_num,surplus_num
+      )
+    values (#{mId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{customerUrl,jdbcType=VARCHAR}, 
+      #{businessLicense,jdbcType=VARCHAR}, #{prov,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{area,jdbcType=INTEGER}, #{four,jdbcType=INTEGER}, #{lon,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, 
+      #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{goodsComment,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{catId,jdbcType=INTEGER}, #{linkmanName,jdbcType=VARCHAR}, #{linkmanPhone,jdbcType=VARCHAR}, 
+      #{linkmanEmail,jdbcType=VARCHAR}, #{isinvite,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{licenseTypeName,jdbcType=VARCHAR}, #{emergencyContactPerson,jdbcType=VARCHAR}, 
+      #{emergencyContactPhone,jdbcType=VARCHAR}, #{step,jdbcType=INTEGER}, #{cardType,jdbcType=INTEGER}, 
+      #{card,jdbcType=VARCHAR}, #{beginTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{cardImage,jdbcType=VARCHAR}, #{licenseImage,jdbcType=VARCHAR}, #{organizationBeginTime,jdbcType=VARCHAR}, 
+      #{organizationEndTime,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, 
+      #{organizationImage,jdbcType=VARCHAR}, #{taxCode,jdbcType=VARCHAR}, #{taxType,jdbcType=INTEGER}, 
+      #{taxOtherCode,jdbcType=VARCHAR}, #{taxImage,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, 
+      #{cardName,jdbcType=VARCHAR}, #{licenseProv,jdbcType=INTEGER}, #{licenseCity,jdbcType=INTEGER}, 
+      #{licenseTown,jdbcType=INTEGER}, #{licenseFour,jdbcType=INTEGER}, #{licenseAddress,jdbcType=VARCHAR}, 
+      #{founddate,jdbcType=VARCHAR}, #{regMoney,jdbcType=VARCHAR}, #{busScope,jdbcType=VARCHAR}, 
+      #{cardBegintime,jdbcType=VARCHAR}, #{cardEndtime,jdbcType=VARCHAR}, #{orgBegintime,jdbcType=VARCHAR}, 
+      #{orgEndtime,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{isPc,jdbcType=INTEGER}, 
+      #{isAgree,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, #{md5Key,jdbcType=VARCHAR}, 
+      #{busiPayPre,jdbcType=VARCHAR}, #{isBhshop,jdbcType=INTEGER}, #{existPos,jdbcType=INTEGER}, 
+      #{posMsg,jdbcType=VARCHAR}, #{handleStatus,jdbcType=INTEGER}, #{tradeNo,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{payStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=INTEGER}, 
+      #{deposit,jdbcType=INTEGER}, #{depositTradeNo,jdbcType=VARCHAR}, #{depositNo,jdbcType=VARCHAR}, 
+      #{depositStatus,jdbcType=INTEGER}, #{depositTime,jdbcType=TIMESTAMP}, #{bannerUrl,jdbcType=LONGVARCHAR},
+      #{returnAddress,jdbcType=VARCHAR}, #{freeNum,jdbcType=INTEGER},  #{surplusNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberShop" useGeneratedKeys="true" keyProperty="mId">
+    insert into member_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="customerUrl != null" >
+        customer_url,
+      </if>
+      <if test="businessLicense != null" >
+        business_license,
+      </if>
+      <if test="prov != null" >
+        prov,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="four != null" >
+        four,
+      </if>
+      <if test="lon != null" >
+        lon,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="goodsComment != null" >
+        goods_comment,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="linkmanName != null" >
+        linkman_name,
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone,
+      </if>
+      <if test="linkmanEmail != null" >
+        linkman_email,
+      </if>
+      <if test="isinvite != null" >
+        isInvite,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="licenseTypeName != null" >
+        license_type_name,
+      </if>
+      <if test="emergencyContactPerson != null" >
+        emergency_contact_person,
+      </if>
+      <if test="emergencyContactPhone != null" >
+        emergency_contact_phone,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="card != null" >
+        card,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="cardImage != null" >
+        card_image,
+      </if>
+      <if test="licenseImage != null" >
+        license_image,
+      </if>
+      <if test="organizationBeginTime != null" >
+        organization_begin_time,
+      </if>
+      <if test="organizationEndTime != null" >
+        organization_end_time,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="organizationImage != null" >
+        organization_image,
+      </if>
+      <if test="taxCode != null" >
+        tax_code,
+      </if>
+      <if test="taxType != null" >
+        tax_type,
+      </if>
+      <if test="taxOtherCode != null" >
+        tax_other_code,
+      </if>
+      <if test="taxImage != null" >
+        tax_image,
+      </if>
+      <if test="licenseNumber != null" >
+        license_number,
+      </if>
+      <if test="cardName != null" >
+        card_name,
+      </if>
+      <if test="licenseProv != null" >
+        license_prov,
+      </if>
+      <if test="licenseCity != null" >
+        license_city,
+      </if>
+      <if test="licenseTown != null" >
+        license_town,
+      </if>
+      <if test="licenseFour != null" >
+        license_four,
+      </if>
+      <if test="licenseAddress != null" >
+        license_address,
+      </if>
+      <if test="founddate != null" >
+        founddate,
+      </if>
+      <if test="regMoney != null" >
+        reg_money,
+      </if>
+      <if test="busScope != null" >
+        bus_scope,
+      </if>
+      <if test="cardBegintime != null" >
+        card_begintime,
+      </if>
+      <if test="cardEndtime != null" >
+        card_endtime,
+      </if>
+      <if test="orgBegintime != null" >
+        org_begintime,
+      </if>
+      <if test="orgEndtime != null" >
+        org_endtime,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="isPc != null" >
+        is_pc,
+      </if>
+      <if test="isAgree != null" >
+        is_agree,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="md5Key != null" >
+        md5_key,
+      </if>
+      <if test="busiPayPre != null" >
+        busi_pay_pre,
+      </if>
+      <if test="isBhshop != null" >
+        is_bhshop,
+      </if>
+      <if test="existPos != null" >
+        exist_pos,
+      </if>
+      <if test="posMsg != null" >
+        pos_msg,
+      </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="depositTradeNo != null" >
+        deposit_trade_no,
+      </if>
+      <if test="depositNo != null" >
+        deposit_no,
+      </if>
+      <if test="depositStatus != null" >
+        deposit_status,
+      </if>
+      <if test="depositTime != null" >
+        deposit_time,
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url,
+      </if>
+       <if test="returnAddress != null" >
+        return_address,
+      </if>
+       <if test="freeNum != null" >
+        free_num,
+      </if>
+       <if test="surplus_num != null" >
+        surplusNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUrl != null" >
+        #{customerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="four != null" >
+        #{four,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null" >
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsComment != null" >
+        #{goodsComment,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="linkmanName != null" >
+        #{linkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanEmail != null" >
+        #{linkmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvite != null" >
+        #{isinvite,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseTypeName != null" >
+        #{licenseTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPerson != null" >
+        #{emergencyContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPhone != null" >
+        #{emergencyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="card != null" >
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cardImage != null" >
+        #{cardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationBeginTime != null" >
+        #{organizationBeginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationEndTime != null" >
+        #{organizationEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationImage != null" >
+        #{organizationImage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCode != null" >
+        #{taxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxType != null" >
+        #{taxType,jdbcType=INTEGER},
+      </if>
+      <if test="taxOtherCode != null" >
+        #{taxOtherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImage != null" >
+        #{taxImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNumber != null" >
+        #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseProv != null" >
+        #{licenseProv,jdbcType=INTEGER},
+      </if>
+      <if test="licenseCity != null" >
+        #{licenseCity,jdbcType=INTEGER},
+      </if>
+      <if test="licenseTown != null" >
+        #{licenseTown,jdbcType=INTEGER},
+      </if>
+      <if test="licenseFour != null" >
+        #{licenseFour,jdbcType=INTEGER},
+      </if>
+      <if test="licenseAddress != null" >
+        #{licenseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="founddate != null" >
+        #{founddate,jdbcType=VARCHAR},
+      </if>
+      <if test="regMoney != null" >
+        #{regMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="busScope != null" >
+        #{busScope,jdbcType=VARCHAR},
+      </if>
+      <if test="cardBegintime != null" >
+        #{cardBegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEndtime != null" >
+        #{cardEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBegintime != null" >
+        #{orgBegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgEndtime != null" >
+        #{orgEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="isPc != null" >
+        #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="isAgree != null" >
+        #{isAgree,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="md5Key != null" >
+        #{md5Key,jdbcType=VARCHAR},
+      </if>
+      <if test="busiPayPre != null" >
+        #{busiPayPre,jdbcType=VARCHAR},
+      </if>
+      <if test="isBhshop != null" >
+        #{isBhshop,jdbcType=INTEGER},
+      </if>
+      <if test="existPos != null" >
+        #{existPos,jdbcType=INTEGER},
+      </if>
+      <if test="posMsg != null" >
+        #{posMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositTradeNo != null" >
+        #{depositTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depositNo != null" >
+        #{depositNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depositStatus != null" >
+        #{depositStatus,jdbcType=INTEGER},
+      </if>
+      <if test="depositTime != null" >
+        #{depositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerUrl != null" >
+        #{bannerUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="returnAddress != null" >
+        #{returnAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="freeNum != null" >
+        #{freeNum,jdbcType=INTEGER},
+      </if>
+       <if test="surplusNum != null" >
+        #{surplusNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberShop" >
+    update member_shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUrl != null" >
+        customer_url = #{customerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        prov = #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="four != null" >
+        four = #{four,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null" >
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsComment != null" >
+        goods_comment = #{goodsComment,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="linkmanName != null" >
+        linkman_name = #{linkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanEmail != null" >
+        linkman_email = #{linkmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvite != null" >
+        isInvite = #{isinvite,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseTypeName != null" >
+        license_type_name = #{licenseTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPerson != null" >
+        emergency_contact_person = #{emergencyContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactPhone != null" >
+        emergency_contact_phone = #{emergencyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="card != null" >
+        card = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cardImage != null" >
+        card_image = #{cardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        license_image = #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationBeginTime != null" >
+        organization_begin_time = #{organizationBeginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationEndTime != null" >
+        organization_end_time = #{organizationEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationImage != null" >
+        organization_image = #{organizationImage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCode != null" >
+        tax_code = #{taxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxType != null" >
+        tax_type = #{taxType,jdbcType=INTEGER},
+      </if>
+      <if test="taxOtherCode != null" >
+        tax_other_code = #{taxOtherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImage != null" >
+        tax_image = #{taxImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNumber != null" >
+        license_number = #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseProv != null" >
+        license_prov = #{licenseProv,jdbcType=INTEGER},
+      </if>
+      <if test="licenseCity != null" >
+        license_city = #{licenseCity,jdbcType=INTEGER},
+      </if>
+      <if test="licenseTown != null" >
+        license_town = #{licenseTown,jdbcType=INTEGER},
+      </if>
+      <if test="licenseFour != null" >
+        license_four = #{licenseFour,jdbcType=INTEGER},
+      </if>
+      <if test="licenseAddress != null" >
+        license_address = #{licenseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="founddate != null" >
+        founddate = #{founddate,jdbcType=VARCHAR},
+      </if>
+      <if test="regMoney != null" >
+        reg_money = #{regMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="busScope != null" >
+        bus_scope = #{busScope,jdbcType=VARCHAR},
+      </if>
+      <if test="cardBegintime != null" >
+        card_begintime = #{cardBegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEndtime != null" >
+        card_endtime = #{cardEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBegintime != null" >
+        org_begintime = #{orgBegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgEndtime != null" >
+        org_endtime = #{orgEndtime,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="isAgree != null" >
+        is_agree = #{isAgree,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="md5Key != null" >
+        md5_key = #{md5Key,jdbcType=VARCHAR},
+      </if>
+      <if test="busiPayPre != null" >
+        busi_pay_pre = #{busiPayPre,jdbcType=VARCHAR},
+      </if>
+      <if test="isBhshop != null" >
+        is_bhshop = #{isBhshop,jdbcType=INTEGER},
+      </if>
+      <if test="existPos != null" >
+        exist_pos = #{existPos,jdbcType=INTEGER},
+      </if>
+      <if test="posMsg != null" >
+        pos_msg = #{posMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositTradeNo != null" >
+        deposit_trade_no = #{depositTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depositNo != null" >
+        deposit_no = #{depositNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depositStatus != null" >
+        deposit_status = #{depositStatus,jdbcType=INTEGER},
+      </if>
+      <if test="depositTime != null" >
+        deposit_time = #{depositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url = #{bannerUrl,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="returnAddress != null" >
+        return_address = #{returnAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="freeNum != null" >
+        free_num = #{freeNum,jdbcType=INTEGER},
+      </if>
+       <if test="surplusNum != null" >
+        surplus_num = #{surplusNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.user.MemberShop" >
+    update member_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      customer_url = #{customerUrl,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      four = #{four,jdbcType=INTEGER},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      goods_comment = #{goodsComment,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=INTEGER},
+      linkman_name = #{linkmanName,jdbcType=VARCHAR},
+      linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      linkman_email = #{linkmanEmail,jdbcType=VARCHAR},
+      isInvite = #{isinvite,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      license_type_name = #{licenseTypeName,jdbcType=VARCHAR},
+      emergency_contact_person = #{emergencyContactPerson,jdbcType=VARCHAR},
+      emergency_contact_phone = #{emergencyContactPhone,jdbcType=VARCHAR},
+      step = #{step,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card = #{card,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      card_image = #{cardImage,jdbcType=VARCHAR},
+      license_image = #{licenseImage,jdbcType=VARCHAR},
+      organization_begin_time = #{organizationBeginTime,jdbcType=VARCHAR},
+      organization_end_time = #{organizationEndTime,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      organization_image = #{organizationImage,jdbcType=VARCHAR},
+      tax_code = #{taxCode,jdbcType=VARCHAR},
+      tax_type = #{taxType,jdbcType=INTEGER},
+      tax_other_code = #{taxOtherCode,jdbcType=VARCHAR},
+      tax_image = #{taxImage,jdbcType=VARCHAR},
+      license_number = #{licenseNumber,jdbcType=VARCHAR},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      license_prov = #{licenseProv,jdbcType=INTEGER},
+      license_city = #{licenseCity,jdbcType=INTEGER},
+      license_town = #{licenseTown,jdbcType=INTEGER},
+      license_four = #{licenseFour,jdbcType=INTEGER},
+      license_address = #{licenseAddress,jdbcType=VARCHAR},
+      founddate = #{founddate,jdbcType=VARCHAR},
+      reg_money = #{regMoney,jdbcType=VARCHAR},
+      bus_scope = #{busScope,jdbcType=VARCHAR},
+      card_begintime = #{cardBegintime,jdbcType=VARCHAR},
+      card_endtime = #{cardEndtime,jdbcType=VARCHAR},
+      org_begintime = #{orgBegintime,jdbcType=VARCHAR},
+      org_endtime = #{orgEndtime,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      is_agree = #{isAgree,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      md5_key = #{md5Key,jdbcType=VARCHAR},
+      busi_pay_pre = #{busiPayPre,jdbcType=VARCHAR},
+      is_bhshop = #{isBhshop,jdbcType=INTEGER},
+      exist_pos = #{existPos,jdbcType=INTEGER},
+      pos_msg = #{posMsg,jdbcType=VARCHAR},
+      handle_status = #{handleStatus,jdbcType=INTEGER},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      deposit_trade_no = #{depositTradeNo,jdbcType=VARCHAR},
+      deposit_no = #{depositNo,jdbcType=VARCHAR},
+      deposit_status = #{depositStatus,jdbcType=INTEGER},
+      deposit_time = #{depositTime,jdbcType=TIMESTAMP},
+      banner_url = #{bannerUrl,jdbcType=LONGVARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberShop" >
+    update member_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      customer_url = #{customerUrl,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      four = #{four,jdbcType=INTEGER},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      goods_comment = #{goodsComment,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=INTEGER},
+      linkman_name = #{linkmanName,jdbcType=VARCHAR},
+      linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      linkman_email = #{linkmanEmail,jdbcType=VARCHAR},
+      isInvite = #{isinvite,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      license_type_name = #{licenseTypeName,jdbcType=VARCHAR},
+      emergency_contact_person = #{emergencyContactPerson,jdbcType=VARCHAR},
+      emergency_contact_phone = #{emergencyContactPhone,jdbcType=VARCHAR},
+      step = #{step,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card = #{card,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      card_image = #{cardImage,jdbcType=VARCHAR},
+      license_image = #{licenseImage,jdbcType=VARCHAR},
+      organization_begin_time = #{organizationBeginTime,jdbcType=VARCHAR},
+      organization_end_time = #{organizationEndTime,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      organization_image = #{organizationImage,jdbcType=VARCHAR},
+      tax_code = #{taxCode,jdbcType=VARCHAR},
+      tax_type = #{taxType,jdbcType=INTEGER},
+      tax_other_code = #{taxOtherCode,jdbcType=VARCHAR},
+      tax_image = #{taxImage,jdbcType=VARCHAR},
+      license_number = #{licenseNumber,jdbcType=VARCHAR},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      license_prov = #{licenseProv,jdbcType=INTEGER},
+      license_city = #{licenseCity,jdbcType=INTEGER},
+      license_town = #{licenseTown,jdbcType=INTEGER},
+      license_four = #{licenseFour,jdbcType=INTEGER},
+      license_address = #{licenseAddress,jdbcType=VARCHAR},
+      founddate = #{founddate,jdbcType=VARCHAR},
+      reg_money = #{regMoney,jdbcType=VARCHAR},
+      bus_scope = #{busScope,jdbcType=VARCHAR},
+      card_begintime = #{cardBegintime,jdbcType=VARCHAR},
+      card_endtime = #{cardEndtime,jdbcType=VARCHAR},
+      org_begintime = #{orgBegintime,jdbcType=VARCHAR},
+      org_endtime = #{orgEndtime,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      is_agree = #{isAgree,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      md5_key = #{md5Key,jdbcType=VARCHAR},
+      busi_pay_pre = #{busiPayPre,jdbcType=VARCHAR},
+      is_bhshop = #{isBhshop,jdbcType=INTEGER},
+      exist_pos = #{existPos,jdbcType=INTEGER},
+      pos_msg = #{posMsg,jdbcType=VARCHAR},
+      handle_status = #{handleStatus,jdbcType=INTEGER},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      deposit_trade_no = #{depositTradeNo,jdbcType=VARCHAR},
+      deposit_no = #{depositNo,jdbcType=VARCHAR},
+      deposit_status = #{depositStatus,jdbcType=INTEGER},
+      deposit_time = #{depositTime,jdbcType=TIMESTAMP},
+      return_address = #{returnAddress,jdbcType=VARCHAR},
+      free_num = #{freeNum,jdbcType=INTEGER},
+      surplus_num = #{surplusNum,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+   
+   
+   
+   
+   
+   
+  
+  
+
+  
+  <!-- start -->
+  <select id="selectAllShopByStatus" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> <!--status 0正常1删除2锁定,3未审核,4审核 -->
+  	from member_shop 
+  	where status =3
+  </select>
+  <update id="updateShopStatus" parameterType="com.bh.admin.pojo.user.MemberShopAddress">
+   update member_shop_address
+   set  status = #{status,jdbcType=INTEGER}
+   where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+   <update id="updateStep" parameterType="com.bh.admin.pojo.user.MemberShop">
+   update member_shop
+    <set >  
+    step = #{step,jdbcType=INTEGER},
+      <if test="note != null and note !=''" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="md5Key != null and md5key !=''" >
+        md5_key = #{md5Key,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null and linkmanPhone!=''" >
+        linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      </set>
+   where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <select id="selectStatusByPage" parameterType="com.bh.admin.pojo.user.MemberShop" resultMap="BaseResultMap" >
+  	select 
+  	<include refid="Base_Column_List" /> <!--status 0正常1删除2锁定,3未审核,4审核 -->
+  	from member_shop 
+  	where status =3 limit #{0},#{1}
+  </select>
+  <select id="selectStatusByPageCount" resultType="java.lang.Integer">
+  select 
+  	count(*) <!--status 0正常1删除2锁定,3未审核,4审核 -->
+  	from member_shop 
+  	where status =3 
+  </select>
+  <select id="selectMaxColumn" resultMap="BaseResultMap">
+        <!-- 寻找最的对象 -->
+       select * from member_shop where m_id = (select MAX(m_id) from member_shop)
+  </select>
+  <select id="selectMemberShopByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberShop">
+        select * from member_shop where 1=1
+         <if test="linkmanName != null" >
+           and linkman_name = #{linkmanName,jdbcType=VARCHAR}
+      </if>
+      <if test="linkmanPhone != null" >
+          and linkman_phone = #{linkmanPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="linkmanEmail != null" >
+        and linkman_email = #{linkmanEmail,jdbcType=VARCHAR}
+      </if>
+       <if test="token != null" >
+        and token = #{token,jdbcType=VARCHAR}
+      </if>
+  </select>
+   <select id="selectMemberShopList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberShop">
+        select * from member_shop where 1=1
+        and step <![CDATA[>=]]> 6
+         <if test="linkmanName != null" >
+           and linkman_name = #{linkmanName,jdbcType=VARCHAR}
+      </if>
+      <if test="linkmanPhone != null" >
+          and linkman_phone = #{linkmanPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="linkmanEmail != null" >
+        and linkman_email = #{linkmanEmail,jdbcType=VARCHAR}
+      </if>
+       <if test="token != null" >
+        and token = #{token,jdbcType=VARCHAR}
+      </if>
+       <if test="mId != null" >
+        and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+       <if test="shopName != null" >
+         and shop_name  like CONCAT(CONCAT('%', #{shopName}), '%')
+      </if>
+      <if test="tel != null" >
+        and tel like CONCAT(CONCAT('%', #{tel}), '%')
+      </if>
+      <if test="step != null" >
+        and step = #{step,jdbcType=INTEGER}
+      </if>
+      order by addtime desc
+  </select>
+    <select id="selectMemberShopByPhone" resultType="java.lang.Integer"   parameterType="com.bh.admin.pojo.user.MemberShop">
+ 			select COUNT(1) from member_shop where 1=1
+ 			 <if test="token != null" >
+                and token &lt;&gt;  #{token,jdbcType=VARCHAR}
+            </if>
+ 			<if test="linkmanPhone != null" >
+                   and linkman_phone = #{linkmanPhone,jdbcType=INTEGER}
+            </if>
+  </select>
+  <!-- 查询 -->
+  <insert id="insertAdmin" parameterType="com.bh.admin.pojo.user.MemberShop">
+  <!-- bhs_admin_pro   bhshop_admin -->
+  INSERT INTO `bhs_admin_pro`.`sys_user` 
+           (`username`, `password`, `salt`,  `mobile`, `status`, `shop_id`, `create_time`) 
+          VALUES
+      (#{linkmanName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+       #{logo,jdbcType=VARCHAR},#{linkmanPhone,jdbcType=VARCHAR}, '0', #{mId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP});
+  </insert>
+  <select id="selectBymId" resultType="java.lang.Integer">
+  select count(1) from `bhs_admin_pro`.`sys_user`  where shop_id= #{mId,jdbcType=INTEGER}
+  </select>
+  <select id="selectUsernameBymId"  resultType="java.lang.String">
+   select username from `bhs_admin_pro`.`sys_user`  where user_id= #{mId,jdbcType=INTEGER}
+  </select>
+    <select id="selectByUsername"  resultType="java.lang.Integer">
+   select count(1) from `bhs_admin_pro`.`sys_user`  where username= #{username,jdbcType=VARCHAR}
+  </select>
+  <update id="updateShop">
+  update member_shop set is_bhshop = 0
+  </update>
+  <select id="selectMemberShop" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select * from member_shop 
+  where 1=1
+  <if test="isBhshop != null" >
+       and is_bhshop = #{isBhshop}
+  </if>
+  </select>
+  <select id="selectShopByTokne" resultMap="BaseResultMap"  parameterType="java.lang.String">
+  	select m_id,token from member_shop where token = #{token,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPosList" resultMap="BaseResultMap"  parameterType="com.bh.admin.pojo.user.POSParam">
+  	select m_id,shop_name,exist_pos,pos_msg,handle_status,order_no,pay_status,order_price from member_shop 
+  	where exist_pos = 2
+  	<if test="posMsg != null and posMsg !='' " >
+       and pos_msg like CONCAT(CONCAT('%', #{posMsg}), '%')
+    </if>
+     <if test="mId != null and mId !=''" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="payStatus != null and payStatus!='' " >
+        and pay_status = #{payStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shopName != null and shopName!='' " >
+       and shop_name like CONCAT(CONCAT('%', #{shopName}), '%')
+      </if>
+       order by addtime desc
+  </select>
+  <update id="updateHandleStatusBymIds" parameterType="java.util.List">
+      update member_shop set handle_status = 1,step=-1
+      where 1=1
+      and m_id in
+      <foreach item="mId" collection="mIds" open="(" close=")" separator=",">
+           #{mId}
+      </foreach>
+  </update>
+   <resultMap id="MBusEntityMap" type="com.bh.admin.pojo.user.MBusEntity" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    </resultMap>
+  <select id="selectAllByUsername"  resultMap="MBusEntityMap" parameterType="java.lang.String">
+   select * from `bhs_admin_pro`.`sys_user`  where username= #{username,jdbcType=VARCHAR}
+  </select>
+  <update id="updateMemberShop">
+  update member_shop
+  <set>
+   <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+  </set>
+   where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateMemberShopByOrderNo">
+  update member_shop
+  <set>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+  </set>
+   where  order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+   <update id="updateSysUserPwd" parameterType = "com.bh.admin.pojo.user.MBusEntity">
+     update `bhs_admin_pro`.`sys_user`
+      <set>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      </set>
+   where  user_id = #{userId,jdbcType=BIGINT}
+  </update>
+   <update id="updateMemberShopByDescNo">
+  update member_shop
+  <set>
+      <if test="depositStatus != null" >
+        deposit_status = 2,
+      </if>
+      <if test="depositTradeNo != null" >
+        deposit_trade_no = #{depositTradeNo,jdbcType=VARCHAR},
+      </if>
+       <if test="depositTime != null and depositTime !='' " >
+        deposit_time = #{depositTime,jdbcType=TIMESTAMP},
+      </if>
+  </set>
+   where  deposit_no = #{depositNo,jdbcType=VARCHAR}
+  </update>
+  <select id="checkIsPaySeccuss"  resultMap="BaseResultMap" parameterType="java.lang.String">
+   select shop.* from member_shop shop   where shop.deposit_no = #{depositNo,jdbcType=VARCHAR}
+  </select>
+   <select id="selectDepositList" resultMap="BaseResultMap"  parameterType="com.bh.admin.pojo.user.MemberShop">
+  	select m_id,shop_name,deposit,deposit_trade_no,deposit_status,deposit_time from member_shop 
+  	where 1=1
+  	<if test="depositStatus != null and depositStatus !='' " >
+       and deposit_status = #{depositStatus,jdbcType=INTEGER}
+    </if>
+     <if test="mId != null and mId !=''" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="shopName != null and shopName!='' " >
+       and shop_name like CONCAT(CONCAT('%', #{shopName}), '%')
+      </if>
+  </select>
+  <select id="selectShopName" parameterType="java.lang.Integer" resultType="java.lang.String">
+     select shop.shop_name from member_shop shop where m_id=#{mId}
+  </select>
+  <!-- end -->
+  
+  
+  <!-- 统计审核通过的商家总数  XIEYC-->
+  <select id="countShopCheckPass" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from member_shop where step=7
+  </select>
+  
+   <select id="getUserLoginLog" resultType="java.lang.String" parameterType="java.lang.String">
+        select create_date from `bhs_admin_pro`.`sys_log` where username=#{username} and operation="用户登入" 
+        order by create_date desc
+  </select>
+  
+  <select id="selectAllName" resultMap="ResultMapWithBLOBs" >
+    select 
+    m_id,
+    shop_name
+    from member_shop
+    where step = 7
+  </select>
+  
+   <select id="selectByShopName" resultMap="BaseResultMap"  parameterType="java.lang.String">
+   select * from member_shop where shop_name=#{shopName}
+  </select>
+  
+  
+   <update id="updateSurplusNum">
+     update member_shop set surplus_num=2
+  </update>
+  
+</mapper>

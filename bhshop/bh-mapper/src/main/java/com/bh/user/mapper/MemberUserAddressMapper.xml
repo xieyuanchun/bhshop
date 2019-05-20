@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemberUserAddressMapper" >
+	 <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemberUserAddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="prov" property="prov" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="four" property="four" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="BIT" />
+    <result column="provname" property="provname" jdbcType="VARCHAR" />
+    <result column="cityname" property="cityname" jdbcType="VARCHAR" />
+    <result column="areaname" property="areaname" jdbcType="VARCHAR" />
+    <result column="fourname" property="fourname" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="easyBuy" property="easybuy" jdbcType="INTEGER" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="is_jd" property="isJd" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, full_name, prov, city, area, four, address, tel, is_default, provname, 
+    cityname, areaname, fourname, is_del, easyBuy, label, telephone, is_jd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_user_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemberUserAddress" >
+    insert into member_user_address (id, m_id, full_name, 
+      prov, city, area, four, 
+      address, tel, is_default, 
+      provname, cityname, areaname, 
+      fourname, is_del, easyBuy, 
+      label, telephone, is_jd
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{fullName,jdbcType=VARCHAR}, 
+      #{prov,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{area,jdbcType=INTEGER}, #{four,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT}, 
+      #{provname,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, 
+      #{fourname,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{easybuy,jdbcType=INTEGER}, 
+      #{label,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{isJd,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemberUserAddress"  useGeneratedKeys="true" keyProperty="id">
+    insert into member_user_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="prov != null" >
+        prov,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="four != null" >
+        four,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="provname != null" >
+        provname,
+      </if>
+      <if test="cityname != null" >
+        cityname,
+      </if>
+      <if test="areaname != null" >
+        areaname,
+      </if>
+      <if test="fourname != null" >
+        fourname,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="easybuy != null" >
+        easyBuy,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="isJd != null" >
+        is_jd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="four != null" >
+        #{four,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="provname != null" >
+        #{provname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="fourname != null" >
+        #{fourname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="easybuy != null" >
+        #{easybuy,jdbcType=INTEGER},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="isJd != null" >
+        #{isJd,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemberUserAddress" >
+    update member_user_address
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        prov = #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="four != null" >
+        four = #{four,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="provname != null" >
+        provname = #{provname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        cityname = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        areaname = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="fourname != null" >
+        fourname = #{fourname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="easybuy != null" >
+        easyBuy = #{easybuy,jdbcType=INTEGER},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="isJd != null" >
+        is_jd = #{isJd,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemberUserAddress" >
+    update member_user_address
+    set m_id = #{mId,jdbcType=INTEGER},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      four = #{four,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=BIT},
+      provname = #{provname,jdbcType=VARCHAR},
+      cityname = #{cityname,jdbcType=VARCHAR},
+      areaname = #{areaname,jdbcType=VARCHAR},
+      fourname = #{fourname,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=INTEGER},
+      easyBuy = #{easybuy,jdbcType=INTEGER},
+      label = #{label,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      is_jd = #{isJd,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  
+  
+  <!-- *******************************************************以下是由chengfengyun写的******************************************************************** -->
+  <select id="selectAllBymId" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
+   select 
+    <include refid="Base_Column_List" />
+    from member_user_address
+    where 1=1 and is_del=0
+    and  m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <!-- 2017-10-30cheng根据is_del和m_id查询 -->
+   <select id="selectAllAddressByisDel" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
+   select 
+    <include refid="Base_Column_List" />
+    from member_user_address
+    where 1=1 
+    and  is_del = 0
+    and m_id = #{mId,jdbcType=INTEGER} order by id desc
+  </select>
+  
+  <select id="selectCountBymIdAndDefaultId" parameterType="java.lang.Integer" resultType="java.lang.Integer"  >
+  select count(*) from member_user_address where is_default = 1 and  is_del = 0 and m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <update id="updateBymIdAndAndDefaultId" parameterType="java.lang.Integer">
+  update member_user_address
+  set is_default = 0 
+  where is_del = 0 and  m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateDefaultAddress" parameterType="com.bh.user.pojo.MemberUserAddress">
+  update member_user_address
+  set is_default = 1 
+  where id = #{id,jdbcType=INTEGER} and m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <!-- 根据用户选择默认的地址 2017-9-30 -->
+ 
+   <select id="selecUseraddresstBySelect" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.MemberUserAddress" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_address
+    where 1=1 and is_del = 0
+     <if test="mId != null" >
+      and  m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="isDefault != null" >
+       and is_default = #{isDefault,jdbcType=BIT}
+      </if>
+  </select>
+  <!-- 设置默认地址 -->
+  <update id="updateDefaultIdAddress" parameterType="java.lang.Integer">
+  update member_user_address
+  set is_default =1 
+  where  id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+   <update id="updateByisDelSelective" parameterType="com.bh.user.pojo.MemberUserAddress" >
+    update member_user_address
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        prov = #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="provname != null" >
+        provname = #{provname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        cityname = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        areaname = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="easybuy != null" >
+        easyBuy = #{easybuy,jdbcType=INTEGER},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="selectAddressByOrderMain" parameterType="com.bh.user.pojo.MemberUserAddress" resultMap="BaseResultMap"  >
+    select a.* from member_user_address a,order_main main 
+    where 1=1
+    and main.m_addr_id=a.id 
+    and main.`status`=2  
+    and a.m_id = #{mId,jdbcType=INTEGER}
+    GROUP BY  a.id
+  </select>
+  <select id="selectProvName" parameterType="java.lang.Integer" resultType="java.lang.String"  >
+    select a.provname from member_user_address a where id=#{id}
+  </select>
+   <select id="selectUserAddress" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
+   select 
+   *
+    from member_user_address address
+    where  address.is_del = 0
+    and address.m_id = #{mId,jdbcType=INTEGER} 
+    order by address.id desc
+  </select>
+  <!-- end -->
+  
+  
+  <!-- scj-获取默认地址 -->
+  <select id="getByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_address
+    where is_del = 0 and m_id = #{mId,jdbcType=INTEGER} and is_default = 1
+  </select>
+  
+
+ 
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.MsnSendNumberMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.MsnSendNumber" >
+    <id column="senmsnnum_id" property="senmsnnumId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="apymsn_id" property="apymsnId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    senmsnnum_id, m_id, apymsn_id, phone, add_time, edit_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from msn_send_number
+    where senmsnnum_id = #{senmsnnumId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from msn_send_number
+    where senmsnnum_id = #{senmsnnumId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.MsnSendNumber" >
+    insert into msn_send_number (senmsnnum_id, m_id, apymsn_id, 
+      phone, add_time, edit_time
+      )
+    values (#{senmsnnumId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{apymsnId,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.MsnSendNumber" >
+    insert into msn_send_number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="senmsnnumId != null" >
+        senmsnnum_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="apymsnId != null" >
+        apymsn_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="senmsnnumId != null" >
+        #{senmsnnumId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="apymsnId != null" >
+        #{apymsnId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.MsnSendNumber" >
+    update msn_send_number
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="apymsnId != null" >
+        apymsn_id = #{apymsnId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where senmsnnum_id = #{senmsnnumId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.MsnSendNumber" >
+    update msn_send_number
+    set m_id = #{mId,jdbcType=INTEGER},
+      apymsn_id = #{apymsnId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where senmsnnum_id = #{senmsnnumId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectExportGoods" resultMap="PhoneResultMap" parameterType="java.lang.Integer" >
+    select 
+    phone,m_id
+    from msn_send_number
+    where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+  </select>
+  
+  
+   <resultMap id="PhoneResultMap" type="com.bh.admin.pojo.order.Phone" >
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

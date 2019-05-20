@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderRefundDocStepMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderRefundDocStep" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_refund_doc_id" property="orderRefundDocId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="refund_type" property="refundType" jdbcType="INTEGER" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_refund_doc_id, addtime, mid, refund_type, step
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc_step
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_refund_doc_step
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderRefundDocStep" >
+    insert into order_refund_doc_step (id, order_refund_doc_id, addtime, 
+      mid, refund_type, step
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderRefundDocId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{mid,jdbcType=INTEGER}, #{refundType,jdbcType=INTEGER}, #{step,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderRefundDocStep" >
+    insert into order_refund_doc_step
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderRefundDocId != null" >
+        order_refund_doc_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="refundType != null" >
+        refund_type,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderRefundDocId != null" >
+        #{orderRefundDocId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="refundType != null" >
+        #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderRefundDocStep" >
+    update order_refund_doc_step
+    <set >
+      <if test="orderRefundDocId != null" >
+        order_refund_doc_id = #{orderRefundDocId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="refundType != null" >
+        refund_type = #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderRefundDocStep" >
+    update order_refund_doc_step
+    set order_refund_doc_id = #{orderRefundDocId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      mid = #{mid,jdbcType=INTEGER},
+      refund_type = #{refundType,jdbcType=INTEGER},
+      step = #{step,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getByOrderRefundDocId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.order.OrderRefundDocStep" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund_doc_step
+    where order_refund_doc_id = #{orderRefundDocId,jdbcType=INTEGER}
+    order by step desc
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.NavigationMapper" >
+
+   <resultMap id="MyBaseResultMap" type="com.bh.user.vo.NavigationVo" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectNavigationMsg" resultMap="MyBaseResultMap" parameterType="java.lang.Integer">
+  	select nav.`name`,nav.image,nav.link,nav.type from navigation nav where nav.using_object=#{usingObject}  and nav.is_del=0 and nav.`status`=1 order by nav.sortnum asc
+  </select>
+</mapper>

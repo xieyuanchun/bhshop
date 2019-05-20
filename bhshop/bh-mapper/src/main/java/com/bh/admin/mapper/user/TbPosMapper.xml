@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.TbPosMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.TbPos" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="exist_pos" property="existPos" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="handle_status" property="handleStatus" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="license_number" property="licenseNumber" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, exist_pos, name, phone, handle_status, shop_id, license_number, bank_card_no, identity, add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pos
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_pos
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.TbPos" >
+    insert into tb_pos (id, exist_pos, name, 
+      phone, handle_status, shop_id, license_number, bank_card_no, identity, add_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{existPos,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{handleStatus,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER},
+      #{licenseNumber,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.TbPos" >
+    insert into tb_pos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="existPos != null" >
+        exist_pos,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="licenseNumber != null" >
+        license_number,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="existPos != null" >
+        #{existPos,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseNumber != null" >
+        #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+         #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.TbPos" >
+    update tb_pos
+    <set >
+      <if test="existPos != null" >
+        exist_pos = #{existPos,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseNumber != null" >
+        license_number = #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.TbPos" >
+    update tb_pos
+    set exist_pos = #{existPos,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      handle_status = #{handleStatus,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      license_number = #{licenseNumber,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <!-- end -->
+  <select id="selectTbPosListByP" parameterType="com.bh.admin.pojo.user.TbPos" resultMap="BaseResultMap">
+  	select * from tb_pos where 1=1
+      <if test="existPos != null" >
+        and exist_pos = #{existPos,jdbcType=INTEGER}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null" >
+        and phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="handleStatus != null" >
+        and handle_status = #{handleStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+        and shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+  </select>
+  <update id="updateTbPos" parameterType="com.bh.admin.pojo.user.TbPos">
+   update tb_pos
+      set  handle_status = #{handleStatus}
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+   <select id="selectPosList" parameterType="com.bh.admin.pojo.user.POSParam" resultMap="BaseResultMap">
+  	select * from tb_pos where 1=1
+      <if test="posMsg != null and posMsg != '' " >
+        and ( name like CONCAT(CONCAT('%', #{posMsg}), '%') or   phone like CONCAT(CONCAT('%', #{posMsg}), '%') )
+      </if>
+      
+      <if test="mId != null and mId != '' " >
+        shop_id = #{mId,jdbcType=INTEGER}
+      </if>
+  </select>
+   <update id="updateNameAndPhone" parameterType="com.bh.admin.pojo.user.TbPos">
+   update tb_pos
+      set   
+      <if test="name != null" >
+         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+         phone = #{phone,jdbcType=VARCHAR}
+      </if>
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+</mapper>

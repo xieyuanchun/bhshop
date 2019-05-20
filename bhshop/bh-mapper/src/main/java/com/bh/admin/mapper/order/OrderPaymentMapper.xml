@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.OrderPaymentMapper" >
+
+<resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.OrderPayment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="thumb" property="thumb" jdbcType="VARCHAR" />
+    <result column="pay_fee" property="payFee" jdbcType="VARCHAR" />
+    <result column="is_cod" property="isCod" jdbcType="INTEGER" />
+    <result column="is_online" property="isOnline" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="param1" property="param1" jdbcType="VARCHAR" />
+    <result column="param2" property="param2" jdbcType="VARCHAR" />
+    <result column="param3" property="param3" jdbcType="VARCHAR" />
+    <result column="param4" property="param4" jdbcType="VARCHAR" />
+    <result column="param5" property="param5" jdbcType="VARCHAR" />
+    <result column="param6" property="param6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, note, thumb, pay_fee, is_cod, is_online, status, is_del, description, pay_type, 
+    param1, param2, param3, param4, param5, param6
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_payment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_payment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.OrderPayment" >
+    insert into order_payment (id, type, note, 
+      thumb, pay_fee, is_cod, 
+      is_online, status, is_del, 
+      description, pay_type, param1, 
+      param2, param3, param4, 
+      param5, param6)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{thumb,jdbcType=VARCHAR}, #{payFee,jdbcType=VARCHAR}, #{isCod,jdbcType=INTEGER}, 
+      #{isOnline,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, #{param1,jdbcType=VARCHAR}, 
+      #{param2,jdbcType=VARCHAR}, #{param3,jdbcType=VARCHAR}, #{param4,jdbcType=VARCHAR}, 
+      #{param5,jdbcType=VARCHAR}, #{param6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.OrderPayment" useGeneratedKeys="true" keyProperty="id">
+    insert into order_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="isCod != null" >
+        is_cod,
+      </if>
+      <if test="isOnline != null" >
+        is_online,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="param1 != null" >
+        param1,
+      </if>
+      <if test="param2 != null" >
+        param2,
+      </if>
+      <if test="param3 != null" >
+        param3,
+      </if>
+      <if test="param4 != null" >
+        param4,
+      </if>
+      <if test="param5 != null" >
+        param5,
+      </if>
+      <if test="param6 != null" >
+        param6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=VARCHAR},
+      </if>
+      <if test="isCod != null" >
+        #{isCod,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="param1 != null" >
+        #{param1,jdbcType=VARCHAR},
+      </if>
+      <if test="param2 != null" >
+        #{param2,jdbcType=VARCHAR},
+      </if>
+      <if test="param3 != null" >
+        #{param3,jdbcType=VARCHAR},
+      </if>
+      <if test="param4 != null" >
+        #{param4,jdbcType=VARCHAR},
+      </if>
+      <if test="param5 != null" >
+        #{param5,jdbcType=VARCHAR},
+      </if>
+      <if test="param6 != null" >
+        #{param6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.OrderPayment" >
+    update order_payment
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=VARCHAR},
+      </if>
+      <if test="isCod != null" >
+        is_cod = #{isCod,jdbcType=INTEGER},
+      </if>
+      <if test="isOnline != null" >
+        is_online = #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="param1 != null" >
+        param1 = #{param1,jdbcType=VARCHAR},
+      </if>
+      <if test="param2 != null" >
+        param2 = #{param2,jdbcType=VARCHAR},
+      </if>
+      <if test="param3 != null" >
+        param3 = #{param3,jdbcType=VARCHAR},
+      </if>
+      <if test="param4 != null" >
+        param4 = #{param4,jdbcType=VARCHAR},
+      </if>
+      <if test="param5 != null" >
+        param5 = #{param5,jdbcType=VARCHAR},
+      </if>
+      <if test="param6 != null" >
+        param6 = #{param6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.OrderPayment" >
+    update order_payment
+    set type = #{type,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      pay_fee = #{payFee,jdbcType=VARCHAR},
+      is_cod = #{isCod,jdbcType=INTEGER},
+      is_online = #{isOnline,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=INTEGER},
+      param1 = #{param1,jdbcType=VARCHAR},
+      param2 = #{param2,jdbcType=VARCHAR},
+      param3 = #{param3,jdbcType=VARCHAR},
+      param4 = #{param4,jdbcType=VARCHAR},
+      param5 = #{param5,jdbcType=VARCHAR},
+      param6 = #{param6,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  
+  
+  <!-- *************************************************************************************************************************** -->
+ <select id="selectAllOrderPayment" resultMap="BaseResultMap">
+   select 
+      pay.*
+    from order_payment pay
+    WHERE is_del=0
+ </select>
+ 
+ <select id="selectAllOrderPayments" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.order.OrderPayment" >
+   select 
+      pay.*
+    from order_payment pay
+    WHERE is_del=0
+ </select>
+ <update id="updateOrderPaymentStatus" parameterType="com.bh.admin.pojo.order.OrderPayment" >
+    update order_payment
+    set 
+      is_del = #{isDel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

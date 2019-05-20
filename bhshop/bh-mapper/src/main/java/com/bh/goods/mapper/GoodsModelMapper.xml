@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsModelMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="cat_id" property="catId" jdbcType="VARCHAR" />
+    <result column="cat_name" property="catName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, status, cat_id, cat_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_model
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsModel" >
+    insert into goods_model (id, name, status, 
+      cat_id, cat_name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{catId,jdbcType=VARCHAR},#{catName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsModel" useGeneratedKeys="true" keyProperty="id">
+    insert into goods_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsModel" >
+    update goods_model
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsModel" >
+    update goods_model
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      cat_id = #{catId,jdbcType=VARCHAR},
+      cat_name = #{catName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectBycatId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model
+    where cat_id = #{catId} and status = 0
+  </select>
+  
+   <select id="selectAllModel" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model where status = 0
+  </select>
+  
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model where status = 0 and name like CONCAT(CONCAT('%', #{0}), '%') 
+    <if test="catId != null and catId !=''" >
+        and cat_id like CONCAT(CONCAT('%,', #{catId}), '') or 
+        name like CONCAT(CONCAT('%', #{0}), '%') and cat_id like CONCAT(CONCAT('%,', #{catId}), ',%') or
+        name like CONCAT(CONCAT('%', #{0}), '%') and cat_id like CONCAT(CONCAT('', #{catId}), ',%') or 
+        name like CONCAT(CONCAT('%', #{0}), '%') and cat_id like CONCAT(CONCAT('', #{catId}), '')
+      </if>
+    order by id asc 
+  </select>
+  
+  <select id="countAll" resultType="java.lang.Integer">
+    select count(*) from goods_model
+  </select>
+  
+  
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model where name = #{0} and cat_id = #{1} and status = 0
+  </select>
+  
+   <select id="selectUpdateByName" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsModel">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model where name = #{0} and status = 0
+     <![CDATA[ and id <>]]>#{1}
+  </select>
+  
+  <select id="selectAllByName" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsModel">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_model where name = #{0} and cat_id = #{1} and status = 0 and id != #{2}
+  </select>
+  
+  <select id="batchSelect" resultMap="BaseResultMap" parameterType="java.util.List">
+      select
+      <include refid="Base_Column_List" />
+      from goods_model
+      where id in
+      <foreach item="id" collection="list" open="(" close=")" separator=",">
+          #{id}
+      </foreach>
+   </select> 
+</mapper>

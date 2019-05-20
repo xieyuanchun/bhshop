@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsComment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_sku_id" property="orderSkuId" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="TINYINT" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.goods.pojo.GoodsCommentWithBLOBs" extends="BaseResultMap" >
+    <result column="sku_value" property="skuValue" jdbcType="LONGVARCHAR" />
+    <result column="desc" property="desc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, shop_id, m_id, order_id, order_sku_id, level, addtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    sku_value, desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsCommentWithBLOBs" >
+    insert into goods_comment (id, goods_id, shop_id, 
+      m_id, order_id, order_sku_id, 
+      level, addtime, sku_value, 
+      desc)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{mId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{orderSkuId,jdbcType=INTEGER}, 
+      #{level,jdbcType=TINYINT}, #{addtime,jdbcType=INTEGER}, #{skuValue,jdbcType=LONGVARCHAR}, 
+      #{desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsCommentWithBLOBs" >
+    insert into goods_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="skuValue != null" >
+        sku_value,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsCommentWithBLOBs" >
+    update goods_comment
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        sku_value = #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.goods.pojo.GoodsCommentWithBLOBs" >
+    update goods_comment
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      sku_value = #{skuValue,jdbcType=LONGVARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsComment" >
+    update goods_comment
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      addtime = #{addtime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

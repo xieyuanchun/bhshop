@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsFavoriteMapper" >
+ <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoodsFavorite">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, m_id, sku_id, goods_id, addtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_favorite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_favorite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoodsFavorite">
+    insert into goods_favorite (id, m_id, sku_id, 
+      goods_id, addtime)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.goods.GoodsFavorite">
+    insert into goods_favorite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoodsFavorite">
+    update goods_favorite
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoodsFavorite">
+    update goods_favorite
+    set m_id = #{mId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+  
+  
+  
+  
+  <select id="findByGoodsIdAndMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_favorite
+    where goods_id = #{0} and m_id = #{1}
+  </select>
+  <!-- cheng 开始 -->
+   <select id="selectGoodsfavoriteByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsFavorite" >
+    select 
+           favo.*
+    from goods_favorite favo ,goods g
+    where 1=1  
+        and favo.goods_id=g.id
+		and g.`status`=5
+       <if test="mId != null">
+       and favo.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="skuId != null">
+       and favo.sku_id = #{skuId,jdbcType=INTEGER}
+      </if>
+      <if test="goodsId != null">
+       and favo.goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="addtime != null">
+       and favo.addtime = #{addtime,jdbcType=TIMESTAMP}
+      </if>
+       order by favo.addtime desc
+  </select>
+   <select id="selectGoodsfavorite" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsFavorite" >
+   SELECT f.* FROM goods_favorite f, goods g 
+   WHERE 1 = 1 
+    and f.goods_id=g.id
+    and g.`status`=5
+      <if test="mId != null">
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null">
+       and g.cat_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="goodName != null">
+       and g.`name` like CONCAT(CONCAT('%', #{goodName}), '%')
+      </if>
+      order by f.addtime desc
+  </select>
+  <!-- 批量删除 -->
+  <delete id="deleteByBatch" parameterType="java.util.List">
+    delete from goods_favorite
+    where id in 
+    <foreach item="id" collection="id" open="(" close=")" separator=",">
+             #{id}
+    </foreach>
+  </delete>
+    <select id="selectGoodsfavoriteNumber" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.GoodsFavorite" >
+   select count(f.id) 
+      from goods_favorite f,goods g 
+   where 1=1  
+         and f.goods_id=g.id
+         and g.status=5
+       <if test="mId != null">
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      order by f.addtime desc
+  </select>
+  <!-- cheng 结束 -->
+</mapper>

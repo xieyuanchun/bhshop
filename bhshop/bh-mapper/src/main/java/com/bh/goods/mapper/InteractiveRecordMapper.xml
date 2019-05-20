@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.InteractiveRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.InteractiveRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodsMsgId" property="goodsmsgid" jdbcType="INTEGER" />
+    <result column="chatText" property="chattext" jdbcType="VARCHAR" />
+    <result column="is_shop" property="isShop" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_flag" property="isFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goodsMsgId, chatText, is_shop, create_time, is_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from interactive_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from interactive_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.InteractiveRecord" >
+    insert into interactive_record (id, goodsMsgId, chatText, 
+      is_shop, create_time, is_flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{goodsmsgid,jdbcType=INTEGER}, #{chattext,jdbcType=VARCHAR}, 
+      #{isShop,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{isFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.InteractiveRecord" >
+    insert into interactive_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsmsgid != null" >
+        goodsMsgId,
+      </if>
+      <if test="chattext != null" >
+        chatText,
+      </if>
+      <if test="isShop != null" >
+        is_shop,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isFlag != null" >
+        is_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsmsgid != null" >
+        #{goodsmsgid,jdbcType=INTEGER},
+      </if>
+      <if test="chattext != null" >
+        #{chattext,jdbcType=VARCHAR},
+      </if>
+      <if test="isShop != null" >
+        #{isShop,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.InteractiveRecord" >
+    update interactive_record
+    <set >
+      <if test="goodsmsgid != null" >
+        goodsMsgId = #{goodsmsgid,jdbcType=INTEGER},
+      </if>
+      <if test="chattext != null" >
+        chatText = #{chattext,jdbcType=VARCHAR},
+      </if>
+      <if test="isShop != null" >
+        is_shop = #{isShop,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.InteractiveRecord" >
+    update interactive_record
+    set goodsMsgId = #{goodsmsgid,jdbcType=INTEGER},
+      chatText = #{chattext,jdbcType=VARCHAR},
+      is_shop = #{isShop,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_flag = #{isFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getListByMsgId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from interactive_record
+    where goodsMsgId = #{0} order by create_time 
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from interactive_record
+    where goodsMsgId = #{0} and is_shop=#{1}
+    and is_flag=0
+    order by create_time 
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+	<!-- 扫描包加载Service实现类 -->
+	<!-- <context:component-scan base-package="com.bh.user.api.service"/> -->
+	<!-- 采用注释的方式配置bean -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.bh.user.api.service,com.bh.sys.api.service">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+		<!-- 加载配置文件 -->
+     <context:property-placeholder location="classpath:resource/*.properties" />
+	
+	
+	
+<!-- proxy-target-class默认"false",更改为"ture"使用CGLib动态代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />	
+	 <!-- redis配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+	    <property name="maxTotal" value="100" />
+	    <property name="maxIdle" value="10" />
+	</bean>
+	<bean id="jedisConnectionFactory"
+	      class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+	    <property name="hostName" value="${redis_hostname}"/>
+	    <property name="port" value="${redis_port}"/>
+	    <property name="password" value="${redis_pwd}" />
+	    <property name="timeout" value="3000"/>
+	    <property name="usePool" value="true"/>
+	    <property name="poolConfig" ref="jedisPoolConfig"/>
+	</bean>
+	<bean id="redisHttpSessionConfiguration" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+	    <!-- <property name="defaultRedisSerializer" ref="redisJdkSerializer" /> -->
+	     <property name="maxInactiveIntervalInSeconds" value="2592000"/>
+	      <property name="httpSessionStrategy" ref="cookieHttpSessionStrategy"/>
+	</bean>
+	
+	<!--   设置cookieName和path -->
+      <bean id="defaultCookieSerializer"  
+        class="org.springframework.session.web.http.DefaultCookieSerializer">  
+        <property name="cookieName" value="DTL_SESSION_ID" />  
+        <property name="cookiePath" value="/" />  
+    </bean>  
+           
+     <bean id="cookieHttpSessionStrategy"  
+        class="org.springframework.session.web.http.CookieHttpSessionStrategy">  
+        <property name="cookieSerializer" ref="defaultCookieSerializer" />  
+    </bean>  
+	
+
+
+
+</beans>

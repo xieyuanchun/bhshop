@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.JdOrderMainMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.JdOrderMain" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jd_order_id" property="jdOrderId" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="INTEGER" />
+    <result column="freight" property="freight" jdbcType="INTEGER" />
+    <result column="parent_order_id" property="parentOrderId" jdbcType="VARCHAR" />
+    <result column="order_state" property="orderState" jdbcType="INTEGER" />
+    <result column="submit_state" property="submitState" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="send_state" property="sendState" jdbcType="INTEGER" />
+    <result column="order_shop_id" property="orderShopId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jd_order_id, state, type, order_price, freight, parent_order_id, order_state, 
+    submit_state, add_time, edit_time, send_state, order_shop_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_order_main
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_order_main
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.JdOrderMain" useGeneratedKeys="true" keyProperty="id" >
+    insert into jd_order_main (id, jd_order_id, state, 
+      type, order_price, freight, 
+      parent_order_id, order_state, submit_state, 
+      add_time, edit_time, send_state, 
+      order_shop_id)
+    values (#{id,jdbcType=INTEGER}, #{jdOrderId,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{orderPrice,jdbcType=INTEGER}, #{freight,jdbcType=INTEGER}, 
+      #{parentOrderId,jdbcType=VARCHAR}, #{orderState,jdbcType=INTEGER}, #{submitState,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{sendState,jdbcType=INTEGER}, 
+      #{orderShopId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.JdOrderMain" useGeneratedKeys="true" keyProperty="id">
+    insert into jd_order_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jdOrderId != null" >
+        jd_order_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="parentOrderId != null" >
+        parent_order_id,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="submitState != null" >
+        submit_state,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="sendState != null" >
+        send_state,
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jdOrderId != null" >
+        #{jdOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderId != null" >
+        #{parentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="submitState != null" >
+        #{submitState,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendState != null" >
+        #{sendState,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        #{orderShopId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.JdOrderMain" >
+    update jd_order_main
+    <set >
+      <if test="jdOrderId != null" >
+        jd_order_id = #{jdOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderId != null" >
+        parent_order_id = #{parentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="submitState != null" >
+        submit_state = #{submitState,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendState != null" >
+        send_state = #{sendState,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.JdOrderMain" >
+    update jd_order_main
+    set jd_order_id = #{jdOrderId,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      freight = #{freight,jdbcType=INTEGER},
+      parent_order_id = #{parentOrderId,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=INTEGER},
+      submit_state = #{submitState,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      send_state = #{sendState,jdbcType=INTEGER},
+      order_shop_id = #{orderShopId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="getJdOrderMainByJdSkuId" resultMap="BaseResultMap" >
+  	 select a.* from jd_order_main a ,jd_order_sku b 
+	 where a.id=b.jd_main_id
+	 and b.sku_id=#{0}
+	 and a.order_shop_id=#{1} 
+	 and type=2
+   </select>
+   
+ 
+   
+  
+   <select id="getByOrderSkuId" resultMap="BaseResultMap" >
+  	select a.* from jd_order_main a ,jd_order_sku b 
+	where a.id=b.jd_main_id
+	and b.order_sku_id=#{0}
+	and type=2
+   </select>
+  
+   <select id="getUpdateJdOrderMain" resultMap="BaseResultMap" >
+	select * from jd_order_main 
+	where state=0 and type=2 and order_state=1 
+   </select>
+  
+  
+</mapper>

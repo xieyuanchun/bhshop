@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.BusBankCardMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.BusBankCard" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="bank_kind" property="bankKind" jdbcType="VARCHAR" />
+    <result column="bank_type" property="bankType" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, real_name, id_no, bank_card_no, bank_name, phone, m_id, bank_kind, bank_type, 
+    bank_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bus_bank_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bus_bank_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.BusBankCard" >
+    insert into bus_bank_card (id, real_name, id_no, 
+      bank_card_no, bank_name, phone, 
+      m_id, bank_kind, bank_type, 
+      bank_code)
+    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mId,jdbcType=INTEGER}, #{bankKind,jdbcType=VARCHAR}, #{bankType,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.BusBankCard" useGeneratedKeys="true" keyProperty="id">
+    insert into bus_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="bankKind != null" >
+        bank_kind,
+      </if>
+      <if test="bankType != null" >
+        bank_type,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="bankKind != null" >
+        #{bankKind,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.BusBankCard" >
+    update bus_bank_card
+    <set >
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="bankKind != null" >
+        bank_kind = #{bankKind,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.BusBankCard" >
+    update bus_bank_card
+    set real_name = #{realName,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=INTEGER},
+      bank_kind = #{bankKind,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="selectMemberBankCartByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberBankCard" >
+    select 
+    <include refid="Base_Column_List" />
+    from bus_bank_card
+    where 1=1
+      <if test="realName != null" >
+       and real_name = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="idNo != null" >
+       and id_no = #{idNo,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCardNo != null" >
+       and bank_card_no = #{bankCardNo,jdbcType=VARCHAR}
+      </if>
+      <if test="bankName != null" >
+       and bank_name = #{bankName,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null" >
+       and phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="mId != null" >
+      and  m_id = #{mId,jdbcType=INTEGER}
+      </if>
+  </select>
+</mapper>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_table" property="userTable" jdbcType="VARCHAR" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_no, order_status, admin_user, user_type, user_id, user_table, 
+    action, addtime, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderLog" >
+   insert into order_log (id, order_id, order_no, 
+      order_status, admin_user, user_type, 
+      user_id, user_table, action, 
+      addtime, note)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=INTEGER}, #{adminUser,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{userTable,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR})
+
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderLog" >
+    insert into order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userTable != null" >
+        user_table,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userTable != null" >
+        #{userTable,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderLog" >
+    update order_log
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userTable != null" >
+        user_table = #{userTable,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderLog" >
+    update order_log
+    set order_id = #{orderId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_table = #{userTable,jdbcType=VARCHAR},
+      action = #{action,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="getAllList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderLog" >
+    select a.* from order_log a LEFT JOIN order_main b on a.order_id=b.id
+	where 1=1
+	<if test="shopId !='0'.toString()">
+    	and b.shop_id = #{shopId}
+    </if>
+	<if test="orderNo != null and orderNo !=''">
+		and a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%')
+	</if>
+	<if test="action != null and action !=''">
+		and a.action like CONCAT(CONCAT('%', #{action}), '%')
+	</if>
+    ORDER BY a.addtime desc
+  </select>
+  
+  <select id="countAll" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*)
+    from order_log
+    <where>
+    	order_no like CONCAT(CONCAT('%', #{0}), '%') and action like CONCAT(CONCAT('%', #{1}), '%')
+    </where>
+  </select>
+  
+</mapper>

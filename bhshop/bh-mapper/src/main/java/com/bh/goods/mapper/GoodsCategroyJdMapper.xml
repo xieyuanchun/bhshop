@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsCategroyJdMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsCategroyJd" >
+    <id column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="my_cat_id" property="myCatId" jdbcType="BIGINT" />
+    <result column="jd_cat_id" property="jdCatId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_id, my_cat_id, jd_cat_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_categroy_jd
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_categroy_jd
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsCategroyJd" >
+    insert into goods_categroy_jd (goods_id, my_cat_id, jd_cat_id
+      )
+    values (#{goodsId,jdbcType=INTEGER}, #{myCatId,jdbcType=BIGINT}, #{jdCatId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsCategroyJd" >
+    insert into goods_categroy_jd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="myCatId != null" >
+        my_cat_id,
+      </if>
+      <if test="jdCatId != null" >
+        jd_cat_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="myCatId != null" >
+        #{myCatId,jdbcType=BIGINT},
+      </if>
+      <if test="jdCatId != null" >
+        #{jdCatId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsCategroyJd" >
+    update goods_categroy_jd
+    <set >
+      <if test="myCatId != null" >
+        my_cat_id = #{myCatId,jdbcType=BIGINT},
+      </if>
+      <if test="jdCatId != null" >
+        jd_cat_id = #{jdCatId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsCategroyJd" >
+    update goods_categroy_jd
+    set my_cat_id = #{myCatId,jdbcType=BIGINT},
+      jd_cat_id = #{jdCatId,jdbcType=BIGINT}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

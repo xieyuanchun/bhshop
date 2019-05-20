@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoodsBrand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="sortnum" property="sortnum" jdbcType="SMALLINT" />
+    <result column="cat_id" property="catId" jdbcType="VARCHAR" />
+    <result column="is_jd" property="isJd" jdbcType="INTEGER" />
+    <result column="cat_name" property="catName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, logo, sortnum, cat_id, is_jd,cat_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="countAll" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.GoodsBrand" >
+    select count(*)
+    from goods_brand
+    <where>
+    	name like CONCAT(CONCAT('%', #{0}), '%')
+    </where>
+  </select>
+  
+   <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsBrand" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand 
+    where name like CONCAT(CONCAT('%', #{name}), '%') and is_jd = 0
+  </select> 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoodsBrand" >
+    insert into goods_brand (id, name, logo, 
+      sortnum, cat_id, is_jd, cat_name)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{sortnum,jdbcType=SMALLINT}, #{catId,jdbcType=VARCHAR}, #{isJd,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.GoodsBrand"  useGeneratedKeys="true" keyProperty="id">
+    insert into goods_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="isJd != null" >
+        is_jd,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="isJd != null" >
+        #{isJd,jdbcType=VARCHAR},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoodsBrand"  useGeneratedKeys="true" keyProperty="id">
+    update goods_brand
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="isJd != null" >
+        is_jd = #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoodsBrand" >
+    update goods_brand
+    set name = #{name,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=SMALLINT},
+      cat_id = #{catId,jdbcType=VARCHAR},
+      is_jd = #{isJd,jdbcType=INTEGER},
+      cat_name = #{catName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 	
+ 	<select id="selectByCatid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand
+    where cat_id like CONCAT(CONCAT('%,', #{0}), ',%') and is_jd = 0 
+    </select>
+    
+    <select id="getByCatid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand
+    where cat_id like CONCAT(CONCAT('%,', #{0}), ',%') 
+    or cat_id like #{0}
+    or cat_id like CONCAT('%,', #{0}) 
+    or cat_id like CONCAT(#{0}, ',%')
+    </select>
+    
+  
+  <delete id="batchDelete" parameterType="java.util.List">
+  	delete from goods_brand
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </delete>
+   
+   <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand where is_jd = 0
+  </select>
+  
+  <select id="selectByNameAndJd" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsBrand">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand where name = #{0} and is_jd = #{1}
+  </select>
+  
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand where name = #{0} and is_jd = 0
+  </select>
+  
+   <select id="selectByNameNotMy" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsBrand">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_brand where name = #{0} and id != #{1}
+  </select>
+</mapper>

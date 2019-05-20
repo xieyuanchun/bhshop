@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemerScoreLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemerScoreLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="sm_id" property="smId" jdbcType="INTEGER" />
+    <result column="ssr_id" property="ssrId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="orderseed_id" property="orderseedId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, sm_id, ssr_id, create_time, times, score, is_del, orderseed_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memer_score_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memer_score_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemerScoreLog" >
+    insert into memer_score_log (id, m_id, sm_id, 
+      ssr_id, create_time, times, 
+      score, is_del, orderseed_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{smId,jdbcType=INTEGER}, 
+      #{ssrId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{times,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{orderseedId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemerScoreLog" useGeneratedKeys="true" keyProperty="id">
+    insert into memer_score_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="smId != null" >
+        sm_id,
+      </if>
+      <if test="ssrId != null" >
+        ssr_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="orderseedId != null" >
+        orderseed_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="ssrId != null" >
+        #{ssrId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="orderseedId != null" >
+        #{orderseedId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemerScoreLog" >
+    update memer_score_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        sm_id = #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="ssrId != null" >
+        ssr_id = #{ssrId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="orderseedId != null" >
+        orderseed_id = #{orderseedId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemerScoreLog" >
+    update memer_score_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      sm_id = #{smId,jdbcType=INTEGER},
+      ssr_id = #{ssrId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      times = #{times,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      orderseed_id = #{orderseedId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <!-- end -->
+  <!-- 程凤云 -->
+   <select id="selectLogByParams" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.MemerScoreLog" >
+    select 
+    s.*
+    from memer_score_log s ,member m ,order_seed seed,seed_model mo
+    where 1=1 
+    and s.is_del=0
+    and s.m_id = m.id 
+	and s.sm_id=mo.id
+	and seed.m_id=s.m_id
+    and seed.sm_id=mo.id
+    and seed.`status`=2
+    <if test="smId != null" >
+       and s.sm_id = #{smId,jdbcType=INTEGER}
+      </if>
+    <if test="mId != null" >
+       and s.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="ssrId != null" >
+       and s.ssr_id = #{ssrId,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+       and s.create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+       <if test="orderseedId != null" >
+        and s.orderseed_id = #{orderseedId,jdbcType=INTEGER}
+      </if>
+      group by s.id
+      order by s.create_time desc
+  </select>
+   <delete id="deleteScoreByParams" parameterType="com.bh.user.pojo.MemerScoreLog" >
+    update  memer_score_log set is_del=1
+    where 1=1
+    and m_id = #{mId,jdbcType=INTEGER}
+    and sm_id = #{smId,jdbcType=INTEGER}
+    <if test="orderseedId != null" >
+        and orderseed_id = #{orderseedId,jdbcType=INTEGER}
+      </if>
+  </delete>
+   <select id="selectLogByUserattends" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.MemerScoreLog" >
+       select log.* from memer_score_log log 
+          where 1=1 
+           and log.is_del=0
+           and log.sm_id=0
+           <if test="mId != null" >
+              and log.m_id = #{mId,jdbcType=INTEGER}
+          </if>
+          <if test="param != null" >
+              and log.create_time like CONCAT(CONCAT('%', #{param}), '%')
+          </if>
+           order by log.create_time desc
+  </select>
+  <!-- end cheng -->
+  
+  <select id="getLogByMidAndTime" resultType="java.lang.Integer"  >
+       select count(*) from memer_score_log  where sm_id=0 and is_del=0
+       and m_id = #{0} and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{1},'%Y-%m-%d')
+  </select>
+  
+  <select id="selectBeanList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select log.id,log.create_time,log.score,log.sm_id,log.orderseed_id
+  	from memer_score_log log 
+  	where log.is_del=0
+  		and log.score>0
+  		and log.m_id=#{mId}
+  		<if test="log != null and log != '' " >
+               <choose>
+    			<when test="log == 1">
+    				and log.sm_id in (0,-2,-3,-4)
+    			</when>
+    			<otherwise>
+    				and log.sm_id in (-1)
+    			</otherwise>
+    		</choose>
+        </if>
+        <!-- 近3个月 -->
+        <if test="time != null and time !='' and time==3 " >
+             and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(log.create_time, '%Y%m' ) ) BETWEEN 0 and 2
+        </if>
+        <!-- 本月 -->
+         <if test="time != null and time !='' and time==0 " >
+         and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(log.create_time, '%Y%m' ) ) BETWEEN 0 and 0
+         </if>
+         <!-- 上一个月 -->
+         <if test="time != null and time !='' and time==1 " >
+         and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( log.create_time, '%Y%m' ) ) =1
+         </if>
+         <if test="time != null and time !='' and time==2 " >
+         and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(log.create_time, '%Y%m' ) ) BETWEEN 2 and 2
+         </if>
+         order by log.create_time desc
+  		limit #{currentPage,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectScoreLog" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	SELECT
+	log.id,log.times,log.create_time,log.score
+	FROM
+		memer_score_log log
+	WHERE
+		log.m_id = #{mId}
+        and log.create_time like CONCAT('%', #{param}, '%')
+		AND log.sm_id = 0
+	ORDER BY
+		log.create_time DESC
+	LIMIT 0,1
+  </select>
+  <select id="selectMemberLog" resultMap="BaseResultMap" parameterType="java.util.Map">
+ 	SELECT
+		log.id,log.m_id,log.create_time,log.times,log.score
+	FROM
+		memer_score_log log
+	WHERE
+		log.m_id = #{mId}
+	AND log.sm_id = 0
+	AND log.is_del = 0
+	AND TO_DAYS( NOW( ) ) <![CDATA[-]]> TO_DAYS(log.create_time) <![CDATA[<=]]> #{times}
+	ORDER BY
+		log.create_time ASC
+  </select>
+  
+  <select id="selectScoreLogByLimit" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	SELECT
+		log.score,
+		log.create_time
+	FROM
+		memer_score_log log
+	WHERE
+		log.m_id = #{mId}
+		AND log.sm_id = 0
+		AND log.is_del = 0
+		ORDER BY log.create_time desc LIMIT 0,#{pageNum}
+  </select>
+  <select id="selectTime" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	SELECT
+		log.times
+	FROM
+		memer_score_log log
+	WHERE
+		log.m_id = #{mId}
+		AND log.sm_id = 0
+		AND log.is_del = 0
+		 ORDER BY log.create_time desc limit 0,1
+  </select>
+</mapper>

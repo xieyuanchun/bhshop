@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.ActZoneMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.ActZone" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="reid" property="reid" jdbcType="INTEGER" />
+    <result column="is_normal_show" property="isNormalShow" jdbcType="INTEGER" />
+    <result column="is_cart" property="isCart" jdbcType="INTEGER" />
+    <result column="is_coupon" property="isCoupon" jdbcType="INTEGER" />
+    <result column="is_refund" property="isRefund" jdbcType="INTEGER" />
+    <result column="is_lock_score" property="isLockScore" jdbcType="INTEGER" />
+    <result column="free_postage" property="freePostage" jdbcType="INTEGER" />
+    <result column="act_uuid" property="actUuid" jdbcType="VARCHAR" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="level_num" property="levelNum" jdbcType="INTEGER" />
+    <result column="is_last" property="isLast" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="edittime" property="edittime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="failuretime" property="failuretime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, reid, is_normal_show, is_cart, is_coupon, is_refund, is_lock_score, free_postage, 
+    act_uuid, image_url, level_num, is_last, addtime, edittime, remark, sort_num,failuretime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from act_zone
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from act_zone
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.ActZone" >
+    insert into act_zone (id, name, reid, 
+      is_normal_show, is_cart, is_coupon, 
+      is_refund, is_lock_score, free_postage, 
+      act_uuid, image_url, level_num, 
+      is_last, addtime, edittime, 
+      remark, sort_num)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{reid,jdbcType=INTEGER}, 
+      #{isNormalShow,jdbcType=INTEGER}, #{isCart,jdbcType=INTEGER}, #{isCoupon,jdbcType=INTEGER}, 
+      #{isRefund,jdbcType=INTEGER}, #{isLockScore,jdbcType=INTEGER}, #{freePostage,jdbcType=INTEGER}, 
+      #{actUuid,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{levelNum,jdbcType=INTEGER}, 
+      #{isLast,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{sortNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.ActZone" >
+    insert into act_zone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="reid != null" >
+        reid,
+      </if>
+      <if test="isNormalShow != null" >
+        is_normal_show,
+      </if>
+      <if test="isCart != null" >
+        is_cart,
+      </if>
+      <if test="isCoupon != null" >
+        is_coupon,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="isLockScore != null" >
+        is_lock_score,
+      </if>
+      <if test="freePostage != null" >
+        free_postage,
+      </if>
+      <if test="actUuid != null" >
+        act_uuid,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="levelNum != null" >
+        level_num,
+      </if>
+      <if test="isLast != null" >
+        is_last,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="failuretime != null" >
+        failuretime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="isNormalShow != null" >
+        #{isNormalShow,jdbcType=INTEGER},
+      </if>
+      <if test="isCart != null" >
+        #{isCart,jdbcType=INTEGER},
+      </if>
+      <if test="isCoupon != null" >
+        #{isCoupon,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="isLockScore != null" >
+        #{isLockScore,jdbcType=INTEGER},
+      </if>
+      <if test="freePostage != null" >
+        #{freePostage,jdbcType=INTEGER},
+      </if>
+      <if test="actUuid != null" >
+        #{actUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        #{levelNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLast != null" >
+        #{isLast,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="failuretime != null" >
+        #{failuretime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.ActZone" >
+    update act_zone
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        reid = #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="isNormalShow != null" >
+        is_normal_show = #{isNormalShow,jdbcType=INTEGER},
+      </if>
+      <if test="isCart != null" >
+        is_cart = #{isCart,jdbcType=INTEGER},
+      </if>
+      <if test="isCoupon != null" >
+        is_coupon = #{isCoupon,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="isLockScore != null" >
+        is_lock_score = #{isLockScore,jdbcType=INTEGER},
+      </if>
+      <if test="freePostage != null" >
+        free_postage = #{freePostage,jdbcType=INTEGER},
+      </if>
+      <if test="actUuid != null" >
+        act_uuid = #{actUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        level_num = #{levelNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLast != null" >
+        is_last = #{isLast,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="failuretime != null" >
+        failuretime = #{failuretime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.ActZone" >
+    update act_zone
+    set name = #{name,jdbcType=VARCHAR},
+      reid = #{reid,jdbcType=INTEGER},
+      is_normal_show = #{isNormalShow,jdbcType=INTEGER},
+      is_cart = #{isCart,jdbcType=INTEGER},
+      is_coupon = #{isCoupon,jdbcType=INTEGER},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      is_lock_score = #{isLockScore,jdbcType=INTEGER},
+      free_postage = #{freePostage,jdbcType=INTEGER},
+      act_uuid = #{actUuid,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      level_num = #{levelNum,jdbcType=INTEGER},
+      is_last = #{isLast,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      edittime = #{edittime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="apiCategoryName" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	SELECT <include refid="Base_Column_List" /> FROM act_zone WHERE id=#{id}
+  </select>
+  
+  <select id="selectListByReid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	SELECT <include refid="Base_Column_List" /> FROM act_zone WHERE reid=#{id} order by sort_num
+  </select>
+  
+  <select id="selectByUuid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	SELECT <include refid="Base_Column_List" /> FROM act_zone WHERE act_uuid=#{uuid}
+  </select>
+  
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	SELECT a.* FROM act_zone a,act_zone_goods g where a.id=g.zone_id and g.goods_id=#{goodsId}
+  </select>
+  
+</mapper>

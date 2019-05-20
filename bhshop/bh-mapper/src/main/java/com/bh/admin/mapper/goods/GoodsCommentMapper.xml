@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsCommentMapper" >
+	 <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoodsComment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_sku_id" property="orderSkuId" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="TINYINT" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="star" property="star" jdbcType="INTEGER" />
+    <result column="is_add_evaluate" property="isAddEvaluate" jdbcType="INTEGER" />
+    <result column="reid" property="reid" jdbcType="INTEGER" />
+    <result column="notname" property="notname" jdbcType="INTEGER" />
+    <result column="sortnum" property="sortnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.GoodsCommentWithBLOBs" extends="BaseResultMap" >
+    <result column="sku_value" property="skuValue" jdbcType="LONGVARCHAR" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, shop_id, m_id, order_id, order_sku_id, level, addtime, image, star, 
+    is_add_evaluate, reid, notname, sortnum, status, is_del
+  </sql>
+  <sql id="Blob_Column_List" >
+    sku_value, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoodsCommentWithBLOBs" >
+    insert into goods_comment (id, goods_id, shop_id, 
+      m_id, order_id, order_sku_id, 
+      level, addtime, image, 
+      star, is_add_evaluate, reid, 
+      notname, sortnum, status, 
+      is_del, sku_value, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{mId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{orderSkuId,jdbcType=INTEGER}, 
+      #{level,jdbcType=TINYINT}, #{addtime,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR}, 
+      #{star,jdbcType=INTEGER}, #{isAddEvaluate,jdbcType=INTEGER}, #{reid,jdbcType=INTEGER}, 
+      #{notname,jdbcType=INTEGER}, #{sortnum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=INTEGER}, #{skuValue,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.GoodsCommentWithBLOBs" useGeneratedKeys="true" keyProperty="id" >
+    insert into goods_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="isAddEvaluate != null" >
+        is_add_evaluate,
+      </if>
+      <if test="reid != null" >
+        reid,
+      </if>
+      <if test="notname != null" >
+        notname,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="skuValue != null" >
+        sku_value,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="isAddEvaluate != null" >
+        #{isAddEvaluate,jdbcType=INTEGER},
+      </if>
+      <if test="reid != null" >
+        #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="notname != null" >
+        #{notname,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoodsCommentWithBLOBs" >
+    update goods_comment
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="isAddEvaluate != null" >
+        is_add_evaluate = #{isAddEvaluate,jdbcType=INTEGER},
+      </if>
+      <if test="reid != null" >
+        reid = #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="notname != null" >
+        notname = #{notname,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        sku_value = #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsCommentWithBLOBs" >
+    update goods_comment
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      image = #{image,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      is_add_evaluate = #{isAddEvaluate,jdbcType=INTEGER},
+      reid = #{reid,jdbcType=INTEGER},
+      notname = #{notname,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      sku_value = #{skuValue,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoodsComment" >
+    update goods_comment
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      image = #{image,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      is_add_evaluate = #{isAddEvaluate,jdbcType=INTEGER},
+      reid = #{reid,jdbcType=INTEGER},
+      notname = #{notname,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+	
+	
+  
+  
+  <select id="getListByGoodsId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where is_del=0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and status = 1
+    order by sortnum asc
+  </select>
+  
+  <select id="countByGoodsId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from goods_comment 
+    where 1=1 and is_del = 0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and status = 1
+  </select>
+  
+   <select id="getListByLevel" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsComment" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where is_del=0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and status = 1
+    <if test="level != null and level != ''">
+    	and level = #{level,jdbcType=TINYINT}
+    </if>
+    order by sortnum asc
+  </select>
+  
+  <select id="countByLevel" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.GoodsComment" >
+    select count(*)
+    from goods_comment 
+    where 1=1 and is_del=0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and status = 1
+    <if test="level != null and level != ''">
+    	and level = #{level,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <select id="getListByEvalute" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsComment" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where 1=1 and is_del=0 and id in(select reid from goods_comment where is_del=0 and goods_id = #{0} and shop_id = #{1}
+    and is_add_evaluate = 1 and status = 1)
+    order by sortnum asc
+  </select>
+  
+   <select id="countByEvalute" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from goods_comment 
+    where 1=1 and is_del = 0 and id in(select reid from goods_comment where 1=1 and is_del=0 and goods_id = #{0} and shop_id = #{1} and status = 1
+    and is_add_evaluate = 1)
+  </select>
+  
+  <select id="getListByImage" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where is_del=0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and image is not null and status = 1
+    order by sortnum asc
+  </select>
+  
+  <select id="countByImage" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from goods_comment 
+    where 1=1 and is_del=0 and goods_id = #{0} and shop_id = #{1} and is_add_evaluate = 0 and image is not null and status=1
+  </select>
+  
+  <select id="getListByReid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where is_del=0 and reid = #{reid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="batchSelect" resultMap="BaseResultMap" parameterType="java.util.List">
+      select
+      <include refid="Base_Column_List" />
+      from goods_comment
+         where is_del=0 and id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </select>
+   
+   
+   <select id="pageByShopId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.GoodsComment" >
+    select a.*
+    from goods_comment a left join goods b on a.goods_id  = b.id 
+    where 1=1
+    and a.is_del=0
+    <if test="shopId !='0'.toString()">
+    	and a.shop_id = #{shopId}
+    </if>
+    <if test="star != null and star !=''">
+    	and a.star = #{star}
+    </if>
+    <if test="status != null">
+    	and a.status = #{status}
+    </if>
+    <if test="description != null and description !='' ">
+    	and a.description like CONCAT(CONCAT('%', #{description}), '%')
+    </if>
+    <if test="goodsName != null and goodsName !='' ">
+    	and b.name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    order by a.addtime desc
+  </select>
+  
+  
+  <select id="getByReid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where is_del=0 and reid = #{reid,jdbcType=INTEGER}
+  </select>
+  
+  <!-- cheng2017-11-10 -->
+   <select id="selectByParams" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.GoodsComment" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where 1=1
+    and is_del=0 
+     <if test="mId != null" >
+       and m_id=#{mId,jdbcType=INTEGER}
+      </if>
+    <if test="orderSkuId != null" >
+       and order_sku_id = #{orderSkuId,jdbcType=INTEGER}
+      </if>
+    <if test="isAddEvaluate != null" >
+       and is_add_evaluate = #{isAddEvaluate,jdbcType=INTEGER}
+      </if>
+    order by addtime desc
+  </select>
+   <select id="selectGoodsComment" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.GoodsComment" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where 1=1
+    and is_del=0
+     <if test="mId != null" >
+       and m_id=#{mId,jdbcType=INTEGER}
+      </if>
+    group by order_sku_id  order by addtime desc
+  </select>
+     <select id="selectCommentsByIds" resultMap="ResultMapWithBLOBs" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_comment 
+    where 1=1
+    and is_del=0
+     and order_sku_id in 
+      <foreach item="ids" collection="ids" open="(" close=")" separator=",">
+             #{ids}
+       </foreach>
+  </select>
+  
+  
+   <select id="countStarAvg" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  FORMAT(COALESCE(avg(star),0),1)   from goods_comment 
+    where is_del=0 and shop_id = #{shopId,jdbcType=INTEGER}
+   </select>
+  
+   <select id="countStar" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+     select  avg(star) from goods_comment 
+     where is_del=0 and shop_id = #{0} and goods_id=#{1}
+   </select>
+  
+</mapper>

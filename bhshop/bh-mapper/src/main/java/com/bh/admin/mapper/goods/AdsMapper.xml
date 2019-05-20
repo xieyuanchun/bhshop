@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.AdsMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.Ads" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="sortnum" property="sortnum" jdbcType="INTEGER" />
+    <result column="is_main" property="isMain" jdbcType="TINYINT" />
+    <result column="is_pc" property="isPc" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.Ads" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="link" property="link" jdbcType="LONGVARCHAR" />
+    <result column="s_link" property="sLink" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, name, image, sortnum, is_main, is_pc, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, link, s_link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ads
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.Ads" >
+    insert into ads (id, createTime, name, 
+      image, sortnum, is_main, 
+      is_pc,content, link, status)
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{sortnum,jdbcType=INTEGER}, #{isMain,jdbcType=TINYINT}, 
+      #{isPc,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, #{link,jdbcType=LONGVARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.Ads" >
+    insert into ads
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="isMain != null" >
+        is_main,
+      </if>
+      <if test="isPc != null" >
+        is_pc,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="sLink != null" >
+        s_link,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="isMain != null" >
+        #{isMain,jdbcType=TINYINT},
+      </if>
+      <if test="isPc != null" >
+        #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sLink != null" >
+        #{sLink,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.Ads" >
+    update ads
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="isMain != null" >
+        is_main = #{isMain,jdbcType=TINYINT},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sLink != null" >
+        s_link = #{sLink,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.Ads" >
+    update ads
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      is_main = #{isMain,jdbcType=TINYINT},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      link = #{link,jdbcType=LONGVARCHAR},
+      s_link = #{sLink,jdbcType=LONGVARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.Ads" >
+    update ads
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      is_main = #{isMain,jdbcType=TINYINT},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      link = #{link,jdbcType=LONGVARCHAR},
+      s_link = #{sLink,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectListByIsMain" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads
+    where is_main=1 and is_pc = #{isPc,jdbcType=INTEGER} and status = 1
+    order by sortnum asc
+  </select>
+  
+  <select id="selectListBySortNum" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads
+    where sortnum = #{sortnum,jdbcType=INTEGER}
+  </select>
+  
+  <select id="pageList" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads
+    <where>
+    	name like CONCAT(CONCAT('%', #{2}), '%')
+    	<if test="isPc !=null and isPc!=''">
+			and is_pc = #{isPc,jdbcType=INTEGER}
+    	</if>
+    	<if test="isMain !=null and isMain!=''">
+			and is_main = #{isMain,jdbcType=TINYINT}
+    	</if>
+    </where>
+    <choose>
+    	<when test="fz==1">
+    		order by sortnum asc
+    	</when>
+    	<otherwise>
+    		order by status desc, createTime desc
+    	</otherwise>
+    </choose>
+  </select>
+  
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads
+    order by sortnum asc
+  </select>
+  
+   <select id="countAll" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(*)
+    from ads
+  </select>
+  
+  <delete id="batchDelete" parameterType="java.util.List">
+      delete from ads
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </delete>
+   
+   <select id="getList" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads where is_pc = 1 and status = 0
+  </select>
+  
+  <select id="getListOrderbySortNum" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads order by sortnum desc
+  </select>
+  
+  
+   <select id="batchSelect" resultMap="ResultMapWithBLOBs" parameterType="java.util.List">
+      select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from ads
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+      order by sortnum asc
+   </select>
+</mapper>

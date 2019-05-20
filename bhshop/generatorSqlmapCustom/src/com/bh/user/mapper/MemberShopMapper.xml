@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemberShopMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemberShop" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="endtime" property="endtime" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="customer_url" property="customerUrl" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="prov" property="prov" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="goods_comment" property="goodsComment" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.user.pojo.MemberShop" extends="BaseResultMap" >
+    <result column="banner_url" property="bannerUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, shop_name, logo, status, addtime, endtime, tel, email, customer_url, business_license, 
+    prov, city, area, address, desc, goods_comment, level, balance
+  </sql>
+  <sql id="Blob_Column_List" >
+    banner_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from member_shop
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_shop
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemberShop" >
+    insert into member_shop (m_id, shop_name, logo, 
+      status, addtime, endtime, 
+      tel, email, customer_url, 
+      business_license, prov, city, 
+      area, address, desc, 
+      goods_comment, level, balance, 
+      banner_url)
+    values (#{mId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{addtime,jdbcType=INTEGER}, #{endtime,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{customerUrl,jdbcType=VARCHAR}, 
+      #{businessLicense,jdbcType=VARCHAR}, #{prov,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{area,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{goodsComment,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, 
+      #{bannerUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemberShop" >
+    insert into member_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="customerUrl != null" >
+        customer_url,
+      </if>
+      <if test="businessLicense != null" >
+        business_license,
+      </if>
+      <if test="prov != null" >
+        prov,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="goodsComment != null" >
+        goods_comment,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUrl != null" >
+        #{customerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsComment != null" >
+        #{goodsComment,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="bannerUrl != null" >
+        #{bannerUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemberShop" >
+    update member_shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUrl != null" >
+        customer_url = #{customerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="prov != null" >
+        prov = #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsComment != null" >
+        goods_comment = #{goodsComment,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url = #{bannerUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.user.pojo.MemberShop" >
+    update member_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      endtime = #{endtime,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      customer_url = #{customerUrl,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      goods_comment = #{goodsComment,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER},
+      banner_url = #{bannerUrl,jdbcType=LONGVARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemberShop" >
+    update member_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      endtime = #{endtime,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      customer_url = #{customerUrl,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      goods_comment = #{goodsComment,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

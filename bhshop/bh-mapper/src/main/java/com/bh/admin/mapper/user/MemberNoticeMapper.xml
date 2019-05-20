@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberNoticeMapper" >
+	 <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberNotice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="is_read" property="isRead" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_excu_time" property="lastExcuTime" jdbcType="TIMESTAMP" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goodssku_id" property="goodsskuId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, message, msg_type, is_read, add_time, update_time, last_excu_time, goods_id, 
+    goodssku_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_notice
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_notice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberNotice" >
+    insert into member_notice (id, m_id, message, 
+      msg_type, is_read, add_time, 
+      update_time, last_excu_time, goods_id, 
+      goodssku_id)
+    values (#{id,jdbcType=BIGINT}, #{mId,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, 
+      #{msgType,jdbcType=INTEGER}, #{isRead,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{lastExcuTime,jdbcType=TIMESTAMP}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsskuId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberNotice" >
+    insert into member_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="lastExcuTime != null" >
+        last_excu_time,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsskuId != null" >
+        goodssku_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExcuTime != null" >
+        #{lastExcuTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsskuId != null" >
+        #{goodsskuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberNotice" >
+    update member_notice
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExcuTime != null" >
+        last_excu_time = #{lastExcuTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsskuId != null" >
+        goodssku_id = #{goodsskuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberNotice" >
+    update member_notice
+    set m_id = #{mId,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      is_read = #{isRead,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_excu_time = #{lastExcuTime,jdbcType=TIMESTAMP},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goodssku_id = #{goodsskuId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  <!-- cheng select  * from goods_cart where id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach> -->
+   <insert id="insertSelectiveByBatch"  parameterType="java.util.Map" >
+      insert into member_notice (m_id, message, 
+      msg_type, is_read, add_time, 
+      update_time, last_excu_time)
+    values 
+    <foreach collection="list" item="list" separator=",">
+      ( #{list.mId,jdbcType=INTEGER}, #{list.message,jdbcType=VARCHAR}, 
+      #{list.msgType,jdbcType=INTEGER}, #{list.isRead,jdbcType=INTEGER}, #{list.addTime,jdbcType=TIMESTAMP}, 
+      #{list.updateTime,jdbcType=TIMESTAMP}, #{list.lastExcuTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  
+    <select id="selectMemberNoticeList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberNotice">
+    select 
+    <include refid="Base_Column_List" />
+    from member_notice 
+    where msg_type = #{msgType} and is_read = 0 ORDER BY last_excu_time asc
+  </select>
+  
+  
+  
+</mapper>

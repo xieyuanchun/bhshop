@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <!--接受拍卖价格信息-->
+    <bean id="auctionHouseBidListener" class="com.bh.auc.rocketMQ.AuctionHouseBidListener"/>
+    <bean id="consumerAuctionHouseBit" class="com.bh.auc.rocketMQ.SpringConsumer"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="nameServerAddr" value="${rocketmq.namesrv}"/>
+        <constructor-arg name="consumerGroupName" value="auctionHouseBitGroup"/>
+        <constructor-arg name="topicName" value="auctionBid"/>
+        <constructor-arg name="consumeFromWhere" value="0"/>
+        <constructor-arg name="messageModel" value="0"/>
+        <constructor-arg name="subExpression" value="*"/>
+        <constructor-arg name="messageListener" ref="auctionHouseBidListener"/>
+    </bean>
+
+    <!--记录拍卖信息写入数据库-->
+    <bean id="recorderBitListener" class="com.bh.auc.rocketMQ.AuctionRecorderListener"/>
+    <bean id="consumerRecorderBit" class="com.bh.auc.rocketMQ.SpringConsumer"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="nameServerAddr" value="${rocketmq.namesrv}"/>
+        <constructor-arg name="consumerGroupName" value="recorderBitGroup"/>
+        <constructor-arg name="topicName" value="auctionBid"/>
+        <constructor-arg name="consumeFromWhere" value="0"/>
+        <constructor-arg name="messageModel" value="0"/>
+        <constructor-arg name="subExpression" value="*"/>
+        <constructor-arg name="messageListener" ref="recorderBitListener"/>
+    </bean>
+</beans>

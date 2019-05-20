@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.JdGoodsNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jd_sku" property="jdSku" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="is_read" property="isRead" jdbcType="INTEGER" />
+    <result column="old_jd_price" property="oldJdPrice" jdbcType="INTEGER" />
+    <result column="old_jd_protocol_price" property="oldJdProtocolPrice" jdbcType="INTEGER" />
+    <result column="old_sell_price" property="oldSellPrice" jdbcType="INTEGER" />
+    <result column="old_team_price" property="oldTeamPrice" jdbcType="INTEGER" />
+    <result column="new_jd_price" property="newJdPrice" jdbcType="INTEGER" />
+    <result column="new_jd_protocol_price" property="newJdProtocolPrice" jdbcType="INTEGER" />
+    <result column="new_sell_price" property="newSellPrice" jdbcType="INTEGER" />
+    <result column="new_team_price" property="newTeamPrice" jdbcType="INTEGER" />
+    <result column="valid" property="valid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jd_sku, name, goods_id, msg, msg_type, add_time, is_read, old_jd_price, old_jd_protocol_price, 
+    old_sell_price, old_team_price, new_jd_price, new_jd_protocol_price, new_sell_price, 
+    new_team_price, valid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_goods_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_goods_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    insert into jd_goods_notice (id, jd_sku, name, 
+      goods_id, msg, msg_type, 
+      add_time, is_read, old_jd_price, 
+      old_jd_protocol_price, old_sell_price, old_team_price, 
+      new_jd_price, new_jd_protocol_price, new_sell_price, 
+      new_team_price, valid)
+    values (#{id,jdbcType=INTEGER}, #{jdSku,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{isRead,jdbcType=INTEGER}, #{oldJdPrice,jdbcType=INTEGER}, 
+      #{oldJdProtocolPrice,jdbcType=INTEGER}, #{oldSellPrice,jdbcType=INTEGER}, #{oldTeamPrice,jdbcType=INTEGER}, 
+      #{newJdPrice,jdbcType=INTEGER}, #{newJdProtocolPrice,jdbcType=INTEGER}, #{newSellPrice,jdbcType=INTEGER}, 
+      #{newTeamPrice,jdbcType=INTEGER}, #{valid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    insert into jd_goods_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jdSku != null" >
+        jd_sku,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+      <if test="oldJdPrice != null" >
+        old_jd_price,
+      </if>
+      <if test="oldJdProtocolPrice != null" >
+        old_jd_protocol_price,
+      </if>
+      <if test="oldSellPrice != null" >
+        old_sell_price,
+      </if>
+      <if test="oldTeamPrice != null" >
+        old_team_price,
+      </if>
+      <if test="newJdPrice != null" >
+        new_jd_price,
+      </if>
+      <if test="newJdProtocolPrice != null" >
+        new_jd_protocol_price,
+      </if>
+      <if test="newSellPrice != null" >
+        new_sell_price,
+      </if>
+      <if test="newTeamPrice != null" >
+        new_team_price,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jdSku != null" >
+        #{jdSku,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="oldJdPrice != null" >
+        #{oldJdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldJdProtocolPrice != null" >
+        #{oldJdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldSellPrice != null" >
+        #{oldSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldTeamPrice != null" >
+        #{oldTeamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newJdPrice != null" >
+        #{newJdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newJdProtocolPrice != null" >
+        #{newJdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newSellPrice != null" >
+        #{newSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newTeamPrice != null" >
+        #{newTeamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    update jd_goods_notice
+    <set >
+      <if test="jdSku != null" >
+        jd_sku = #{jdSku,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="oldJdPrice != null" >
+        old_jd_price = #{oldJdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldJdProtocolPrice != null" >
+        old_jd_protocol_price = #{oldJdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldSellPrice != null" >
+        old_sell_price = #{oldSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldTeamPrice != null" >
+        old_team_price = #{oldTeamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newJdPrice != null" >
+        new_jd_price = #{newJdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newJdProtocolPrice != null" >
+        new_jd_protocol_price = #{newJdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newSellPrice != null" >
+        new_sell_price = #{newSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="newTeamPrice != null" >
+        new_team_price = #{newTeamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    update jd_goods_notice
+    set jd_sku = #{jdSku,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      msg = #{msg,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      is_read = #{isRead,jdbcType=INTEGER},
+      old_jd_price = #{oldJdPrice,jdbcType=INTEGER},
+      old_jd_protocol_price = #{oldJdProtocolPrice,jdbcType=INTEGER},
+      old_sell_price = #{oldSellPrice,jdbcType=INTEGER},
+      old_team_price = #{oldTeamPrice,jdbcType=INTEGER},
+      new_jd_price = #{newJdPrice,jdbcType=INTEGER},
+      new_jd_protocol_price = #{newJdProtocolPrice,jdbcType=INTEGER},
+      new_sell_price = #{newSellPrice,jdbcType=INTEGER},
+      new_team_price = #{newTeamPrice,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="pageList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice">
+    select a.*
+    from jd_goods_notice a left join goods b on a.goods_id = b.id
+    where 1=1
+    <if test="name != null and name != ''">
+    	and a.name like CONCAT('%', #{name}, '%')
+    </if>
+    <if test="isRead != null and isRead != ''" >
+       and a.is_read = #{isRead,jdbcType=INTEGER}
+    </if>
+    <if test="jdSku != null and jdSku != ''" >
+       and a.jd_sku = #{jdSku,jdbcType=BIGINT}
+    </if>
+    <if test="goodsStatus != null and goodsStatus != ''" >
+       and b.status = #{goodsStatus,jdbcType=INTEGER}
+    </if>
+    <if test="valid != null" >
+       and a.valid = #{valid,jdbcType=INTEGER}
+    </if>
+	order by a.add_time desc
+  </select>
+  
+  <select id="selectByJdSkuNoValid" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.JdGoodsNotice" >
+    select id, jd_sku, valid
+    from jd_goods_notice
+    where jd_sku = #{jdSku,jdbcType=BIGINT} and valid = #{valid,jdbcType=INTEGER}
+  </select>
+</mapper>

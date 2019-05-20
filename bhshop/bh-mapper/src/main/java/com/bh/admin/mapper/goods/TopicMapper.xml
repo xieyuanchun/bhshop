@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.Topic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="apply_stime" property="applyStime" jdbcType="TIMESTAMP" />
+    <result column="apply_etime" property="applyEtime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="listorder" property="listorder" jdbcType="INTEGER" />
+    <result column="posid" property="posid" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.Topic" extends="BaseResultMap" >
+    <result column="thumb" property="thumb" jdbcType="LONGVARCHAR" />
+    <result column="thumbs" property="thumbs" jdbcType="LONGVARCHAR" />
+    <result column="catid" property="catid" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, typeid, name, apply_stime, apply_etime, start_time, end_time, status, listorder, 
+    posid, is_delete
+  </sql>
+  <sql id="Blob_Column_List" >
+    thumb, thumbs, catid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from topic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.Topic" >
+    insert into topic (id, type, typeid, 
+      name, apply_stime, apply_etime, 
+      start_time, end_time, status, 
+      listorder, posid, thumb, 
+      thumbs, catid, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{typeid,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{applyStime,jdbcType=TIMESTAMP}, #{applyEtime,jdbcType=TIMESTAMP}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{listorder,jdbcType=INTEGER}, #{posid,jdbcType=VARCHAR}, #{thumb,jdbcType=LONGVARCHAR}, 
+      #{thumbs,jdbcType=LONGVARCHAR}, #{catid,jdbcType=LONGVARCHAR}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.Topic" >
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="applyStime != null" >
+        apply_stime,
+      </if>
+      <if test="applyEtime != null" >
+        apply_etime,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="listorder != null" >
+        listorder,
+      </if>
+      <if test="posid != null" >
+        posid,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+      <if test="thumbs != null" >
+        thumbs,
+      </if>
+      <if test="catid != null" >
+        catid,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStime != null" >
+        #{applyStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEtime != null" >
+        #{applyEtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="listorder != null" >
+        #{listorder,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thumbs != null" >
+        #{thumbs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="catid != null" >
+        #{catid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.Topic" >
+    update topic
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStime != null" >
+        apply_stime = #{applyStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEtime != null" >
+        apply_etime = #{applyEtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="listorder != null" >
+        listorder = #{listorder,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        posid = #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thumbs != null" >
+        thumbs = #{thumbs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="catid != null" >
+        catid = #{catid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.Topic" >
+    update topic
+    set type = #{type,jdbcType=TINYINT},
+      typeid = #{typeid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      apply_stime = #{applyStime,jdbcType=TIMESTAMP},
+      apply_etime = #{applyEtime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      listorder = #{listorder,jdbcType=INTEGER},
+      posid = #{posid,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=LONGVARCHAR},
+      thumbs = #{thumbs,jdbcType=LONGVARCHAR},
+      catid = #{catid,jdbcType=LONGVARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.Topic" >
+    update topic
+    set type = #{type,jdbcType=TINYINT},
+      typeid = #{typeid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      apply_stime = #{applyStime,jdbcType=TIMESTAMP},
+      apply_etime = #{applyEtime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      listorder = #{listorder,jdbcType=INTEGER},
+      posid = #{posid,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Topic" >
+    select * from  topic
+    where type = #{type} and is_delete = 0
+    <if test="id != null" >
+       and  id = #{id}
+    </if>
+    <if test="name != null and name!=''" >
+       and  name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+    <if test="typeid != null" >
+       and  typeid = #{typeid}
+    </if>
+    <if test="posid != null" >
+       and  posid = #{posid}
+    </if>
+    <if test="applyTime != null" >
+       and  apply_stime <![CDATA[<=]]> #{applyTime}
+       and  apply_etime <![CDATA[>=]]> #{applyTime}
+    </if>
+    <if test="actTime != null" >
+        and  start_time <![CDATA[<=]]> #{actTime}
+        and  end_time <![CDATA[>=]]> #{actTime}
+    </if>
+    order by id desc
+  </select>
+  
+  
+  
+  <select id="getTopicByTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select * from  topic where typeid=#{typeid}
+  </select>
+  
+  <select id="getTopicDauction" resultMap="BaseResultMap">
+      select * from  topic where type=8 and end_time <![CDATA[>]]> NOW() and start_time <![CDATA[<]]> NOW()
+  </select>
+  
+  <select id="getBargainTopic" resultMap="BaseResultMap">
+      select * from  topic where type=3
+  </select>
+  
+  <select id="getTopicByType" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Topic" >
+      select * from  topic where type=8 and start_time > NOW() and is_delete = 0 order by start_time asc
+  </select>
+  
+  <select id="getByGoodsIdAndStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select a.* from topic a left join topic_goods b on a.id = b.act_id where 1=1
+      and b.goods_id = #{goodsId}
+      and a.status = 0
+  </select>
+  
+  
+  <!-- cheng  超级滨惠豆 -->
+  <!-- 查询活动开始的时间 -->
+   <select id="selectStartTime" resultType="string">
+        select MIN(tc.start_time) from topic_goods tg,topic tc,goods_sku sku,goods g where 1=1
+            and tg.act_id=tc.id
+            and tg.is_delete=0
+            and tc.type=4
+            and tc.is_delete=0
+            and tg.`status` = 1
+			and g.id=sku.goods_id
+			and g.id=tg.goods_id
+  </select>
+   <select id="selectendtime" resultType="string">
+         select MAX(tc.end_time) from topic_goods tg,topic tc,goods g,goods_sku sku where 1=1
+            and tg.act_id=tc.id
+			and sku.goods_id=g.id
+			and g.id=tg.goods_id
+            and tg.is_delete=0
+            and tc.type=4
+            and tc.is_delete=0
+            and tg.`status` = 1
+            and tc.end_time > NOW()
+  </select>
+   <select id="selectImage" resultMap="BaseResultMap">
+           select tc.* from topic_goods tg,topic tc,goods_sku sku,goods g where 1=1
+						and sku.goods_id=g.id
+						and g.id=tg.goods_id
+                        and tg.act_id=tc.id
+                        and tg.is_delete=0
+                        and tc.type=4
+                        and tc.is_delete=0
+                        and tg.`status` = 1
+                        and tc.end_time > NOW()
+                        GROUP BY tc.id
+  </select>
+  <select id="selectTopicByTime" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Topic">
+       select tc.* from  topic tc
+               where 1=1
+                   
+                   <if test="type != null" >
+                         and tc.type = #{type,jdbcType=TINYINT}
+                   </if>
+                   and tc.is_delete = 0
+                   and NOW() BETWEEN tc.start_time and tc.end_time
+                   <if test="id != null" >
+                          and tc.id =#{id,jdbcType=INTEGER}
+                   </if>
+  </select>
+  <!-- end cheng -->
+  
+  
+</mapper>

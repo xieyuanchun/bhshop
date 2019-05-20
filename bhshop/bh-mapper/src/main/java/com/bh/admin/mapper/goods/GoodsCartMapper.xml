@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsCartMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoodsCart" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="g_id" property="gId" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="gskuId" property="gskuid" jdbcType="INTEGER" />
+    <result column="team_price" property="teamPrice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, shop_id, g_id, num, addtime, is_del, gskuId, team_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_cart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    insert into goods_cart (id, m_id, shop_id, 
+      g_id, num, addtime, 
+      is_del, gskuId, team_price)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{gId,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{isDel,jdbcType=INTEGER}, #{gskuid,jdbcType=INTEGER}, #{teamPrice,jdbcType=INTEGER})
+  </insert>
+
+ <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    insert into goods_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="gId != null" >
+        g_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="gskuid != null" >
+        gskuId,
+      </if>
+       <if test="teamPrice != null" >
+        team_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gId != null" >
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="gskuid != null" >
+        #{gskuid,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        #{teamPrice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    update goods_cart
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gId != null" >
+        g_id = #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="gskuid != null" >
+        gskuId = #{gskuid,jdbcType=INTEGER},
+      </if>
+       <if test="teamPrice != null" >
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    update goods_cart
+    set m_id = #{mId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      g_id = #{gId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=INTEGER},
+      gskuId = #{gskuid,jdbcType=INTEGER},
+       team_price = #{teamPrice,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <select id="batchSelectByGskuId" parameterType="java.util.List" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from goods_cart
+         where gskuId in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- ************** ************** ************** ************** ************** chengfengyun 2017-9-14  ************** ************** ************** ************** ************** **************  -->
+  <select id="selectCoodsCartByUserId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where 1=1 
+    <if test="isDel != null" >
+        and is_del = #{isDel,jdbcType=INTEGER}
+     </if>
+  
+     <if test="mId != null" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+ 
+    <if test="gId != null" >
+      and g_id = #{gId,jdbcType=INTEGER}
+      </if>
+      <if test="gskuid != null">
+      and gskuId = #{gskuid,jdbcType=INTEGER}
+      </if>
+      <!-- order by addtime desc -->
+      order by shop_id,addtime desc
+  </select>
+   <!-- ************** ************** ************** ************** ************** chengfengyun 2017-9-15 ************** ************** ************** ************** ************** **************  -->
+  <select id="selectCoodsCartByIds" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where  id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+  </select>
+ <!-- ************** ************** ************** ************** ************** chengfengyun 2017-9-22 ************** ************** ************** ************** ************** **************  -->
+<update id="updateGoodsCartBymIdAndgoodId" parameterType="com.bh.admin.pojo.goods.GoodsCart">	
+	update goods_cart
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gId != null" >
+        g_id = #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+     
+    </set>
+    where 1=1 and is_del = 0 
+	 <if test="mId != null" >
+      and  m_id = #{mId,jdbcType=INTEGER}
+      </if>
+	<if test="gId != null" >
+      and  g_id = #{gId,jdbcType=INTEGER}
+    </if>
+    <if test="gskuid != null" >
+      and  gskuId = #{gskuid,jdbcType=INTEGER}
+      </if>
+	</update>
+	<insert id ="insertGoodCartByBatch" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.goods.GoodsCart">
+	  insert into goods_cart (id, m_id, shop_id, 
+      g_id,  num, 
+      addtime, is_del
+      )
+    <foreach collection ="list" item="reddemCode" index= "index" separator =",">
+	 (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{gId,jdbcType=INTEGER},  #{num,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=INTEGER}
+      )
+      </foreach>
+	</insert>
+	
+	<!-- 2017-9-30  第一次修改10月23日：将while后面的and is_del = 0去掉-->
+	<select id="selectCoodsCartByIdsandmId" resultMap="BaseResultMap" parameterType="java.util.List" >
+            select cart.* from goods g ,goods_cart cart,goods_sku gsku
+              where 1=1
+                and g.id=gsku.goods_id
+                and g.id=cart.g_id
+                and cart.gskuId=gsku.id
+   
+                and cart.id in
+        <foreach item="id" collection="list" open="(" close=")" separator=",">
+               #{id}
+       </foreach>
+               order by cart.addtime desc 
+  </select>
+	<!--2017-10-9星期一    根据购物车cart的id批量更新 -->
+	<update id="updateGoodsCartByPrimaryKey" parameterType="java.util.List">	
+	update goods_cart  set is_del =1 ,addtime=NOW()
+  	  where 1=1 
+      and id in
+      <foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</update>
+	<!--2017-10-10 星期二   根据购物车cart的id批量更新-->
+	<update id="updateGoodsCartByPrimaryKey2" parameterType="java.util.List">	
+	update goods_cart  set is_del =2 ,addtime=NOW()
+      where 1=1 and  m_id = #{mId}
+      and g_id in
+      <foreach item="gId" collection="gIds" open="(" close=")" separator=",">
+           #{gId}
+      </foreach>
+	</update>
+	
+	<!-- 2017-10-19  selectGoodsCartShopIds -->
+	<select id="selectGoodsCartShopIds"  resultMap="BaseResultMap"  parameterType="com.bh.admin.pojo.goods.GoodsCart">
+		 select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+		 where 1=1 and  
+		 <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER}
+      </if>
+       <if test="mId != null" >
+      and  m_id = #{mId,jdbcType=INTEGER}
+      </if> GROUP BY shop_id order by addtime desc
+	</select>
+	
+	<!--2017-10-16   根据mId和goodsId更新 -->
+	<update id="updateGoodsCartByPrimaryKeyAndgId" parameterType="java.util.Map">	
+	update goods_cart  set is_del =1 ,addtime=NOW()
+  	  where 1=1 and  m_id = #{mId} and gskuId = #{gskuid}
+      and g_id in
+      <foreach item="gId" collection="gIds" open="(" close=")" separator=",">
+           #{gId}
+      </foreach>
+	</update>
+	
+	<!--2047-10-16上午10:38  -->
+ <select id="selectCoodsCartByIds1" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where  id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+          order by shop_id,addtime desc
+  </select>
+	
+	
+<!-- 2017-10-23  -->
+   <update id="updateGoodsCartByPrimaryKeyAndgId1" parameterType="com.bh.admin.pojo.goods.GoodsCart">
+
+	update goods_cart  set is_del =1,addtime=NOW()
+  	  where  m_id = #{mId} 
+           and g_id = #{gId}
+           and gskuId = #{gskuid}
+	
+  </update>	
+  
+  <!-- 2017-10-24根据是否删除、用户的id、商品的id、skuid的id去查找 -->
+   <select id="selectGoodsCartBySelect" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsCart" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where 1=1 
+    <if test="isDel != null" >
+        and is_del = #{isDel,jdbcType=INTEGER}
+     </if>
+  
+     <if test="mId != null" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+ 
+    <if test="gId != null" >
+      and g_id = #{gId,jdbcType=INTEGER}
+      </if>
+       and gskuId = #{gskuid}
+      <!-- order by addtime desc -->
+      order by shop_id,addtime desc
+  </select>
+	<!--2017-10-25星期三    根据购物车cart的id批量更新 -->
+	<update id="updateGoodsCartByPrimaryKeyAndSetIsDel4" parameterType="java.util.List">	
+	update goods_cart  set is_del =4 ,addtime=NOW()
+  	  where 1=1 
+      and id in
+      <foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</update>
+	
+	<!-- 2017-10-26根据goodsId查询对应的shopId -->
+	<select id="selectShopIdsByPrimarykey" parameterType="java.util.List" resultMap="BaseResultMap">
+		select  * from goods_cart where id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+     group by shop_id
+	</select>
+	<!-- 2017-11-2 星期二， 根据用户的id查询它所在的购物车的数量 -->
+		<select id="totalCartNum" parameterType="com.bh.admin.pojo.goods.GoodsCart" resultType="java.lang.Integer">
+		select SUM(num) from goods_cart where is_del=0 and m_id = #{mId,jdbcType=INTEGER}
+	</select>
+	<!-- 2017-11-8 星期三， 根据用id和shipId查询它所在的购物车 -->
+	<select id="selectGoodsCartByIdAndShopIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  * from goods_cart where 
+		1=1 and shop_id = #{shopId,jdbcType=INTEGER}
+		 and id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</select>
+	 <select id="selectGoodsCart" resultMap="BaseResultMap" parameterType="java.util.List" >
+      select c.* from goods_cart c,goods g 
+    where 1=1 and g.id=c.g_id and g.is_jd=0 AND c.id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+     GROUP BY c.g_id
+  </select>
+<select id="selectTotalNum" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select SUM(num) from goods_cart c,goods g WHERE 1=1 and g.id=c.g_id and g.is_jd=0
+		 and g_id = #{gId,jdbcType=INTEGER}
+		 and c.id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</select>
+	<select id="selectGoodsCartByBHOrJD" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select c.* from goods_cart c,goods g WHERE 1=1 and g.id=c.g_id and g.is_jd=#{gId,jdbcType=INTEGER}
+		 and c.id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</select>
+	<select id="selectJDGoodsCart" parameterType="java.util.Map" resultMap="BaseResultMap">  <!-- is_jd是否是京东商品，0否，1是 -->
+		select c.* from goods_cart c,goods g WHERE 1=1 and g.id=c.g_id and g.is_jd=1
+		  <if test="shopId != null" >
+            and  c.shop_id =#{shopId,jdbcType=INTEGER}
+         </if>
+		 and c.id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</select>
+	<!-- 根据商家的id,购物车的id -->
+	<select id="selectJDGoodsCartByIsJD" parameterType="java.util.Map" resultMap="BaseResultMap">  <!-- is_jd是否是京东商品，0否，1是 -->
+		select c.* from goods_cart c,goods g WHERE 1=1 and g.id=c.g_id and g.is_jd= #{isJD,jdbcType=INTEGER}
+		  <if test="shopId != null" >
+            and  c.shop_id =#{shopId,jdbcType=INTEGER}
+         </if>
+		 and c.id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+           #{id}
+      </foreach>
+	</select>
+	
+	<select id="selectAllByReid" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_category where reid = #{reid,jdbcType=BIGINT} and is_jd = 0 and flag=1
+    <!-- xieyc 加入排序 2018.1.16 -->
+    order by sortnum 
+   </select>
+	
+</mapper>

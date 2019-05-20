@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.MemberUserAccessLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, goods_id, addtime, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_access_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_user_access_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+    insert into member_user_access_log (id, m_id, goods_id, 
+      addtime, note)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+    insert into member_user_access_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+    update member_user_access_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+    update member_user_access_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <select id="getListBymId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    m.*
+    from member_user_access_log m  left join  goods  g  on m.goods_id = g.id
+    where m.m_id = #{mId,jdbcType=INTEGER} and g.status = 5 GROUP BY m.goods_id order by m.addtime desc
+  </select>
+
+  
+  
+  <!-- cheng开始 -->
+   <!--  注释：select * from member_user_access_log where m_id=257 and to_days(now()) - to_days(addtime) = 1 GROUP BY goods_id order by addtime desc -->
+    <select id="selectHistoryList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+   select l.* from member_user_access_log l,goods_category c,goods g 
+   where 1=1
+    <if test="mId != null" >
+       and l.m_id = #{mId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsId != null" >
+        and c.id = #{goodsId,jdbcType=INTEGER}
+      </if>
+   and l.goods_id=g.id and g.cat_id=c.id  
+   and  (  <![CDATA[  to_days(now()) - to_days(l.addtime) < ]]>30 )
+   order by l.addtime desc
+  </select> 
+<!--   <select id="selectHistoryList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.MemberUserAccessLog" >
+   select l.* from member_user_access_log l,goods_category c,goods g 
+   where 1=1
+    <if test="mId != null" >
+       and l.m_id = #{mId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsId != null" >
+        and c.id = #{goodsId,jdbcType=INTEGER}
+      </if>
+   and l.goods_id=g.id and g.cat_id=c.id  
+   order by l.addtime desc
+  </select> -->
+  <!-- cheng结束 -->
+  
+  
+  
+  
+  
+  
+
+  
+  <select id="getBymIdAndGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_access_log
+    where TO_DAYS(addtime)>= TO_DAYS(NOW()-1) and m_id=#{0} and goods_id = #{1}
+  </select>
+
+</mapper>

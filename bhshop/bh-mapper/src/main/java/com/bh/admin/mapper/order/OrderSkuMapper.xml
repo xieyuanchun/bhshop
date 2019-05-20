@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.OrderSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.OrderSku" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_shop_id" property="orderShopId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="sku_no" property="skuNo" jdbcType="VARCHAR" />
+    <result column="sku_image" property="skuImage" jdbcType="VARCHAR" />
+    <result column="sku_num" property="skuNum" jdbcType="INTEGER" />
+    <result column="sku_market_price" property="skuMarketPrice" jdbcType="INTEGER" />
+    <result column="sku_sell_price_real" property="skuSellPriceReal" jdbcType="INTEGER" />
+    <result column="sku_weight" property="skuWeight" jdbcType="INTEGER" />
+    <result column="is_send" property="isSend" jdbcType="BIT" />
+    <result column="is_refund" property="isRefund" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="d_state" property="dState" jdbcType="INTEGER" />
+    <result column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="refund" property="refund" jdbcType="INTEGER" />
+    <result column="team_price" property="teamPrice" jdbcType="INTEGER" />
+    <result column="coupon_price" property="couponPrice" jdbcType="INTEGER" />
+    <result column="sku_pay_price" property="skuPayPrice" jdbcType="INTEGER" />
+    <result column="order_cat_id" property="orderCatId" jdbcType="BIGINT" />
+    <result column="save_price" property="savePrice" jdbcType="INTEGER" />
+    <result column="comment_owner" property="commentOwner" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.order.OrderSku" extends="BaseResultMap" >
+    <result column="sku_value" property="skuValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_shop_id, goods_id, goods_name, sku_id, sku_no, sku_image, sku_num, 
+    sku_market_price, sku_sell_price_real, sku_weight, is_send, is_refund, shop_id, d_state, 
+    s_id, refund, team_price, coupon_price, sku_pay_price, order_cat_id, save_price, 
+    comment_owner
+  </sql>
+  <sql id="Blob_Column_List" >
+    sku_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_sku
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_sku
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.OrderSku" >
+    insert into order_sku (id, order_id, order_shop_id, 
+      goods_id, goods_name, sku_id, 
+      sku_no, sku_image, sku_num, 
+      sku_market_price, sku_sell_price_real, sku_weight, 
+      is_send, is_refund, shop_id, 
+      d_state, s_id, refund, 
+      team_price, coupon_price, sku_pay_price, 
+      order_cat_id, save_price, comment_owner, 
+      sku_value)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{orderShopId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, 
+      #{skuNo,jdbcType=VARCHAR}, #{skuImage,jdbcType=VARCHAR}, #{skuNum,jdbcType=INTEGER}, 
+      #{skuMarketPrice,jdbcType=INTEGER}, #{skuSellPriceReal,jdbcType=INTEGER}, #{skuWeight,jdbcType=INTEGER}, 
+      #{isSend,jdbcType=BIT}, #{isRefund,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{dState,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, #{refund,jdbcType=INTEGER}, 
+      #{teamPrice,jdbcType=INTEGER}, #{couponPrice,jdbcType=INTEGER}, #{skuPayPrice,jdbcType=INTEGER}, 
+      #{orderCatId,jdbcType=BIGINT}, #{savePrice,jdbcType=INTEGER}, #{commentOwner,jdbcType=INTEGER}, 
+      #{skuValue,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.OrderSku" >
+    insert into order_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="skuNo != null" >
+        sku_no,
+      </if>
+      <if test="skuImage != null" >
+        sku_image,
+      </if>
+      <if test="skuNum != null" >
+        sku_num,
+      </if>
+      <if test="skuMarketPrice != null" >
+        sku_market_price,
+      </if>
+      <if test="skuSellPriceReal != null" >
+        sku_sell_price_real,
+      </if>
+      <if test="skuWeight != null" >
+        sku_weight,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="dState != null" >
+        d_state,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="refund != null" >
+        refund,
+      </if>
+      <if test="teamPrice != null" >
+        team_price,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="skuPayPrice != null" >
+        sku_pay_price,
+      </if>
+      <if test="orderCatId != null" >
+        order_cat_id,
+      </if>
+      <if test="savePrice != null" >
+        save_price,
+      </if>
+      <if test="commentOwner != null" >
+        comment_owner,
+      </if>
+      <if test="skuValue != null" >
+        sku_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuNo != null" >
+        #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuImage != null" >
+        #{skuImage,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNum != null" >
+        #{skuNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuMarketPrice != null" >
+        #{skuMarketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuSellPriceReal != null" >
+        #{skuSellPriceReal,jdbcType=INTEGER},
+      </if>
+      <if test="skuWeight != null" >
+        #{skuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        #{isSend,jdbcType=BIT},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="dState != null" >
+        #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="refund != null" >
+        #{refund,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuPayPrice != null" >
+        #{skuPayPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderCatId != null" >
+        #{orderCatId,jdbcType=BIGINT},
+      </if>
+      <if test="savePrice != null" >
+        #{savePrice,jdbcType=INTEGER},
+      </if>
+      <if test="commentOwner != null" >
+        #{commentOwner,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.OrderSku" >
+    update order_sku
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuNo != null" >
+        sku_no = #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuImage != null" >
+        sku_image = #{skuImage,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNum != null" >
+        sku_num = #{skuNum,jdbcType=INTEGER},
+      </if>
+      <if test="skuMarketPrice != null" >
+        sku_market_price = #{skuMarketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuSellPriceReal != null" >
+        sku_sell_price_real = #{skuSellPriceReal,jdbcType=INTEGER},
+      </if>
+      <if test="skuWeight != null" >
+        sku_weight = #{skuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend,jdbcType=BIT},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="dState != null" >
+        d_state = #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="refund != null" >
+        refund = #{refund,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuPayPrice != null" >
+        sku_pay_price = #{skuPayPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderCatId != null" >
+        order_cat_id = #{orderCatId,jdbcType=BIGINT},
+      </if>
+      <if test="savePrice != null" >
+        save_price = #{savePrice,jdbcType=INTEGER},
+      </if>
+      <if test="commentOwner != null" >
+        comment_owner = #{commentOwner,jdbcType=INTEGER},
+      </if>
+      <if test="skuValue != null" >
+        sku_value = #{skuValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku" >
+    update order_sku
+    set order_id = #{orderId,jdbcType=INTEGER},
+      order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      sku_image = #{skuImage,jdbcType=VARCHAR},
+      sku_num = #{skuNum,jdbcType=INTEGER},
+      sku_market_price = #{skuMarketPrice,jdbcType=INTEGER},
+      sku_sell_price_real = #{skuSellPriceReal,jdbcType=INTEGER},
+      sku_weight = #{skuWeight,jdbcType=INTEGER},
+      is_send = #{isSend,jdbcType=BIT},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      d_state = #{dState,jdbcType=INTEGER},
+      s_id = #{sId,jdbcType=INTEGER},
+      refund = #{refund,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      coupon_price = #{couponPrice,jdbcType=INTEGER},
+      sku_pay_price = #{skuPayPrice,jdbcType=INTEGER},
+      order_cat_id = #{orderCatId,jdbcType=BIGINT},
+      save_price = #{savePrice,jdbcType=INTEGER},
+      comment_owner = #{commentOwner,jdbcType=INTEGER},
+      sku_value = #{skuValue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.OrderSku" >
+    update order_sku
+    set order_id = #{orderId,jdbcType=INTEGER},
+      order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      sku_image = #{skuImage,jdbcType=VARCHAR},
+      sku_num = #{skuNum,jdbcType=INTEGER},
+      sku_market_price = #{skuMarketPrice,jdbcType=INTEGER},
+      sku_sell_price_real = #{skuSellPriceReal,jdbcType=INTEGER},
+      sku_weight = #{skuWeight,jdbcType=INTEGER},
+      is_send = #{isSend,jdbcType=BIT},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      d_state = #{dState,jdbcType=INTEGER},
+      s_id = #{sId,jdbcType=INTEGER},
+      refund = #{refund,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      coupon_price = #{couponPrice,jdbcType=INTEGER},
+      sku_pay_price = #{skuPayPrice,jdbcType=INTEGER},
+      order_cat_id = #{orderCatId,jdbcType=BIGINT},
+      save_price = #{savePrice,jdbcType=INTEGER},
+      comment_owner = #{commentOwner,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <select id="getAllList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku ,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id and sku.shop_id = #{shopId,jdbcType=INTEGER} and sku.is_send = #{isSend,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getOrderGoodsList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+         sku.*
+    from order_sku sku,goods_sku gsku,order_main main
+    where 1=1 
+          and sku.sku_id = gsku.id 
+          and sku.order_id=main.id 
+          and sku.order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getByOrderShopId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku,goods_sku gsku
+    where sku.sku_id = gsku.id and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getByOrderShopId1" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku,goods_sku gsku, order_main om
+    where sku.sku_id = gsku.id and om.id=sku.order_id and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER} and sku.refund =2 order by om.addtime desc
+  </select>
+  
+  <select id="getByOrderShopId2" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku,goods_sku gsku, order_main om
+    where sku.sku_id = gsku.id and om.id=sku.order_id and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER} and sku.refund !=2  order by om.addtime desc
+  </select>
+  
+   <select id="getByOrderShopIdAndRefund" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku,goods_sku gsku
+    where sku.sku_id = gsku.id and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER} and sku.refund>0
+  </select>
+  
+  <select id="getByOrderShopIdAndStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku sku,goods_sku gsku
+    where sku.sku_id = gsku.id and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER} and status = 0
+  </select>
+  
+   <update id="batchCastSheet" parameterType="java.util.List">
+      update order_main set d_state = '1'
+         where order_id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </update>
+   
+   <select id="getSkuListByOrderId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_sku
+    where order_id = #{orderId,jdbcType=INTEGER}
+   </select>
+   
+   
+   
+   <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    sku.*
+    from order_sku  sku,goods_sku gsku
+    where sku.sku_id = gsku.id and sku.order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMonthSaleCount" resultType="java.lang.String" parameterType="java.lang.Integer">
+    select sum(a.sku_num) from order_sku a LEFT JOIN order_main b ON a.order_id = b.id
+	where a.goods_id = #{goodsId,jdbcType=INTEGER} and month(b.addtime) = month(curdate()) and year(b.addtime) = year(curdate())
+  </select>
+  
+  <select id="getGoodsGroupSale" resultType="java.lang.String" parameterType="java.lang.Integer">
+    select sum(a.sku_num) from order_sku a LEFT JOIN order_main b ON a.order_id = b.id INNER JOIN order_team c ON b.order_no = c.order_no
+	where a.goods_id = #{goodsId,jdbcType=INTEGER} and c.status = 1
+  </select>
+  
+  <select id="getShopGroupSale" resultType="java.lang.String" parameterType="com.bh.admin.pojo.order.OrderSku">
+    select sum(a.sku_num) from order_sku a LEFT JOIN order_main b ON a.order_id = b.id INNER JOIN order_team c ON b.order_no = c.order_no
+		where c.status = 1
+		and a.goods_id in
+	(select id from goods where shop_id=#{shopId})
+  </select>
+  
+  
+  
+  
+	
+  
+  <!-- cheng 2017-9-18 -->
+  <insert id="insertOrderSkuByBatch" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.order.OrderSku" >
+  <!-- <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE">
+  </selectKey> -->
+  
+  	insert into order_sku ( order_id, goods_id, 
+      goods_name, sku_id, sku_no, 
+      sku_image, sku_num, sku_market_price, 
+      sku_sell_price_real, sku_weight, is_send, 
+      is_refund, shop_id, s_id, 
+      d_state, sku_value)
+    values 
+  <!--   <trim prefix="values (" suffix=")" suffixOverrides="," > -->
+    <foreach collection ="list" item="reddemCode" index= "index" separator =",">
+    ( #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, #{skuNo,jdbcType=VARCHAR}, 
+      #{skuImage,jdbcType=VARCHAR}, #{skuNum,jdbcType=INTEGER}, #{skuMarketPrice,jdbcType=INTEGER}, 
+      #{skuSellPriceReal,jdbcType=INTEGER}, #{skuWeight,jdbcType=INTEGER}, #{isSend,jdbcType=BIT}, 
+      #{isRefund,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, 
+      #{dState,jdbcType=INTEGER}, #{skuValue,jdbcType=LONGVARCHAR})
+      </foreach >
+  </insert>
+  <!-- 2017-10-25星期二 通过orderId查询下面的内容 -->
+  <select id="getOrderGoodsListByOrderId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+    select
+ 		sku.*
+    from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id and order_id = #{orderId,jdbcType=INTEGER} and shop_id = #{shopId,jdbcType=INTEGER}
+    order by shop_id desc
+  </select>
+  <!-- 2017-10-25 -->
+   <select id="selectShopIdsByOrderId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+    select  shop_id   from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id
+    and order_id = #{orderId,jdbcType=INTEGER} 
+    group by shop_id
+  </select>
+  <!-- 2017-11-1添加 -->
+     <select id="selectOrderShopBySelect" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+       select 
+   		sku.*
+    from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id
+     <if test="shopId != null" >
+       and sku.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+       and sku.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+  </select>
+   <select id="selectOrderSkuByParams" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+       select 
+       sku.*
+    from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id
+      and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+      and sku.is_refund = 0 
+  </select>
+   <select id="selectOrderShopBy1" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+       select 
+    sku.*
+    from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id and sku.is_refund = 0 
+     <if test="shopId != null" >
+       and sku.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+       and sku.order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+   <select id="selectOrderSkuBymId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+      select a.* from 
+      order_sku a,order_shop b,order_main c ,goods_sku gsku
+      where 1=1 and a.sku_id = gsku.id and
+      c.id =b.order_id and
+      b.id = a.order_shop_id and 
+      a.order_id=c.id and 
+      b.m_id=#{goodsId,jdbcType=INTEGER}
+       and 
+      b.`status`  in (2,5)
+    
+  </select>
+     <select id="selectOrderSkuByOrderId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+       select 
+ 			sku.*
+    from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id
+      and sku.order_id = #{orderId,jdbcType=INTEGER}
+      and sku.is_refund = 0 
+  </select>
+   <select id="selectOrderSkuByParams1" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+       select 
+		sku.*
+    from  order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id
+      and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+      and sku.is_refund =!0 
+  </select>
+  <!-- 2017-12-18通过orderSkuId查询order_shop_id再查询有多少个orderSku -->
+  <select id="selectCountOrderSku" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  	 select count(1) 
+  	 from order_sku sku,goods_sku gsku
+    where 1=1 and sku.sku_id = gsku.id and sku.order_shop_id=(select order_shop_id from order_sku where id= #{id})
+  </select>
+  <select id="selectGoodsNum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  	select SUM(sku.sku_num)
+  	 from order_sku sku,goods_sku gsku
+    where 1=1 
+     and sku.sku_id = gsku.id 
+     and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+   <select id="selectGoodsTotalPrice" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    	select SUM(sku.sku_num * sku.sku_sell_price_real)
+  	           from order_sku sku,goods_sku gsku
+             where 1=1 
+                and sku.sku_id = gsku.id 
+                and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+   <select id="selectJDSkuId" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+		select sku.* 
+		from order_sku sku,goods good ,goods_sku gsku
+		where 
+		sku.sku_id = gsku.id
+		and gsku.goods_id=good.id
+		and sku.goods_id=good.id
+		and good.is_jd=1
+		and gsku.jd_support=1
+		and sku.order_id = #{orderId,jdbcType=INTEGER}
+		GROUP BY sku.order_shop_id
+  </select>
+   <select id="selectJDSkuId1" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+		select sku.* 
+		from order_sku sku,goods good ,goods_sku gsku
+		where 
+		sku.sku_id = gsku.id
+		and gsku.goods_id=good.id
+		and sku.goods_id=good.id
+		and good.is_jd=1 
+		and gsku.jd_support=1
+		and sku.order_id = #{orderId,jdbcType=INTEGER}
+		and sku.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+   <select id="selectJdSupport" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.order.OrderSku">
+	select sku.* from order_main main,order_sku sku,order_shop shop,goods g,goods_sku gsku
+      where 
+          1=1
+          and main.id=shop.order_id 
+          and shop.id=sku.order_shop_id
+          and sku.order_id=main.id
+          and sku.goods_id=g.id
+          and sku.sku_id=gsku.id
+          and g.is_jd=1
+          and gsku.jd_support=1
+          and sku.order_id=#{orderId,jdbcType=INTEGER}
+  </select>
+  <!-- end -->
+  
+  	
+  	 <!-- 统计:7日内商品销售TOP10 xieyc -->
+    <select id="getTopTenGoodsList"  resultMap="BaseResultMap">
+  	  select sum(osk.sku_num) shopNumAmount,osk.goods_id from order_sku osk LEFT JOIN  order_main om on osk.order_id=om.id 
+  	  LEFT JOIN  order_shop os on os.id=osk.order_shop_id left join order_refund_doc doc on osk.id=doc.order_sku_id
+  	  where os.status not in(1,6)  and om.payment_status!=1 and (doc.status!=2 or doc.status is null) and os.shop_id=#{3}
+  	  <![CDATA[ and om.addtime >=]]> #{0}
+      <![CDATA[ and om.addtime <=]]> #{1}
+  	  group by osk.goods_id	
+      order by shopNumAmount desc,osk.goods_id desc
+	</select>
+  
+  	 <!-- 统计:商品销售TOP10 xieyc -->
+    <select id="getSaleOrderList"  resultMap="BaseResultMap">
+  	  select sum(osk.sku_num) shopNumAmount,osk.goods_name,osk.goods_id from order_sku osk LEFT JOIN  order_main om on osk.order_id=om.id 
+  	  LEFT JOIN  order_shop os on os.id=osk.order_shop_id left join order_refund_doc doc on osk.id=doc.order_sku_id
+  	  where  os.status not in(1,6) and om.payment_status!=1 and (doc.status!=2 or doc.status is null)
+  	  <if test="shopId != 0" >
+      	 and osk.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+  	  <![CDATA[ and om.addtime >=]]>#{0}
+      <![CDATA[ and om.addtime <=]]>#{1}
+  	  group by osk.goods_id	
+      order by shopNumAmount desc,osk.goods_id desc
+	</select>
+  	
+ 	
+    <select id="getOrderSkuByOrderId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	   select  * from order_sku  where  order_id =#{orderId}
+	</select>
+	
+	<select id="getOrderSkuByOrderIdAndSkuId"  resultMap="BaseResultMap" >
+  	   select  * from order_sku  where  order_id =#{0} and sku_id=#{1}
+	</select>
+	
+	
+	<select id="getListBySkuId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	   select  * from order_sku where  sku_id=#{0}
+	</select>
+	
+	 <select id="getOrderSkuByOrderShopId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	   select  * from order_sku  where  order_shop_id =#{orderShopId}
+	</select>
+	
+  	<select id="getGoodsSale"  resultMap="BaseResultMap">
+  	  select sum(osk.sku_num) shopNumAmount,osk.goods_name,osk.goods_id from order_sku osk LEFT JOIN  order_main om on osk.order_id=om.id 
+  	  LEFT JOIN  order_shop os on os.id=osk.order_shop_id  left join order_refund_doc doc on osk.id=doc.order_sku_id
+  	  where  os.status not in(1,6) and om.payment_status!=1 and (doc.status!=2 or doc.status is null)
+  	  group by osk.goods_id	
+	</select>
+	
+	<!-- 某个时段店铺的销量  xieyc -->
+    <select id="getShopOrderAmount"  resultMap="BaseResultMap">
+    	select sum(a.sku_sell_price_real*a.sku_num-a.coupon_price-a.save_price) amount ,a.shop_id from order_sku a 
+		left join order_main b on a.order_id=b.id
+		left join order_shop c on a.order_shop_id=c.id
+		where c.status not in(1,6,8) 
+		and b.fz!=6
+		and b.payment_status!=1 
+		<if test="shopId != null" >
+        	and a.shop_id = #{shopId,jdbcType=INTEGER}
+      	</if>
+      	<if test="startTime !=null" >
+        	<![CDATA[ and b.addtime >=]]>#{startTime}
+       	</if>
+        <if test="endTime!=null" >
+        	<![CDATA[ and b.addtime <=]]> #{endTime}
+        </if>
+		GROUP BY a.shop_id 
+    	order by amount desc
+	</select>
+    <select id="getSkuByOrderShopId"  resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    	select * from order_sku
+    	where order_shop_id =#{orderShopId}
+	</select>
+	
+	<select id="selectById"  resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    	select * from order_shop o,order_sku s where o.order_id=s.order_id and o.id=#{id} group by o.id
+	</select>
+	
+	 <select id="selectByGoodsId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select o.* from order_shop os,order_sku o where  os.id=o.order_shop_id and os.id=#{0} and o.shop_id=#{1}
+  </select>
+  
+  	
+  	
+  	 
+   <resultMap id="BaseResultMapVo" type="com.bh.admin.pojo.order.ShopOrderRecordVo" >
+    <result column="shopOrderId" property="shopOrderId" jdbcType="INTEGER" />
+    <result column="orderSkuId" property="orderSkuId" jdbcType="INTEGER" />
+    <result column="orderIdStatus" property="orderIdStatus" jdbcType="INTEGER" />
+    <result column="paymentStatus" property="paymentStatus" jdbcType="INTEGER" />
+    <result column="shopOrderNo" property="shopOrderNo" jdbcType="VARCHAR"/>
+    <result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="addTime" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  	
+  	<select id="shopOrderRecord"  resultMap="BaseResultMapVo" parameterType="com.bh.admin.pojo.order.OrderSku">
+    	select a.order_shop_id as shopOrderId,a.goods_name as goodsName,a.id as orderSkuId,
+			   b.shop_order_no as shopOrderNo,cast(b.order_price/100 as decimal(20,2)) as amount ,b.status as orderIdStatus,
+			   c.addtime,c.payment_status as paymentStatus,
+			   d.username
+		from order_sku a,order_shop b,order_main c,member d
+		where a.order_shop_id=b.id and b.order_id =c.id and c.m_id=d.id
+		<if test="shopId != null">
+			and  a.shop_id = #{shopId}
+		</if>
+		<if test="goodsName != null and goodsName!='' ">
+			and a.goods_name like CONCAT('%', #{goodsName}, '%')
+		</if>
+		<if test="username != null and username!='' ">
+			and d.username like CONCAT('%', #{username}, '%')
+		</if>
+		<if test="shopOrderNo != null and shopOrderNo!='' ">
+			and b.shop_order_no like CONCAT('%', #{shopOrderNo}, '%')
+		</if>
+		<if test="startDateTime != null and startDateTime!='' ">
+			and   c.addtime <![CDATA[>=]]> #{startDateTime}
+		</if>
+		<if test="endDateTime != null and endDateTime!='' ">
+			and  c.addtime <![CDATA[<]]> date_sub(#{endDateTime},interval -1 day)
+		</if>
+		order by c.addtime desc
+  	</select>
+  
+  
+  
+</mapper>

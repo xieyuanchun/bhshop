@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.TopicGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.TopicGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="act_id" property="actId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="u_time" property="uTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="listorder" property="listorder" jdbcType="SMALLINT" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="ku_nums" property="kuNums" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, act_id, goods_id, cid, c_time, u_time, status, remark, listorder, sid, is_delete, ku_nums
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.TopicGoods" >
+    insert into topic_goods (id, act_id, goods_id, 
+      cid, c_time, u_time, 
+      status, remark, listorder, 
+      sid, is_delete, ku_nums)
+    values (#{id,jdbcType=INTEGER}, #{actId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{cid,jdbcType=BIGINT}, #{cTime,jdbcType=TIMESTAMP}, #{uTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{listorder,jdbcType=SMALLINT}, 
+      #{sid,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{kuNums,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.TopicGoods" useGeneratedKeys="true" keyProperty="id">
+    insert into topic_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actId != null" >
+        act_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="uTime != null" >
+        u_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="listorder != null" >
+        listorder,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="kuNums != null" >
+        ku_nums,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="actId != null" >
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        #{uTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="listorder != null" >
+        #{listorder,jdbcType=SMALLINT},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="kuNums != null" >
+        #{kuNums,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.TopicGoods" >
+    update topic_goods
+    <set >
+      <if test="actId != null" >
+        act_id = #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        u_time = #{uTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="listorder != null" >
+        listorder = #{listorder,jdbcType=SMALLINT},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="kuNums != null" >
+        ku_nums = #{kuNums,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.TopicGoods" >
+    update topic_goods
+    set act_id = #{actId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=BIGINT},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      u_time = #{uTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      listorder = #{listorder,jdbcType=SMALLINT},
+      sid = #{sid,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      ku_nums = #{kuNums,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods">
+    select a.*
+    from topic_goods a 
+    left join goods b on a.goods_id = b.id 
+    left join topic c on a.act_id = c.id 
+    left join goods_sku d on b.id=d.goods_id
+    where a.act_id = #{actId} and a.is_delete = 0 
+    <if test="shopId!=null and shopId!=1">
+    	and a.sid=#{shopId}
+    </if>
+    <if test="id != null">
+    	and a.id = #{id}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+        and b.name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    <if test="cStime != null">
+    	 and  a.c_time <![CDATA[>=]]> #{cStime}
+    </if>
+    <if test="cEtime != null">
+    	 and  a.c_time <![CDATA[<=]]> #{cEtime}
+    </if>
+    group by d.goods_id <!--增加分组查询为了取sku中的第一条记录-->
+    <choose>
+    	<when test="sortOrPrice==1 and fz ==1">
+    		order by a.listorder asc
+    	</when>
+    	<when test="sortOrPrice==1 and fz ==2">
+    		order by a.listorder desc
+    	</when>
+    	<when test="sortOrPrice==2 and fz ==1">
+    		order by d.team_price asc
+    	</when>
+    	<when test="sortOrPrice==2 and fz ==2">
+    		order by d.team_price desc
+    	</when>
+    	<otherwise>
+    		order by a.c_time desc
+    	</otherwise>
+    </choose>
+  </select>
+  
+  
+  <select id="listPageTopicBargain" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods">
+    select a.*
+    from topic_goods a left join goods b on a.goods_id = b.id left join topic c on a.act_id = c.id left join topic_bargain_config d on a.id = d. tg_id
+    where a.act_id = #{actId} and a.id in (select tg_id from topic_bargain_config)
+    <if test="id != null">
+    	and a.id = #{id}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+        and b.name like CONCAT(CONCAT('%', #{goodsName}), '%')
+    </if>
+    <if test="actTime != null">
+    	 and  c.start_time <![CDATA[<=]]> #{actTime}
+         and  c.end_time <![CDATA[>=]]> #{actTime}
+    </if>
+     <if test="applyTime != null">
+    	 and  c.apply_stime <![CDATA[<=]]> #{applyTime}
+         and  c.apply_stime <![CDATA[>=]]> #{applyTime}
+    </if>
+    <choose>
+    	<when test="sortOrPrice=='1'.toString() and fz =='1'.toString()">
+    		order by a.listorder asc
+    	</when>
+    	<when test="sortOrPrice=='1'.toString() and fz =='2'.toString()">
+    		order by a.listorder desc
+    	</when>
+    	<when test="sortOrPrice=='2'.toString() and fz =='1'.toString()">
+    		order by d.act_price asc
+    	</when>
+    	<when test="sortOrPrice=='2'.toString() and fz =='2'.toString()">
+    		order by d.act_price desc
+    	</when>
+    	<otherwise>
+    		order by a.c_time desc
+    	</otherwise>
+    </choose>
+  </select>
+  
+  <select id="countByActId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from topic_goods
+    where act_id = #{actId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getByActId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_goods
+    where act_id = #{actId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getByActIdAndNotDelete" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_goods
+    where act_id = #{actId,jdbcType=INTEGER} and is_delete = 0
+  </select>
+  
+  
+  <select id="getByType" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.* from topic_goods a,goods b  where a.goods_id=b.id and a.is_delete=0  
+    and a.act_id in (select id from topic where type = #{0} and is_delete = 0 and status = 0)
+    and b.status=5 and b.visible=0
+  </select>
+  
+ 
+  <!-- 秒杀列表  xieyc  秒杀开始-->
+  <select id="todayListTopicSeckill" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+    select a.* from topic_goods a left join topic b on a.act_id = b.id left join goods c on a.goods_id=c.id
+    where  a.status=1 and a.is_delete=0   and c.status=5 and c.visible=0
+    and b.type = #{type} 
+    and b.end_time > NOW()
+    and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL 0 DAY)
+    order by b.start_time
+  </select>
+   <select id="tomorrowListTopicSeckill" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+    select a.* from topic_goods a left join topic b on a.act_id = b.id left join goods c on a.goods_id=c.id
+    where  a.status=1 and a.is_delete=0  and c.status=5 and c.visible=0
+    and b.type = #{type} 
+    and b.end_time > NOW()
+    and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL -1 DAY)
+    order by b.start_time
+  </select>
+  <select id="houdayListTopicSeckill" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+    select a.* from topic_goods a left join topic b on a.act_id = b.id left join goods c on a.goods_id=c.id
+    where  a.status=1 and a.is_delete=0   and c.status=5 and c.visible=0
+    and b.type = #{type} 
+    and b.end_time > NOW()
+    and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL -2 DAY)
+    order by b.start_time
+  </select>
+  
+
+   <select id="todayBeginNoEndSeckill" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+     select a.* from topic_goods a left join topic b on a.act_id = b.id  left join goods c on a.goods_id=c.id
+     where  a.status=1 and a.is_delete=0   and c.status=5 and c.visible=0
+     and b.type = #{type}
+     and  b.end_time > NOW() <!-- 还没结束 --> 
+     and  NOW()> b.start_time <!-- 已经开始 --> 
+     and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL 0 DAY)<!-- 今日开启 -->
+     order by b.end_time
+  </select>
+  
+   <select id="todayBeginNoEndSeckillDesc" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+     select a.* from topic_goods a left join topic b on a.act_id = b.id left join goods c on  a.goods_id=c.id
+     where  a.status=1 and a.is_delete=0   and c.status=5 and c.visible=0
+     and b.type = #{type}
+     and  b.end_time > NOW() <!-- 还没结束 --> 
+     and  NOW()> b.start_time <!-- 已经开始 --> 
+     and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL 0 DAY)<!-- 今日开启 -->
+     order by b.start_time desc
+   </select>
+  
+  
+  	<!-- 用于必抢推荐 -->
+   <select id="todayNoBeginSeckill" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods" >
+     select a.* from topic_goods a left join topic b on a.act_id = b.id left join goods c on a.goods_id=c.id
+     where  a.status=1 and a.is_delete=0   and c.status=5 and c.visible=0
+     and b.type = #{type} 
+     and  b.start_time > NOW()<!-- 还没开始 --> 
+     and  DATE_FORMAT(b.start_time,'%Y-%m-%d') = DATE_SUB(curdate(),INTERVAL 0 DAY)<!-- 今日开启 -->
+     order by b.start_time
+  </select>
+  <!-- xieyc  秒杀结束 -->
+  
+  <!-- cheng 超级滨惠豆专区 -->
+  <select id="selectGoodsByParams" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods">
+          select tg.* from topic_goods tg,topic tc,goods_sku sku,goods g where 1=1
+            and g.id=tg.goods_id
+		    and g.id=sku.goods_id
+            and tg.act_id=tc.id
+            and tg.is_delete=0
+            and tc.type=4
+            and tc.is_delete=0
+            and g.status=5 and g.visible=0
+            and tg.`status` = 1
+           <if test="goodsId != null" >
+            and tg.goods_id = #{goodsId,jdbcType=INTEGER}
+           </if>
+            and tc.end_time > NOW()
+            group by tg.id
+  </select>
+ <select id="selectTopicGoodsBySaveMoney" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.TopicGoods">
+          select tg.* from topic_goods tg,topic tc,goods_sku sku,goods g where 1=1
+            and g.id=tg.goods_id
+		    and g.id=sku.goods_id
+            and tg.act_id=tc.id
+            and tg.is_delete=0
+            and tc.type=7
+            and g.status=5 and g.visible=0
+            and tc.is_delete=0
+            and tg.`status` = 1
+           <if test="goodsId != null" >
+            and tg.goods_id = #{goodsId,jdbcType=INTEGER}
+           </if>
+            and tc.end_time > NOW()
+            group by tg.id
+  </select>
+  <select id="selectByPaiMaiGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.* from topic_goods a left join topic b on a.act_id = b.id
+    where  b.type=8 and b.is_delete=0 and a.status=1 and a.is_delete=0 and a.goods_id = #{goodsId} and b.end_time > NOW() and NOW()>b.start_time
+    order by a.id desc
+  </select>
+  <!-- end cheng -->
+  
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.* from topic_goods a left join topic b on a.act_id = b.id
+    where a.goods_id = #{goodsId} and b.end_time > NOW() and NOW()>b.start_time
+    order by a.id desc
+  </select>
+  
+</mapper>

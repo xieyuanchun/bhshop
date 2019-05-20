@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberUserMapper" >
+    <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberUser" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="point" property="point" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="balance" property="balance" jdbcType="BIGINT" />
+    <result column="prov" property="prov" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="paycode" property="paycode" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="day" property="day" jdbcType="VARCHAR" />
+    <result column="career" property="career" jdbcType="INTEGER" />
+    <result column="single" property="single" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+    <result column="sm_id" property="smId" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="wx_code" property="wxCode" jdbcType="VARCHAR" />
+    <result column="invite_code" property="inviteCode" jdbcType="VARCHAR" />
+     <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, full_name, group_id, email, sex, point, status, addtime, endtime, balance, 
+    prov, city, area, address, paycode, year, month, day, career, single, category_id, 
+    sm_id, identity, wx_code, invite_code,note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_user
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    insert into member_user (m_id, full_name, group_id, 
+      email, sex, point, 
+      status, addtime, endtime, 
+      balance, prov, city, 
+      area, address, paycode, 
+      year, month, day, career, 
+      single, category_id, sm_id, 
+      identity, wx_code, invite_code,note
+      )
+    values (#{mId,jdbcType=INTEGER}, #{fullName,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{point,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{balance,jdbcType=BIGINT}, #{prov,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{area,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{paycode,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{career,jdbcType=INTEGER}, 
+      #{single,jdbcType=INTEGER}, #{categoryId,jdbcType=VARCHAR}, #{smId,jdbcType=INTEGER}, 
+      #{identity,jdbcType=VARCHAR}, #{wxCode,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    insert into member_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="point != null" >
+        point,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="prov != null" >
+        prov,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="paycode != null" >
+        paycode,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="day != null" >
+        day,
+      </if>
+      <if test="career != null" >
+        career,
+      </if>
+      <if test="single != null" >
+        single,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="smId != null" >
+        sm_id,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="wxCode != null" >
+        wx_code,
+      </if>
+      <if test="inviteCode != null" >
+        invite_code,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="prov != null" >
+        #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="paycode != null" >
+        #{paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null" >
+        #{career,jdbcType=INTEGER},
+      </if>
+      <if test="single != null" >
+        #{single,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="wxCode != null" >
+        #{wxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    update member_user
+    <set >
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="point != null" >
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="prov != null" >
+        prov = #{prov,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="paycode != null" >
+        paycode = #{paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null" >
+        career = #{career,jdbcType=INTEGER},
+      </if>
+      <if test="single != null" >
+        single = #{single,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="smId != null" >
+        sm_id = #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="wxCode != null" >
+        wx_code = #{wxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    update member_user
+    set full_name = #{fullName,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      point = #{point,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      balance = #{balance,jdbcType=BIGINT},
+      prov = #{prov,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      paycode = #{paycode,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      career = #{career,jdbcType=INTEGER},
+      single = #{single,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      sm_id = #{smId,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=VARCHAR},
+      wx_code = #{wxCode,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- *************************************************************chengfengyun**************************************************** -->
+   <update id="updateEmailBymId" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    update member_user
+    <set >  
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <select id="selectMemberUser" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberUser">
+ 	select m.* from member_user m,member_bank_card bank,member me 
+ 	where m.m_id=bank.m_id and me.id=m.m_id and me.id=bank.m_id 
+  	<if test="mId != null" >
+       and  m.m_id = #{mId}
+    </if>
+ 	<if test="fullName != null and fullName != ''" >
+ 		and  me.username like CONCAT('%', #{fullName}, '%')
+    </if>
+    <if test="phone != null and phone != ''" >
+       and  me.phone=#{phone}
+    </if>
+ 	group by bank.m_id
+  </select>
+  <select id="selectMemberUserByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberUser">
+    select muser.* from  member_user muser,member m
+    where 1=1 
+     and m.id=muser.m_id
+    <if test="mId != null and mId != ''" >
+       and  muser.m_id = #{mId}
+    </if>
+    <if test="username != null and username != ''" >
+       and  m.username like CONCAT(CONCAT('%', #{username}), '%')
+    </if>
+     <if test="phone != null and phone != ''" >
+       and  m.phone like CONCAT(CONCAT('%', #{phone}), '%')
+    </if>
+     <if test="status != null and status != ''" >
+        and muser.status=#{status}
+      </if>
+    <if test="key != null and key!=''" >
+       and( 
+       m.username like CONCAT(CONCAT('%', #{key}), '%') or  
+       muser.m_id = #{key} or m.phone like CONCAT(CONCAT('%', #{key}), '%') or
+       muser.full_name like CONCAT(CONCAT('%', #{key}), '%')
+        )
+       <!-- (shop.order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or shop.shop_order_no like CONCAT(CONCAT('%', #{orderNo}), '%') or  sku.goods_name like CONCAT(CONCAT('%', #{orderNo}), '%') ) -->
+    </if>
+    <if test="addtime != null" >
+       and  muser.addtime <![CDATA[>=]]> #{addtime}
+       and  muser.addtime <![CDATA[<=]]> #{endtime}
+    </if>
+       <choose>
+			<when test="term==1">
+				order by muser.m_id asc
+			</when>
+			<when test="term==2">
+				order by muser.m_id desc
+			</when>
+			<when test="term==3">
+				order by muser.addtime desc
+			</when>
+			<otherwise>
+				order by muser.addtime desc
+			</otherwise>
+		</choose>
+  </select>
+   <select id="selectByFullName" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user
+    where full_name = #{fullName,jdbcType=VARCHAR}
+  </select>
+  <update id="updatePointBymId" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    update member_user
+    <set >  
+      <if test="point != null" >
+        point = #{point,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByParams" parameterType="com.bh.admin.pojo.user.MemberUser" >
+    update member_user
+    <set >  
+      <if test="point != null" >
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <select id="selectUserStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    user.status
+    from member_user user
+    where user.m_id=#{mId,jdbcType=INTEGER}
+  </select>
+  <!-- end  -->
+</mapper>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemberSendMapper" >
+ <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemberSend" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="idcard_img_url" property="idcardImgUrl" jdbcType="VARCHAR" />
+    <result column="idcard_hand_img_url" property="idcardHandImgUrl" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="VARCHAR" />
+    <result column="tool" property="tool" jdbcType="INTEGER" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="total_income" property="totalIncome" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+    <result column="cash_pledge" property="cashPledge" jdbcType="INTEGER" />
+    <result column="online" property="online" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, full_name, identity, idcard_img_url, idcard_hand_img_url, address, time, scope, 
+    income, tool, lon, lat, status, sex, age, type, total_num, total_income, balance, 
+    cash_pledge, online
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_send
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_send
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemberSend" >
+    insert into member_send (m_id, full_name, identity, 
+      idcard_img_url, idcard_hand_img_url, address, 
+      time, scope, income, 
+      tool, lon, lat, status, 
+      sex, age, type, total_num, 
+      total_income, balance, cash_pledge, 
+      online)
+    values (#{mId,jdbcType=INTEGER}, #{fullName,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, 
+      #{idcardImgUrl,jdbcType=VARCHAR}, #{idcardHandImgUrl,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{scope,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, 
+      #{tool,jdbcType=INTEGER}, #{lon,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{totalNum,jdbcType=INTEGER}, 
+      #{totalIncome,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, #{cashPledge,jdbcType=INTEGER}, 
+      #{online,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemberSend" >
+    insert into member_send
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="idcardImgUrl != null" >
+        idcard_img_url,
+      </if>
+      <if test="idcardHandImgUrl != null" >
+        idcard_hand_img_url,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="tool != null" >
+        tool,
+      </if>
+      <if test="lon != null" >
+        lon,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="totalIncome != null" >
+        total_income,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge,
+      </if>
+      <if test="online != null" >
+        online,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardImgUrl != null" >
+        #{idcardImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardHandImgUrl != null" >
+        #{idcardHandImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="tool != null" >
+        #{tool,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null" >
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalIncome != null" >
+        #{totalIncome,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="cashPledge != null" >
+        #{cashPledge,jdbcType=INTEGER},
+      </if>
+      <if test="online != null" >
+        #{online,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemberSend" >
+    update member_send
+    <set >
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardImgUrl != null" >
+        idcard_img_url = #{idcardImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardHandImgUrl != null" >
+        idcard_hand_img_url = #{idcardHandImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="tool != null" >
+        tool = #{tool,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null" >
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalIncome != null" >
+        total_income = #{totalIncome,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge = #{cashPledge,jdbcType=INTEGER},
+      </if>
+      <if test="online != null" >
+        online = #{online,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemberSend" >
+    update member_send
+    set full_name = #{fullName,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      idcard_img_url = #{idcardImgUrl,jdbcType=VARCHAR},
+      idcard_hand_img_url = #{idcardHandImgUrl,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      scope = #{scope,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      tool = #{tool,jdbcType=INTEGER},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      total_income = #{totalIncome,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER},
+      cash_pledge = #{cashPledge,jdbcType=INTEGER},
+      online = #{online,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--     *********************************************************以下是chengfengyun********************************************************                    -->
+  <select id="selectAllSendByStatus" parameterType="com.bh.user.pojo.MemberSend" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from member_send
+    where status = 1 limit #{0},#{1} <!-- 状态0为已经审核1未待审核 -->
+  </select>
+  <select id="selectAllSendByStatusCount" resultType="java.lang.Integer">
+    	select count(*)
+    from member_send
+    where status = 1
+  </select>
+  <update id="updateSendStatus" parameterType="com.bh.user.pojo.MemberSend">
+   update member_send
+    set status = #{status,jdbcType=INTEGER}
+     where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <!-- status=：0待审核，1审核成功，2审核失败          online=-1下线 0在线 1收工-->
+   <select id="selectMemberSendByParams" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.MemberSend">
+       select 
+    <include refid="Base_Column_List" />
+    from member_send
+    where 1=1
+     and status=1 and  online = 0
+  </select>
+</mapper>

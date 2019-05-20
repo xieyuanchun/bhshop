@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.SeedModelMapper" >
+ <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.SeedModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="seed_name" property="seedName" jdbcType="VARCHAR" />
+    <result column="gain_period" property="gainPeriod" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="INTEGER" />
+    <result column="bonus" property="bonus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="small_image" property="smallImage" jdbcType="VARCHAR" />
+    <result column="rand" property="rand" jdbcType="INTEGER" />
+    <result column="gain_period_again" property="gainPeriodAgain" jdbcType="INTEGER" />
+    <result column="season_num" property="seasonNum" jdbcType="INTEGER" />
+    <result column="experience_every_season" property="experienceEverySeason" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, seed_name, gain_period, score, sale_price, bonus, status, image, description, 
+    type, small_image, rand, gain_period_again, season_num, experience_every_season
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_model
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_model
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.SeedModel" >
+    insert into seed_model (id, seed_name, gain_period, 
+      score, sale_price, bonus, 
+      status, image, description, 
+      type, small_image, rand, 
+      gain_period_again, season_num, experience_every_season
+      )
+    values (#{id,jdbcType=INTEGER}, #{seedName,jdbcType=VARCHAR}, #{gainPeriod,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{salePrice,jdbcType=INTEGER}, #{bonus,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{smallImage,jdbcType=VARCHAR}, #{rand,jdbcType=INTEGER}, 
+      #{gainPeriodAgain,jdbcType=INTEGER}, #{seasonNum,jdbcType=INTEGER}, #{experienceEverySeason,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.SeedModel" useGeneratedKeys="true" keyProperty="id">
+    insert into seed_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="seedName != null" >
+        seed_name,
+      </if>
+      <if test="gainPeriod != null" >
+        gain_period,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="bonus != null" >
+        bonus,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="smallImage != null" >
+        small_image,
+      </if>
+      <if test="rand != null" >
+        rand,
+      </if>
+      <if test="gainPeriodAgain != null" >
+        gain_period_again,
+      </if>
+      <if test="seasonNum != null" >
+        season_num,
+      </if>
+      <if test="experienceEverySeason != null" >
+        experience_every_season,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="seedName != null" >
+        #{seedName,jdbcType=VARCHAR},
+      </if>
+      <if test="gainPeriod != null" >
+        #{gainPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="bonus != null" >
+        #{bonus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="smallImage != null" >
+        #{smallImage,jdbcType=VARCHAR},
+      </if>
+      <if test="rand != null" >
+        #{rand,jdbcType=INTEGER},
+      </if>
+      <if test="gainPeriodAgain != null" >
+        #{gainPeriodAgain,jdbcType=INTEGER},
+      </if>
+      <if test="seasonNum != null" >
+        #{seasonNum,jdbcType=INTEGER},
+      </if>
+      <if test="experienceEverySeason != null" >
+        #{experienceEverySeason,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.SeedModel" >
+    update seed_model
+    <set >
+      <if test="seedName != null" >
+        seed_name = #{seedName,jdbcType=VARCHAR},
+      </if>
+      <if test="gainPeriod != null" >
+        gain_period = #{gainPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="bonus != null" >
+        bonus = #{bonus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="smallImage != null" >
+        small_image = #{smallImage,jdbcType=VARCHAR},
+      </if>
+      <if test="rand != null" >
+        rand = #{rand,jdbcType=INTEGER},
+      </if>
+      <if test="gainPeriodAgain != null" >
+        gain_period_again = #{gainPeriodAgain,jdbcType=INTEGER},
+      </if>
+      <if test="seasonNum != null" >
+        season_num = #{seasonNum,jdbcType=INTEGER},
+      </if>
+      <if test="experienceEverySeason != null" >
+        experience_every_season = #{experienceEverySeason,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.SeedModel" >
+    update seed_model
+    set seed_name = #{seedName,jdbcType=VARCHAR},
+      gain_period = #{gainPeriod,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      sale_price = #{salePrice,jdbcType=INTEGER},
+      bonus = #{bonus,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      small_image = #{smallImage,jdbcType=VARCHAR},
+      rand = #{rand,jdbcType=INTEGER},
+      gain_period_again = #{gainPeriodAgain,jdbcType=INTEGER},
+      season_num = #{seasonNum,jdbcType=INTEGER},
+      experience_every_season = #{experienceEverySeason,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>	
+	
+	
+	
+	
+	
+	
+	
+	
+  
+  
+  <!-- end -->
+  <!-- cheng -->
+   <select id="selectSeedModelByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.SeedModel" >
+    select 
+    s.*
+    from  seed_model s 
+    where  1=1 and s.status !=-3
+    <if test="seedName != null" >
+       and s.seed_name like CONCAT(CONCAT('%', #{seedName}), '%')
+    </if>
+     <if test="id != null" >
+       and s.id= #{id,jdbcType=INTEGER}
+      </if>
+     <if test="status != null" >
+      and  s.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="type != null" >
+       and s.type = #{type,jdbcType=INTEGER}
+      </if>
+  </select>
+   <select id="selectSeedModelByParams1" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.SeedModel" >
+    select 
+    s.*
+    from  seed_model s 
+    where  1=1 and s.status =-3
+    <if test="seedName != null" >
+       and s.seed_name like CONCAT(CONCAT('%', #{seedName}), '%')
+    </if>
+     <if test="id != null" >
+       and s.id= #{id,jdbcType=INTEGER}
+      </if>
+     <if test="status != null" >
+      and  s.status = #{status,jdbcType=INTEGER}
+      </if>
+  </select>
+   <select id="selectModelByParam" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.SeedParam" >
+       select 
+         s.*
+       from  seed_model s ,order_seed seed
+       where  1=1 
+        <if test="mId != null" >
+         and seed.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="type != null" >
+       and s.type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and  s.status = #{status,jdbcType=INTEGER}
+      </if>
+      GROUP BY s.id
+      order by seed.id desc
+  </select>
+  <select id="selectSeedModelBySeedName" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.user.SeedModel" >
+   select 
+     COUNT(id)
+    from  seed_model s 
+    where 1=1 
+    <if test="seedName != null" >
+       and s.seed_name = #{seedName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectCountBySeedName" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.user.SeedModel" >
+   select 
+     COUNT(id)
+    from  seed_model s 
+    where 1=1 
+    <if test="seedName != null" >
+      and s.seed_name = #{seedName,jdbcType=VARCHAR} and s.id <![CDATA[<>]]> #{id,jdbcType=INTEGER}
+    </if>
+  </select>
+   <select id="selectUserLand"  resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.SeedModel" >
+   select 
+    s.*
+    from  seed_model s 
+    where 1=1 
+     <if test="type != null" >
+       and s.type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and  s.status = #{status,jdbcType=INTEGER}
+      </if>
+      and s.gain_period <![CDATA[=]]>-1
+      GROUP BY s.id
+      order by s.sale_price asc
+  </select>
+   <select id="selectUnuserLand"  resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.SeedModel" >
+   select 
+    s.*
+    from  seed_model s 
+    where 1=1 
+     <if test="type != null" >
+       and s.type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and  s.status = #{status,jdbcType=INTEGER}
+      </if>
+      and s.sale_price <![CDATA[>=]]>0
+      GROUP BY s.id
+      order by s.sale_price asc
+    
+  </select>
+ 
+</mapper>

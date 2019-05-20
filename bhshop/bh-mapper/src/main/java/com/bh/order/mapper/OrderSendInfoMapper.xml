@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderSendInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderSendInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_shop_id" property="orderShopId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="d_state" property="dState" jdbcType="INTEGER" />
+    <result column="oc_time" property="ocTime" jdbcType="TIMESTAMP" />
+    <result column="speed_level" property="speedLevel" jdbcType="INTEGER" />
+    <result column="s_service_level" property="sServiceLevel" jdbcType="INTEGER" />
+    <result column="pack_level" property="packLevel" jdbcType="INTEGER" />
+    <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+    <result column="tool" property="tool" jdbcType="INTEGER" />
+    <result column="deliver_time" property="deliverTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="jd_order_id" property="jdOrderId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_shop_id, m_id, s_id, s_name, d_state, oc_time, speed_level, s_service_level, 
+    pack_level, cancel_reason, tool, deliver_time, send_time, jd_order_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_send_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_send_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    insert into order_send_info (id, order_shop_id, m_id, 
+      s_id, s_name, d_state, 
+      oc_time, speed_level, s_service_level, 
+      pack_level, cancel_reason, tool, deliver_time, send_time, jd_order_id)
+    values (#{id,jdbcType=INTEGER}, #{orderShopId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, 
+      #{sId,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR}, #{dState,jdbcType=INTEGER}, 
+      #{ocTime,jdbcType=TIMESTAMP}, #{speedLevel,jdbcType=INTEGER}, #{sServiceLevel,jdbcType=INTEGER}, 
+      #{packLevel,jdbcType=INTEGER}, #{cancelReason,jdbcType=VARCHAR}, #{tool,jdbcType=INTEGER}, 
+      #{deliverTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, #{jdOrderId,jdbcType=VARCHAR}))
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    insert into order_send_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderShopId != null" >
+        order_shop_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="sName != null" >
+        s_name,
+      </if>
+      <if test="dState != null" >
+        d_state,
+      </if>
+      <if test="ocTime != null" >
+        oc_time,
+      </if>
+      <if test="speedLevel != null" >
+        speed_level,
+      </if>
+      <if test="sServiceLevel != null" >
+        s_service_level,
+      </if>
+      <if test="packLevel != null" >
+        pack_level,
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason,
+      </if>
+      <if test="tool != null" >
+        tool,
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="jdOrderId != null" >
+        jd_order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderShopId != null" >
+        #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null" >
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="dState != null" >
+        #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="ocTime != null" >
+        #{ocTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speedLevel != null" >
+        #{speedLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sServiceLevel != null" >
+        #{sServiceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="packLevel != null" >
+        #{packLevel,jdbcType=INTEGER},
+      </if>
+       <if test="cancelReason != null" >
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="tool != null" >
+        #{tool,jdbcType=INTEGER},
+      </if>
+      <if test="deliverTime != null" >
+        #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdOrderId != null" >
+        #{jdOrderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    update order_send_info
+    <set >
+      <if test="orderShopId != null" >
+        order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null" >
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="dState != null" >
+        d_state = #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="ocTime != null" >
+        oc_time = #{ocTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speedLevel != null" >
+        speed_level = #{speedLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sServiceLevel != null" >
+        s_service_level = #{sServiceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="packLevel != null" >
+        pack_level = #{packLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+       <if test="tool != null" >
+        tool = #{tool,jdbcType=INTEGER},
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdOrderId != null" >
+        jd_order_id = #{jdOrderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    update order_send_info
+    set order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      s_id = #{sId,jdbcType=INTEGER},
+      s_name = #{sName,jdbcType=VARCHAR},
+      d_state = #{dState,jdbcType=INTEGER},
+      oc_time = #{ocTime,jdbcType=TIMESTAMP},
+      speed_level = #{speedLevel,jdbcType=INTEGER},
+      s_service_level = #{sServiceLevel,jdbcType=INTEGER},
+      pack_level = #{packLevel,jdbcType=INTEGER},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      tool = #{tool,jdbcType=INTEGER},
+      deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      jd_order_id = #{jdOrderId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- ********************************************************************以下是新接口**************************************************************** -->
+    <select id="selectOrderShopBymid" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select 
+     *
+    from order_send_info
+    where 1=1
+     <if test="orderShopId != null" >
+      and  order_shop_id = #{orderShopId,jdbcType=INTEGER}
+      </if>
+      <if test="mId != null" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="sId != null" >
+       and s_id = #{sId,jdbcType=INTEGER}
+      </if>
+  </select>
+   
+  <select id="selectSendMarkBymid" resultType="java.lang.Integer" parameterType="com.bh.order.pojo.OrderSendInfo" >
+      select FORMAT(COALESCE((AVG(s_service_level)*20),0),0)  as mark from order_send_info WHERE 1=1
+      <if test="mId != null" >
+       and m_id = #{mId,jdbcType=INTEGER}
+      </if>
+     
+  </select>
+  
+  
+  
+  <!-- ************************* scj ***************-->
+  <select id="selectBySidAndStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_send_info
+    where s_id = #{0}
+    <if test="status != null and status !=''" >
+       and d_state = #{status,jdbcType=INTEGER}
+    </if>
+    order by oc_time desc
+  </select>
+  
+  <select id="countBySid" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from order_send_info
+    where s_id = #{sId,jdbcType=INTEGER} AND MONTH(oc_time) = MONTH(CURDATE()) AND WEEK(oc_time,1) = WEEK(CURDATE())
+  </select>
+  
+  <select id="selectAllByOrderShopId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo">
+      select a.* 
+      from order_send_info a LEFT JOIN order_shop b ON a.order_shop_id = b.id 
+         where a.order_shop_id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+      and b.shop_order_no like CONCAT(CONCAT('%', #{1}), '%')
+      <if test="dState != null and dState !=''" >
+      	and a.d_state = #{dState,jdbcType=INTEGER}
+      </if>
+   </select>
+  
+  <select id="countByTimeSidAndLevel" resultType="java.lang.Integer" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select count(*)
+    from order_send_info
+    where s_id = #{0} and month(oc_time) = month(#{1}) and year(oc_time) = year(#{1})
+    <choose>
+    	<when test="fz==1">
+    		and s_service_level = 5
+    	</when>
+    	<when test="fz==2">
+    		<![CDATA[ and s_service_level >=]]>3
+            <![CDATA[ and s_service_level <=]]>4
+    	</when>
+    	<when test="fz==3">
+    		<![CDATA[ and s_service_level >=]]>1
+            <![CDATA[ and s_service_level <=]]>2
+    	</when>
+    </choose>
+  </select>
+  
+  <select id="selectByTimeSidAndLevel" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select
+    <include refid="Base_Column_List" />
+    from order_send_info
+    where s_id = #{0} and month(oc_time) = month(#{1}) and year(oc_time) = year(#{1})
+    <choose>
+    	<when test="fz==1">
+    		and s_service_level = 5
+    	</when>
+    	<when test="fz==2">
+    		<![CDATA[ and s_service_level >=]]>3
+            <![CDATA[ and s_service_level <=]]>4
+    	</when>
+    	<when test="fz==3">
+    		<![CDATA[ and s_service_level >=]]>1
+            <![CDATA[ and s_service_level <=]]>2
+    	</when>
+    </choose>
+  </select>
+  
+  <!--zlk-->
+  <select id="selectByjdOrderId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_send_info
+    where jd_order_id = #{jdOrderId,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByjdOrderId" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    update order_send_info
+    <set >
+      <if test="orderShopId != null" >
+        order_shop_id = #{orderShopId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null" >
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="dState != null" >
+        d_state = #{dState,jdbcType=INTEGER},
+      </if>
+      <if test="ocTime != null" >
+        oc_time = #{ocTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speedLevel != null" >
+        speed_level = #{speedLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sServiceLevel != null" >
+        s_service_level = #{sServiceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="packLevel != null" >
+        pack_level = #{packLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+       <if test="tool != null" >
+        tool = #{tool,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where jd_order_id = #{jdOrderId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- zlk -->
+  <select id="selectByOrderShopId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_send_info
+    where order_shop_id = #{orderShopId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getSendInfoByShopId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select a.*  from  order_send_info a LEFT JOIN order_shop b ON a.order_shop_id = b.id 
+    where b.shop_id=#{shopId} and b.status=7
+  </select>
+   <select id="getSendInfo" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderSendInfo" >
+    select a.*  from  order_send_info a 
+    where 1=1 
+    <if test="orderShopId != null" >
+       and a.order_shop_id = #{orderShopId,jdbcType=INTEGER}
+     </if>
+      <if test="mId != null" >
+        and a.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+  
+</mapper>

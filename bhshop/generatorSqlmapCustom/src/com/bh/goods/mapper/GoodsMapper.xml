@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="shop_cat_id" property="shopCatId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="sell_price" property="sellPrice" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="INTEGER" />
+    <result column="up_time" property="upTime" jdbcType="INTEGER" />
+    <result column="down_time" property="downTime" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="edittime" property="edittime" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="store_nums" property="storeNums" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="favorite" property="favorite" jdbcType="INTEGER" />
+    <result column="sortnum" property="sortnum" jdbcType="SMALLINT" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="sale" property="sale" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="is_flag" property="isFlag" jdbcType="BIT" />
+    <result column="is_shop_flag" property="isShopFlag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, model_id, cat_id, shop_cat_id, brand_id, sell_price, market_price, up_time, 
+    down_time, addtime, edittime, image, store_nums, unit, status, visit, favorite, sortnum, 
+    comments, sale, shop_id, is_hot, is_new, is_flag, is_shop_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.Goods" >
+    insert into goods (id, name, model_id, 
+      cat_id, shop_cat_id, brand_id, 
+      sell_price, market_price, up_time, 
+      down_time, addtime, edittime, 
+      image, store_nums, unit, 
+      status, visit, favorite, 
+      sortnum, comments, sale, 
+      shop_id, is_hot, is_new, is_flag, 
+      is_shop_flag)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{modelId,jdbcType=INTEGER}, 
+      #{catId,jdbcType=INTEGER}, #{shopCatId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, 
+      #{sellPrice,jdbcType=INTEGER}, #{marketPrice,jdbcType=INTEGER}, #{upTime,jdbcType=INTEGER}, 
+      #{downTime,jdbcType=INTEGER}, #{addtime,jdbcType=INTEGER}, #{edittime,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{storeNums,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{visit,jdbcType=INTEGER}, #{favorite,jdbcType=INTEGER}, 
+      #{sortnum,jdbcType=SMALLINT}, #{comments,jdbcType=INTEGER}, #{sale,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{isHot,jdbcType=BIT}, #{isNew,jdbcType=BIT}, #{isFlag,jdbcType=BIT}, 
+      #{isShopFlag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="upTime != null" >
+        up_time,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="storeNums != null" >
+        store_nums,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="favorite != null" >
+        favorite,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isFlag != null" >
+        is_flag,
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="shopCatId != null" >
+        #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=INTEGER},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        #{isShopFlag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.Goods" >
+    update goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=INTEGER},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.Goods" >
+    update goods
+    set name = #{name,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=INTEGER},
+      shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      sell_price = #{sellPrice,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      up_time = #{upTime,jdbcType=INTEGER},
+      down_time = #{downTime,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=INTEGER},
+      edittime = #{edittime,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      visit = #{visit,jdbcType=INTEGER},
+      favorite = #{favorite,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_hot = #{isHot,jdbcType=BIT},
+      is_new = #{isNew,jdbcType=BIT},
+      is_flag = #{isFlag,jdbcType=BIT},
+      is_shop_flag = #{isShopFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

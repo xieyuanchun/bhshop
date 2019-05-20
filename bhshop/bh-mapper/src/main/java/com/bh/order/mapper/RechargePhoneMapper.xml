@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.RechargePhoneMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.RechargePhone" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="paytime" property="paytime" jdbcType="TIMESTAMP" />
+    <result column="paytime" property="paytime" jdbcType="TIMESTAMP" />
+    <result column="paystatus" property="paystatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, addtime, paytime,paystatus, status, amount, order_no, phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge_phone
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recharge_phone
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.RechargePhone" >
+    insert into recharge_phone (id, mid, addtime, 
+      paytime, status, amount, 
+      order_no, phone)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{paytime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
+      #{orderNo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.RechargePhone"  useGeneratedKeys="true" keyProperty="id">
+    insert into recharge_phone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="paytime != null" >
+        paytime,
+      </if>
+      <if test="paystatus != null" >
+        paystatus,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paystatus != null" >
+        #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.RechargePhone" >
+    update recharge_phone
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null" >
+        paytime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paystatus != null" >
+        paystatus = #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.RechargePhone" >
+    update recharge_phone
+    set mid = #{mid,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      paytime = #{paytime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.RechargePhone" >
+    select 
+     id, mid, addtime, paytime, paystatus, status, amount, order_no, phone
+    from recharge_phone where 1=1
+    <if test="phone != null and phone!='' " >
+       and  phone = #{phone,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  
+  
+  <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.RechargePhone" >
+    select 
+     id, mid, addtime, paytime, paystatus, status, amount, order_no, phone
+    from recharge_phone where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getOrderDetails" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.RechargePhone" >
+    select 
+     id, mid, addtime, paytime, paystatus, status, amount, order_no, phone
+    from recharge_phone where paystatus = 0 and status =1
+  </select>
+</mapper>

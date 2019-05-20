@@ -1,0 +1,18 @@
+spring:
+    datasource:
+        url: jdbc:mysql://47.106.109.81:44417/ylc_admin_pro?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username: bhsdbuser
+        password: 654321
+        #连接池的配置信息
+        initialSize: 10
+        minIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20

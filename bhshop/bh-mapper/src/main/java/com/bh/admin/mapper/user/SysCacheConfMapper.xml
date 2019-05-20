@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.SysCacheConfMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.SysCacheConf" >
+    <id column="cache_conf_id" property="cacheConfId" jdbcType="INTEGER" />
+    <result column="config_key" property="configKey" jdbcType="VARCHAR" />
+    <result column="config_group" property="configGroup" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.user.SysCacheConf" extends="BaseResultMap" >
+    <result column="config_val" property="configVal" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cache_conf_id, config_key, config_group, add_time, edit_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    config_val
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select * from `bhs_admin_pro`.`sys_cache_conf`
+    where cache_conf_id = #{cacheConfId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `bhs_admin_pro`.`sys_cache_conf`
+    where cache_conf_id = #{cacheConfId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    insert into `bhs_admin_pro`.`sys_cache_conf` (cache_conf_id, config_key, config_group, 
+      add_time, edit_time, config_val
+      )
+    values (#{cacheConfId,jdbcType=INTEGER}, #{configKey,jdbcType=VARCHAR}, #{configGroup,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{configVal,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    insert into `bhs_admin_pro`.`sys_cache_conf`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cacheConfId != null" >
+        cache_conf_id,
+      </if>
+      <if test="configKey != null" >
+        config_key,
+      </if>
+      <if test="configGroup != null" >
+        config_group,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="configVal != null" >
+        config_val,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cacheConfId != null" >
+        #{cacheConfId,jdbcType=INTEGER},
+      </if>
+      <if test="configKey != null" >
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configGroup != null" >
+        #{configGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configVal != null" >
+        #{configVal,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    update `bhs_admin_pro`.`sys_cache_conf`
+    <set >
+      <if test="configKey != null" >
+        config_key = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configGroup != null" >
+        config_group = #{configGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configVal != null" >
+        config_val = #{configVal,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cache_conf_id = #{cacheConfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    update `bhs_admin_pro`.`sys_cache_conf`
+    set config_key = #{configKey,jdbcType=VARCHAR},
+      config_group = #{configGroup,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      config_val = #{configVal,jdbcType=LONGVARCHAR}
+    where cache_conf_id = #{cacheConfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    update `bhs_admin_pro`.`sys_cache_conf`
+    set config_key = #{configKey,jdbcType=VARCHAR},
+      config_group = #{configGroup,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where cache_conf_id = #{cacheConfId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <!-- 列表管理 -->
+  <select id="listPage" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    select * from `bhs_admin_pro`.`sys_cache_conf`
+    where 1=1
+    <if test="cacheConfId != null and cacheConfId != ''">
+    	and cache_conf_id = #{cacheConfId}
+    </if>
+    <if test="configKey != null and configKey != ''">
+    	and config_key like CONCAT('%', #{configKey}, '%')
+    </if>
+    <if test="configGroup != null and configGroup !=''">
+    	and config_group like CONCAT('%', #{configGroup}, '%')
+    </if>
+    order by edit_time desc
+  </select>
+  
+  <!-- 根据组名获取数据 -->
+  <select id="getByConfigGroup" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    select * from `bhs_admin_pro`.`sys_cache_conf`
+    where config_group = #{configGroup,jdbcType=VARCHAR}
+    order by edit_time desc
+  </select>
+  
+  <!-- 根据key获取数据 -->
+  <select id="getByConfigKey" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.user.SysCacheConf" >
+    select * from `bhs_admin_pro`.`sys_cache_conf`
+    where config_key = #{configKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

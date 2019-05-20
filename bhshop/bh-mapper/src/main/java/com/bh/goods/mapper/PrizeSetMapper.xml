@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.PrizeSetMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.PrizeSet" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="prize_rate" property="prizeRate" jdbcType="INTEGER" />
+    <result column="prize_num" property="prizeNum" jdbcType="INTEGER" />
+    <result column="prize_amount" property="prizeAmount" jdbcType="INTEGER" />
+    <result column="min_amount_rate" property="minAmountRate" jdbcType="INTEGER" />
+    <result column="max_amount_rate" property="maxAmountRate" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.goods.pojo.PrizeSet" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, start_time, end_time, prize_rate, prize_num, prize_amount, min_amount_rate, 
+    max_amount_rate, is_default, surplus_num
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from prize_set
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from prize_set
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.PrizeSet" >
+    insert into prize_set (id, name, type, start_time, 
+      end_time, prize_rate, prize_num, 
+      prize_amount, min_amount_rate, max_amount_rate, 
+      remark, is_default, surplus_num)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{prizeRate,jdbcType=INTEGER}, #{prizeNum,jdbcType=INTEGER}, 
+      #{prizeAmount,jdbcType=INTEGER}, #{minAmountRate,jdbcType=INTEGER}, #{maxAmountRate,jdbcType=INTEGER}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{isDefault,jdbcType=INTEGER}, #{surplusNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.PrizeSet" >
+    insert into prize_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="prizeRate != null" >
+        prize_rate,
+      </if>
+      <if test="prizeNum != null" >
+        prize_num,
+      </if>
+      <if test="prizeAmount != null" >
+        prize_amount,
+      </if>
+      <if test="minAmountRate != null" >
+        min_amount_rate,
+      </if>
+      <if test="maxAmountRate != null" >
+        max_amount_rate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="surplusNum != null" >
+        surplus_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prizeRate != null" >
+        #{prizeRate,jdbcType=INTEGER},
+      </if>
+      <if test="prizeNum != null" >
+        #{prizeNum,jdbcType=INTEGER},
+      </if>
+      <if test="prizeAmount != null" >
+        #{prizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="minAmountRate != null" >
+        #{minAmountRate,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmountRate != null" >
+        #{maxAmountRate,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="surplusNum != null" >
+        #{surplusNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.PrizeSet" >
+    update prize_set
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prizeRate != null" >
+        prize_rate = #{prizeRate,jdbcType=INTEGER},
+      </if>
+      <if test="prizeNum != null" >
+        prize_num = #{prizeNum,jdbcType=INTEGER},
+      </if>
+      <if test="prizeAmount != null" >
+        prize_amount = #{prizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="minAmountRate != null" >
+        min_amount_rate = #{minAmountRate,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmountRate != null" >
+        max_amount_rate = #{maxAmountRate,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="surplusNum != null" >
+        surplus_num = #{surplusNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.goods.pojo.PrizeSet" >
+    update prize_set
+    set name = #{name,jdbcType=VARCHAR},
+   	  type = #{type,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      prize_rate = #{prizeRate,jdbcType=INTEGER},
+      prize_num = #{prizeNum,jdbcType=INTEGER},
+      prize_amount = #{prizeAmount,jdbcType=INTEGER},
+      min_amount_rate = #{minAmountRate,jdbcType=INTEGER},
+      max_amount_rate = #{maxAmountRate,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      is_default = #{isDefault,jdbcType=INTEGER},
+      surplus_num = #{surplusNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.PrizeSet" >
+    update prize_set
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      prize_rate = #{prizeRate,jdbcType=INTEGER},
+      prize_num = #{prizeNum,jdbcType=INTEGER},
+      prize_amount = #{prizeAmount,jdbcType=INTEGER},
+      min_amount_rate = #{minAmountRate,jdbcType=INTEGER},
+      max_amount_rate = #{maxAmountRate,jdbcType=INTEGER},
+      is_default = #{isDefault,jdbcType=INTEGER},
+      surplus_num = #{surplusNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="listPage" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.PrizeSet" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from prize_set
+    order by id asc
+  </select>
+  
+  <!-- zlk 中奖设置 和商品列表 -->
+  <select id="getGoodAndPrize" resultMap="ResultMapWithBLOBs" parameterType="com.bh.goods.pojo.PrizeSet" >
+    select  * from  prize_rela  r   left join   prize_set  s  on s.id = r.prize_id  left join  goods  g  on  r.goods_id=g.id
+    order by s.id asc
+  </select>
+  <!-- end -->
+  
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from prize_set
+  </select>
+  
+  <select id="selectByIsDefault" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from prize_set
+    where is_default = 1
+  </select>
+</mapper>

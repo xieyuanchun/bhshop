@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemberUserAccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemberUserAccountLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="amount_log" property="amountLog" jdbcType="BIGINT" />
+    <result column="event" property="event" jdbcType="TINYINT" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, amount, amount_log, event, addtime, admin_user, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_user_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_user_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemberUserAccountLog" >
+    insert into member_user_account_log (id, m_id, amount, 
+      amount_log, event, addtime, 
+      admin_user, note)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
+      #{amountLog,jdbcType=BIGINT}, #{event,jdbcType=TINYINT}, #{addtime,jdbcType=INTEGER}, 
+      #{adminUser,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemberUserAccountLog" >
+    insert into member_user_account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="amountLog != null" >
+        amount_log,
+      </if>
+      <if test="event != null" >
+        event,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="adminUser != null" >
+        admin_user,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="amountLog != null" >
+        #{amountLog,jdbcType=BIGINT},
+      </if>
+      <if test="event != null" >
+        #{event,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemberUserAccountLog" >
+    update member_user_account_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="amountLog != null" >
+        amount_log = #{amountLog,jdbcType=BIGINT},
+      </if>
+      <if test="event != null" >
+        event = #{event,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemberUserAccountLog" >
+    update member_user_account_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      amount_log = #{amountLog,jdbcType=BIGINT},
+      event = #{event,jdbcType=TINYINT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

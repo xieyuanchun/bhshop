@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.AspInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.AspInvite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="req_user_id" property="reqUserId" jdbcType="INTEGER" />
+    <result column="invited_user_id" property="invitedUserId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, req_user_id, invited_user_id, add_time, edit_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asp_invite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asp_invite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.AspInvite" >
+    insert into asp_invite (id, req_user_id, invited_user_id, 
+      add_time, edit_time)
+    values (#{id,jdbcType=INTEGER}, #{reqUserId,jdbcType=INTEGER}, #{invitedUserId,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.AspInvite" >
+    insert into asp_invite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="reqUserId != null" >
+        req_user_id,
+      </if>
+      <if test="invitedUserId != null" >
+        invited_user_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="reqUserId != null" >
+        #{reqUserId,jdbcType=INTEGER},
+      </if>
+      <if test="invitedUserId != null" >
+        #{invitedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.AspInvite" >
+    update asp_invite
+    <set >
+      <if test="reqUserId != null" >
+        req_user_id = #{reqUserId,jdbcType=INTEGER},
+      </if>
+      <if test="invitedUserId != null" >
+        invited_user_id = #{invitedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.AspInvite" >
+    update asp_invite
+    set req_user_id = #{reqUserId,jdbcType=INTEGER},
+      invited_user_id = #{invitedUserId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

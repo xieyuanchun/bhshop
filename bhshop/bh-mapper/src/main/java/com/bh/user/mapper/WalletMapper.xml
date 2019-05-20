@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.WalletMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.Wallet" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="withdraw_cash" property="withdrawCash" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, name, type, des, money, salt, pay_password, withdraw_cash
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wallet
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wallet
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.Wallet" >
+    insert into wallet (id, uid, name, 
+      type, des, money, salt, 
+      pay_password, withdraw_cash)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, #{salt,jdbcType=CHAR}, 
+      #{payPassword,jdbcType=CHAR}, #{withdrawCash,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.Wallet" >
+    insert into wallet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="withdrawCash != null" >
+        withdraw_cash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=CHAR},
+      </if>
+      <if test="withdrawCash != null" >
+        #{withdrawCash,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.Wallet" >
+    update wallet
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=CHAR},
+      </if>
+      <if test="withdrawCash != null" >
+        withdraw_cash = #{withdrawCash,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.Wallet" >
+    update wallet
+    set uid = #{uid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      salt = #{salt,jdbcType=CHAR},
+      pay_password = #{payPassword,jdbcType=CHAR},
+      withdraw_cash = #{withdrawCash,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.Wallet" >
+    select name,type,des,money,withdraw_cash from  wallet
+    where 1=1 
+<!--     <if test="id != null" >
+       and  id = #{id}
+    </if>
+    <if test="typeid != null" >
+       and  typeid = #{typeid}
+    </if>
+    <if test="posid != null" >
+       and  posid = #{posid}
+    </if>
+    <if test="applyTime != null" >
+       and  apply_stime <![CDATA[<=]]> #{applyTime}
+       and  apply_etime <![CDATA[>=]]> #{applyTime}
+    </if>
+    <if test="actTime != null" >
+        and  start_time <![CDATA[<=]]> #{actTime}
+        and  end_time <![CDATA[>=]]> #{actTime}
+    </if> -->
+    order by id desc
+  </select>
+  
+  
+  
+  
+   <select id="getWalletByUid" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.Wallet" >
+    select 
+    <include refid="Base_Column_List" /> 
+    from  wallet  where uid=#{uid}
+   </select>
+  
+  <update id="updateByUid" parameterType="com.bh.user.pojo.Wallet" >
+    update wallet
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=CHAR},
+      </if>
+      <if test="withdrawCash != null" >
+        withdraw_cash = #{withdrawCash,jdbcType=BIT},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+</mapper>

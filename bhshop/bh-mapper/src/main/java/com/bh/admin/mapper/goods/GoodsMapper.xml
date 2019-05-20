@@ -1,0 +1,2307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsMapper" >
+ <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="cat_name" property="catName" jdbcType="VARCHAR" />
+    <result column="shop_cat_id" property="shopCatId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="sell_price" property="sellPrice" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="INTEGER" />
+    <result column="up_time" property="upTime" jdbcType="TIMESTAMP" />
+    <result column="down_time" property="downTime" jdbcType="TIMESTAMP" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="edittime" property="edittime" jdbcType="TIMESTAMP" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="store_nums" property="storeNums" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="favorite" property="favorite" jdbcType="INTEGER" />
+    <result column="sortnum" property="sortnum" jdbcType="SMALLINT" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="sale" property="sale" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="is_hot_shop" property="isHotShop" jdbcType="INTEGER" />
+    <result column="is_new_shop" property="isNewShop" jdbcType="INTEGER" />
+    <result column="is_flag" property="isFlag" jdbcType="BIT" />
+    <result column="is_shop_flag" property="isShopFlag" jdbcType="BIT" />
+    <result column="delivery_price" property="deliveryPrice" jdbcType="INTEGER" />
+    <result column="refund_days" property="refundDays" jdbcType="INTEGER" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="publicimg" property="publicimg" jdbcType="VARCHAR" />
+    <result column="sale_type" property="saleType" jdbcType="INTEGER" />
+    <result column="team_num" property="teamNum" jdbcType="INTEGER" />
+    <result column="team_end_time" property="teamEndTime" jdbcType="INTEGER" />
+    <result column="is_create" property="isCreate" jdbcType="INTEGER" />
+    <result column="is_promote" property="isPromote" jdbcType="INTEGER" />
+    <result column="time_unit" property="timeUnit" jdbcType="INTEGER" />
+    <result column="team_price" property="teamPrice" jdbcType="INTEGER" />
+    <result column="auction_price" property="auctionPrice" jdbcType="INTEGER" />
+    <result column="is_jd" property="isJd" jdbcType="INTEGER" />
+    <result column="topic_type" property="topicType" jdbcType="INTEGER" />
+    <result column="tag_ids" property="tagIds" jdbcType="VARCHAR" />
+    <result column="shopSortnum" property="shopsortnum" jdbcType="SMALLINT" />
+    <result column="fixed_sale" property="fixedSale" jdbcType="INTEGER" />
+    <result column="is_popular" property="isPopular" jdbcType="INTEGER" />
+    <result column="cat_id_one" property="catIdOne" jdbcType="BIGINT" />
+    <result column="cat_id_two" property="catIdTwo" jdbcType="BIGINT" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="out_reason" property="outReason" jdbcType="VARCHAR" />
+    <result column="topic_goods_id" property="topicGoodsId" jdbcType="INTEGER" />
+    <result column="good_buy_limit" property="goodBuyLimit" jdbcType="INTEGER" />
+    <result column="visible" property="visible" jdbcType="INTEGER" />
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+    <result column="send_area" property="sendArea" jdbcType="VARCHAR" />
+    <result column="deductible_rate" property="deductibleRate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <resultMap id="sysTeamResult" type="com.bh.order.pojo.SysTeam" >
+    <id column="skuId" property="skuId" jdbcType="INTEGER" />
+    <result column="teamNum" property="teamNum" jdbcType="INTEGER" />
+    <result column="teamTime" property="teamTime" jdbcType="INTEGER" />
+    <result column="timeUnit" property="timeUnit" jdbcType="INTEGER" />
+    <result column="hasNum" property="hasNum" jdbcType="INTEGER" />
+    <result column="teamNo" property="teamNo" jdbcType="VARCHAR" />
+    <result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="createTeamTime" property="createTeamTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+  
+  
+  
+  <sql id="Base_Column_List" >
+     id, name, title, model_id, cat_id, cat_name, shop_cat_id, brand_id, sell_price, market_price, 
+    up_time, down_time, addtime, edittime, image, store_nums, unit, status, visit, favorite, 
+    sortnum, comments, sale, shop_id, is_hot, is_new, is_hot_shop, is_new_shop, is_flag, 
+    is_shop_flag, delivery_price, refund_days, reason, publicimg, sale_type, team_num, 
+    team_end_time, is_create, is_promote, time_unit, team_price, auction_price, is_jd, 
+    topic_type, tag_ids, shopSortnum, fixed_sale, is_popular, cat_id_one, cat_id_two, 
+    apply_time, out_reason, topic_goods_id, good_buy_limit, visible, tag_name, send_area, 
+    deductible_rate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.Goods" >
+    insert into goods (id, name, title, 
+      model_id, cat_id, cat_name, 
+      shop_cat_id, brand_id, sell_price, 
+      market_price, up_time, down_time, 
+      addtime, edittime, image, 
+      store_nums, unit, status, 
+      visit, favorite, sortnum, 
+      comments, sale, shop_id, 
+      is_hot, is_new, is_hot_shop, is_new_shop, 
+      is_flag, is_shop_flag, delivery_price, 
+      refund_days, reason, publicimg, 
+      sale_type, team_num, team_end_time, 
+      is_create, is_promote, time_unit, 
+      team_price, auction_price, is_jd, 
+      topic_type, tag_ids, shopSortnum, 
+      fixed_sale, is_popular, cat_id_one, 
+      cat_id_two, apply_time, out_reason, 
+      topic_goods_id, good_buy_limit, visible, 
+      tag_name, send_area, deductible_rate
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{modelId,jdbcType=INTEGER}, #{catId,jdbcType=BIGINT}, #{catName,jdbcType=VARCHAR}, 
+      #{shopCatId,jdbcType=INTEGER}, #{brandId,jdbcType=BIGINT}, #{sellPrice,jdbcType=INTEGER}, 
+      #{marketPrice,jdbcType=INTEGER}, #{upTime,jdbcType=TIMESTAMP}, #{downTime,jdbcType=TIMESTAMP}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR}, 
+      #{storeNums,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{visit,jdbcType=INTEGER}, #{favorite,jdbcType=INTEGER}, #{sortnum,jdbcType=SMALLINT}, 
+      #{comments,jdbcType=INTEGER}, #{sale,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{isHot,jdbcType=BIT}, #{isNew,jdbcType=BIT}, #{isHotShop,jdbcType=INTEGER}, #{isNewShop,jdbcType=INTEGER}, 
+      #{isFlag,jdbcType=BIT}, #{isShopFlag,jdbcType=BIT}, #{deliveryPrice,jdbcType=INTEGER}, 
+      #{refundDays,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, #{publicimg,jdbcType=VARCHAR}, 
+      #{saleType,jdbcType=INTEGER}, #{teamNum,jdbcType=INTEGER}, #{teamEndTime,jdbcType=INTEGER}, 
+      #{isCreate,jdbcType=INTEGER}, #{isPromote,jdbcType=INTEGER}, #{timeUnit,jdbcType=INTEGER}, 
+      #{teamPrice,jdbcType=INTEGER}, #{auctionPrice,jdbcType=INTEGER}, #{isJd,jdbcType=INTEGER}, 
+      #{topicType,jdbcType=INTEGER}, #{tagIds,jdbcType=VARCHAR}, #{shopsortnum,jdbcType=SMALLINT}, 
+      #{fixedSale,jdbcType=INTEGER}, #{isPopular,jdbcType=INTEGER}, #{catIdOne,jdbcType=BIGINT}, 
+      #{catIdTwo,jdbcType=BIGINT}, #{applyTime,jdbcType=TIMESTAMP}, #{outReason,jdbcType=VARCHAR}, 
+      #{topicGoodsId,jdbcType=INTEGER}, #{goodBuyLimit,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER}, 
+      #{tagName,jdbcType=VARCHAR}, #{sendArea,jdbcType=VARCHAR}, #{deductibleRate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.Goods" useGeneratedKeys="true" keyProperty="id">
+     insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="upTime != null" >
+        up_time,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="storeNums != null" >
+        store_nums,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="favorite != null" >
+        favorite,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isHotShop != null" >
+        is_hot_shop,
+      </if>
+      <if test="isNewShop != null" >
+        is_new_shop,
+      </if>
+      <if test="isFlag != null" >
+        is_flag,
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag,
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price,
+      </if>
+      <if test="refundDays != null" >
+        refund_days,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="publicimg != null" >
+        publicimg,
+      </if>
+      <if test="saleType != null" >
+        sale_type,
+      </if>
+      <if test="teamNum != null" >
+        team_num,
+      </if>
+      <if test="teamEndTime != null" >
+        team_end_time,
+      </if>
+      <if test="isCreate != null" >
+        is_create,
+      </if>
+      <if test="isPromote != null" >
+        is_promote,
+      </if>
+      <if test="timeUnit != null" >
+        time_unit,
+      </if>
+      <if test="teamPrice != null" >
+        team_price,
+      </if>
+      <if test="auctionPrice != null" >
+        auction_price,
+      </if>
+      <if test="isJd != null" >
+        is_jd,
+      </if>
+      <if test="topicType != null" >
+        topic_type,
+      </if>
+      <if test="tagIds != null" >
+        tag_ids,
+      </if>
+      <if test="shopsortnum != null" >
+        shopSortnum,
+      </if>
+      <if test="fixedSale != null" >
+        fixed_sale,
+      </if>
+      <if test="isPopular != null" >
+        is_popular,
+      </if>
+      <if test="catIdOne != null" >
+        cat_id_one,
+      </if>
+      <if test="catIdTwo != null" >
+        cat_id_two,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="outReason != null" >
+        out_reason,
+      </if>
+      <if test="topicGoodsId != null" >
+        topic_goods_id,
+      </if>
+      <if test="goodBuyLimit != null" >
+        good_buy_limit,
+      </if>
+      <if test="visible != null" >
+        visible,
+      </if>
+      <if test="tagName != null" >
+        tag_name,
+      </if>
+      <if test="sendArea != null" >
+        send_area,
+      </if>
+      <if test="deductibleRate != null" >
+        deductible_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatId != null" >
+        #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHotShop != null" >
+        #{isHotShop,jdbcType=INTEGER},
+      </if>
+      <if test="isNewShop != null" >
+        #{isNewShop,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        #{isShopFlag,jdbcType=BIT},
+      </if>
+      <if test="deliveryPrice != null" >
+        #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="refundDays != null" >
+        #{refundDays,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="publicimg != null" >
+        #{publicimg,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null" >
+        #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamEndTime != null" >
+        #{teamEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null" >
+        #{isCreate,jdbcType=INTEGER},
+      </if>
+      <if test="isPromote != null" >
+        #{isPromote,jdbcType=INTEGER},
+      </if>
+      <if test="timeUnit != null" >
+        #{timeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null" >
+        #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isJd != null" >
+        #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null" >
+        #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="tagIds != null" >
+        #{tagIds,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsortnum != null" >
+        #{shopsortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="fixedSale != null" >
+        #{fixedSale,jdbcType=INTEGER},
+      </if>
+      <if test="isPopular != null" >
+        #{isPopular,jdbcType=INTEGER},
+      </if>
+      <if test="catIdOne != null" >
+        #{catIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="catIdTwo != null" >
+        #{catIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outReason != null" >
+        #{outReason,jdbcType=VARCHAR},
+      </if>
+      <if test="topicGoodsId != null" >
+        #{topicGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBuyLimit != null" >
+        #{goodBuyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null" >
+        #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null" >
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendArea != null" >
+        #{sendArea,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleRate != null" >
+        #{deductibleRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.Goods" useGeneratedKeys="true" keyProperty="id">
+   update goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHotShop != null" >
+        is_hot_shop = #{isHotShop,jdbcType=INTEGER},
+      </if>
+      <if test="isNewShop != null" >
+        is_new_shop = #{isNewShop,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="refundDays != null" >
+        refund_days = #{refundDays,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="publicimg != null" >
+        publicimg = #{publicimg,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        sale_type = #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null" >
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamEndTime != null" >
+        team_end_time = #{teamEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null" >
+        is_create = #{isCreate,jdbcType=INTEGER},
+      </if>
+      <if test="isPromote != null" >
+        is_promote = #{isPromote,jdbcType=INTEGER},
+      </if>
+      <if test="timeUnit != null" >
+        time_unit = #{timeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null" >
+        auction_price = #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isJd != null" >
+        is_jd = #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null" >
+        topic_type = #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="tagIds != null" >
+        tag_ids = #{tagIds,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsortnum != null" >
+        shopSortnum = #{shopsortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="fixedSale != null" >
+        fixed_sale = #{fixedSale,jdbcType=INTEGER},
+      </if>
+      <if test="isPopular != null" >
+        is_popular = #{isPopular,jdbcType=INTEGER},
+      </if>
+      <if test="catIdOne != null" >
+        cat_id_one = #{catIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="catIdTwo != null" >
+        cat_id_two = #{catIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outReason != null" >
+        out_reason = #{outReason,jdbcType=VARCHAR},
+      </if>
+      <if test="topicGoodsId != null" >
+        topic_goods_id = #{topicGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodBuyLimit != null" >
+        good_buy_limit = #{goodBuyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null" >
+        visible = #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null" >
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendArea != null" >
+        send_area = #{sendArea,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleRate != null" >
+        deductible_rate = #{deductibleRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.Goods" >
+     update goods
+    set name = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=BIGINT},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      sell_price = #{sellPrice,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      up_time = #{upTime,jdbcType=TIMESTAMP},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      edittime = #{edittime,jdbcType=TIMESTAMP},
+      image = #{image,jdbcType=VARCHAR},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      visit = #{visit,jdbcType=INTEGER},
+      favorite = #{favorite,jdbcType=INTEGER},
+      sortnum = #{sortnum,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_hot = #{isHot,jdbcType=BIT},
+      is_new = #{isNew,jdbcType=BIT},
+      is_hot_shop = #{isHotShop,jdbcType=INTEGER},
+      is_new_shop = #{isNewShop,jdbcType=INTEGER},
+      is_flag = #{isFlag,jdbcType=BIT},
+      is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      refund_days = #{refundDays,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      publicimg = #{publicimg,jdbcType=VARCHAR},
+      sale_type = #{saleType,jdbcType=INTEGER},
+      team_num = #{teamNum,jdbcType=INTEGER},
+      team_end_time = #{teamEndTime,jdbcType=INTEGER},
+      is_create = #{isCreate,jdbcType=INTEGER},
+      is_promote = #{isPromote,jdbcType=INTEGER},
+      time_unit = #{timeUnit,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      auction_price = #{auctionPrice,jdbcType=INTEGER},
+      is_jd = #{isJd,jdbcType=INTEGER},
+      topic_type = #{topicType,jdbcType=INTEGER},
+      tag_ids = #{tagIds,jdbcType=VARCHAR},
+      shopSortnum = #{shopsortnum,jdbcType=SMALLINT},
+      fixed_sale = #{fixedSale,jdbcType=INTEGER},
+      is_popular = #{isPopular,jdbcType=INTEGER},
+      cat_id_one = #{catIdOne,jdbcType=BIGINT},
+      cat_id_two = #{catIdTwo,jdbcType=BIGINT},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      out_reason = #{outReason,jdbcType=VARCHAR},
+      topic_goods_id = #{topicGoodsId,jdbcType=INTEGER},
+      good_buy_limit = #{goodBuyLimit,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER},
+      tag_name = #{tagName,jdbcType=VARCHAR},
+      send_area = #{sendArea,jdbcType=VARCHAR},
+      deductible_rate = #{deductibleRate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <insert id="insertTest" parameterType="com.bh.admin.pojo.goods.Goods" >
+    insert into goods (name, 
+      sell_price, market_price)
+    values (#{name,jdbcType=VARCHAR}, 
+      #{sellPrice,jdbcType=INTEGER}, #{marketPrice,jdbcType=INTEGER})
+  </insert>
+  
+  <select id="countAll" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select count(*) from goods where shop_id = #{0} and name like CONCAT(CONCAT('%', #{1}), '%')
+    <if test="catId != null" >
+    	and cat_id = #{catId,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+   <select id="selectShopGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    a.*
+    from goods a left join goods_sku b on a.id=b.goods_id left join goods_category c on a.cat_id=c.id 
+    where 1=1
+    and a.name like CONCAT(CONCAT('%', #{1}), '%')
+    <if test="shopId != '0'.toString()" >
+    	and a.shop_id = #{shopId}
+    </if>
+    <if test="catId != null and catId != ''" >
+    	and a.cat_id = #{catId,jdbcType=BIGINT}
+    </if>
+    <if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id != ''" >
+    	and a.id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT(CONCAT('%', #{skuNo}), '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="status != null and status != ''" >
+    	and a.status = #{status,jdbcType=INTEGER}
+    </if>
+     <if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+    <if test="isJd != null and isJd != ''" >
+       and a.is_jd=#{isJd,jdbcType=INTEGER}
+    </if>  
+    <if test="isHotShop != null and isHotShop != ''" >
+       and a.is_hot_shop=#{isHotShop,jdbcType=INTEGER}
+    </if>  
+     <if test="isNewShop != null and isNewShop != ''" >
+       and a.is_new_shop=#{isNewShop,jdbcType=INTEGER}
+    </if>
+    
+    GROUP BY a.id
+    order by a.shopSortnum,a.edittime desc
+  </select>
+  
+  <select id="goodsAll" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+      select a.* from goods a where status not in(1,2) and visible=0 and sortnum!=30000 order by sortnum
+  </select>
+  
+  
+   <select id="backgroundGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    a.*
+    from goods a left join goods_sku b on a.id=b.goods_id left join goods_category c on a.cat_id=c.id
+    where 1=1
+    and a.name like CONCAT(CONCAT('%', #{0}), '%')
+	<if test="actZoneId != null and actZoneId != ''" >
+      and  ((SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE az.name in (select a.name from act_zone a where a.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%')))
+    	              AND az.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%'))
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id) 
+      or  (SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE  (az.name like CONCAT('%', #{actZoneId}, '%')) 
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id))
+    </if>
+	<if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id != ''" >
+    	and a.id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT(CONCAT('%', #{skuNo}), '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="shopId != null and shopId != ''" >
+    	and a.shop_id = #{shopId}
+    </if>
+	<if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+	<if test="status != null and status != ''">
+		and a.status = #{status,jdbcType=INTEGER}
+	</if>
+	<if test="isHot!=null and isHot!=''">
+		and a.is_hot = #{isHot,jdbcType=BIT}
+	</if>
+	<if test="isNew!=null and isNew!=''">
+		and a.is_new = #{isNew,jdbcType=BIT}
+	</if>
+	<if test="isFlag!=null and isFlag!=''">
+		and a.is_flag = #{isFlag,jdbcType=BIT}
+	</if>
+	<if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="tagName != null and tagName != ''" >
+    	and a.tag_name like CONCAT(CONCAT('%', #{tagName}), '%')
+    </if>
+    GROUP BY  a.id
+    order by a.sortnum 
+   <!--  <choose>
+        5为已上架的商品：  已上架商品列表 首先按排序号排序 xieyc
+        <when test="status !=null and status == 5">
+            order by a.sortnum, a.apply_time desc
+        </when>
+        <otherwise>
+            order by a.apply_time desc
+        </otherwise>
+    </choose>   --> 
+  </select>
+  
+  <select id="clientCountByCategory" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select count(*) from (select distinct a.* from goods a left join goods_sku b on a.id = b.goods_id where a.id in
+    (select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+            	#{id}
+        	</foreach>
+		)
+		and a.status = #{1}
+		<![CDATA[ and b.sell_price >=]]>#{2}
+   		<![CDATA[ and b.sell_price <=]]>#{3} 
+   		<if test="brandId != null" >
+	    	and a.brand_id = #{brandId,jdbcType=BIGINT}
+	    </if>
+	    ) as new_table
+  </select>
+  
+  <select id="clientCategoryGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select distinct a.* from goods a left join goods_sku b on a.id = b.goods_id
+    where a.id in   
+    (select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+            	#{id}
+        	</foreach>
+		)
+		and a.status = #{1} and a.topic_type=0
+		<![CDATA[ and b.sell_price >=]]>#{4}
+   		<![CDATA[ and b.sell_price <=]]>#{5} 
+   		<if test="brandId != null and brandId !=''" >
+	    	and a.brand_id = #{brandId,jdbcType=BIGINT}
+	    </if>
+		<choose>
+			<when test="fz==1">
+				order by a.sale desc
+			</when>
+			<when test="fz==2">
+				order by b.sell_price asc
+			</when>
+			<when test="fz==3">
+				order by a.up_time desc
+			</when>
+			<otherwise>
+				order by a.sortnum asc
+			</otherwise>
+		</choose>
+		limit #{2}, #{3}
+  </select>
+  
+  <select id="clientCountAll" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select count(*)
+    from goods
+    where name like CONCAT(CONCAT('%', #{0}), '%') and status = #{1}
+    <![CDATA[ and sell_price >=]]>#{2}
+    <![CDATA[ and sell_price <=]]>#{3}
+    <if test="brandId != null" >
+    	and brand_id = #{brandId,jdbcType=BIGINT}
+    </if> 
+  </select>
+  
+   <select id="clientGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select distinct a.*
+    from goods a left join goods_sku b on a.id = b.goods_id
+    where a.name like CONCAT(CONCAT('%', #{0}), '%') and a.status = #{1}
+    <![CDATA[ and b.sell_price >=]]>#{2}
+    <![CDATA[ and b.sell_price <=]]>#{3}
+    <if test="brandId != null" >
+    	and a.brand_id = #{brandId,jdbcType=BIGINT}
+    </if>
+    <choose>
+		<when test="fz==1">
+			order by a.sale desc
+		</when>
+		<when test="fz==2">
+			order by b.sell_price asc
+		</when>
+		<when test="fz==3">
+			order by a.up_time desc
+		</when>
+		<otherwise>
+			order by a.sortnum asc
+		</otherwise>
+	</choose>
+  </select>
+  
+ <!--  <select id="clientGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods 
+    where id in (select id from goods where name like CONCAT(CONCAT('%', #{0}), '%') and status = #{1} 
+    <![CDATA[ and sell_price >=]]>#{4}
+    <![CDATA[ and sell_price <=]]>#{5}
+    <if test="brandId != null" >
+    	and brand_id = #{brandId,jdbcType=INTEGER}
+    </if>
+    )
+    <choose>
+		<when test="fz==1">
+			order by sale desc
+		</when>
+		<when test="fz==2">
+			order by sell_price asc
+		</when>
+		<when test="fz==3">
+			order by up_time desc
+		</when>
+		<otherwise>
+			order by sortnum desc
+		</otherwise>
+	</choose>
+    limit #{2}, #{3} 
+  </select> -->
+  
+  
+  <insert id="insertToMap" parameterType="java.util.Map" >
+    insert into goods (id, name, title, model_id, 
+      cat_id, shop_cat_id, brand_id, 
+      sell_price, market_price, up_time, 
+      down_time, addtime, edittime, 
+      image, store_nums, unit, 
+      status, visit, favorite, 
+      sortnum, comments, sale, 
+      shop_id, is_hot, is_new, is_flag, 
+      is_shop_flag, delivery_price)
+    values ${insertToMap}
+  </insert>
+  
+   <delete id="batchDelete" parameterType="java.util.List">
+      update goods set status = '1', is_jd = '0'
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </delete>
+   
+   
+   <select id="selectTopSix" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	   select 
+	   <include refid="Base_Column_List" />
+	   from goods where cat_id = #{catId,jdbcType=BIGINT} and status = 5 and is_flag=1 order by sortnum desc limit 6
+  </select>
+  
+  <select id="selectHostTopThree" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	   select id,
+	   name
+	   from goods where cat_id = #{catId,jdbcType=BIGINT} and status = 5 and is_hot = 1 order by sale desc limit 3
+  </select>
+  
+   <select id="apiGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select id, name, sell_price, market_price, image, team_price, fixed_sale, topic_type, topic_goods_id
+	from goods where status = 5
+	<if test="name != null">
+		and name like CONCAT(CONCAT('%', #{name}), '%')
+	</if>
+	<if test="isNewShop!=null and isNewShop!=''">
+		and is_new_shop = #{isNewShop,jdbcType=INTEGER}
+	</if>
+	<if test="isHot != null" >
+        and is_hot = #{isHot,jdbcType=BIT}
+     </if>
+     <if test="isNew != null" >
+        and is_new = #{isNew,jdbcType=BIT}
+     </if>
+	order by sortnum asc
+  </select>
+  
+  <select id="apiCateList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select id, name, cat_id, sell_price, market_price, image, team_price
+	from goods where status = 5
+	and cat_id in
+	<foreach item="id" collection="list" open="(" close=")" separator=",">
+       	#{id}
+   	</foreach>
+	order by sortnum asc
+  </select>
+  
+  <select id="countApiCategoryGoodsList" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*) from (
+    	select distinct * from goods 
+	    where id in (
+		    select id from goods where cat_id in
+		  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+		           	#{id}
+		       	</foreach>
+			)
+		and status = #{1}
+	)as new_table
+  </select>
+ 
+   <select id="apiCategoryGoodsList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select 
+    <include refid="Base_Column_List" />
+    from goods 
+    where id in (
+	    select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+	           	#{id}
+	       	</foreach>
+		)
+	and status = #{1} order by sortnum asc
+	limit #{2}, #{3}
+  </select>
+  
+   <select id="apiHotGoods" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+	from goods where is_hot=1 and is_flag=1 and status = 5
+	order by sortnum desc limit 2
+  </select>
+  
+  <select id="apiCategoryGoodsHot" resultMap="BaseResultMap" parameterType="java.util.List">
+    select 
+    <include refid="Base_Column_List" />
+    from goods where id in(
+	select id from goods where cat_id in
+  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+           	#{id}
+       	</foreach>
+	)
+	and is_hot=1 and status = 5
+	order by sortnum desc
+  </select>
+   
+   <select id="selectIdByTopSix" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select 
+    <include refid="Base_Column_List" />
+    from goods 
+    where id in (
+	    select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+	           	#{id}
+	       	</foreach>
+	) and status = 5 and is_flag=1 order by sortnum desc
+   </select>
+   
+   <select id="selectNextAll" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select 
+    <include refid="Base_Column_List" />
+    from goods 
+    where id in (
+	    select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+	           	#{id}
+	       	</foreach>
+	) and status = 5 order by sortnum desc
+   </select>
+   
+   <select id="selectIdByTopSale" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select 
+    <include refid="Base_Column_List" />
+    from goods 
+    where id in (
+	    select id from goods where cat_id in
+	  	    <foreach item="id" collection="list" open="(" close=")" separator=",">
+	           	#{id}
+	       	</foreach>
+	) 
+    and status = 5 and is_flag=0 order by sortnum desc
+   </select>
+   
+   <select id="countByTopSix" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	select count(*) from goods where cat_id in(
+	    select id
+	    from goods_category 
+	    where series=3 and reid in(
+		select id from goods_category where series=2 and reid in(
+		select id from goods_category where series=1 and id = #{catId,jdbcType=BIGINT}
+		 )
+		)
+	)
+   </select>
+   
+   <select id="selectSeriesTwo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select * from goods where cat_id in(
+	    select id
+	    from goods_category 
+	    where series=3 and reid in(
+		select id from goods_category where series=2 and id = #{catId,jdbcType=BIGINT}
+		)
+	)
+   </select>
+   
+    <select id="countSeriesTwo" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	select count(*) from goods where cat_id in(
+	    select id
+	    from goods_category 
+	    where series=3 and reid in(
+		select id from goods_category where series=2 and id = #{catId,jdbcType=BIGINT}
+		)
+	)
+   </select>
+   
+   <select id="getListByVisit" resultMap="BaseResultMap">
+	   select 
+	   <include refid="Base_Column_List" />
+	   from goods where status = 5 order by visit desc
+  </select>
+  
+  <select id="batchSelect" resultMap="BaseResultMap" parameterType="java.util.List">
+      select
+      <include refid="Base_Column_List" />
+      from goods
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </select>
+   
+   <select id="getListByShopId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where name like CONCAT(CONCAT('%', #{1}), '%')
+    <if test="shopId!='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    order by sale desc
+  </select>
+  
+   <select id="counTgetByShopId" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select count(*)
+    from goods
+    where shop_id = #{0} and name like CONCAT(CONCAT('%', #{1}), '%')
+  </select>
+  
+  <select id="getListByShopCatId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where shop_cat_id = #{0} order by sale desc
+  </select>
+  
+  <select id="getByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from goods
+    where shop_id = #{0} order by sale desc
+  </select>
+  
+  <select id="getAllByShopId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where status = 5
+    <if test="shopId !='0'.toString()">
+     and shop_id = #{shopId}
+    </if>
+    <if test="isHotShop !=null">
+     and is_hot_shop = #{isHotShop,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  
+  <!-- zlk移动端 商家 已上架、已下架 商品 -->
+  <select id="getByShopIdAndStatus" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    *
+    from goods
+    where shop_id = #{shopId,jdbcType=INTEGER}
+    <if test="status != null ">
+		and status = #{status,jdbcType=INTEGER}
+	</if>
+	order by addtime desc 
+  </select>
+  <!-- end -->
+
+  
+  
+  <select id="countByShopId" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select count(*) 
+    from goods
+    where shop_id = #{shopId,jdbcType=INTEGER}
+    <if test="status != null and status==5">
+		and status =5
+	</if>
+	 <if test="status != null and status==2">
+		and status not in(1,5)
+	</if>
+  </select>
+  
+  <select id="getShopFixedSale" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select sum(fixed_sale) 
+    from goods
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByBrandId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    where brand_id = #{brandId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByTagId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    where tag_ids like CONCAT(CONCAT('%,', #{tagIds}), ',%') 
+    or tag_ids like #{tagIds}
+    or tag_ids like CONCAT('%,', #{tagIds}) 
+    or tag_ids like CONCAT(#{tagIds}, ',%')
+  </select>
+  
+  
+  <!-- 用于营销活动 查询商品列表     modify (xieyc) -->
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select g.* from goods g ,goods_sku gsku
+    where g.id=gsku.goods_id 
+    and gsku.store_nums>0
+    and g.status = 5
+    <!-- 已经参加过该活动的商品不显示 -->
+    and g.id not in ( select goods_id from topic_goods where act_id =#{actId} and is_delete = 0)
+    <if test="name != null and name != ''">
+    	and g.name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+    <if test="catId != null">
+    	and g.cat_id = #{catId}
+    </if>
+   <if test="topicType != null" >
+       and g.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    GROUP BY g.id
+    order by g.addtime desc
+  </select>
+  
+  
+  
+  
+  <!-- cheng2017-9-18添加根据ids查询商品的列表 -->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select 
+	   <include refid="Base_Column_List" />
+	from goods
+ 	 where 1=1 and `status` =5 and id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+  </select>
+  <select id="selectGoodsDeliByIds" resultType="java.lang.Integer" parameterType="java.util.List">
+  	select SUM(delivery_price) from goods 
+ 	 where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+  </select>
+   <select id="selectGoodsByShopId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  	select 
+	   <include refid="Base_Column_List" />
+	   from goods 
+	   where 1=1
+      <if test="visit != null" >
+       and visit = #{visit,jdbcType=INTEGER}
+      </if>
+      <if test="comments != null" >
+       and comments = #{comments,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+        and shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="isHot != null" >
+       and is_hot = #{isHot,jdbcType=BIT}
+      </if>
+      <if test="isNew != null" >
+        and is_new = #{isNew,jdbcType=BIT}
+      </if>
+        <if test="isHotShop != null" >
+       and is_hot_shop = #{isHotShop,jdbcType=INTEGER}
+      </if>
+      <if test="isNewShop != null" >
+       and is_new_shop = #{isNewShop,jdbcType=INTEGER}
+      </if>
+      <if test="isFlag != null" >
+       and  is_flag = #{isFlag,jdbcType=BIT}
+      </if>
+      <if test="isShopFlag != null" >
+       and is_shop_flag = #{isShopFlag,jdbcType=BIT}
+      </if>
+       and `status` =5
+      order by shopSortnum desc
+  </select>
+     <select id="selectGoodsByShopId1" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  	select 
+	   <include refid="Base_Column_List" />
+	   from goods g
+	   where 1=1
+  		 <if test="name != null" >
+          and g.name like CONCAT(CONCAT('%', #{name}), '%')
+      </if>
+      <if test="title != null" >
+       and g.title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="modelId != null" >
+       and g.model_id = #{modelId,jdbcType=INTEGER}
+      </if>
+      <if test="catId != null" >
+       and g.cat_id = #{catId,jdbcType=BIGINT}
+      </if>
+      <if test="shopCatId != null" >
+       and g.shop_cat_id = #{shopCatId,jdbcType=INTEGER}
+      </if>
+      <if test="brandId != null" >
+       and g.brand_id = #{brandId,jdbcType=BIGINT}
+      </if>
+      <if test="sellPrice != null" >
+       and g.sell_price = #{sellPrice,jdbcType=INTEGER}
+      </if>
+      <if test="marketPrice != null" >
+       and g.market_price = #{marketPrice,jdbcType=INTEGER}
+      </if>
+      <if test="image != null" >
+       and g.image = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="storeNums != null" >
+        and g.store_nums = #{storeNums,jdbcType=INTEGER}
+      </if>
+      <if test="unit != null" >
+        and g.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+        and g.status = 5
+      <if test="visit != null" >
+        and g.visit = #{visit,jdbcType=INTEGER}
+      </if>
+      <if test="favorite != null" >
+        and g.favorite = #{favorite,jdbcType=INTEGER}
+      </if>
+      <if test="sortnum != null" >
+        and g.sortnum = #{sortnum,jdbcType=SMALLINT}
+      </if>
+      <if test="comments != null" >
+        and g.comments = #{comments,jdbcType=INTEGER}
+      </if>
+      <if test="sale != null" >
+        and g.sale = #{sale,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+        and g.shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="isHot != null" >
+        and g.is_hot = #{isHot,jdbcType=BIT}
+      </if>
+      <if test="isNew != null" >
+        and g.is_new = #{isNew,jdbcType=BIT}
+      </if>
+      <if test="isHotShop != null" >
+        and g.is_hot_shop = #{isHotShop,jdbcType=INTEGER}
+      </if>
+      <if test="isNewShop != null" >
+       and g.is_new_shop = #{isNewShop,jdbcType=INTEGER}
+      </if>
+      <if test="isFlag != null" >
+        and g.is_flag = #{isFlag,jdbcType=BIT}
+      </if>
+      <if test="isShopFlag != null" >
+        and g.is_shop_flag = #{isShopFlag,jdbcType=BIT}
+      </if>
+      <if test="deliveryPrice != null" >
+        and g.delivery_price = #{deliveryPrice,jdbcType=INTEGER}
+      </if>
+      <if test="refundDays != null" >
+        and g.refund_days = #{refundDays,jdbcType=INTEGER}
+      </if>
+      <if test="reason != null" >
+        and g.reason = #{reason,jdbcType=VARCHAR}
+      </if>
+      order by shopSortnum desc
+  </select>
+   <select id="selectGoodsByShopId2" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  	select 
+	   <include refid="Base_Column_List" />
+	   from goods 
+	   where 1=1
+      <if test="visit != null" >
+       and visit = #{visit,jdbcType=INTEGER}
+      </if>
+      <if test="comments != null" >
+       and comments = #{comments,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+        and shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="isHot != null" >
+       and is_hot = #{isHot,jdbcType=BIT}
+      </if>
+      <if test="isNew != null" >
+        and is_new = #{isNew,jdbcType=BIT}
+      </if>
+        <if test="isHotShop != null" >
+       and is_hot_shop = #{isHotShop,jdbcType=INTEGER}
+      </if>
+      <if test="isNewShop != null" >
+       and is_new_shop = #{isNewShop,jdbcType=INTEGER}
+      </if>
+      <if test="isFlag != null" >
+       and  is_flag = #{isFlag,jdbcType=BIT}
+      </if>
+      <if test="isShopFlag != null" >
+       and is_shop_flag = #{isShopFlag,jdbcType=BIT}
+      </if>
+       and `status` =5
+      order by sortnum desc
+  </select>
+  <select id="selectSimilarity" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  select 
+	   g.*
+	   from goods as g
+	   where 1=1
+	   and g.status=5
+      and g.cat_id = #{catId,jdbcType=BIGINT}
+      order by g.addtime desc
+  </select>
+  <select id="selectGoodsByShopId3" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select
+  	<include refid="Base_Column_List" />
+  	from goods where 1=1 and shop_id = #{shopId,jdbcType=INTEGER}  and `status` =5
+  	<if test="name != null" >
+     and name like CONCAT(CONCAT('%', #{name}), '%')
+     </if>
+  	<if test="cartIds != null" >
+  	 and shop_cat_id in 
+	<foreach item="cartIds" collection="cartIds" open="(" close=")" separator=",">
+           #{cartIds}
+     </foreach>
+	 </if>
+	 <choose>
+		<when test="fz==1">
+			order by sale desc
+		</when>
+		<when test="fz==2">
+			order by sell_price asc
+		</when>
+		<when test="fz==3">
+			order by up_time desc
+		</when>
+		<otherwise>
+			order by sortnum desc
+		</otherwise>
+	</choose>  limit #{0}, #{1}
+  </select>
+   <select id="selectCountGoodsByShopId3" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(*) from 
+  		(
+  			select
+  	          <include refid="Base_Column_List" />
+  	            from goods where 1=1 and shop_id = #{shopId,jdbcType=INTEGER}  and `status` =5
+  	      <if test="name != null" >
+                and name like CONCAT(CONCAT('%', #{name}), '%')
+         </if>
+  	<if test="cartIds != null" >
+  	 and shop_cat_id in 
+	<foreach item="cartIds" collection="cartIds" open="(" close=")" separator=",">
+         #{cartIds}
+     </foreach>
+    </if>
+  		)    as new_table
+  </select>
+   <select id="selectGoodsByCart" resultMap="BaseResultMap" parameterType="java.util.Map">
+     select g.* from goods g ,goods_cart cart,goods_sku gsku
+            where 1=1
+                and g.id=gsku.goods_id
+                and g.id=cart.g_id
+                and cart.gskuId=gsku.id                
+  	        <if test="mId != null" >
+                and cart.m_id =#{mId}
+            </if>
+  	        <if test="cartIds != null" >
+  	            and cart.id in 
+	                <foreach item="cartIds" collection="cartIds" open="(" close=")" separator=",">
+                         #{cartIds}
+                    </foreach>
+            </if>
+  </select>
+  <!-- cheng结束 -->
+  
+  
+  <select id="getCatesByCatId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  	select
+  	<include refid="Base_Column_List" />
+  	from goods where id in 
+	   (select t4.id from goods as t4 where t4.cat_id in (
+		  	    SELECT t2.id
+			    FROM ( 
+			        SELECT 
+			                @r AS _id, 
+			                (SELECT @r := id FROM goods_category WHERE reid = _id ) AS parent_id
+			        FROM 
+			                (SELECT @r := #{catId}) as condi_id, 
+			                goods_category 
+			        ) t1 
+			    JOIN goods_category t2 
+			    ON t1._id = t2.reid 
+			    where t2.is_last = 1 UNION SELECT t3.id from goods_category as t3 where t3.id = #{catId} and t3.is_last=1
+			)
+		) order by sortnum desc limit #{0}, #{1}
+  </select>
+  
+  <select id="countCatesByCatId" resultType="java.lang.Integer" parameterType="java.lang.Long">
+	select count(*) from 
+	(select t4.* from goods as t4 where t4.cat_id in (
+		  	    SELECT t2.id
+			    FROM ( 
+			        SELECT 
+			                @r AS _id, 
+			                (SELECT @r := id FROM goods_category WHERE reid = _id ) AS parent_id
+			        FROM 
+			                (SELECT @r := #{catId}) as condi_id, 
+			                goods_category 
+			        ) t1 
+			    JOIN goods_category t2 
+			    ON t1._id = t2.reid 
+			    where t2.is_last = 1 UNION SELECT t3.id from goods_category as t3 where t3.id = #{catId} and t3.is_last=1
+			)
+		) as new_table
+  </select>
+  
+   <select id="selectGoodsByParams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+  	select
+  	<include refid="Base_Column_List" />
+  	from goods where 1=1
+  	 and shop_id = #{shopId,jdbcType=INTEGER}
+  	 and id in 
+	   (select t4.id from goods as t4 where t4.cat_id in (
+		  	    SELECT t2.id
+			    FROM ( 
+			        SELECT 
+			                @r AS _id, 
+			                (SELECT @r := id FROM goods_category WHERE reid = _id ) AS parent_id
+			        FROM 
+			                (SELECT @r := #{catId}) as condi_id, 
+			                goods_category 
+			        ) t1 
+			    JOIN goods_category t2 
+			    ON t1._id = t2.reid 
+			    where t2.is_last = 1 UNION SELECT t3.id from goods_category as t3 where t3.id = #{catId} and t3.is_last=1
+			)
+		) order by sortnum desc limit #{0}, #{1}
+  </select>
+  
+  <!-- <select id="selectCreateTeamTask" resultMap="sysTeamResult" >
+     select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit  from goods as a,goods_sku as b where a.id  = b.goods_id and b.store_nums>0 and (a.sale_type =2 or  a.sale_type =4) and a.is_create = 0 
+  </select> -->
+  
+    <select id="selectCreateTeamTask" resultMap="sysTeamResult" >
+     select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit  from goods as a,goods_sku as b where a.id  = b.goods_id and b.store_nums>0 and (a.sale_type =2 or  a.sale_type =3)  and a.is_create = 0 group by a.id
+
+  </select>
+  
+ <!--  <select id="selectCreateTeamTask" resultMap="sysTeamResult" >
+     select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit  from goods as a,goods_sku as b,order_team as c 
+     where a.id  = b.goods_id and b.store_nums>0 and (a.sale_type =2 or  a.sale_type =4) and a.is_create = 0 and ((b.id = c.goods_sku_id and (c.`status` = -1 or c.`status` = 1)) or b.id not in (select goods_sku_id from order_team))
+  </select> -->
+  
+<!--   <select id="selectPromoteTeamTask" resultMap="sysTeamResult" >
+	 select  count(c.team_no) as hasNum,c.team_no as teamNo,c.goods_sku_id as skuId,c.create_team_time as createTeamTime,c.end_time as endTime,d.teamNum,d.timeUnit,d.teamTime 
+	 from order_team as c left JOIN
+     (select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit,a.team_num as teamNum
+	 from goods as a,goods_sku as b where a.id  = b.goods_id ) as d on c.goods_sku_id = d.skuId
+     where  c.type = 0 and c.status = 0 group by c.team_no HAVING d.teamNum>count(c.team_no);
+  </select> -->
+  <select id="selectPromoteTeamTask" resultMap="sysTeamResult" >
+	  select  count(c.team_no) as hasNum,c.team_no as teamNo,c.goods_sku_id as skuId,c.create_team_time as createTeamTime,c.end_time as endTime,d.teamNum,d.timeUnit,d.teamTime 
+	 from order_team as c,
+     (select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit,a.team_num as teamNum
+	 from goods as a,goods_sku as b where a.is_promote = 0 and a.id  = b.goods_id ) as d 
+     where  c.goods_sku_id = d.skuId and c.type = 0 and c.status = 0 group by c.team_no HAVING d.teamNum>count(c.team_no);
+  </select>
+  
+  <select id="selectPromoteTeamTaskByOrderNo" resultMap="sysTeamResult" parameterType="java.lang.String" >
+	  select  count(c.team_no) as hasNum,c.team_no as teamNo,c.goods_sku_id as skuId,c.create_team_time as createTeamTime,c.end_time as endTime,d.teamNum,d.timeUnit,d.teamTime 
+	 from order_team as c,
+     (select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit,a.team_num as teamNum
+	 from goods as a,goods_sku as b where a.is_promote = 0 and a.id  = b.goods_id ) as d 
+     where   c.order_no=#{orderNo} and c.goods_sku_id = d.skuId  and c.status = 0 group by c.team_no HAVING d.teamNum>count(c.team_no);
+  </select>
+  
+  <select id="selectPromoteTeamTaskByGoodsId" resultMap="sysTeamResult" parameterType="java.lang.Integer" >
+	 select  count(c.team_no) as hasNum,c.team_no as teamNo,c.goods_sku_id as skuId,c.create_team_time as createTeamTime,c.end_time as endTime,d.teamNum,d.timeUnit,d.teamTime 
+	 from order_team as c,
+     (select b.id as skuId,a.team_end_time as teamTime,a.time_unit as timeUnit,a.team_num as teamNum
+	 from goods as a,goods_sku as b where a.id = #{goodsId} and a.is_promote = 0 and a.id  = b.goods_id ) as d 
+     where  c.goods_sku_id = d.skuId  and c.status = 0 group by c.team_no HAVING d.teamNum>count(c.team_no);
+  </select>
+  
+  
+   <!-- 统计商品总数  XIEYC-->
+  <select id="countNormalGoods" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from goods where status=5
+  </select>
+  
+  <!-- 统计商家商品数  XIEYC-->
+  <select id="countShopGoods" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from goods  where status=5 and shop_id=#{shopId}
+  </select>
+  
+  <!-- zlk  移动端 zlk 商家后台  商品管理 列表 (按商家Id+条件查询+分页)-->
+  <select id="mSelectShopGoodsList" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    a.*
+    from goods a left join goods_sku b on a.id=b.goods_id left join goods_category c on a.cat_id=c.id
+    where 1=1
+    and a.shop_id = #{0} 
+    <if test="catId != null and catId != ''" >
+    	and a.cat_id = #{catId,jdbcType=BIGINT}
+    </if>
+    <if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id != ''" >
+    	and a.id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT(CONCAT('%', #{skuNo}), '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="status != null and status == 5" >
+    	and a.status = 5 
+    </if>
+    <if test="status != null and status == 2">
+    	and a.status !=5 and a.status !=1
+    </if>
+    <if test="status != null and status == 3">
+    	and a.status !=1
+    </if>
+   <if test="name != null and name != ''" >
+    	and a.name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+     <if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+    GROUP BY a.id
+    <if test="sort == '1'.toString()" >
+       order by a.addtime desc
+    </if>
+    <if test="sort == '2'.toString()" >
+       order by a.addtime 
+    </if>
+    <if test="sort == '3'.toString()" >
+       order by a.sale desc 
+    </if>
+    <if test="sort == '5'.toString()" >
+       order by a.sale 
+    </if>
+    <if test="sort == '6'.toString()" >
+       order by a.store_nums desc 
+    </if>
+    <if test="sort == '7'.toString()" >
+       order by a.store_nums
+    </if>
+    <if test="sort == '8'.toString()" >
+       order by a.addtime desc
+    </if>
+       <if test="sort == '9'.toString()" >
+       order by a.addtime
+    </if>
+  </select>
+  <!-- end -->
+  
+  <!-- 根据平台排序查询商品  -->
+  <select id="getGoodsBySortnum"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and sortnum >=]]> #{0} 
+        and sortnum !=30000  
+        and id!=#{1}
+        order by sortnum
+  </select>
+  
+  <select id="getGoodsBySort"  resultMap="BaseResultMap"  >
+        select * from goods  where  sortnum =#{0}
+        and sortnum !=30000  
+        and id=#{1}
+        order by sortnum
+  </select>
+  
+  <select id="getGoodsBySortnum1"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and sortnum >]]> #{2}
+        <![CDATA[ and sortnum <=]]> #{0} 
+        and sortnum !=30000  
+        and id!=#{1} 
+        order by sortnum
+  </select>
+  
+   <select id="getGoodsBySortnum2"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and sortnum >=]]> #{0}
+        <![CDATA[ and sortnum <]]> #{2} 
+        and sortnum !=30000  
+        and id!=#{1}
+        order by sortnum
+  </select>
+  
+  
+   <!-- 根据平台排序查询商品  -->
+  <select id="getGoodsByShopsortnum"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and shopSortnum >]]> #{0} 
+        and shopSortnum !=30000  
+        and id!=#{1}
+        order by shopSortnum
+  </select>
+  
+   <select id="getGoodsByShopsortnum1"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and shopSortnum >]]> #{2}
+        <![CDATA[ and shopSortnum <=]]> #{0} 
+        and shopSortnum !=30000  
+        and id!=#{1}
+        order by shopSortnum
+  </select>
+  
+   <select id="getGoodsByShopsortnum2"  resultMap="BaseResultMap">
+        select * from goods  where 1=1
+        <![CDATA[ and shopSortnum >=]]> #{0}
+        <![CDATA[ and shopSortnum <]]> #{2} 
+        and shopSortnum !=30000  
+        and id!=#{1}
+        order by shopSortnum
+  </select>
+  
+  <select id="getGoodsByShopSort"  resultMap="BaseResultMap"  >
+        select * from goods  where  shopSortnum =#{0}
+        and shopSortnum !=30000  
+        and id=#{1}
+        order by shopSortnum
+  </select>
+  
+  
+  <!-- zlk 2018.3.29 -->
+  <select id="getGoodsBySale" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods">
+        select g.* from goods g left join goods_sku s on g.id = s.goods_id 
+        where g.status=5
+        <if test="min !=null" >
+         and s.team_price <![CDATA[>=]]> #{min}
+        </if>
+        <if test="max !=null" >
+         and s.team_price <![CDATA[<]]> #{max}
+        </if>
+        GROUP BY g.id
+  </select>
+  
+   <!-- zlk 2018.4.11 -->
+  <update id="updateFixedSale" parameterType="com.bh.admin.pojo.goods.Goods" >
+    update goods
+    set fixed_sale = #{fixedSale,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateSort" parameterType="com.bh.admin.pojo.goods.Goods" >
+    update goods
+    set sortnum = #{1}
+    where id = #{0}
+  </update>
+  
+  <update id="updateBySortnum" parameterType="com.bh.admin.pojo.goods.Goods" >
+    update goods
+    set sortnum = #{1}
+    where id = #{0}
+  </update>
+  
+  <update id="updateByPrimaryKeyBySelf" parameterType="com.bh.admin.pojo.goods.Goods" >
+    update goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCatId != null" >
+        shop_cat_id = #{shopCatId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="isHotShop != null" >
+        is_hot_shop = #{isHotShop,jdbcType=INTEGER},
+      </if>
+      <if test="isNewShop != null" >
+        is_new_shop = #{isNewShop,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=BIT},
+      </if>
+      <if test="isShopFlag != null" >
+        is_shop_flag = #{isShopFlag,jdbcType=BIT},
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="refundDays != null" >
+        refund_days = #{refundDays,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="publicimg != null" >
+        publicimg = #{publicimg,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        sale_type = #{saleType,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null" >
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamEndTime != null" >
+        team_end_time = #{teamEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="timeUnit != null" >
+        time_unit = #{timeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null" >
+        is_create = #{isCreate,jdbcType=INTEGER},
+      </if>
+      <if test="isPromote != null" >
+        is_promote = #{isPromote,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null" >
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isJd != null" >
+        is_jd = #{isJd,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null" >
+        topic_type = #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="tagIds != null" >
+        tag_ids = #{tagIds,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsortnum != null" >
+        shopSortnum = #{shopsortnum,jdbcType=SMALLINT},
+      </if>
+      <if test="fixedSale != null" >
+        fixed_sale = #{fixedSale,jdbcType=INTEGER},
+      </if>
+      <if test="isPopular != null" >
+        is_popular = #{isPopular,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="catIdOne != null" >
+        cat_id_one = #{catIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="catIdTwo != null" >
+        cat_id_two = #{catIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outReason != null" >
+        out_reason = #{outReason,jdbcType=VARCHAR},
+      </if>
+      <if test="auctionPrice != null" >
+        auction_price = #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      	topic_goods_id = #{topicGoodsId,jdbcType=INTEGER},
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="ExportGoodstMap" type="com.bh.admin.pojo.goods.ExportGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="sku_no" jdbcType="VARCHAR" property="skuNo" />
+    <result column="goods_name_name" jdbcType="VARCHAR" property="goodsSkuName" />
+    <result column="value_one" jdbcType="VARCHAR" property="valueOne" />
+    <result column="value_two" jdbcType="VARCHAR" property="valueTwo" />
+    <result column="value_three" jdbcType="VARCHAR" property="valueThree" />
+    <result column="value_four" jdbcType="VARCHAR" property="valueFour" />
+    <result column="value_five" jdbcType="VARCHAR" property="valueFive" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+    <result column="market_real_price" jdbcType="DOUBLE" property="marketRealPrice"/>
+    <result column="real_sell_price" jdbcType="DOUBLE" property="realSellPrice"/>
+    <result column="real_jd_protocol_price" jdbcType="DOUBLE" property="realJdProtocolPrice"/>
+    <result column="real_stock_price" jdbcType="DOUBLE" property="realStockPrice"/>
+    <result column="real_jd_buy_price" jdbcType="DOUBLE" property="realJdBuyPrice"/>
+    <result column="real_team_price" jdbcType="DOUBLE" property="realTeamPrice"/>
+    <result column="store_nums" jdbcType="INTEGER" property="storeNums" />
+    <result column="sale" jdbcType="INTEGER" property="sale"  />
+    <result column="haved_sale" jdbcType="INTEGER"  property="havedSale" />
+    <result column="jd_sku_no" jdbcType="BIGINT" property="jdSkuNo" />
+  </resultMap>
+   <select id="selectExportGoods" resultMap="ExportGoodstMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+   select a.id as id,a.`name` as goods_name,
+    CAST(b.sku_no AS SIGNED) as 'skuNo',
+    b.`goods_name` as goods_name_name,
+    b.value_one as value_one,b.value_two as value_two,b.value_three as value_three,
+    b.value_four as value_four,b.value_five as value_five,c.`name` as category_name,
+	cast(b.market_price/100 as decimal(20,2)) as market_real_price,
+	cast(b.sell_price/100 as decimal(20,2)) as real_sell_price,
+	cast(b.jd_protocol_price/100 as decimal(20,2)) as real_jd_protocol_price,
+	cast(b.stock_price/100 as decimal(20,2)) as real_stock_price,
+	cast(b.jd_buy_price/100 as decimal(20,2)) as real_jd_buy_price,
+	cast(b.team_price/100 as decimal(20,2)) as real_team_price,
+	b.store_nums as store_nums,(a.fixed_sale+a.sale) as haved_sale ,a.sale as sale,b.jd_sku_no as jd_sku_no
+ 	from goods a,goods_sku  b,goods_category c
+	where  a.id=b.goods_id
+	and a.cat_id=c.id
+	and b.status = 0
+    <if test="name != null and name != ''" >
+    	and a.name like CONCAT(CONCAT('%', #{name}), '%')
+    </if>
+    <if test="shopId != '0'.toString()" >
+    	and a.shop_id = #{shopId}
+    </if>
+    <if test="catId != null and catId != ''" >
+    	and a.cat_id = #{catId,jdbcType=BIGINT}
+    </if>
+    <if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id.size()>0" >
+      and a.id in
+     <foreach item="id" collection="id" open="(" close=")" separator=",">
+             #{id}
+     </foreach>
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT(CONCAT('%', #{skuNo}), '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="status != null and status != ''" >
+    	and a.status = #{status,jdbcType=INTEGER}
+    </if>
+     <if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+    <if test="isJd != null and isJd != ''" >
+       and a.is_jd=#{isJd,jdbcType=INTEGER}
+    </if>  
+    <if test="isHotShop != null and isHotShop != ''" >
+       and a.is_hot_shop=#{isHotShop,jdbcType=INTEGER}
+    </if>  
+     <if test="isNewShop != null and isNewShop != ''" >
+       and a.is_new_shop=#{isNewShop,jdbcType=INTEGER}
+    </if>
+    order by a.shopSortnum,a.edittime desc
+  </select>
+  
+  <select id="getGoodByIdsList" resultMap="BaseResultMap">
+     select * from goods where 1=1 and id in
+      <foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+             #{id}  
+       </foreach> 
+  </select>
+  
+   <select id="selectByCatIdAndNotDelete" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where cat_id = #{catId} and status != 1
+  </select>
+  
+  
+  
+  <resultMap id="AuctionBaseResultMap" type="com.bh.admin.pojo.goods.AuctionConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="store_num" property="storeNum" jdbcType="INTEGER" />
+    <result column="sold_num" property="soldNum" jdbcType="INTEGER" />
+    <result column="act_price" property="actPrice" jdbcType="INTEGER" />
+    <result column="low_price" property="lowPrice" jdbcType="INTEGER" />
+    <result column="high_price" property="highPrice" jdbcType="INTEGER" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+    <result column="time_section" property="timeSection" jdbcType="INTEGER" />
+    <result column="scope_price" property="scopePrice" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="up_down_status" property="upDownStatus" jdbcType="INTEGER" />
+    <result column="cash_deposit" property="cashDeposit" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Auction_Base_Column_List" >
+    id, sys_code, goods_id, goods_sku_id, goods_name, goods_image, store_num, sold_num, 
+    act_price, low_price, high_price, current_periods, start_time, lose_time, time_section, 
+    scope_price, add_time, up_down_status, cash_deposit, sort
+  </sql>
+  <select id="getAuctionConfigByGoodsId" resultMap="AuctionBaseResultMap" parameterType="java.lang.Integer" >
+  	 select 
+    <include refid="Auction_Base_Column_List" />
+    from bhs_auction_pro.auction_config
+    where goods_id =#{goodsId}
+  </select>
+  
+  <!-- 平台后台商品列表(优化版) -->
+  <select id="backgroundGoodsLists" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.Goods" >
+    select 
+    a.*
+    from goods a left join goods_sku b on a.id=b.goods_id left join goods_category c on a.cat_id=c.id
+    where 1=1
+    and a.name like CONCAT('%', #{0}, '%')
+	<if test="actZoneId != null and actZoneId != ''" >
+      and  ((SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE az.name in (select a.name from act_zone a where a.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%')))
+    	              AND az.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%'))
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id) 
+      or  (SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE  (az.name like CONCAT('%', #{actZoneId}, '%')) 
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id))
+    </if>
+	<if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id != ''" >
+    	and a.id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT('%', #{skuNo}, '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="shopId != null and shopId != ''" >
+    	and a.shop_id = #{shopId}
+    </if>
+	<if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+	<if test="status != null and status != ''">
+		and a.status = #{status,jdbcType=INTEGER}
+	</if>
+	<if test="isHot!=null and isHot!=''">
+		and a.is_hot = #{isHot,jdbcType=BIT}
+	</if>
+	<if test="isNew!=null and isNew!=''">
+		and a.is_new = #{isNew,jdbcType=BIT}
+	</if>
+	<if test="isFlag!=null and isFlag!=''">
+		and a.is_flag = #{isFlag,jdbcType=BIT}
+	</if>
+	<if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="tagName != null and tagName != ''" >
+    	and a.tag_name like CONCAT('%', #{tagName}, '%')
+    </if>
+    GROUP BY  a.id
+    order by a.sortnum 
+    limit #{page},#{pageSize}
+  </select>
+  
+  <!-- 分页 获取所有信息 -->
+  <select id="getAll" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.Goods" >
+ 
+    select 
+    count(distinct a.id)
+    from goods a left join goods_sku b on a.id=b.goods_id left join goods_category c on a.cat_id=c.id
+    where 1=1
+    and a.name like CONCAT('%', #{0}, '%')
+	<if test="actZoneId != null and actZoneId != ''" >
+      and  ((SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE az.name in (select a.name from act_zone a where a.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%')))
+    	              AND az.reid in (select ac.id from act_zone ac where ac.name like CONCAT('%', #{actZoneId}, '%'))
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id) 
+      or  (SELECT 1 FROM act_zone az, act_zone_goods azg 
+    	             WHERE  (az.name like CONCAT('%', #{actZoneId}, '%')) 
+    	               AND az.id=azg.zone_id and azg.goods_id=a.id))
+    </if>
+	<if test="topicType != null and topicType != ''" >
+    	and a.topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="id != null and id != ''" >
+    	and a.id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="skuNo != null and skuNo != ''" >
+    	and b.sku_no like CONCAT('%', #{skuNo}, '%')
+    </if>
+    <if test="jdSkuNo != null and jdSkuNo != ''" >
+    	and b.jd_sku_no = #{jdSkuNo}
+    </if>
+    <if test="shopId != null and shopId != ''" >
+    	and a.shop_id = #{shopId}
+    </if>
+	<if test="startPrice != null and startPrice != '' and endPrice != null and endPrice != '' " >
+       and ( (b.sell_price <![CDATA[>=]]> #{startPrice} and b.sell_price <![CDATA[<=]]> #{endPrice})
+            or (b.team_price <![CDATA[>=]]> #{startPrice} and b.team_price <![CDATA[<=]]> #{endPrice})  )
+    </if>
+     <if test="startPrice != null and startPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[>=]]> #{startPrice} or b.team_price <![CDATA[>=]]> #{startPrice})
+    </if>
+    <if test="endPrice != null and endPrice != ''" >
+       and b.`status`=0
+       and (b.sell_price <![CDATA[<=]]> #{endPrice} or b.team_price <![CDATA[<=]]> #{endPrice})
+    </if>
+	<if test="status != null and status != ''">
+		and a.status = #{status,jdbcType=INTEGER}
+	</if>
+	<if test="isHot!=null and isHot!=''">
+		and a.is_hot = #{isHot,jdbcType=BIT}
+	</if>
+	<if test="isNew!=null and isNew!=''">
+		and a.is_new = #{isNew,jdbcType=BIT}
+	</if>
+	<if test="isFlag!=null and isFlag!=''">
+		and a.is_flag = #{isFlag,jdbcType=BIT}
+	</if>
+	<if test="saleType != null and saleType != ''" >
+    	and a.sale_type = #{saleType,jdbcType=INTEGER}
+    </if>
+    <if test="tagName != null and tagName != ''" >
+    	and a.tag_name like CONCAT('%', #{tagName}, '%')
+    </if>
+    
+  </select>
+  
+  <!-- sql执行通用方法 -->
+  <select id="querySql" resultMap="BaseResultMap" parameterType="String" >
+     ${value}
+  </select>
+  
+  
+    <select id="selectByBhGoods" resultMap="BaseResultMap" >
+     select g.id from goods g where  g.is_jd=0 
+   </select>
+</mapper>

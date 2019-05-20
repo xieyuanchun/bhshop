@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsPriceApprovalMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsPriceApproval" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="reply_no" property="replyNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="new_val" property="newVal" jdbcType="VARCHAR" />
+    <result column="old_val" property="oldVal" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="approval_time" property="approvalTime" jdbcType="TIMESTAMP" />
+    <result column="approval_id" property="approvalId" jdbcType="INTEGER" />
+    <result column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, goods_sku_id, reply_no, status, new_val, old_val, reply_time, approval_time, 
+    approval_id, reply_id, type, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_price_approval
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByStatus" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_price_approval
+    where status = #{status}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_price_approval
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    insert into goods_price_approval (id, goods_id, goods_sku_id, 
+      reply_no, status, new_val, 
+      old_val, reply_time, approval_time, 
+      approval_id, reply_id, type, 
+      is_del)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsSkuId,jdbcType=INTEGER}, 
+      #{replyNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{newVal,jdbcType=VARCHAR}, 
+      #{oldVal,jdbcType=VARCHAR}, #{replyTime,jdbcType=TIMESTAMP}, #{approvalTime,jdbcType=TIMESTAMP}, 
+      #{approvalId,jdbcType=INTEGER}, #{replyId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    insert into goods_price_approval
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+      <if test="replyNo != null" >
+        reply_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="newVal != null" >
+        new_val,
+      </if>
+      <if test="oldVal != null" >
+        old_val,
+      </if>
+      <if test="replyTime != null" >
+        reply_time,
+      </if>
+      <if test="approvalTime != null" >
+        approval_time,
+      </if>
+      <if test="approvalId != null" >
+        approval_id,
+      </if>
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="replyNo != null" >
+        #{replyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="newVal != null" >
+        #{newVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oldVal != null" >
+        #{oldVal,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null" >
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalTime != null" >
+        #{approvalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalId != null" >
+        #{approvalId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null" >
+        #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    update goods_price_approval
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="replyNo != null" >
+        reply_no = #{replyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="newVal != null" >
+        new_val = #{newVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oldVal != null" >
+        old_val = #{oldVal,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null" >
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalTime != null" >
+        approval_time = #{approvalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalId != null" >
+        approval_id = #{approvalId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null" >
+        reply_id = #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    update goods_price_approval
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      reply_no = #{replyNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      new_val = #{newVal,jdbcType=VARCHAR},
+      old_val = #{oldVal,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      approval_time = #{approvalTime,jdbcType=TIMESTAMP},
+      approval_id = #{approvalId,jdbcType=INTEGER},
+      reply_id = #{replyId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  <!-- cheng -->
+  <select id="selectGoodsP" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_price_approval
+    where 1=1 
+    	and is_del = 0
+        and goods_sku_id = #{goodsSkuId,jdbcType=INTEGER}
+        and reply_no = #{replyNo,jdbcType=VARCHAR}
+        and status in (0,1,2)
+  </select>
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsPriceApproval" >
+    select 
+    val.*
+    from goods_price_approval val,goods g,goods_sku sku
+    where 1=1 
+    	and g.id=sku.goods_id
+    	and sku.id=val.goods_sku_id
+    	and val.goods_id = g.id
+    	and val.is_del=0
+      <if test="goodsName != null and goodsName!='' " >
+        and g.name like CONCAT(CONCAT('%', #{goodsName,jdbcType=VARCHAR}), '%') 
+      </if>
+      <if test="goodsSkuNo != null and goodsSkuNo!='' " >
+        and sku.sku_no in 
+        <foreach item="gskuList" collection="list" open="(" close=")" separator=",">
+	             #{gskuList}
+	    </foreach>
+      </if>
+      <if test="goodsId != null and goodsId !='' " >
+        and val.goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and val.status = #{status,jdbcType=INTEGER}
+      </if>
+       <if test="replyNo != null and replyNo!='' " >
+        and reply_no = #{replyNo,jdbcType=VARCHAR}
+      </if>
+      order by val.reply_time desc
+  </select>
+  
+  
+   <!-- 2018-4-16 -->
+   <resultMap id="simplePriceApprovalEntityMap" type="com.bh.goods.pojo.SimplePriceApproval" >
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="approval_time" property="approvalTime" jdbcType="TIMESTAMP" />
+    <result column="approval_id" property="approvalId" jdbcType="INTEGER" />
+    <result column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="listPage1" resultMap="simplePriceApprovalEntityMap" parameterType="com.bh.goods.pojo.SimplePriceApproval" >
+    select 
+    val.*
+    from goods_price_approval val,goods g,goods_sku sku
+    where 1=1 
+    	and g.id=sku.goods_id
+    	and sku.id=val.goods_sku_id
+    	and val.goods_id = g.id
+    	and val.is_del=0
+      <if test="goodsName != null and goodsName!='' " >
+        and g.name like CONCAT(CONCAT('%', #{goodsName,jdbcType=VARCHAR}), '%') 
+      </if>
+      <if test="goodsSkuNo != null and goodsSkuNo!='' " >
+        and sku.sku_no in 
+        <foreach item="gskuList" collection="list" open="(" close=")" separator=",">
+	             #{gskuList}
+	    </foreach>
+      </if>
+      <if test="goodsId != null and goodsId !='' " >
+        and val.goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and val.status = #{status,jdbcType=INTEGER}
+      </if>
+       <if test="replyNo != null and replyNo!='' " >
+        and reply_no = #{replyNo,jdbcType=VARCHAR}
+      </if>
+      group by val.goods_sku_id
+      order by val.reply_time desc
+  </select>
+   <resultMap id="simplePriceMap" type="com.bh.goods.pojo.GoodsPrice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="reply_no" property="replyNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="new_val" property="newVal" jdbcType="VARCHAR" />
+    <result column="old_val" property="oldVal" jdbcType="VARCHAR" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="selectPrice" resultMap="simplePriceMap" parameterType="com.bh.goods.pojo.GoodsPrice" >
+    select 
+    val.*
+    from goods_price_approval val,goods g,goods_sku sku
+    where 1=1 
+    	and g.id=sku.goods_id
+    	and sku.id=val.goods_sku_id
+    	and val.goods_id = g.id
+    	and val.is_del=0
+      <if test="goodsSkuId != null and goodsSkuId !='' " >
+        and val.goods_sku_id = #{goodsSkuId,jdbcType=INTEGER}
+      </if>
+  </select>
+  <select id="selectPriceByGoodsSkuId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    val.*
+    from goods_price_approval val
+    where 1=1 
+    and val.type=0
+    and val.is_del=0
+    and val.status=0
+    <if test="goodsSkuId != null and goodsSkuId !='' " >
+        and val.goods_sku_id = #{goodsSkuId,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+</mapper>

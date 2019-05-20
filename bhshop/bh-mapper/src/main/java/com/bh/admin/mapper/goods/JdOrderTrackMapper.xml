@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.JdOrderTrackMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.JdOrderTrack" >
+    <result column="msg_time" property="msgTime" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.JdOrderTrack" >
+    insert into jd_order_track (msg_time, content, operator, 
+      order_id, order_no,status)
+    values (#{msgTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.JdOrderTrack" >
+    insert into jd_order_track
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgTime != null" >
+        msg_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+       <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgTime != null" >
+        #{msgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getByOrderId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.JdOrderTrack" >
+    select * from jd_order_track
+    where order_id = #{orderId,jdbcType=INTEGER}
+    and msg_time = #{msgTime,jdbcType=TIMESTAMP}
+    and content = #{content,jdbcType=VARCHAR}
+    <if test="operator != null" >
+    and operator = #{operator,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+</mapper>

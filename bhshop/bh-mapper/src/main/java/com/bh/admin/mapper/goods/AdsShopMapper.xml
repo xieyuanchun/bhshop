@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.AdsShopMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.AdsShop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="sortnum" property="sortnum" jdbcType="INTEGER" />
+    <result column="is_pc" property="isPc" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.AdsShop" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="link" property="link" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, name, image, sortnum, is_pc, sku_id, goods_id, shop_id,status
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ads_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    insert into ads_shop (id, createTime, name, 
+      image, sortnum, is_pc, 
+      sku_id, goods_id, shop_id, 
+      content, link,status)
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{sortnum,jdbcType=INTEGER}, #{isPc,jdbcType=INTEGER}, 
+      #{skuId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR}, #{link,jdbcType=LONGVARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    insert into ads_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="isPc != null" >
+        is_pc,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+       <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="isPc != null" >
+        #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    update ads_shop
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    update ads_shop
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      link = #{link,jdbcType=LONGVARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    update ads_shop
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="pageList" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads_shop
+    where name like CONCAT(CONCAT('%', #{name}), '%')
+    <if test="shopId!='0'.toString()">
+    	and shop_id = #{shopId}
+    </if>
+    <if test="isPc != null and isPc !='' " >
+        and is_pc = #{isPc,jdbcType=INTEGER}
+    </if>
+    order by status desc, createTime desc
+  </select>
+  
+  
+  <!-- cheng 开始 -->
+  <select id="selectAdsShopByParams" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.AdsShop" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ads_shop
+    where 1=1
+     <if test="createtime != null" >
+       and createTime = #{createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="name != null" >
+      and  name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="image != null" >
+       and image = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="sortnum != null" >
+       and sortnum = #{sortnum,jdbcType=INTEGER}
+      </if>
+      <if test="isPc != null" >
+       and is_pc = #{isPc,jdbcType=INTEGER}
+      </if>
+      <if test="skuId != null" >
+       and sku_id = #{skuId,jdbcType=INTEGER}
+      </if>
+      <if test="goodsId != null" >
+       and goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+       and shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="link != null" >
+       and link = #{link,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="status != null" >
+      and  status = #{status,jdbcType=TINYINT}
+      </if>
+    order by createTime desc
+  </select>
+  <!-- cheng 结束 -->
+</mapper>

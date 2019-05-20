@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.JdGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.JdGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jd_sku_no" property="jdSkuNo" jdbcType="BIGINT" />
+    <result column="pool_num" property="poolNum" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="cat_id" property="catId" jdbcType="VARCHAR" />
+    <result column="jd_price" property="jdPrice" jdbcType="INTEGER" />
+    <result column="stock_price" property="stockPrice" jdbcType="INTEGER" />
+    <result column="is_up" property="isUp" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="is_get" property="isGet" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jd_sku_no, pool_num, goods_name, goods_image, brand_name, cat_id, jd_price, stock_price, 
+    is_up, is_delete, is_get, add_time, edit_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.JdGoods" >
+    insert into jd_goods (id, jd_sku_no, pool_num, 
+      goods_name, goods_image, brand_name, 
+      cat_id, jd_price, stock_price, 
+      is_up, is_delete, is_get, 
+      add_time, edit_time)
+    values (#{id,jdbcType=INTEGER}, #{jdSkuNo,jdbcType=BIGINT}, #{poolNum,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsImage,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, 
+      #{catId,jdbcType=VARCHAR}, #{jdPrice,jdbcType=INTEGER}, #{stockPrice,jdbcType=INTEGER}, 
+      #{isUp,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{isGet,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.JdGoods" >
+    insert into jd_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jdSkuNo != null" >
+        jd_sku_no,
+      </if>
+      <if test="poolNum != null" >
+        pool_num,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="jdPrice != null" >
+        jd_price,
+      </if>
+      <if test="stockPrice != null" >
+        stock_price,
+      </if>
+      <if test="isUp != null" >
+        is_up,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="isGet != null" >
+        is_get,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jdSkuNo != null" >
+        #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="poolNum != null" >
+        #{poolNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdPrice != null" >
+        #{jdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="stockPrice != null" >
+        #{stockPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isUp != null" >
+        #{isUp,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="isGet != null" >
+        #{isGet,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.JdGoods" >
+    update jd_goods
+    <set >
+      <if test="jdSkuNo != null" >
+        jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="poolNum != null" >
+        pool_num = #{poolNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdPrice != null" >
+        jd_price = #{jdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="stockPrice != null" >
+        stock_price = #{stockPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isUp != null" >
+        is_up = #{isUp,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="isGet != null" >
+        is_get = #{isGet,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.JdGoods" >
+    update jd_goods
+    set jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      pool_num = #{poolNum,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=VARCHAR},
+      jd_price = #{jdPrice,jdbcType=INTEGER},
+      stock_price = #{stockPrice,jdbcType=INTEGER},
+      is_up = #{isUp,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      is_get = #{isGet,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

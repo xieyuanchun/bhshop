@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.OrderTeamMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.OrderTeam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_team_time" property="createTeamTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="is_owner" property="isOwner" jdbcType="INTEGER" />
+    <result column="team_no" property="teamNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, create_time, create_team_time, end_time, is_owner, team_no, order_no, goods_id, 
+    goods_sku_id, status, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_team
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.OrderTeam" >
+    insert into order_team (id, m_id, create_time, 
+      create_team_time, end_time, is_owner, 
+      team_no, order_no, goods_id, 
+      goods_sku_id, status, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createTeamTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{isOwner,jdbcType=INTEGER}, 
+      #{teamNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsSkuId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.OrderTeam" >
+    insert into order_team
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createTeamTime != null" >
+        create_team_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="isOwner != null" >
+        is_owner,
+      </if>
+      <if test="teamNo != null" >
+        team_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTeamTime != null" >
+        #{createTeamTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOwner != null" >
+        #{isOwner,jdbcType=INTEGER},
+      </if>
+      <if test="teamNo != null" >
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.OrderTeam" >
+    update order_team
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTeamTime != null" >
+        create_team_time = #{createTeamTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOwner != null" >
+        is_owner = #{isOwner,jdbcType=INTEGER},
+      </if>
+      <if test="teamNo != null" >
+        team_no = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.OrderTeam" >
+    update order_team
+    set m_id = #{mId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_team_time = #{createTeamTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      is_owner = #{isOwner,jdbcType=INTEGER},
+      team_no = #{teamNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+  
+  
+  
+  
+  <select id="getByTeamNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where team_no = #{teamNo,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByTeamNo" parameterType="java.lang.String" >
+     update order_team  set status = 1 where team_no = #{teamNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where order_no = #{orderNo,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getGroupingList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   	select a.* from order_team a LEFT JOIN goods_sku b ON a.goods_sku_id = b.id
+	where b.goods_id = #{0} and a.is_owner = 1 and a.status = 0 and a.end_time > NOW()
+ 	order by create_team_time desc limit 10
+  </select>
+  
+  <select id="getGroupCount" resultType="java.lang.Integer">
+    select count(*) from (
+    select a.* from order_team a LEFT JOIN goods_sku b ON a.goods_sku_id = b.id
+	where b.goods_id = #{0} and a.is_owner = 1 and a.status = 0 and a.end_time > NOW()
+	)as new_table
+  </select>
+  
+  <select id="groupCount" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*)
+    from order_team
+    where team_no = #{teamNo,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="getByMidAndTeamNo" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where m_id = #{0} and team_no = #{1}
+  </select>
+  <select id="getByMidAndOwner" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where m_id = #{mId,jdbcType=INTEGER} and is_owner = 1
+  </select>
+  
+  <select id="getByTeamNoAndOwner" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where team_no = #{teamNo,jdbcType=VARCHAR} and is_owner = 1
+  </select>
+  
+  <select id="pageList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+     select a.* 
+     from order_team a left join goods_sku b on a.goods_sku_id = b.id LEFT JOIN goods c on b.goods_id = c.id
+     where a.team_no like CONCAT(CONCAT('%', #{teamNo}), '%')
+     <if test="orderNo != null and orderNo !=''">
+     	and a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%')
+     </if>
+     <if test="shopId !='0'.toString()">
+     	and c.shop_id = #{shopId}
+     </if>
+    <if test="status !=null and status !=''">
+    	and a.status = #{status,jdbcType=INTEGER}
+    </if>
+    order by a.create_team_time desc
+  </select>
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+     select a.* 
+     from order_team a LEFT JOIN order_shop b ON a.order_no = b.order_no
+     LEFT JOIN goods_sku c on a.goods_sku_id = c.id
+     LEFT JOIN goods d ON c.goods_id = d.id LEFT JOIN member e ON a.m_id = e.id
+     where 1=1
+     <if test="teamNo !=null and teamNo !=''">
+     	and a.team_no like CONCAT(CONCAT('%', #{teamNo}), '%')
+     </if>
+     <if test="orderNo != null and orderNo !=''">
+     	and a.order_no like CONCAT(CONCAT('%', #{orderNo}), '%')
+     </if>
+     <if test="shopOrderNo != null and shopOrderNo !=''">
+     	and b.shop_order_no like CONCAT(CONCAT('%', #{shopOrderNo}), '%')
+     </if>
+     <if test="goodsName!=null and goodsName!=''">
+     	and d.name like CONCAT(CONCAT('%', #{goodsName}), '%')
+     </if>
+     <if test="mName!=null and mName!=''">
+     	and e.username like CONCAT(CONCAT('%', #{mName}), '%')
+     </if>
+     <if test="phone!=null and phone!=''">
+     	and e.phone like CONCAT(CONCAT('%', #{phone}), '%')
+     </if>
+     <if test="shopId !='0'.toString()">
+     	and b.shop_id = #{shopId}
+     </if>
+     <if test="status !=null">
+    	and a.status = #{status}
+     </if>
+     order by a.create_team_time desc
+  </select>
+  
+  <select id="getMheadList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	   select * from(
+	   		select a.* from order_team a LEFT JOIN goods_sku b ON a.goods_sku_id = b.id
+	   		where b.goods_id = #{0} and a.status >=0 and a.type = 0
+	   ) as t order by t.create_time desc limit 3
+  </select>
+  
+  
+  
+  
+  
+  <!-- cheng -->
+    <select id="selectOrderTeanByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectOrderTeanByOrderNoAndStatus" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    id, m_id, create_time, create_team_time, end_time, is_owner, team_no, order_no
+    from order_team
+    where 1=1 and status=1 
+    <if test="orderNo != null" >
+       and order_no = #{orderNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectTeamTimeEndTask" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where end_time <![CDATA[ <= ]]> NOW() and status = 0
+  </select>
+  <select id="getTeamBySkuId" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where goods_sku_id = #{goodsSkuId} and status = #{status}
+  </select>
+  
+  <select id="getTeamList" resultMap="BaseResultMap" parameterType="com.bh.order.pojo.OrderTeam" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where goods_sku_id = #{goodsSkuId} and status = 0 and type = 0
+  </select>
+  
+  <select id="selectLastOne" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select 
+    team.id,team.m_id
+    from order_team team
+    where 1=1
+    and team.team_no = #{teamNo,jdbcType=INTEGER}  
+    and team.is_owner = 0 
+    and team.end_time > NOW()
+    order by team.create_time DESC
+  </select>
+   <select id="selectTeamMsg" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select team.* from order_team team,goods g,goods_sku sku
+          where 1=1
+          and team.type=0
+          and team.`status`=0
+          and g.id=sku.goods_id
+          and team.goods_sku_id = sku.id
+          <if test="goodsSkuId != null and goodsSkuId!='' " >
+              and team.goods_sku_id = #{goodsSkuId,jdbcType=INTEGER}
+          </if>
+  </select>
+  
+   <resultMap id="MyOrderTeamBaseResultMap" type="com.bh.order.pojo.OrderTeamPojo" >
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="prov" property="prov" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="four" property="four" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectRealTeam" resultMap="MyOrderTeamBaseResultMap" parameterType="java.lang.String" >
+    select gsku.jd_sku_no as goods_sku_id,
+    osku.sku_num as num,
+    address.prov as prov,
+    address.city as city,
+    address.area as area,
+    address.four as four
+    from order_team team,goods_sku gsku,order_sku osku,order_main omain,member_user_address address
+    where team.team_no = #{teamNo} 
+    and team.goods_sku_id=gsku.id
+    and osku.sku_id=gsku.id
+    and team.goods_sku_id=osku.sku_id
+    and address.id=omain.m_addr_id
+    and omain.id=osku.order_id
+    and omain.order_no=team.order_no
+    and gsku.jd_support=1
+    and team.type =0
+  </select>
+  <update id="updateFailTeamByTeamNo" parameterType="java.lang.String" >
+     update order_team  set status =-1 where team_no = #{teamNo,jdbcType=VARCHAR}
+  </update>
+   <select id="selectOrderTeamByParam" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+     team.order_no
+    from order_team team
+    where team.team_no=#{teamNo} and team.type=#{type}
+  </select>
+  
+  <select id="countByTeamNoAndType" resultType="java.lang.Integer" parameterType="com.bh.order.pojo.OrderTeam" >
+    select count(*)
+    from order_team
+    where team_no = #{0} and type = #{1}  
+  </select>
+  <!-- 根据团号查询该团号团主的团购单 -->
+   <select id="getOwnerOrderTeam" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from order_team
+    where team_no=#{teamNo,jdbcType=VARCHAR} and is_owner=1
+  	</select>
+  	
+  	
+  	<select id="selectNotJdTeam" resultMap="MyOrderTeamBaseResultMap" parameterType="java.lang.String" >
+    select gsku.goods_id as goods_sku_id,
+    osku.sku_num as num,
+    address.provname as prov,
+    address.city as city,
+    address.area as area,
+    address.four as four
+    from order_team team,goods_sku gsku,order_sku osku,order_main omain,member_user_address address
+    where team.team_no = #{teamNo} 
+    and team.goods_sku_id=gsku.id
+    and osku.sku_id=gsku.id
+    and team.goods_sku_id=osku.sku_id
+    and address.id=omain.m_addr_id
+    and omain.id=osku.order_id
+    and omain.order_no=team.order_no
+    and gsku.jd_support=0
+    and team.type =0
+  </select>
+</mapper>

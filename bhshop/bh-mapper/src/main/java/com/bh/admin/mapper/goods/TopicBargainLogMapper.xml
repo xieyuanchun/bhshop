@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.TopicBargainLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.TopicBargainLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="tg_id" property="tgId" jdbcType="INTEGER" />
+    <result column="bargain_price" property="bargainPrice" jdbcType="INTEGER" />
+    <result column="is_owner" property="isOwner" jdbcType="INTEGER" />
+    <result column="act_balance" property="actBalance" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="bargain_no" property="bargainNo" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, tg_id, bargain_price, is_owner, act_balance, add_time, status, bargain_no, open_id, address_id, sku_id, nick_name, head_img_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_bargain_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    insert into topic_bargain_log (id, m_id, tg_id, 
+      bargain_price, is_owner, open_id, address_id, sku_id, nick_name, head_img_url)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{tgId,jdbcType=INTEGER}, 
+      #{bargainPrice,jdbcType=INTEGER}, #{isOwner,jdbcType=INTEGER}, #{actBalance,jdbcType=INTEGER},
+       #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{bargainNo,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR},
+       #{addressId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{headImgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    insert into topic_bargain_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="tgId != null" >
+        tg_id,
+      </if>
+      <if test="bargainPrice != null" >
+        bargain_price,
+      </if>
+      <if test="isOwner != null" >
+        is_owner,
+      </if>
+      <if test="actBalance != null" >
+        act_balance,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bargainNo != null" >
+        bargain_no,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headImgUrl != null" >
+        head_img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="bargainPrice != null" >
+        #{bargainPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isOwner != null" >
+        #{isOwner,jdbcType=INTEGER},
+      </if>
+      <if test="actBalance != null" >
+        #{actBalance,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bargainNo != null" >
+        #{bargainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null" >
+        #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    update topic_bargain_log
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="tgId != null" >
+        tg_id = #{tgId,jdbcType=INTEGER},
+      </if>
+      <if test="bargainPrice != null" >
+        bargain_price = #{bargainPrice,jdbcType=INTEGER},
+      </if>
+      <if test="isOwner != null" >
+        is_owner = #{isOwner,jdbcType=INTEGER},
+      </if>
+      <if test="actBalance != null" >
+        act_balance = #{actBalance,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bargainNo != null" >
+        bargain_no = #{bargainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null" >
+        head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    update topic_bargain_log
+    set m_id = #{mId,jdbcType=INTEGER},
+      tg_id = #{tgId,jdbcType=INTEGER},
+      bargain_price = #{bargainPrice,jdbcType=INTEGER},
+      is_owner = #{isOwner,jdbcType=INTEGER},
+      act_balance = #{actBalance,jdbcType=INTEGER},
+      is_owner = #{isOwner,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      bargain_no = #{bargainNo,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_img_url = #{headImgUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  <!-- scj-begin -->
+  <select id="countBytgId" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select count(*)
+    from topic_bargain_log
+    where tg_id = #{0} and bargain_no = #{1}
+  </select>
+  
+  <select id="selectByBargainNoAndMid" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where bargain_no = #{0} and m_id = #{1}
+  </select>
+  
+  <select id="selectByBargainNoAndOpenId" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where bargain_no = #{0} and open_id = #{1}
+  </select>
+  
+  <select id="selectByBargainNoAndOwner" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where bargain_no = #{0} and is_owner = 1
+  </select>
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log where 1=1
+    <if test="id!=null">
+    	and id = #{id}
+    </if>
+    <if test="mId!=null">
+    	and m_id = #{mId}
+    </if>
+    <if test="isOwner!=null">
+    	and is_owner = #{isOwner}
+    </if>
+    <if test="status!=null">
+    	and status = #{status}
+    </if>
+    order by add_time desc
+  </select>
+  
+  <select id="selectByBargainNo" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where bargain_no = #{bargainNo}
+    order by add_time desc
+  </select>
+  
+  <select id="selectByTgIdAndMidAndOwner" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where tg_id = #{0} and m_id = #{1} and is_owner = #{2}
+  </select>
+  
+  <select id="selectByTgIdAndOpenIdAndOwner" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where tg_id = #{0} and open_id = #{1} and is_owner = #{2}
+  </select>
+  
+  <select id="selectByTgidAndStatus" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where tg_id = #{tgId} and status = 0
+  </select>
+  
+  <select id="selectByMidAndOwner" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_bargain_log
+    where m_id = #{0} and is_owner = #{1}
+  </select>
+  
+  <select id="bargainCount" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.goods.TopicBargainLog" >
+    select count(*)
+    from topic_bargain_log
+    where open_id = #{openId}
+    and is_owner = 0 and add_time<![CDATA[>=]]>date(now()) and add_time<![CDATA[<]]>DATE_ADD(date(now()),INTERVAL 1 DAY)
+  </select>
+  
+  <!--  scj-end -->
+</mapper>

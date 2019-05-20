@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.order.MsnApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.order.MsnApply" >
+    <id column="apymsn_id" property="apymsnId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="paramter" property="paramter" jdbcType="VARCHAR" />
+    <result column="send_status" property="sendStatus" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="success_count" property="successCount" jdbcType="BIGINT" />
+    <result column="template" property="template" jdbcType="VARCHAR" />
+    <result column="temp_review_status" property="tempReviewStatus" jdbcType="INTEGER" />
+    <result column="temp_review_remark" property="tempReviewRemark" jdbcType="VARCHAR" />
+    <result column="group_num" property="groupNum" jdbcType="INTEGER" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="valid_time" property="validTime" jdbcType="TIMESTAMP" />
+    <result column="member_type" property="memberType" jdbcType="INTEGER" />
+    <result column="is_free_num" property="isFreeNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apymsn_id, shop_id, signature, paramter, send_status, add_time, edit_time, send_time, 
+    success_count, template, temp_review_status, temp_review_remark, group_num, pay_time, 
+    money, pay_status, order_no, valid_time, member_type,is_free_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from msn_apply
+    where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from msn_apply
+    where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.order.MsnApply" >
+    insert into msn_apply (apymsn_id, shop_id, signature, 
+      paramter, send_status, add_time, 
+      edit_time, send_time, success_count, 
+      template, temp_review_status, temp_review_remark, 
+      group_num, pay_time, money, 
+      pay_status, order_no, valid_time, 
+      member_type,is_free_num)
+    values (#{apymsnId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{signature,jdbcType=VARCHAR}, 
+      #{paramter,jdbcType=VARCHAR}, #{sendStatus,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{editTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, #{successCount,jdbcType=BIGINT}, 
+      #{template,jdbcType=VARCHAR}, #{tempReviewStatus,jdbcType=INTEGER}, #{tempReviewRemark,jdbcType=VARCHAR}, 
+      #{groupNum,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, #{money,jdbcType=INTEGER}, 
+      #{payStatus,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{validTime,jdbcType=TIMESTAMP}, 
+      #{memberType,jdbcType=INTEGER},#{isFreeNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.order.MsnApply" useGeneratedKeys="true" keyProperty="apymsnId">
+    insert into msn_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apymsnId != null" >
+        apymsn_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="paramter != null" >
+        paramter,
+      </if>
+      <if test="sendStatus != null" >
+        send_status,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="successCount != null" >
+        success_count,
+      </if>
+      <if test="template != null" >
+        template,
+      </if>
+      <if test="tempReviewStatus != null" >
+        temp_review_status,
+      </if>
+      <if test="tempReviewRemark != null" >
+        temp_review_remark,
+      </if>
+      <if test="groupNum != null" >
+        group_num,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="validTime != null" >
+        valid_time,
+      </if>
+      <if test="memberType != null" >
+        member_type,
+      </if>
+      <if test="isFreeNum != null" >
+        is_free_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apymsnId != null" >
+        #{apymsnId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="paramter != null" >
+        #{paramter,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null" >
+        #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successCount != null" >
+        #{successCount,jdbcType=BIGINT},
+      </if>
+      <if test="template != null" >
+        #{template,jdbcType=VARCHAR},
+      </if>
+      <if test="tempReviewStatus != null" >
+        #{tempReviewStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tempReviewRemark != null" >
+        #{tempReviewRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNum != null" >
+        #{groupNum,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=INTEGER},
+      </if>
+      <if test="isFreeNum != null" >
+        #{isFreeNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.order.MsnApply" >
+    update msn_apply
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="paramter != null" >
+        paramter = #{paramter,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null" >
+        send_status = #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successCount != null" >
+        success_count = #{successCount,jdbcType=BIGINT},
+      </if>
+      <if test="template != null" >
+        template = #{template,jdbcType=VARCHAR},
+      </if>
+      <if test="tempReviewStatus != null" >
+        temp_review_status = #{tempReviewStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tempReviewRemark != null" >
+        temp_review_remark = #{tempReviewRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNum != null" >
+        group_num = #{groupNum,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberType != null" >
+        member_type = #{memberType,jdbcType=INTEGER},
+      </if>
+       <if test="isFreeNum != null" >
+        is_free_num = #{isFreeNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.order.MsnApply" >
+    update msn_apply
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      signature = #{signature,jdbcType=VARCHAR},
+      paramter = #{paramter,jdbcType=VARCHAR},
+      send_status = #{sendStatus,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      success_count = #{successCount,jdbcType=BIGINT},
+      template = #{template,jdbcType=VARCHAR},
+      temp_review_status = #{tempReviewStatus,jdbcType=INTEGER},
+      temp_review_remark = #{tempReviewRemark,jdbcType=VARCHAR},
+      group_num = #{groupNum,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      valid_time = #{validTime,jdbcType=TIMESTAMP},
+      member_type = #{memberType,jdbcType=INTEGER},
+      is_free_num = #{isFreeNum,jdbcType=INTEGER}
+    where apymsn_id = #{apymsnId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByShopId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from msn_apply
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectMsnList"  resultMap="BaseResultMap" parameterType="com.bh.admin.vo.MsnList">
+    select
+    <include refid="Base_Column_List" />
+    from msn_apply
+    where 1=1
+    <if test="shopId!='0'.toString">
+      and shopId=#{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="add_time!=null and add_time!=''">
+      AND add_time=#{add_time,jdbcType=TIMESTAMP}
+    </if>
+    <if test="pay_status!=null and pay_status!=''">
+      AND pay_status=#{payStatus,jdbcType=INTEGER}
+    </if>
+    ORDER BY apymsn_id DESC
+  </select>
+  
+  
+  
+   <select id="checkIsPaySeccuss" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from msn_apply
+    where order_no = #{orderNo}
+  </select>
+  
+  
+  
+  <select id="selectByApymsnId" resultMap="MyBaseResultMap" parameterType="java.lang.Integer" >
+    select ma.apymsn_id as apymsn_id,ma.shop_id as shop_id,ma.send_status as send_status,ma.add_time as add_time, ma.send_time as send_time,ma.template as template,ma.group_num as group_num,
+    ma.money as money,ma.pay_status as pay_status,mt.review_result as review_result,mt.review_result_remkar as review_result_remkar,mt.reviewer_name as reviewer_name,ms.shop_name as shop_name,
+     ms.free_num as free_num,ms.surplus_num as surplus_num,ma.is_free_num as is_free_num,ma.member_type as member_type
+    from msn_apply ma,msn_template mt,member_shop ms 
+    where ma.apymsn_id=mt.apymsn_id and ms.m_id=ma.shop_id and ma.apymsn_id=#{apymsnId}
+  </select>
+  
+  
+  <resultMap id="MyBaseResultMap" type="com.bh.admin.pojo.order.MyMsnApply" >
+    <id column="apymsn_id" property="apymsnId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="send_status" property="sendStatus" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="template" property="template" jdbcType="VARCHAR" />
+    <result column="group_num" property="groupNum" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="review_result" property="reviewResult" jdbcType="INTEGER" />
+    <result column="review_result_remkar" property="reviewResultRemkar" jdbcType="VARCHAR" />
+    <result column="reviewer_name" property="reviewerName" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="INTEGER" />
+    <result column="is_free_num" property="isFreeNum" jdbcType="INTEGER" />
+    <result column="free_num" property="freeNum" jdbcType="INTEGER" />
+    <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
+    <result column="member_type" property="memberType" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <select id="selectByShopMessageList"  resultMap="MyBaseResultMap">
+     select ma.apymsn_id as apymsn_id,ma.shop_id as shop_id,ma.send_status as send_status,ma.add_time as add_time, ma.send_time as send_time,ma.template as template,ma.group_num as group_num,
+    ma.money as money,ma.pay_status as pay_status,mt.review_result as review_result,mt.review_result_remkar as review_result_remkar,mt.reviewer_name as reviewer_name,ms.shop_name as shop_name,
+    ms.free_num as free_num,ms.surplus_num as surplus_num,ma.is_free_num as is_free_num,ma.member_type as member_type
+    from msn_apply ma,msn_template mt ,member_shop ms 
+    where ma.apymsn_id=mt.apymsn_id and ms.m_id=ma.shop_id and ma.shop_id=#{shopId,jdbcType=INTEGER}
+    <if test="payStatus!=null and payStatus!=''">
+      AND ma.pay_status=#{payStatus,jdbcType=INTEGER}
+    </if>
+    <if test="reviewResult!=null and reviewResult!=''">
+      AND mt.review_result=#{reviewResult,jdbcType=INTEGER}
+    </if>
+     <![CDATA[ and ma.add_time >=]]>#{startTimes}
+      <![CDATA[ and ma.add_time <=]]>#{endTimes}
+      order by ma.add_time desc
+  </select>
+  
+  
+  <select id="selectByMessageList"  resultMap="MyBaseResultMap">
+     select ma.apymsn_id as apymsn_id,ma.shop_id as shop_id,ma.send_status as send_status,ma.add_time as add_time, ma.send_time as send_time,ma.template as template,ma.group_num as group_num,
+    ma.money as money,ma.pay_status as pay_status,mt.review_result as review_result,mt.review_result_remkar as review_result_remkar,mt.reviewer_name as reviewer_name,ms.shop_name as shop_name,
+    ms.free_num as free_num,ms.surplus_num as surplus_num,ma.is_free_num as is_free_num,ma.member_type as member_type
+    from msn_apply ma,msn_template mt ,member_shop ms 
+    where ma.apymsn_id=mt.apymsn_id  and ms.m_id=ma.shop_id
+    <if test="payStatus!=null and payStatus!=''">
+      AND ma.pay_status=#{payStatus,jdbcType=INTEGER}
+    </if>
+    <if test="reviewResult!=null and reviewResult!=''">
+      AND mt.review_result=#{reviewResult,jdbcType=INTEGER}
+    </if>
+     <![CDATA[ and ma.add_time >=]]>#{startTimes}
+      <![CDATA[ and ma.add_time <=]]>#{endTimes}
+      order by ma.add_time desc
+  </select>
+  
+  
+   <select id="mselectByShopMessageList"  resultMap="MyBaseResultMap" parameterType="java.lang.Integer">
+     select ma.apymsn_id as apymsn_id,ma.shop_id as shop_id,ma.send_status as send_status,ma.add_time as add_time, ma.send_time as send_time,ma.template as template,ma.group_num as group_num,
+    ma.money as money,ma.pay_status as pay_status,mt.review_result as review_result,mt.review_result_remkar as review_result_remkar,mt.reviewer_name as reviewer_name,ms.shop_name as shop_name,
+    ms.free_num as free_num,ms.surplus_num as surplus_num,ma.is_free_num as is_free_num,ma.member_type as member_type
+    from msn_apply ma,msn_template mt ,member_shop ms 
+    where ma.apymsn_id=mt.apymsn_id and ms.m_id=ma.shop_id and ma.shop_id=#{shopId,jdbcType=INTEGER} order by ma.add_time desc
+  </select>
+  
+  
+  
+   <select id="selectCustCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  count(DISTINCT m.tel)
+   from  order_collection_doc doc,order_main om,member_user_address m 
+   where doc.order_id=om.id and m.id=om.m_addr_id and om.shop_id=#{shopId}
+   <if test="memberType==1">
+      and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+    <if test="memberType==2">
+       and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+    <if test="memberType==3">
+      and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+  </select>
+  
+  <select id="selectCustList" resultMap="PhoneResultMap" parameterType="java.lang.Integer" >
+  select  m.tel as phone,m.m_id as m_id
+   from  order_collection_doc doc,order_main om,member_user_address m 
+   where doc.order_id=om.id and m.id=om.m_addr_id and om.shop_id=#{shopId}
+   <if test="memberType==1">
+      and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+    <if test="memberType==2">
+       and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+    <if test="memberType==3">
+      and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <![CDATA[<=]]>date(doc.addtime)
+   </if>
+   GROUP BY m.tel
+  </select>
+  
+   <resultMap id="PhoneResultMap" type="com.bh.admin.pojo.order.Phone" >
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+   <select id="selectNoPayList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from msn_apply
+    where pay_status=0
+  </select>
+
+</mapper>

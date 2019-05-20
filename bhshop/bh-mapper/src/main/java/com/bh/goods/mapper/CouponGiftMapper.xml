@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.CouponGiftMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.CouponGift" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="coupon_ids" property="couponIds" jdbcType="VARCHAR" />
+    <result column="gift_status" property="giftStatus" jdbcType="INTEGER" />
+    <result column="gift_stock" property="giftStock" jdbcType="INTEGER" />
+    <result column="gift_send" property="giftSend" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="is_white_list" property="isWhiteList" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, coupon_ids, gift_status, gift_stock, gift_send, start_time, end_time, add_time, 
+    is_white_list
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_gift
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coupon_gift
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.CouponGift" >
+    insert into coupon_gift (id, name, coupon_ids, 
+      gift_status, gift_stock, gift_send, 
+      start_time, end_time, add_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{couponIds,jdbcType=VARCHAR}, 
+      #{giftStatus,jdbcType=INTEGER}, #{giftStock,jdbcType=INTEGER}, #{giftSend,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.CouponGift" >
+    insert into coupon_gift
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="couponIds != null" >
+        coupon_ids,
+      </if>
+      <if test="giftStatus != null" >
+        gift_status,
+      </if>
+      <if test="giftStock != null" >
+        gift_stock,
+      </if>
+      <if test="giftSend != null" >
+        gift_send,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="isWhiteList != null" >
+        is_white_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="couponIds != null" >
+        #{couponIds,jdbcType=VARCHAR},
+      </if>
+      <if test="giftStatus != null" >
+        #{giftStatus,jdbcType=INTEGER},
+      </if>
+      <if test="giftStock != null" >
+        #{giftStock,jdbcType=INTEGER},
+      </if>
+      <if test="giftSend != null" >
+        #{giftSend,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWhiteList != null" >
+        #{isWhiteList,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.CouponGift" >
+    update coupon_gift
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="couponIds != null" >
+        coupon_ids = #{couponIds,jdbcType=VARCHAR},
+      </if>
+      <if test="giftStatus != null" >
+        gift_status = #{giftStatus,jdbcType=INTEGER},
+      </if>
+      <if test="giftStock != null" >
+        gift_stock = #{giftStock,jdbcType=INTEGER},
+      </if>
+      <if test="giftSend != null" >
+        gift_send = #{giftSend,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isWhiteList != null" >
+        is_white_list = #{isWhiteList,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.CouponGift" >
+    update coupon_gift
+    set name = #{name,jdbcType=VARCHAR},
+      coupon_ids = #{couponIds,jdbcType=VARCHAR},
+      gift_status = #{giftStatus,jdbcType=INTEGER},
+      gift_stock = #{giftStock,jdbcType=INTEGER},
+      gift_send = #{giftSend,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getGiftByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_gift
+    where name = #{name}
+  </select>
+  
+</mapper>

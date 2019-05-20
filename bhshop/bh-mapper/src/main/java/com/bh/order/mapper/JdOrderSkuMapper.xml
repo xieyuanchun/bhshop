@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.order.mapper.JdOrderSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.order.pojo.JdOrderSku" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="jd_main_id" property="jdMainId" jdbcType="INTEGER" />
+    <result column="order_sku_id" property="orderSkuId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sku_id, num, price, name, category, add_time, edit_time, jd_main_id, order_sku_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_order_sku
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_order_sku
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.order.pojo.JdOrderSku" >
+    insert into jd_order_sku (id, sku_id, num, 
+      price, name, category, 
+      add_time, edit_time, jd_main_id, 
+      order_sku_id)
+    values (#{id,jdbcType=INTEGER}, #{skuId,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, 
+      #{price,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=BIGINT}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, #{jdMainId,jdbcType=INTEGER}, 
+      #{orderSkuId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.order.pojo.JdOrderSku" >
+    insert into jd_order_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="jdMainId != null" >
+        jd_main_id,
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdMainId != null" >
+        #{jdMainId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        #{orderSkuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.order.pojo.JdOrderSku" >
+    update jd_order_sku
+    <set >
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jdMainId != null" >
+        jd_main_id = #{jdMainId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSkuId != null" >
+        order_sku_id = #{orderSkuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.order.pojo.JdOrderSku" >
+    update jd_order_sku
+    set sku_id = #{skuId,jdbcType=BIGINT},
+      num = #{num,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      category = #{category,jdbcType=BIGINT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      jd_main_id = #{jdMainId,jdbcType=INTEGER},
+      order_sku_id = #{orderSkuId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getByOrderSkuId" resultMap="BaseResultMap" >
+  	select * from jd_order_sku a,jd_order_main b 
+  	where a.jd_main_id=b.id 
+  	and a.order_sku_id=#{0}
+  	and b.type=2
+  </select>
+  
+  
+  
+  <select id="getByJdMainIdAndSkuId" resultMap="BaseResultMap" >
+  	select * from jd_order_sku where  jd_main_id=#{0} and sku_id=#{1}
+  </select>
+  
+	
+	
+	<select id="getByJdMainId" resultMap="BaseResultMap" >
+  	select * from jd_order_sku where  jd_main_id=#{0} 
+  </select>
+  
+</mapper>

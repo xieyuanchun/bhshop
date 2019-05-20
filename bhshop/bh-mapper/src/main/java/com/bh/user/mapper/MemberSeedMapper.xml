@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MemberSeedMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.MemberSeed" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="sm_id" property="smId" jdbcType="INTEGER" />
+    <result column="gain_rate" property="gainRate" jdbcType="INTEGER" />
+    <result column="mytimes" property="mytimes" jdbcType="INTEGER" />
+    <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="orderseed_id" property="orderseedId" jdbcType="INTEGER" />
+    <result column="bouns" property="bouns" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, sm_id, gain_rate, mytimes, get_time, status, orderseed_id, bouns, type, 
+    note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_seed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_seed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MemberSeed" >
+    insert into member_seed (id, m_id, sm_id, 
+      gain_rate, mytimes, get_time, 
+      status, orderseed_id, bouns, 
+      type, note)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{smId,jdbcType=INTEGER}, 
+      #{gainRate,jdbcType=INTEGER}, #{mytimes,jdbcType=INTEGER}, #{getTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{orderseedId,jdbcType=INTEGER}, #{bouns,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MemberSeed" >
+    insert into member_seed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="smId != null" >
+        sm_id,
+      </if>
+      <if test="gainRate != null" >
+        gain_rate,
+      </if>
+      <if test="mytimes != null" >
+        mytimes,
+      </if>
+      <if test="getTime != null" >
+        get_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orderseedId != null" >
+        orderseed_id,
+      </if>
+      <if test="bouns != null" >
+        bouns,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="gainRate != null" >
+        #{gainRate,jdbcType=INTEGER},
+      </if>
+      <if test="mytimes != null" >
+        #{mytimes,jdbcType=INTEGER},
+      </if>
+      <if test="getTime != null" >
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderseedId != null" >
+        #{orderseedId,jdbcType=INTEGER},
+      </if>
+      <if test="bouns != null" >
+        #{bouns,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MemberSeed" >
+    update member_seed
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        sm_id = #{smId,jdbcType=INTEGER},
+      </if>
+      <if test="gainRate != null" >
+        gain_rate = #{gainRate,jdbcType=INTEGER},
+      </if>
+      <if test="mytimes != null" >
+        mytimes = #{mytimes,jdbcType=INTEGER},
+      </if>
+      <if test="getTime != null" >
+        get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="orderseedId != null" >
+        orderseed_id = #{orderseedId,jdbcType=INTEGER},
+      </if>
+      <if test="bouns != null" >
+        bouns = #{bouns,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MemberSeed" >
+    update member_seed
+    set m_id = #{mId,jdbcType=INTEGER},
+      sm_id = #{smId,jdbcType=INTEGER},
+      gain_rate = #{gainRate,jdbcType=INTEGER},
+      mytimes = #{mytimes,jdbcType=INTEGER},
+      get_time = #{getTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      orderseed_id = #{orderseedId,jdbcType=INTEGER},
+      bouns = #{bouns,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectScore" resultType="java.lang.Integer"   parameterType="java.lang.Integer">
+        select COALESCE(SUM(mytimes),0)  from member_seed where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer"   parameterType="java.lang.Integer">
+        select count(1)  from member_seed where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <select id="selectMemberSeedByParams" resultMap="BaseResultMap"   parameterType="com.bh.user.pojo.MemberSeed">
+        select * from member_seed 
+        where 1=1 
+        and status<![CDATA[<]]>6 
+        and m_id = #{mId,jdbcType=INTEGER}
+        <if test="type != null" >
+        and type = #{type,jdbcType=INTEGER}
+        </if>
+  </select>
+  <select id="selectStoreHouseList" resultMap="BaseResultMap"   parameterType="com.bh.user.pojo.MemberSeed">
+  select * from member_seed where 1=1
+  and type = 0
+  and m_id = #{mId,jdbcType=INTEGER} 
+  and `status` = 6 
+  GROUP BY sm_id ORDER BY get_time DESC
+  </select>
+   <select id="countStoreNum" resultType="java.lang.Integer"   parameterType="com.bh.user.pojo.MemberSeed">
+  select count(id) from member_seed 
+  where 1=1
+  and m_id = #{mId,jdbcType=INTEGER}
+  <if test="smId != null" >
+   and sm_id = #{smId,jdbcType=INTEGER}
+  </if> 
+  and `status` = 6
+  and type = 0 
+  </select>
+   <select id="selectMemberSeedByOrderSeedId" resultType="java.lang.Integer"   parameterType="java.lang.Integer">
+  select count(id) from member_seed 
+  where 1=1
+  <if test="orderseedId != null" >
+   and orderseed_id = #{orderseedId,jdbcType=INTEGER}
+  </if> 
+  </select>
+   <select id="selectUserLand" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   		select * from member_seed seed
+            where seed.m_id = #{mId,jdbcType=INTEGER} 
+            and seed.type=1
+   </select>
+   
+   
+</mapper>

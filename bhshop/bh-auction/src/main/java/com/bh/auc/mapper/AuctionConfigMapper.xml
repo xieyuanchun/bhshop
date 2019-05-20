@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.auc.mapper.AuctionConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.auc.pojo.AuctionConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="goods_market_price" property="goodsMarketPrice" jdbcType="INTEGER" />
+    <result column="goods_sell_price" property="goodsSellPrice" jdbcType="INTEGER" />
+    <result column="store_num" property="storeNum" jdbcType="INTEGER" />
+    <result column="sold_num" property="soldNum" jdbcType="INTEGER" />
+    <result column="act_price" property="actPrice" jdbcType="INTEGER" />
+    <result column="low_price" property="lowPrice" jdbcType="INTEGER" />
+    <result column="high_price" property="highPrice" jdbcType="INTEGER" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+    <result column="time_section" property="timeSection" jdbcType="INTEGER" />
+    <result column="scope_price" property="scopePrice" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="up_down_status" property="upDownStatus" jdbcType="INTEGER" />
+    <result column="cash_deposit" property="cashDeposit" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sys_code, goods_id, goods_sku_id, goods_name, goods_image, goods_market_price, 
+    goods_sell_price, store_num, sold_num, act_price, low_price, high_price, current_periods, 
+    start_time, lose_time, time_section, scope_price, add_time, up_down_status, cash_deposit, 
+    sort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from auction_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from auction_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.auc.pojo.AuctionConfig" >
+    insert into auction_config (id, sys_code, goods_id, 
+      goods_sku_id, goods_name, goods_image, 
+      goods_market_price, goods_sell_price, store_num, 
+      sold_num, act_price, low_price, 
+      high_price, current_periods, start_time, 
+      lose_time, time_section, scope_price, 
+      add_time, up_down_status, cash_deposit, 
+      sort)
+    values (#{id,jdbcType=INTEGER}, #{sysCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsSkuId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsImage,jdbcType=VARCHAR}, 
+      #{goodsMarketPrice,jdbcType=INTEGER}, #{goodsSellPrice,jdbcType=INTEGER}, #{storeNum,jdbcType=INTEGER}, 
+      #{soldNum,jdbcType=INTEGER}, #{actPrice,jdbcType=INTEGER}, #{lowPrice,jdbcType=INTEGER}, 
+      #{highPrice,jdbcType=INTEGER}, #{currentPeriods,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{loseTime,jdbcType=TIMESTAMP}, #{timeSection,jdbcType=INTEGER}, #{scopePrice,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{upDownStatus,jdbcType=INTEGER}, #{cashDeposit,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.auc.pojo.AuctionConfig" >
+    insert into auction_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sysCode != null" >
+        sys_code,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="goodsMarketPrice != null" >
+        goods_market_price,
+      </if>
+      <if test="goodsSellPrice != null" >
+        goods_sell_price,
+      </if>
+      <if test="storeNum != null" >
+        store_num,
+      </if>
+      <if test="soldNum != null" >
+        sold_num,
+      </if>
+      <if test="actPrice != null" >
+        act_price,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="highPrice != null" >
+        high_price,
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="loseTime != null" >
+        lose_time,
+      </if>
+      <if test="timeSection != null" >
+        time_section,
+      </if>
+      <if test="scopePrice != null" >
+        scope_price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="upDownStatus != null" >
+        up_down_status,
+      </if>
+      <if test="cashDeposit != null" >
+        cash_deposit,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sysCode != null" >
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMarketPrice != null" >
+        #{goodsMarketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSellPrice != null" >
+        #{goodsSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="storeNum != null" >
+        #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="soldNum != null" >
+        #{soldNum,jdbcType=INTEGER},
+      </if>
+      <if test="actPrice != null" >
+        #{actPrice,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="highPrice != null" >
+        #{highPrice,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseTime != null" >
+        #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeSection != null" >
+        #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upDownStatus != null" >
+        #{upDownStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cashDeposit != null" >
+        #{cashDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.auc.pojo.AuctionConfig" >
+    update auction_config
+    <set >
+      <if test="sysCode != null" >
+        sys_code = #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMarketPrice != null" >
+        goods_market_price = #{goodsMarketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSellPrice != null" >
+        goods_sell_price = #{goodsSellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="storeNum != null" >
+        store_num = #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="soldNum != null" >
+        sold_num = #{soldNum,jdbcType=INTEGER},
+      </if>
+      <if test="actPrice != null" >
+        act_price = #{actPrice,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=INTEGER},
+      </if>
+      <if test="highPrice != null" >
+        high_price = #{highPrice,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods = #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseTime != null" >
+        lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeSection != null" >
+        time_section = #{timeSection,jdbcType=INTEGER},
+      </if>
+      <if test="scopePrice != null" >
+        scope_price = #{scopePrice,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upDownStatus != null" >
+        up_down_status = #{upDownStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cashDeposit != null" >
+        cash_deposit = #{cashDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.auc.pojo.AuctionConfig" >
+    update auction_config
+    set sys_code = #{sysCode,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_market_price = #{goodsMarketPrice,jdbcType=INTEGER},
+      goods_sell_price = #{goodsSellPrice,jdbcType=INTEGER},
+      store_num = #{storeNum,jdbcType=INTEGER},
+      sold_num = #{soldNum,jdbcType=INTEGER},
+      act_price = #{actPrice,jdbcType=INTEGER},
+      low_price = #{lowPrice,jdbcType=INTEGER},
+      high_price = #{highPrice,jdbcType=INTEGER},
+      current_periods = #{currentPeriods,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      time_section = #{timeSection,jdbcType=INTEGER},
+      scope_price = #{scopePrice,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      up_down_status = #{upDownStatus,jdbcType=INTEGER},
+      cash_deposit = #{cashDeposit,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+ 
+  <!-- 选择所有待拍卖的商品 -->
+  <select id="getAllWaitAcu" resultMap="BaseResultMap" parameterType="com.bh.auc.pojo.AuctionConfig" >
+    select 
+    <include refid="Base_Column_List" />
+    from auction_config
+    where up_down_status = 1 and store_num > 0 and time_section > 0 and act_price > 0
+    order by sort asc
+  </select>
+  
+  
+  <select id="getByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from auction_config
+    where goods_id =#{goodsId}
+  </select>
+  
+  
+  
+    <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.auc.pojo.AuctionConfig">
+  	   select 
+	   <include refid="Base_Column_List" />
+	   from auction_config
+	   where 1=1
+  	  <if test="goodsName != null" >
+          and goods_name like CONCAT(CONCAT('%', #{goodsName}), '%')
+      </if>
+      <if test="upDownStatus != null" >
+      	 and up_down_status = #{upDownStatus}
+      </if>
+      order by add_time desc
+  	</select>
+
+
+	<resultMap id="AuctionGoodListResultMap" type="com.bh.auc.vo.AuctionApiGoods">
+		<result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+		<result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+		<result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+		<result column="current_periods" property="currentPeriods" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="getAuctionApiGoodList" resultMap="AuctionGoodListResultMap" parameterType="com.bh.auc.pojo.AuctionConfig">
+		SELECT sys_code,goods_id,goods_sku_id,goods_name,goods_image,current_periods
+		FROM auction_config
+		WHERE up_down_status=1 and store_num>0
+		ORDER BY add_time desc
+		LIMIT #{currentPageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+  	
+  
+  
+</mapper>

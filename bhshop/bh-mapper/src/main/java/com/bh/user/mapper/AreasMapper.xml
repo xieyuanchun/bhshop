@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bh.user.mapper.AreasMapper">
+   <resultMap id="BaseResultMap" type="com.bh.user.pojo.Areas" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="sortnum" property="sortnum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    area_id, parent_id, area_name, sortnum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from areas
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from areas
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.Areas" >
+    insert into areas (area_id, parent_id, area_name, 
+      sortnum)
+    values (#{areaId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, 
+      #{sortnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.Areas" >
+    insert into areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.Areas" >
+    update areas
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.Areas" >
+    update areas
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- ************************************************************************************************************88 -->
+  <!-- chengfengyun -->
+  <select id="getprovince"  resultMap="BaseResultMap">
+  	select a.area_id,a.area_name,a.parent_id from areas a where  a.parent_id=0 
+  </select>
+  
+  <select id="getcity" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select a.area_id,a.area_name,a.parent_id from areas a where a.parent_id = #{a.area_id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="gettown" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select a.area_id,a.area_name,a.parent_id from areas a where a.parent_id = #{a.area_id,jdbcType=INTEGER}
+  </select>
+   <!-- chengfengyun -->
+  <select id="getprovince1"  resultMap="BaseResultMap">
+  	select a.area_id,a.area_name,a.parent_id from areas a where  a.parent_id=0 ORDER BY a.sortnum
+  </select>
+  
+  <select id="getcity1" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select a.area_id,a.area_name,a.parent_id from areas a where a.parent_id = #{0} ORDER BY a.sortnum
+  </select>
+  
+   <select id="gettown1" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select a.area_id,a.area_name,a.parent_id from areas a where a.parent_id = #{0} ORDER BY a.sortnum
+  </select>
+ 
+</mapper>
+
+

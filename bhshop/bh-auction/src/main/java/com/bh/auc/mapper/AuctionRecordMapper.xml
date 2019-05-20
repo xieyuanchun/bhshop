@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.auc.mapper.AuctionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.auc.pojo.AuctionRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_sku_id" property="goodsSkuId" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="auc_id" property="aucId" jdbcType="INTEGER" />
+    <result column="current_periods" property="currentPeriods" jdbcType="INTEGER" />
+    <result column="auc_price" property="aucPrice" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sys_code, goods_id, goods_sku_id, m_id, head_img, user_name, auc_id, current_periods, 
+    auc_price, add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from auction_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from auction_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.auc.pojo.AuctionRecord" >
+    insert into auction_record (id, sys_code, goods_id, 
+      goods_sku_id, m_id, head_img, 
+      user_name, auc_id, current_periods, 
+      auc_price, add_time)
+    values (#{id,jdbcType=INTEGER}, #{sysCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsSkuId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{headImg,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{aucId,jdbcType=INTEGER}, #{currentPeriods,jdbcType=INTEGER}, 
+      #{aucPrice,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.auc.pojo.AuctionRecord" >
+    insert into auction_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sysCode != null" >
+        sys_code,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="headImg != null" >
+        head_img,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="aucId != null" >
+        auc_id,
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods,
+      </if>
+      <if test="aucPrice != null" >
+        auc_price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sysCode != null" >
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="headImg != null" >
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="aucId != null" >
+        #{aucId,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="aucPrice != null" >
+        #{aucPrice,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.auc.pojo.AuctionRecord" >
+    update auction_record
+    <set >
+      <if test="sysCode != null" >
+        sys_code = #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="headImg != null" >
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="aucId != null" >
+        auc_id = #{aucId,jdbcType=INTEGER},
+      </if>
+      <if test="currentPeriods != null" >
+        current_periods = #{currentPeriods,jdbcType=INTEGER},
+      </if>
+      <if test="aucPrice != null" >
+        auc_price = #{aucPrice,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.auc.pojo.AuctionRecord" >
+    update auction_record
+    set sys_code = #{sysCode,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_sku_id = #{goodsSkuId,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      auc_id = #{aucId,jdbcType=INTEGER},
+      current_periods = #{currentPeriods,jdbcType=INTEGER},
+      auc_price = #{aucPrice,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.auc.pojo.AuctionRecord">
+  	   select 
+	   <include refid="Base_Column_List" />
+	   from auction_record
+	   where 1=1
+  	  	<if test="currentPeriods != null" >
+         and current_periods =#{currentPeriods}
+     	 </if>
+      	<if test="goodsId != null" >
+      	 and goods_id = #{goodsId}
+      	</if>
+     	 order by add_time desc
+  	</select>
+
+
+    <select id="apiUserAuctionRecord" resultMap="BaseResultMap" parameterType="com.bh.auc.pojo.AuctionRecord">
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM auction_record WHERE  m_id = #{mId}
+      GROUP BY goods_id,current_periods ORDER BY add_time DESC
+      LIMIT #{currentPageIndex}, #{pageSize}
+    </select>
+
+  <insert id="insertBatch"  parameterType="com.bh.auc.pojo.AuctionRecord" >
+    INSERT INTO auction_record
+    (id,sys_code, goods_id,
+    goods_sku_id, m_id, head_img,
+    user_name, auc_id, current_periods,
+    auc_price, add_time)
+    VALUES
+    <foreach collection ="list" item="auctionRecord" index= "index" separator =",">
+      (#{auctionRecord.id,jdbcType=INTEGER},#{auctionRecord.sysCode,jdbcType=VARCHAR}, #{auctionRecord.goodsId,jdbcType=INTEGER},
+      #{auctionRecord.goodsSkuId,jdbcType=INTEGER}, #{auctionRecord.mId,jdbcType=INTEGER}, #{auctionRecord.headImg,jdbcType=VARCHAR},
+      #{auctionRecord.userName,jdbcType=VARCHAR}, #{auctionRecord.aucId,jdbcType=INTEGER}, #{auctionRecord.currentPeriods,jdbcType=INTEGER},
+      #{auctionRecord.aucPrice,jdbcType=INTEGER}, #{auctionRecord.addTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  
+  
+  
+</mapper>

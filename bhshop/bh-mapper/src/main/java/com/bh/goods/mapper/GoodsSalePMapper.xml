@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.GoodsSalePMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.GoodsSaleP" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="min" property="min" jdbcType="INTEGER" />
+    <result column="max" property="max" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, min, max, total_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_sale_p
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_sale_p
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.GoodsSaleP" >
+    insert into goods_sale_p (id, min, max, 
+      total_num)
+    values (#{id,jdbcType=INTEGER}, #{min,jdbcType=INTEGER}, #{max,jdbcType=INTEGER}, 
+      #{totalNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.GoodsSaleP" >
+    insert into goods_sale_p
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="min != null" >
+        min,
+      </if>
+      <if test="max != null" >
+        max,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="min != null" >
+        #{min,jdbcType=INTEGER},
+      </if>
+      <if test="max != null" >
+        #{max,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.GoodsSaleP" >
+    update goods_sale_p
+    <set >
+      <if test="min != null" >
+        min = #{min,jdbcType=INTEGER},
+      </if>
+      <if test="max != null" >
+        max = #{max,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.GoodsSaleP" >
+    update goods_sale_p
+    set min = #{min,jdbcType=INTEGER},
+      max = #{max,jdbcType=INTEGER},
+      total_num = #{totalNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.GoodsSaleP" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_sale_p where 1=1
+    <if test="min != null" >
+      and min = #{min,jdbcType=INTEGER}
+    </if>
+    <if test="max != null" >
+      and max = #{max,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  
+</mapper>

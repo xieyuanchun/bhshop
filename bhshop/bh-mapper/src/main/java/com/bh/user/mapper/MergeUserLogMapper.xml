@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.MergeUserLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.user.pojo.MergeUserLog" >
+    <id column="merge_id" property="mergeId" jdbcType="INTEGER" />
+    <result column="src_user_id" property="srcUserId" jdbcType="INTEGER" />
+    <result column="src_openid" property="srcOpenid" jdbcType="VARCHAR" />
+    <result column="dest_user_id" property="destUserId" jdbcType="INTEGER" />
+    <result column="coupon_id" property="couponId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    merge_id, src_user_id, src_openid, dest_user_id, coupon_id, order_id, add_time, edit_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from merge_user_log
+    where merge_id = #{mergeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from merge_user_log
+    where merge_id = #{mergeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.MergeUserLog" >
+    insert into merge_user_log (merge_id, src_user_id, src_openid, 
+      dest_user_id, coupon_id, order_id, 
+      add_time, edit_time)
+    values (#{mergeId,jdbcType=INTEGER}, #{srcUserId,jdbcType=INTEGER}, #{srcOpenid,jdbcType=VARCHAR}, 
+      #{destUserId,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.MergeUserLog" >
+    insert into merge_user_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mergeId != null" >
+        merge_id,
+      </if>
+      <if test="srcUserId != null" >
+        src_user_id,
+      </if>
+      <if test="srcOpenid != null" >
+        src_openid,
+      </if>
+      <if test="destUserId != null" >
+        dest_user_id,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mergeId != null" >
+        #{mergeId,jdbcType=INTEGER},
+      </if>
+      <if test="srcUserId != null" >
+        #{srcUserId,jdbcType=INTEGER},
+      </if>
+      <if test="srcOpenid != null" >
+        #{srcOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="destUserId != null" >
+        #{destUserId,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.MergeUserLog" >
+    update merge_user_log
+    <set >
+      <if test="srcUserId != null" >
+        src_user_id = #{srcUserId,jdbcType=INTEGER},
+      </if>
+      <if test="srcOpenid != null" >
+        src_openid = #{srcOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="destUserId != null" >
+        dest_user_id = #{destUserId,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where merge_id = #{mergeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.MergeUserLog" >
+    update merge_user_log
+    set src_user_id = #{srcUserId,jdbcType=INTEGER},
+      src_openid = #{srcOpenid,jdbcType=VARCHAR},
+      dest_user_id = #{destUserId,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where merge_id = #{mergeId,jdbcType=INTEGER}
+  </update>
+</mapper>

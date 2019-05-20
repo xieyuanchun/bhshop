@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.user.mapper.SeedScoreRuleMapper" >
+<resultMap id="BaseResultMap" type="com.bh.user.pojo.SeedScoreRule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="score_action" property="scoreAction" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="config" property="config" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, score_action, score, config, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_score_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_score_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.user.pojo.SeedScoreRule" >
+    insert into seed_score_rule (id, name, score_action, 
+      score, config, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{scoreAction,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{config,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.user.pojo.SeedScoreRule" >
+    insert into seed_score_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="scoreAction != null" >
+        score_action,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="config != null" >
+        config,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreAction != null" >
+        #{scoreAction,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        #{config,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.user.pojo.SeedScoreRule" >
+    update seed_score_rule
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreAction != null" >
+        score_action = #{scoreAction,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        config = #{config,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.user.pojo.SeedScoreRule" >
+    update seed_score_rule
+    set name = #{name,jdbcType=VARCHAR},
+      score_action = #{scoreAction,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      config = #{config,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- *************************end**************************88 -->
+    <select id="selectRuleByParams" resultMap="BaseResultMap" parameterType="com.bh.user.pojo.SeedScoreRule" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_score_rule
+    where 1=1 
+     <if test="name != null" >
+       and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="scoreAction != null" >
+       and score_action = #{scoreAction,jdbcType=INTEGER}
+      </if>
+      <if test="score != null" >
+       and score = #{score,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+  
+  
+  
+  
+  
+</mapper>

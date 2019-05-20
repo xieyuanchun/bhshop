@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.AspUserGuessMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.AspUserGuess" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="req_user_id" property="reqUserId" jdbcType="INTEGER" />
+    <result column="is_full" property="isFull" jdbcType="INTEGER" />
+    <result column="guess_status" property="guessStatus" jdbcType="INTEGER" />
+    <result column="ret_price" property="retPrice" jdbcType="INTEGER" />
+    <result column="back_price" property="backPrice" jdbcType="INTEGER" />
+    <result column="guess_one" property="guessOne" jdbcType="INTEGER" />
+    <result column="guess_two" property="guessTwo" jdbcType="INTEGER" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_card_owner" property="bankCardOwner" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="auditor" property="auditor" jdbcType="VARCHAR" />
+    <result column="confirm_time" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="transfer_people" property="transferPeople" jdbcType="VARCHAR" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+     <result column="is_transfer" property="isTransfer" jdbcType="INTEGER" />
+      <result column="is_apply" property="isApply" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, req_user_id, is_full, guess_status, ret_price, back_price, guess_one, guess_two, 
+    apply_time, bank_name, bank_card_no, bank_card_owner, idcard, phone, state, note, 
+    audit_time, auditor, confirm_time, transfer_people, edit_time, add_time,is_transfer,is_apply
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asp_user_guess
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asp_user_guess
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.AspUserGuess" >
+    insert into asp_user_guess (m_id, req_user_id, is_full, 
+      guess_status, ret_price, back_price, 
+      guess_one, guess_two, apply_time, 
+      bank_name, bank_card_no, bank_card_owner, 
+      idcard, phone, state, 
+      note, audit_time, auditor, 
+      confirm_time, transfer_people, edit_time, 
+      add_time,is_transfer,is_apply)
+    values (#{mId,jdbcType=INTEGER}, #{reqUserId,jdbcType=INTEGER}, #{isFull,jdbcType=INTEGER}, 
+      #{guessStatus,jdbcType=INTEGER}, #{retPrice,jdbcType=INTEGER}, #{backPrice,jdbcType=INTEGER}, 
+      #{guessOne,jdbcType=INTEGER}, #{guessTwo,jdbcType=INTEGER}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, #{bankCardOwner,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR}, 
+      #{confirmTime,jdbcType=TIMESTAMP}, #{transferPeople,jdbcType=VARCHAR}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP},#{isTransfer,jdbcType=INTEGER},#{isApply,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.AspUserGuess" >
+    insert into asp_user_guess
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="reqUserId != null" >
+        req_user_id,
+      </if>
+      <if test="isFull != null" >
+        is_full,
+      </if>
+      <if test="guessStatus != null" >
+        guess_status,
+      </if>
+      <if test="retPrice != null" >
+        ret_price,
+      </if>
+      <if test="backPrice != null" >
+        back_price,
+      </if>
+      <if test="guessOne != null" >
+        guess_one,
+      </if>
+      <if test="guessTwo != null" >
+        guess_two,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankCardOwner != null" >
+        bank_card_owner,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time,
+      </if>
+      <if test="transferPeople != null" >
+        transfer_people,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer,
+      </if>
+      <if test="isApply != null" >
+        is_apply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="reqUserId != null" >
+        #{reqUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isFull != null" >
+        #{isFull,jdbcType=INTEGER},
+      </if>
+      <if test="guessStatus != null" >
+        #{guessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="retPrice != null" >
+        #{retPrice,jdbcType=INTEGER},
+      </if>
+      <if test="backPrice != null" >
+        #{backPrice,jdbcType=INTEGER},
+      </if>
+      <if test="guessOne != null" >
+        #{guessOne,jdbcType=INTEGER},
+      </if>
+      <if test="guessTwo != null" >
+        #{guessTwo,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardOwner != null" >
+        #{bankCardOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferPeople != null" >
+        #{transferPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="isTransfer != null" >
+        #{isTransfer,jdbcType=INTEGER},
+      </if>
+       <if test="isApply != null" >
+        #{isApply,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.AspUserGuess" >
+    update asp_user_guess
+    <set >
+      <if test="reqUserId != null" >
+        req_user_id = #{reqUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isFull != null" >
+        is_full = #{isFull,jdbcType=INTEGER},
+      </if>
+      <if test="guessStatus != null" >
+        guess_status = #{guessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="retPrice != null" >
+        ret_price = #{retPrice,jdbcType=INTEGER},
+      </if>
+      <if test="backPrice != null" >
+        back_price = #{backPrice,jdbcType=INTEGER},
+      </if>
+      <if test="guessOne != null" >
+        guess_one = #{guessOne,jdbcType=INTEGER},
+      </if>
+      <if test="guessTwo != null" >
+        guess_two = #{guessTwo,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardOwner != null" >
+        bank_card_owner = #{bankCardOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferPeople != null" >
+        transfer_people = #{transferPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer = #{isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="isApply != null" >
+        is_apply = #{isApply,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.AspUserGuess" >
+    update asp_user_guess
+    set req_user_id = #{reqUserId,jdbcType=INTEGER},
+      is_full = #{isFull,jdbcType=INTEGER},
+      guess_status = #{guessStatus,jdbcType=INTEGER},
+      ret_price = #{retPrice,jdbcType=INTEGER},
+      back_price = #{backPrice,jdbcType=INTEGER},
+      guess_one = #{guessOne,jdbcType=INTEGER},
+      guess_two = #{guessTwo,jdbcType=INTEGER},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_card_owner = #{bankCardOwner,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      transfer_people = #{transferPeople,jdbcType=VARCHAR},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+       is_transfer = #{isTransfer,jdbcType=INTEGER},
+        is_apply = #{isApply,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.AspUserGuess">
+    select 
+    <include refid="Base_Column_List" />
+    from asp_user_guess
+    where is_apply=1 
+     <if test="startTime != null" >
+       <![CDATA[ and apply_time >=]]>#{startTime}
+     </if>
+      <if test="endTime != null" >
+       <![CDATA[ and apply_time <=]]> #{endTime}
+     </if>
+    <if test="startPrice != null" >
+       <![CDATA[ and ret_price >=]]>#{startPrice}
+     </if>
+     <if test="endPrice != null" >
+         <![CDATA[ and ret_price <=]]> #{endPrice}
+     </if>
+     <if test="guessStatus != null" >
+        and guess_status = #{guessStatus}
+     </if>
+     <if test="mId != null" >
+        and m_id = #{mId}
+     </if>
+     <if test="state != null" >
+       and state = #{state}
+     </if>
+     <if test="isTransfer != null" >
+       and is_transfer = #{isTransfer}
+     </if>
+     order by apply_time desc
+  </select>
+  
+  
+  <select id="selectAll1" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.AspUserGuess">
+    select 
+    <include refid="Base_Column_List" />
+    from asp_user_guess
+    where 1=1
+     <if test="guessStatus != null" >
+        and guess_status = #{guessStatus}
+     </if>
+     <if test="mId != null" >
+        and m_id = #{mId}
+     </if>
+     <if test="isTransfer != null" >
+       and is_transfer = #{isTransfer}
+     </if>
+     <if test="isApply != null" >
+       and is_apply = #{isApply}
+     </if>
+     order by add_time desc
+  </select>
+</mapper>

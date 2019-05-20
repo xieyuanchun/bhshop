@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="sortnum" property="sortnum" jdbcType="INTEGER" />
+    <result column="ad_id" property="adId" jdbcType="VARCHAR" />
+    <result column="reid" property="reid" jdbcType="INTEGER" />
+    <result column="series" property="series" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.Menu" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="link" property="link" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, name, image, sortnum, ad_id, reid, series
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.Menu" >
+    insert into menu (id, createTime, name, 
+      image, sortnum, ad_id, 
+      reid, series, content, 
+      link)
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{sortnum,jdbcType=INTEGER}, #{adId,jdbcType=VARCHAR}, 
+      #{reid,jdbcType=INTEGER}, #{series,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, 
+      #{link,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.goods.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="sortnum != null" >
+        sortnum,
+      </if>
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="reid != null" >
+        reid,
+      </if>
+      <if test="series != null" >
+        series,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null" >
+        #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="series != null" >
+        #{series,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.Menu" >
+    update menu
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null" >
+        sortnum = #{sortnum,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null" >
+        ad_id = #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="reid != null" >
+        reid = #{reid,jdbcType=INTEGER},
+      </if>
+      <if test="series != null" >
+        series = #{series,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.Menu" >
+    update menu
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      ad_id = #{adId,jdbcType=VARCHAR},
+      reid = #{reid,jdbcType=INTEGER},
+      series = #{series,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      link = #{link,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.Menu" >
+    update menu
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      sortnum = #{sortnum,jdbcType=INTEGER},
+      ad_id = #{adId,jdbcType=VARCHAR},
+      reid = #{reid,jdbcType=INTEGER},
+      series = #{series,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu order by createTime desc
+  </select>
+  
+  <select id="countAll" resultType="java.lang.Integer">
+    select count(*)
+    from menu
+  </select>
+  
+  <delete id="batchDelete" parameterType="java.util.List">
+      delete from menu
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </delete>
+   
+   
+   <select id="selectByAdid" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectFirstLevel" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu where series = 1 order by sortnum desc 
+  </select>
+  
+   <select id="getFirstLevel" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu where series = 1 order by createTime desc 
+  </select>
+  
+  <select id="selectTwoLevel" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu where reid = #{reid,jdbcType=INTEGER} and series = 2 order by sortnum desc
+  </select>
+  
+  <select id="getListByReid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from menu where reid = #{reid,jdbcType=INTEGER} order by sortnum asc
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <!--消费拍卖通知，并广播给所有websocket的session-->
+    <bean id="bokerNotifyListener" class="com.bh.auc.rocketMQ.BokerNotifyListener"/>
+    <bean id="consumerBokerNotify" class="com.bh.auc.rocketMQ.SpringConsumer"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="nameServerAddr" value="${rocketmq.namesrv}"/>
+        <constructor-arg name="consumerGroupName" value="bokerNotifyGroup"/>
+        <constructor-arg name="topicName" value="auctionNotify"/>
+        <constructor-arg name="consumeFromWhere" value="0"/>
+        <constructor-arg name="messageModel" value="0"/>
+        <constructor-arg name="subExpression" value="*"/>
+        <constructor-arg name="messageListener" ref="bokerNotifyListener"/>
+
+    </bean>
+
+    <!--消费拍卖通知，并广播给所有websocket的session-->
+    <bean id="auctionListNotifyListener" class="com.bh.auc.rocketMQ.AuctionListNotifyListener"/>
+    <bean id="consumerAuctionListNotify" class="com.bh.auc.rocketMQ.SpringConsumer"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="nameServerAddr" value="${rocketmq.namesrv}"/>
+        <constructor-arg name="consumerGroupName" value="auctionListNotifyGroup"/>
+        <constructor-arg name="topicName" value="auctionNotify"/>
+        <constructor-arg name="consumeFromWhere" value="0"/>
+        <constructor-arg name="messageModel" value="0"/>
+        <constructor-arg name="subExpression" value="*"/>
+        <constructor-arg name="messageListener" ref="auctionListNotifyListener"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.goods.mapper.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.goods.pojo.Coupon" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="need_amount" property="needAmount" jdbcType="INTEGER" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="sended" property="sended" jdbcType="INTEGER" />
+    <result column="used" property="used" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="period_day" property="periodDay" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="is_get" property="isGet" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, title, remark, amount, need_amount, stock, sended, used, start_time, end_time, 
+    status, shop_id, cat_id, period_day, coupon_type, is_get, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.goods.pojo.Coupon" >
+    insert into coupon (id, type, title, 
+      remark, amount, need_amount, 
+      stock, sended, used, 
+      start_time, end_time, status, 
+      shop_id, cat_id, period_day, 
+      coupon_type, is_get, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{needAmount,jdbcType=INTEGER}, 
+      #{stock,jdbcType=INTEGER}, #{sended,jdbcType=INTEGER}, #{used,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{catId,jdbcType=BIGINT}, #{periodDay,jdbcType=INTEGER}, 
+      #{couponType,jdbcType=INTEGER}, #{isGet,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.goods.pojo.Coupon" >
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="needAmount != null" >
+        need_amount,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="sended != null" >
+        sended,
+      </if>
+      <if test="used != null" >
+        used,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="periodDay != null" >
+        period_day,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="isGet != null" >
+        is_get,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="needAmount != null" >
+        #{needAmount,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="sended != null" >
+        #{sended,jdbcType=INTEGER},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="periodDay != null" >
+        #{periodDay,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="isGet != null" >
+        #{isGet,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.goods.pojo.Coupon" >
+    update coupon
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="needAmount != null" >
+        need_amount = #{needAmount,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="sended != null" >
+        sended = #{sended,jdbcType=INTEGER},
+      </if>
+      <if test="used != null" >
+        used = #{used,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="periodDay != null" >
+        period_day = #{periodDay,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+       <if test="isGet != null" >
+        is_get = #{isGet,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.goods.pojo.Coupon" >
+    update coupon
+    set type = #{type,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      need_amount = #{needAmount,jdbcType=INTEGER},
+      stock = #{stock,jdbcType=INTEGER},
+      sended = #{sended,jdbcType=INTEGER},
+      used = #{used,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=BIGINT},
+      period_day = #{periodDay,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=INTEGER},
+      is_get = #{isGet,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  
+  <select id="listPage" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.Coupon" >
+    select * from coupon where 1=1
+    <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="type != null " >
+        and type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="title != null and title !='' " >
+        and title = #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="shopId != null and shopId !='' " >
+        and shop_id = #{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="status != null " >
+        and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="startTime != null">
+    	 and  start_time <![CDATA[>=]]> #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null">
+    	 and  end_time <![CDATA[<=]]> #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="catId != null " >
+        and cat_id = #{catId,jdbcType=INTEGER}
+    </if>
+    <if test="periodDay != null " >
+        and period_day = #{periodDay,jdbcType=INTEGER}
+    </if>
+    <if test="couponType != null " >
+        and coupon_type = #{couponType,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="moblieListPage" resultMap="BaseResultMap" parameterType="com.bh.goods.pojo.Coupon" >
+    select * from coupon where 1=1
+    <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="type != null " >
+        and type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="title != null and title !='' " >
+        and title = #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="shopId != null and shopId !='' " >
+        and shop_id = #{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="status != null " >
+        and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="startTime != null">
+    	 and  start_time <![CDATA[<=]]> #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null">
+    	 and  end_time <![CDATA[>=]]> #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    and status = 1  
+  </select>
+  
+  
+  <!-- 程凤云 -->
+  <select id="selectCouponByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select cou_log.id as id,cou.type,cou.amount,cou.need_amount,cou.coupon_type,cou.cat_id
+  	from coupon cou,coupon_log cou_log
+	where cou.id=cou_log.coupon_id
+	and cou.shop_id=#{shopId}
+	and cou_log.id in 
+	 <foreach item="list" collection="list" open="(" close=")" separator=",">
+             #{list}
+     </foreach>
+  </select>
+   <select id="selectSkuPriceByOShopId" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	 select COALESCE(SUM(osku.sku_num*osku.sku_sell_price_real-osku.save_price),0) as price 
+	from order_sku osku 
+	where 
+	osku.shop_id=#{shopId}
+	and osku.order_shop_id=#{orderShopId}
+  </select>
+  <select id="selectSkuListByOShopId" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select osku.id as id, osku.sku_num*osku.sku_sell_price_real as type,osku.save_price as amount
+  	from order_sku osku 
+	where 
+	osku.shop_id=#{shopId}
+	and osku.order_shop_id=#{orderShopId}
+  </select>
+  
+   <select id="selectSkuPriceByCatId" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select COALESCE(SUM(osku.sku_num*osku.sku_sell_price_real-osku.save_price),0)
+  	from coupon cou,coupon_log cou_log,order_sku osku,goods g
+	where cou.id=cou_log.coupon_id
+	and osku.goods_id=g.id
+	and cou.cat_id=g.cat_id_one
+	and cou.cat_id=#{catId}
+	and cou.shop_id=#{shopId}
+	and cou_log.id =#{logId}
+	and osku.order_shop_id=#{orderShopId}
+  </select>
+   <select id="selectSkuListByCatId" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select osku.id as id,osku.sku_num*osku.sku_sell_price_real as type,osku.save_price as amount
+  	from coupon cou,coupon_log cou_log,order_sku osku,goods g
+	where cou.id=cou_log.coupon_id
+	and osku.goods_id=g.id
+	and cou.cat_id=g.cat_id_one
+	and cou.cat_id=#{catId}
+	and cou.shop_id=#{shopId}
+	and cou_log.id =#{logId}
+	and osku.order_shop_id=#{orderShopId}
+  </select>
+</mapper>

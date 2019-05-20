@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberShopFavoriteMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberShopFavorite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_id, shop_id, addtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_shop_favorite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_shop_favorite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+    insert into member_shop_favorite (id, m_id, shop_id, 
+      addtime)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+    insert into member_shop_favorite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+    update member_shop_favorite
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+    update member_shop_favorite
+    set m_id = #{mId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- cheng -->
+    <select id="selectByparams" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+      select m.* 
+    	from member_shop_favorite m,  member_shop mshop
+   	where 1=1  and mshop.m_id=m.shop_id 
+     <if test="mId != null" >
+      and  m.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null" ><!-- category的id=shopId -->
+       and c.id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="shopName != null" >
+       and mshop.shop_name like CONCAT(CONCAT('%', #{shopName}), '%')
+      </if>
+      order by m.addtime desc
+  </select>
+   <select id="selectCountByShopId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  select count(*) from member_shop_favorite where 
+    shop_id= #{shopId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByBatch" parameterType="java.util.List" >
+    delete from member_shop_favorite
+    where id in
+    <foreach item="id" collection="id" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+  </delete>
+    <select id="selectShopfavoriteNumber" resultType="java.lang.Integer" parameterType="com.bh.admin.pojo.user.MemberShopFavorite" >
+      select count(m.id )
+    	from member_shop_favorite m,member_shop mshop
+   	where 1=1     and mshop.m_id=m.shop_id 
+     <if test="mId != null" >
+      and  m.m_id = #{mId,jdbcType=INTEGER}
+      </if>
+      order by m.addtime desc
+  </select>
+  <!-- end -->
+  
+   <select id="findByShopIdAndMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_shop_favorite
+    where shop_id = #{0} and m_id = #{1}
+  </select>
+</mapper>

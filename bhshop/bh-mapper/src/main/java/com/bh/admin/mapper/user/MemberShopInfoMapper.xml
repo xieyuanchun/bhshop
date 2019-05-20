@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.user.MemberShopInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.user.MemberShopInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="apply_type" property="applyType" jdbcType="INTEGER" />
+    <result column="applicant_name" property="applicantName" jdbcType="VARCHAR" />
+    <result column="applicant_idcard" property="applicantIdcard" jdbcType="VARCHAR" />
+    <result column="idcard_image" property="idcardImage" jdbcType="VARCHAR" />
+    <result column="applicant_phone" property="applicantPhone" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_reservation_number" property="bankReservationNumber" jdbcType="VARCHAR" />
+    <result column="card_real_name" property="cardRealName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="legal_person_name" property="legalPersonName" jdbcType="VARCHAR" />
+    <result column="legal_person_phone" property="legalPersonPhone" jdbcType="VARCHAR" />
+    <result column="legal_person_idcard" property="legalPersonIdcard" jdbcType="VARCHAR" />
+    <result column="legal_person_idcard_image" property="legalPersonIdcardImage" jdbcType="VARCHAR" />
+    <result column="business_license_image" property="businessLicenseImage" jdbcType="VARCHAR" />
+    <result column="credit_no" property="creditNo" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_type, applicant_name, applicant_idcard, idcard_image, applicant_phone, 
+    bank_card_no, bank_name, bank_reservation_number, card_real_name, company_name, legal_person_name, 
+    legal_person_phone, legal_person_idcard, legal_person_idcard_image, business_license_image, 
+    credit_no, openid, shop_id, addtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_shop_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_shop_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+    insert into member_shop_info (id, apply_type, applicant_name, 
+      applicant_idcard, idcard_image, applicant_phone, 
+      bank_card_no, bank_name, bank_reservation_number, 
+      card_real_name, company_name, legal_person_name, 
+      legal_person_phone, legal_person_idcard, legal_person_idcard_image, 
+      business_license_image, credit_no, openid, 
+      shop_id, addtime, updatetime
+      )
+    values (#{id,jdbcType=INTEGER}, #{applyType,jdbcType=INTEGER}, #{applicantName,jdbcType=VARCHAR}, 
+      #{applicantIdcard,jdbcType=VARCHAR}, #{idcardImage,jdbcType=VARCHAR}, #{applicantPhone,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankReservationNumber,jdbcType=VARCHAR}, 
+      #{cardRealName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{legalPersonName,jdbcType=VARCHAR}, 
+      #{legalPersonPhone,jdbcType=VARCHAR}, #{legalPersonIdcard,jdbcType=VARCHAR}, #{legalPersonIdcardImage,jdbcType=VARCHAR}, 
+      #{businessLicenseImage,jdbcType=VARCHAR}, #{creditNo,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+    insert into member_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="applicantName != null" >
+        applicant_name,
+      </if>
+      <if test="applicantIdcard != null" >
+        applicant_idcard,
+      </if>
+      <if test="idcardImage != null" >
+        idcard_image,
+      </if>
+      <if test="applicantPhone != null" >
+        applicant_phone,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankReservationNumber != null" >
+        bank_reservation_number,
+      </if>
+      <if test="cardRealName != null" >
+        card_real_name,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="legalPersonName != null" >
+        legal_person_name,
+      </if>
+      <if test="legalPersonPhone != null" >
+        legal_person_phone,
+      </if>
+      <if test="legalPersonIdcard != null" >
+        legal_person_idcard,
+      </if>
+      <if test="legalPersonIdcardImage != null" >
+        legal_person_idcard_image,
+      </if>
+      <if test="businessLicenseImage != null" >
+        business_license_image,
+      </if>
+      <if test="creditNo != null" >
+        credit_no,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyType != null" >
+        #{applyType,jdbcType=INTEGER},
+      </if>
+      <if test="applicantName != null" >
+        #{applicantName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantIdcard != null" >
+        #{applicantIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardImage != null" >
+        #{idcardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantPhone != null" >
+        #{applicantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankReservationNumber != null" >
+        #{bankReservationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardRealName != null" >
+        #{cardRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhone != null" >
+        #{legalPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdcard != null" >
+        #{legalPersonIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdcardImage != null" >
+        #{legalPersonIdcardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseImage != null" >
+        #{businessLicenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="creditNo != null" >
+        #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+    update member_shop_info
+    <set >
+      <if test="applyType != null" >
+        apply_type = #{applyType,jdbcType=INTEGER},
+      </if>
+      <if test="applicantName != null" >
+        applicant_name = #{applicantName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantIdcard != null" >
+        applicant_idcard = #{applicantIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardImage != null" >
+        idcard_image = #{idcardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantPhone != null" >
+        applicant_phone = #{applicantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankReservationNumber != null" >
+        bank_reservation_number = #{bankReservationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardRealName != null" >
+        card_real_name = #{cardRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        legal_person_name = #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhone != null" >
+        legal_person_phone = #{legalPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdcard != null" >
+        legal_person_idcard = #{legalPersonIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdcardImage != null" >
+        legal_person_idcard_image = #{legalPersonIdcardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseImage != null" >
+        business_license_image = #{businessLicenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="creditNo != null" >
+        credit_no = #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+    update member_shop_info
+    set apply_type = #{applyType,jdbcType=INTEGER},
+      applicant_name = #{applicantName,jdbcType=VARCHAR},
+      applicant_idcard = #{applicantIdcard,jdbcType=VARCHAR},
+      idcard_image = #{idcardImage,jdbcType=VARCHAR},
+      applicant_phone = #{applicantPhone,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_reservation_number = #{bankReservationNumber,jdbcType=VARCHAR},
+      card_real_name = #{cardRealName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      legal_person_name = #{legalPersonName,jdbcType=VARCHAR},
+      legal_person_phone = #{legalPersonPhone,jdbcType=VARCHAR},
+      legal_person_idcard = #{legalPersonIdcard,jdbcType=VARCHAR},
+      legal_person_idcard_image = #{legalPersonIdcardImage,jdbcType=VARCHAR},
+      business_license_image = #{businessLicenseImage,jdbcType=VARCHAR},
+      credit_no = #{creditNo,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+ 
+   <resultMap id="PersonBaseResultMap" type="com.bh.admin.pojo.user.ShopInfoByPerson" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="applyType" property="applyType" jdbcType="INTEGER" />
+    <result column="shopId" property="shopId" jdbcType="INTEGER" />
+    <result column="applicantName" property="applicantName" jdbcType="VARCHAR" />
+    <result column="applicantPhone" property="applicantPhone" jdbcType="VARCHAR" />
+    <result column="addTime" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="busiPayPre" property="busiPayPre" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="shopInfoListByPerson" resultMap="PersonBaseResultMap"  parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+  	select b.id,b.apply_type as applyType ,b.shop_id as shopId,b.applicant_name as applicantName,
+  		   b.applicant_phone as applicantPhone ,a.addtime as addTime,a.step,a.busi_pay_pre as busiPayPre
+  	from  member_shop a,member_shop_info b where a.m_id =b.shop_id and a.step in(6,7,8) and b.apply_type=0
+    <if test="step != null" >
+        and a.step = #{step,jdbcType=INTEGER}
+    </if>
+    <if test="shopId != null" >
+        and b.shop_id = #{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="applicantName != null and  applicantName!='' " >
+   		and b.applicant_name like CONCAT('%', #{applicantName}, '%')
+    </if>
+    <if test="applicantPhone!= null and applicantPhone!='' " >
+      	and b.applicant_phone = #{applicantPhone,jdbcType=VARCHAR}
+    </if>
+     order by b.shop_id desc
+  </select>
+  
+  
+  <resultMap id="BusinessBaseResultMap" type="com.bh.admin.pojo.user.ShopInfoByBusiness" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="applyType" property="applyType" jdbcType="INTEGER" />
+    <result column="shopId" property="shopId" jdbcType="INTEGER" />
+    <result column="companyName" property="companyName" jdbcType="VARCHAR" />
+    <result column="legalPersonPhone" property="legalPersonPhone" jdbcType="VARCHAR" />
+    <result column="creditNo" property="creditNo" jdbcType="VARCHAR" />
+     <result column="legalPersonName" property="legalPersonName" jdbcType="VARCHAR" />
+    <result column="addTime" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="busiPayPre" property="busiPayPre" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="shopInfoListByBusiness" resultMap="BusinessBaseResultMap"  parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+  	select b.id,b.apply_type as applyType ,b.shop_id as shopId,b.company_name as companyName, b.legal_person_name as legalPersonName,
+  		   b.legal_person_phone as legalPersonPhone ,a.addtime as addTime,a.step,a.busi_pay_pre as busiPayPre,b.credit_no as creditNo
+  	from  member_shop a,member_shop_info b where a.m_id =b.shop_id and a.step in(6,7,8) and b.apply_type=1
+    <if test="step != null" >
+        and a.step = #{step,jdbcType=INTEGER}
+    </if>
+    <if test="shopId != null" >
+        and b.shop_id = #{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="legalPersonName != null and legalPersonName!='' " >
+   		and b.legal_person_name like CONCAT('%', #{legalPersonName}, '%')
+    </if>
+    <if test="companyName != null and companyName!='' " >
+   		and b.company_name like CONCAT('%', #{companyName}, '%')
+    </if>
+    <if test="legalPersonPhone!= null and legalPersonPhone!='' " >
+      	and b.legal_person_phone = #{legalPersonPhone,jdbcType=VARCHAR}
+    </if>
+    order by b.shop_id desc
+  </select>
+  
+  
+  
+   <resultMap id="CashDepositBaseResultMap" type="com.bh.admin.pojo.user.ShopCashDeposit" >
+    <result column="infoId" property="infoId" jdbcType="INTEGER" />
+    <result column="applyType" property="applyType" jdbcType="INTEGER" />
+    <result column="shopId" property="shopId" jdbcType="INTEGER" />
+    <result column="bankCardNo" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="orderNo" property="orderNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getShopCashDeposit" resultMap="CashDepositBaseResultMap"  parameterType="com.bh.admin.pojo.user.MemberShopInfo" >
+  	select b.id as infoId ,b.shop_id as shopId,b.apply_type as applyType,b.bank_card_no as bankCardNo,a.order_no as orderNo
+  	from  member_shop a,member_shop_info b where a.m_id =b.shop_id and a.step in(6,7,8) 
+    <if test="shopId != null" >
+        and b.shop_id = #{shopId,jdbcType=INTEGER}
+    </if>
+    <if test="applyType!= null" >
+   		and b.apply_type = #{applyType,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+   <select id="getByShopId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_shop_info
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+</mapper>

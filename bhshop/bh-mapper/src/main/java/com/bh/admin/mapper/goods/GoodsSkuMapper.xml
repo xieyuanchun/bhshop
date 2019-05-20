@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.GoodsSkuMapper" >
+ 
+   <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.GoodsSku">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="sku_no" jdbcType="VARCHAR" property="skuNo" />
+    <result column="store_nums" jdbcType="INTEGER" property="storeNums" />
+    <result column="market_price" jdbcType="INTEGER" property="marketPrice" />
+    <result column="sell_price" jdbcType="INTEGER" property="sellPrice" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="minimum" jdbcType="INTEGER" property="minimum" />
+    <result column="team_price" jdbcType="INTEGER" property="teamPrice" />
+    <result column="jd_price" jdbcType="INTEGER" property="jdPrice" />
+    <result column="jd_buy_price" jdbcType="INTEGER" property="jdBuyPrice" />
+    <result column="jd_protocol_price" jdbcType="INTEGER" property="jdProtocolPrice" />
+    <result column="jd_sku_no" jdbcType="BIGINT" property="jdSkuNo" />
+    <result column="jd_old_buy_price" jdbcType="INTEGER" property="jdOldBuyPrice" />
+    <result column="jd_support" jdbcType="INTEGER" property="jdSupport" />
+    <result column="jd_upc" jdbcType="VARCHAR" property="jdUpc" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="key_one" jdbcType="VARCHAR" property="keyOne" />
+    <result column="value_one" jdbcType="VARCHAR" property="valueOne" />
+    <result column="key_two" jdbcType="VARCHAR" property="keyTwo" />
+    <result column="value_two" jdbcType="VARCHAR" property="valueTwo" />
+    <result column="key_three" jdbcType="VARCHAR" property="keyThree" />
+    <result column="value_three" jdbcType="VARCHAR" property="valueThree" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="stock_price" jdbcType="INTEGER" property="stockPrice" />
+    <result column="delivery_price" property="deliveryPrice" jdbcType="INTEGER" />
+    <result column="auction_price" property="auctionPrice" jdbcType="INTEGER" />
+    <result column="sku_code" jdbcType="VARCHAR" property="skuCode" />
+    <result column="key_four" jdbcType="VARCHAR" property="keyFour" />
+    <result column="value_four" jdbcType="VARCHAR" property="valueFour" />
+    <result column="key_five" jdbcType="VARCHAR" property="keyFive" />
+    <result column="value_five" jdbcType="VARCHAR" property="valueFive" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bh.admin.pojo.goods.GoodsSku">
+    <result column="value" jdbcType="LONGVARCHAR" property="value" />
+    <result column="jd_param" jdbcType="LONGVARCHAR" property="jdParam" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, goods_name, sku_no, store_nums, market_price, sell_price, weight, minimum, 
+    team_price, jd_price, jd_buy_price, jd_protocol_price, jd_sku_no, jd_old_buy_price, 
+    jd_support, jd_upc, score, key_one, value_one, key_two, value_two, key_three, value_three,
+    status, stock_price, delivery_price, auction_price,sku_code,key_four,value_four,key_five,value_five
+  </sql>
+  <sql id="Blob_Column_List">
+    value, jd_param
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_sku
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+    insert into goods_sku (id, goods_id, goods_name, 
+      sku_no, store_nums, market_price, 
+      sell_price, weight, minimum, 
+      team_price, jd_price, jd_buy_price, 
+      jd_protocol_price, jd_sku_no, jd_old_buy_price, 
+      jd_support, jd_upc, score, 
+      value, jd_param, key_one, value_one, key_two, value_two, 
+      key_three, value_three, status, stock_price, delivery_price, auction_price,
+      key_four,value_four,key_five,value_five)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{skuNo,jdbcType=VARCHAR}, #{storeNums,jdbcType=INTEGER}, #{marketPrice,jdbcType=INTEGER}, 
+      #{sellPrice,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{minimum,jdbcType=INTEGER}, 
+      #{teamPrice,jdbcType=INTEGER}, #{jdPrice,jdbcType=INTEGER}, #{jdBuyPrice,jdbcType=INTEGER}, 
+      #{jdProtocolPrice,jdbcType=INTEGER}, #{jdSkuNo,jdbcType=BIGINT}, #{jdOldBuyPrice,jdbcType=INTEGER}, 
+      #{jdSupport,jdbcType=INTEGER}, #{jdUpc,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{value,jdbcType=LONGVARCHAR}, #{jdParam,jdbcType=LONGVARCHAR}, #{keyOne,jdbcType=VARCHAR}, #{valueOne,jdbcType=VARCHAR},
+      #{keyTwo,jdbcType=VARCHAR}, #{valueTwo,jdbcType=VARCHAR}, #{keyThree,jdbcType=VARCHAR}, #{valueThree,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{stockPrice,jdbcType=INTEGER}, #{deliveryPrice,jdbcType=INTEGER}, #{auctionPrice,jdbcType=INTEGER},
+      #{keyFour,jdbcType=VARCHAR}, #{valueFour,jdbcType=VARCHAR}, #{keyFive,jdbcType=VARCHAR}, #{valueFive,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+    insert into goods_sku
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="skuNo != null">
+        sku_no,
+      </if>
+      <if test="storeNums != null">
+        store_nums,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="sellPrice != null">
+        sell_price,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="minimum != null">
+        minimum,
+      </if>
+      <if test="teamPrice != null">
+        team_price,
+      </if>
+      <if test="jdPrice != null">
+        jd_price,
+      </if>
+      <if test="jdBuyPrice != null">
+        jd_buy_price,
+      </if>
+      <if test="jdProtocolPrice != null">
+        jd_protocol_price,
+      </if>
+      <if test="jdSkuNo != null">
+        jd_sku_no,
+      </if>
+      <if test="jdOldBuyPrice != null">
+        jd_old_buy_price,
+      </if>
+      <if test="jdSupport != null">
+        jd_support,
+      </if>
+      <if test="jdUpc != null">
+        jd_upc,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="jdParam != null">
+        jd_param,
+      </if>
+      <if test="keyOne != null">
+        key_one,
+      </if>
+      <if test="valueOne != null">
+        value_one,
+      </if>
+      <if test="keyTwo != null">
+        key_two,
+      </if>
+      <if test="valueTwo != null">
+        value_two,
+      </if>
+      <if test="keyThree != null">
+        key_three,
+      </if>
+      <if test="valueThree != null">
+        value_three,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="stockPrice != null">
+        stock_price,
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price,
+      </if>
+      <if test="auctionPrice != null">
+        auction_price,
+      </if>
+      <if test="skuCode != null">
+        sku_code,
+      </if>
+      <if test="keyFour != null">
+        key_four,
+      </if>
+      <if test="valueFour != null">
+        value_four,
+      </if>
+      <if test="keyFive != null">
+        key_five,
+      </if>
+      <if test="valueFive != null">
+        value_five,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNo != null">
+        #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null">
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null">
+        #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="minimum != null">
+        #{minimum,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null">
+        #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdPrice != null">
+        #{jdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdBuyPrice != null">
+        #{jdBuyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdProtocolPrice != null">
+        #{jdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdSkuNo != null">
+        #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="jdOldBuyPrice != null">
+        #{jdOldBuyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdSupport != null">
+        #{jdSupport,jdbcType=INTEGER},
+      </if>
+      <if test="jdUpc != null">
+        #{jdUpc,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jdParam != null">
+        #{jdParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyOne != null">
+        #{keyOne,jdbcType=VARCHAR},
+      </if>
+      <if test="valueOne != null">
+        #{valueOne,jdbcType=VARCHAR},
+      </if>
+      <if test="keyTwo != null">
+        #{keyTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="valueTwo != null">
+        #{valueTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyThree != null">
+        #{keyThree,jdbcType=VARCHAR},
+      </if>
+      <if test="valueThree != null">
+        #{valueThree,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="stockPrice != null">
+        #{stockPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null">
+        #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null">
+        #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuCode != null">
+        #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFour != null">
+        #{keyFour,jdbcType=VARCHAR},
+      </if>
+      <if test="valueFour != null">
+        #{valueFour,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFive != null">
+        #{keyFive,jdbcType=VARCHAR},
+      </if>
+      <if test="valueFive != null">
+        #{valueFive,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+    update goods_sku
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNo != null">
+        sku_no = #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNums != null">
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null">
+        sell_price = #{sellPrice,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="minimum != null">
+        minimum = #{minimum,jdbcType=INTEGER},
+      </if>
+      <if test="teamPrice != null">
+        team_price = #{teamPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdPrice != null">
+        jd_price = #{jdPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdBuyPrice != null">
+        jd_buy_price = #{jdBuyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdProtocolPrice != null">
+        jd_protocol_price = #{jdProtocolPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdSkuNo != null">
+        jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      </if>
+      <if test="jdOldBuyPrice != null">
+        jd_old_buy_price = #{jdOldBuyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="jdSupport != null">
+        jd_support = #{jdSupport,jdbcType=INTEGER},
+      </if>
+      <if test="jdUpc != null">
+        jd_upc = #{jdUpc,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jdParam != null">
+        jd_param = #{jdParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyOne != null">
+        key_one = #{keyOne,jdbcType=VARCHAR},
+      </if>
+      <if test="valueOne != null">
+        value_one = #{valueOne,jdbcType=VARCHAR},
+      </if>
+      <if test="keyTwo != null">
+        key_two = #{keyTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="valueTwo != null">
+        value_two = #{valueTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyThree != null">
+        key_three = #{keyThree,jdbcType=VARCHAR},
+      </if>
+      <if test="valueThree != null">
+        value_Three = #{valueThree,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="stockPrice != null">
+        stock_price = #{stockPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      </if>
+      <if test="auctionPrice != null">
+        auction_price = #{auctionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="skuCode != null">
+        sku_code = #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFour != null">
+        key_four = #{keyFour,jdbcType=VARCHAR},
+      </if>
+      <if test="valueFour != null">
+        value_four = #{valueFour,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFive != null">
+        key_five = #{keyFive,jdbcType=VARCHAR},
+      </if>
+      <if test="valueFive != null">
+        value_five = #{valueFive,jdbcType=VARCHAR},
+      </if>
+      edit_time = NOW()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+    update goods_sku
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      sell_price = #{sellPrice,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      minimum = #{minimum,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      jd_price = #{jdPrice,jdbcType=INTEGER},
+      jd_buy_price = #{jdBuyPrice,jdbcType=INTEGER},
+      jd_protocol_price = #{jdProtocolPrice,jdbcType=INTEGER},
+      jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      jd_old_buy_price = #{jdOldBuyPrice,jdbcType=INTEGER},
+      jd_support = #{jdSupport,jdbcType=INTEGER},
+      jd_upc = #{jdUpc,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      value = #{value,jdbcType=LONGVARCHAR},
+      jd_param = #{jdParam,jdbcType=LONGVARCHAR},
+      key_one = #{keyOne,jdbcType=VARCHAR},
+      value_one = #{valueOne,jdbcType=VARCHAR},
+      key_two = #{keyTwo,jdbcType=VARCHAR},
+      value_two = #{valueTwo,jdbcType=VARCHAR},
+      key_three = #{keyThree,jdbcType=VARCHAR},
+      value_three = #{valueThree,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      stock_price = #{stockPrice,jdbcType=INTEGER},
+      delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      auction_price = #{auctionPrice,jdbcType=INTEGER},
+      key_four = #{keyFour,jdbcType=VARCHAR},
+      value_four = #{valueFour,jdbcType=VARCHAR},
+      key_five = #{keyFive,jdbcType=VARCHAR},
+      value_five = #{valueFive,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+    update goods_sku
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      sell_price = #{sellPrice,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      minimum = #{minimum,jdbcType=INTEGER},
+      team_price = #{teamPrice,jdbcType=INTEGER},
+      jd_price = #{jdPrice,jdbcType=INTEGER},
+      jd_buy_price = #{jdBuyPrice,jdbcType=INTEGER},
+      jd_protocol_price = #{jdProtocolPrice,jdbcType=INTEGER},
+      jd_sku_no = #{jdSkuNo,jdbcType=BIGINT},
+      jd_old_buy_price = #{jdOldBuyPrice,jdbcType=INTEGER},
+      jd_support = #{jdSupport,jdbcType=INTEGER},
+      jd_upc = #{jdUpc,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      key_one = #{keyOne,jdbcType=VARCHAR},
+      value_one = #{valueOne,jdbcType=VARCHAR},
+      key_two = #{keyTwo,jdbcType=VARCHAR},
+      value_two = #{valueTwo,jdbcType=VARCHAR},
+      key_three = #{keyThree,jdbcType=VARCHAR},
+      value_three = #{valueThree,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      stock_price = #{stockPrice,jdbcType=INTEGER},
+      delivery_price = #{deliveryPrice,jdbcType=INTEGER},
+      auction_price = #{auctionPrice,jdbcType=INTEGER},
+      key_four = #{keyFour,jdbcType=VARCHAR},
+      value_four = #{valueFour,jdbcType=VARCHAR},
+      key_five = #{keyFive,jdbcType=VARCHAR},
+      value_five = #{valueFive,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  <select id="countByGoodsId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="batchDelete" parameterType="java.util.List">
+      delete from goods_sku
+         where id in
+         <foreach item="id" collection="list" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+   </delete>
+   
+   <select id="selectListByGoodsId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+   </select>
+   <select id="selectListByGoodsIdAndStatus" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER} and status = 0
+   </select>
+   
+   <select id="selectListByGidAndJdSkuNoAndStatus" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER} and status = 0 and jd_sku_no > 0
+   </select>
+   
+   
+   
+   <select id="selectListByJdSkuNo" resultMap="ResultMapWithBLOBs">
+    select jd_sku_no
+    from goods_sku a LEFT JOIN goods b ON a.goods_id = b.id
+    where a.jd_sku_no is not null and a.jd_sku_no > 0 and b.`status`!= 1
+   </select>
+   
+   <select id="selectByJdSkuNo" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsSku" >
+    select a.* from goods_sku a left join goods b on a.goods_id = b.id where b.status !=1 and a.status = 0
+    and a.jd_sku_no = #{jdSkuNo,jdbcType=BIGINT}
+   </select>
+  
+ 	<!-- *********************************cheng20417-9-18添加********************************* -->
+ 	<select id="selectByGoodsId" resultMap="ResultMapWithBLOBs" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where 1=1 
+   
+    and goods_id in
+      <foreach item="goodsId" collection="list" open="(" close=")" separator=",">
+             #{goodsId,jdbcType=INTEGER}
+      </foreach>
+  </select>
+  <!-- 2017-10-13通过id找goodsku -->
+  <select id="selectGoodsSkuById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+  	    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where 1=1 and id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectDouGoods" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+  	select a.* from goods_sku a 
+  	LEFT JOIN 
+  	goods b 
+  	on a.goods_id = b.id
+  	where a.sell_price*b.deductible_rate/100>0 and a.store_nums>0 and b.status = 5
+  	GROUP BY a.jd_support 
+  	order by b.sortnum desc
+  </select>
+  <update id="batchUpdateSkuByGoodsId">
+    update  goods_sku set jd_support = 0 where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <!-- <select id="selectDouGoods" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsSku">
+  	    select sku.* from goods_sku sku,goods g
+           where 1=1
+             and sku.goods_id=g.id
+             and g.`status`=5
+             and sku.store_nums>0
+             and sku.id in 
+             (
+                 select sku.id from topic_goods tg,topic tc,goods_sku sku,goods g 
+                     where 1=1
+                            and g.id=tg.goods_id
+                            and g.id=sku.goods_id
+                            and tg.act_id=tc.id
+                            and tg.is_delete=0
+                            and tc.type=4
+                            and tc.is_delete=0
+                            and tg.`status` = 1       
+                            and tc.end_time > NOW()
+                            group by sku.id
+             )
+            OR sku.score>0
+           GROUP BY sku.goods_id
+  </select> -->
+  
+  
+   <select id="getListByGoodsIdAndOrderByStore" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER} order by store_nums desc
+   </select>
+  
+   <select id="selectPricebyGoodsId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select team_price
+    from goods_sku
+    where goods_id = #{goodsId,jdbcType=INTEGER} and status = 0
+   </select>
+ 
+   
+   <select id="getByJdSkuNo" resultMap="BaseResultMap" parameterType="com.bh.admin.pojo.goods.GoodsSku" >
+    select gs.*
+    from goods_sku gs ,goods g 
+    where  gs.jd_sku_no = #{jdSkuNo,jdbcType=BIGINT} 
+    and  g.status = 5
+    and  gs.goods_id = g.id 
+   </select>
+   
+   <select id="isExistByJdSkuNo" resultMap="ResultMapWithBLOBs" parameterType="com.bh.admin.pojo.goods.GoodsSku" >
+    select id, goods_id from goods_sku where status = 0 and jd_sku_no = #{jdSkuNo,jdbcType=BIGINT}
+   </select>
+   
+   <select id="syncSkuDelete" resultMap="ResultMapWithBLOBs" >
+    select a.id from goods_sku a LEFT JOIN goods b ON a.goods_id = b.id where a.status = 0 and jd_sku_no >0 and b.status = 1
+   </select>
+   
+   <select id="syncSkuDeleteTwo" resultMap="ResultMapWithBLOBs" >
+    select id from goods where is_jd = 0 and id in (
+		select  goods_id from goods_sku where jd_sku_no >0 and status = 0
+    )
+   </select>
+   
+   
+    <select id="selectByJdGoods" resultMap="BaseResultMap" >
+     select gs.goods_id,gs.jd_sku_no from goods g,goods_sku gs
+     where g.id=gs.goods_id and g.is_jd=1 and gs.jd_sku_no!=0 and gs.status=0 and g.status!=1
+            group by gs.goods_id
+   </select>
+   
+    <select id="selectByGoodsId1" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select ifnull(sum(store_nums),0) from goods_sku where goods_id=#{goodsId} and status=0
+   </select>
+   
+   
+</mapper>

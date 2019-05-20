@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bh.admin.mapper.goods.AdsRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.bh.admin.pojo.goods.AdsRelation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ads_id" property="adsId" jdbcType="INTEGER" />
+    <result column="target_id" property="targetId" jdbcType="INTEGER" />
+    <result column="ads_type" property="adsType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ads_id, target_id, ads_type, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ads_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ads_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bh.admin.pojo.goods.AdsRelation" >
+    insert into ads_relation (id, ads_id, target_id, 
+      ads_type, status)
+    values (#{id,jdbcType=INTEGER}, #{adsId,jdbcType=INTEGER}, #{targetId,jdbcType=INTEGER}, 
+      #{adsType,jdbcType=INTEGER}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bh.admin.pojo.goods.AdsRelation" >
+    insert into ads_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adsId != null" >
+        ads_id,
+      </if>
+      <if test="targetId != null" >
+        target_id,
+      </if>
+      <if test="adsType != null" >
+        ads_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adsId != null" >
+        #{adsId,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="adsType != null" >
+        #{adsType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bh.admin.pojo.goods.AdsRelation" >
+    update ads_relation
+    <set >
+      <if test="adsId != null" >
+        ads_id = #{adsId,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        target_id = #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="adsType != null" >
+        ads_type = #{adsType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bh.admin.pojo.goods.AdsRelation" >
+    update ads_relation
+    set ads_id = #{adsId,jdbcType=INTEGER},
+      target_id = #{targetId,jdbcType=INTEGER},
+      ads_type = #{adsType,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  <select id="selectByTargetId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ads_relation
+    where target_id = #{targetId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByAdsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ads_relation
+    where ads_id = #{adsId,jdbcType=INTEGER}
+  </select>
+</mapper>
